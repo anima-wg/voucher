@@ -196,9 +196,10 @@ module ietf-voucher {
            is not processed by pledges.
 
            Circumstances may occur after a voucher is generated that
-           may alter a voucher's validity period.  For instance, a
-           vendor may associate validity periods with support contracts,
-           which may be terminated or extended over time.";
+           may alter a voucher's validity period.  For instance,
+           a vendor may associate validity periods with support
+           contracts, which may be terminated or extended
+           over time.";
       }
     } // end voucher
   } // end voucher-grouping

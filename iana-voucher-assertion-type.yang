@@ -1,5 +1,6 @@
  module iana-voucher-assertion-type {
-  namespace "urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type";
+  namespace "urn:ietf:params:xml:ns:yang:"
+    + "iana-voucher-assertion-type";
   prefix ianavat;
 
   organization
@@ -13,12 +14,13 @@
      Tel:    +1 310 301 5800
      <mailto:iana@iana.org>";
   description
-    "This YANG module defines a YANG enumeration type for IANA
-     -registered voucher assertion type. This YANG module is
-     maintained by IANA and reflects the 'voucher assertion types'
-     registry. The lastest revision of this YANG module can be
-     obtained from the IANA web site.  Request for new enumerations
-     should be made to IANA via email(iana@iana.org).
+    "This YANG module defines a YANG enumeration type for
+     IANA-registered voucher assertion type. This YANG
+     module is maintained by IANA and reflects the
+     'voucher assertion types' registry.
+     The lastest revision of this YANG module can be
+     obtained from the IANA web site.  Request for new
+     enumerations should be made to IANA via email(iana@iana.org).
 
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
@@ -42,7 +44,8 @@
   revision YYYY-MM-DD {
     description
       "Initial version";
-    reference "RFC XXXX: Voucher Artifact for Bootstrapping Protocols";
+    reference "RFC XXXX: Voucher Artifact for" +
+      "Bootstrapping Protocols";
   }
 
   typedef voucher-assertion {
