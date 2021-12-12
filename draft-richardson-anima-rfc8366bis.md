@@ -689,7 +689,7 @@ IANA is asked to register a second URI as follows:
 This document registers two YANG module in the "YANG Module Names"
 registry {{RFC6020}}.
 
-IANA has registered the following:
+IANA is asked to registrar the following:
 
 > {:compact}
 >   name:
