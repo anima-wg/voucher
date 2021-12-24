@@ -44,6 +44,14 @@ author:
   code: '95050'
   country: United States of America
   email: tte+ietf@cs.fau.de
+- ins: Q. Ma
+  name: Qiufang Ma
+  org: Huawei
+  street: 101 Software Avenue, Yuhua District
+  city: Nanjing
+  code: '210012'
+  country: China
+  email: maqiufang1@huawei.com
 normative:
   RFC5652:
   RFC6020:
