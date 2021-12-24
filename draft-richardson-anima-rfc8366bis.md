@@ -84,19 +84,14 @@ informative:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
     title: 'The Resurrecting Duckling: Security Issues for Ad-Hoc Wireless Networks'
     author:
-    - ins: F. Stajano
-      name: Frank Stajano
-      org: ''
-    - ins: R. Anderson
-      name: Ross Anderson
-      org: ''
+    - name: Frank Stajano
+    - name: Ross Anderson
     date: 1999
   imprinting:
     target: https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=825757556
     title: 'Wikipedia article: Imprinting'
     author:
-    - surname: Wikipedia
-      org: ''
+    - org: Wikipedia
     date: 2018-02
 
 --- abstract
@@ -359,7 +354,7 @@ Please review the YANG module for a detailed description of the
 voucher format.
 
 ~~~~
-{::include yang/ietf-voucher-tree-latest.txt}
+{::include-fold yang/ietf-voucher-tree-latest.txt}
 ~~~~
 
 
@@ -417,7 +412,7 @@ describing the voucher's assertion type.
 
 
 ~~~~ yang
-{::include yang/iana-voucher-assertion-type-latest.yang}
+{::include-fold yang/iana-voucher-assertion-type-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
@@ -428,7 +423,7 @@ The revised ietf-voucher YANG module imports the typedef defined in
 
 
 ~~~~ yang
-{::include yang/ietf-voucher-latest.yang}
+{::include-fold yang/ietf-voucher-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
@@ -558,7 +553,7 @@ get ephemeral vouchers, and 3) vouchers without expiration times
 may be used, which will appear in the audit log, informing the
 security decision.
 
-This document defines a voucher format that  contains time values
+This document defines a voucher format that contains time values
 for expirations, which require an accurate clock
 in order to be processed correctly.  Vendors planning on
 issuing vouchers with expiration values must ensure that devices
@@ -583,7 +578,7 @@ vouchers for that domain could be used by the attacker.  The domain
 administrator is clearly expected to initiate revocation of any
 domain identity certificates (as is normal in PKI solutions).
 
-Similarly,they are expected to contact the MASA to indicate that
+Similarly, they are expected to contact the MASA to indicate that
 an outstanding (presumably short lifetime) voucher should be blocked from
 automated renewal.
 Protocols for voucher distribution are
@@ -636,14 +631,18 @@ statement to the "voucher-assertion-type" type.
 The assigned name defined by the "enum" statement SHALL be the same as the mnemonic name of the new assertion type.
 The following substatements to the "enum" statement SHALL be defined:
 
-    "value": Use the decimal value from the registry.
-
-    "status": Include only if a class or type registration has been deprecated or obsoleted.
-    IANA "deprecated" maps to YANG status "deprecated", and IANA "obsolete" maps to YANG status   "obsolete".
-
-    "description": Replicate the corresponding information from the registry, namely the full name of the new assertion type.
-
-    "reference": Replicate the reference(s) from the registry.
+> "value":
+> : Use the decimal value from the registry.
+>
+> "status":
+> : Include only if a class or type registration has been deprecated or obsoleted.
+> IANA "deprecated" maps to YANG status "deprecated", and IANA "obsolete" maps to YANG status   "obsolete".
+>
+> "description":
+> : Replicate the corresponding information from the registry, namely the full name of the new assertion type.
+>
+> "reference":
+> : Replicate the reference(s) from the registry.
 
 Each time the "iana-voucher-assertion-type" YANG module is updated, a new "revision" statement SHALL be added before the existing "revision" statements.
 IANA has added this note to the "voucher assertion types" registries:
@@ -663,19 +662,27 @@ This document registers two URIs in the "IETF XML Registry" {{RFC3688}}.
 
 IANA has registered the following:
 
-~~~~
-   URI: urn:ietf:params:xml:ns:yang:ietf-voucher
-   Registrant Contact: The ANIMA WG of the IETF.
-   XML: N/A, the requested URI is an XML namespace.
-~~~~
+> {:compact}
+>    URI:
+>    : urn:ietf:params:xml:ns:yang:ietf-voucher
+>
+>    Registrant Contact:
+>    : The ANIMA WG of the IETF.
+>
+>    XML:
+>    : N/A, the requested URI is an XML namespace.
 
 IANA is asked to register a second URI as follows:
 
-~~~~
-    URI: urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
-    Registrant Contact: The ANIMA WG of the IETF.
-    XML: N/A, the requested URI is an XML namespace.
-~~~~
+> {:compact}
+>    URI:
+>    : urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
+>
+>    Registrant Contact:
+>    : The ANIMA WG of the IETF.
+>
+>    XML:
+>    : N/A, the requested URI is an XML namespace.
 
 ## The YANG Module Names Registry
 
@@ -684,22 +691,33 @@ registry {{RFC6020}}.
 
 IANA has registered the following:
 
-~~~~
-   name:         ietf-voucher
-   namespace:    urn:ietf:params:xml:ns:yang:ietf-voucher
-   prefix:       vch
-   reference:    RFC 8366
-~~~~
+> {:compact}
+>   name:
+>   : ietf-voucher
+>
+>   namespace:
+>   : urn:ietf:params:xml:ns:yang:ietf-voucher
+>
+>   prefix:
+>   : vch
+>
+>   reference:
+>   :RFC 8366
 
 IANA is asked to register a second YANG module as follows:
 
-~~~~
-   name:         iana-voucher-assertion-type
-   namespace:    urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
-   prefix:       ianavat
-   reference:    RFC XXXX
-~~~~
-
+> {:compact}
+>    name:
+>    : iana-voucher-assertion-type
+>
+>    namespace:
+>    : urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
+>
+>   prefix:
+>   : ianavat
+>
+>   reference:
+>   : RFC XXXX
 
 ## The Media Types Registry {#vcj}
 
@@ -773,12 +791,9 @@ Provisional registration? (standards tree only):
 IANA has registered the following OID in the "SMI Security for S/MIME
 CMS Content Type (1.2.840.113549.1.9.16.1)" registry:
 
-~~~~
-            Decimal  Description                             References
-            -------  --------------------------------------  ----------
-            40       id-ct-animaJSONVoucher                  RFC 8366
-~~~~
-
+| Decimal | Description                            | References |
+| ------- | -------------------------------------- | ---------- |
+| 40      | id-ct-animaJSONVoucher                 | RFC 8366   |
 
 
 
