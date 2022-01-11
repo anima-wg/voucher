@@ -1,5 +1,5 @@
 ---
-docname: draft-richardson-anima-rfc8366bis-latest
+docname: draft-ietf-anima-rfc8366bis-latest
 stand_alone: true
 ipr: trust200902
 cat: std
@@ -20,7 +20,7 @@ abbrev: Voucher Artifact
 area: Operations
 wg: ANIMA Working Group
 kw: voucher
-date: 2021-12
+date: 2022-01
 author:
 - ins: K. Watsen
   name: Kent Watsen

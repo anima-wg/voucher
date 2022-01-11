@@ -14,7 +14,7 @@ endif
 
 
 
-draft-richardson-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-tree-latest.txt yang/iana-voucher-assertion-type@${YANGDATE}.yang
+draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-tree-latest.txt yang/iana-voucher-assertion-type@${YANGDATE}.yang
 
 yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	mkdir -p yang
@@ -29,7 +29,7 @@ yang/iana-voucher-assertion-type@${YANGDATE}.yang: iana-voucher-assertion-type.y
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
 	pyang -p ${YANGPATH} -f tree --tree-print-groupings yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
-    
+
 .PHONY: pyang-install
 pyang-install:
 	pip3 install pyang
