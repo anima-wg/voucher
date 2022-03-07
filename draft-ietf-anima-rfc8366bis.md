@@ -24,8 +24,8 @@ date: 2022-01
 author:
 - ins: K. Watsen
   name: Kent Watsen
-  org: Juniper Networks
-  email: kwatsen@juniper.net
+  org: Watsen Networks
+  email: kent+ietf@watsen.net
 - ins: M. Richardson
   name: Michael C. Richardson
   org: Sandelman Software
