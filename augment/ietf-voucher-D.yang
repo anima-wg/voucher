@@ -2,8 +2,8 @@ module ietf-voucher-D {
   yang-version 1.1;
 
   namespace
-    "urn:ietf:params:xml:ns:yang:ietf-voucher";
-  prefix "vch";
+    "urn:ietf:params:xml:ns:yang:ietf-voucher-D";
+  prefix "vd";
 
   import ietf-yang-types {
     prefix yang;
