@@ -1,0 +1,66 @@
+module ietf-voucher-D {
+  yang-version 1.1;
+
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-voucher";
+  prefix "vch";
+
+  import ietf-yang-types {
+    prefix yang;
+    reference "RFC 6991: Common YANG Data Types";
+  }
+
+  import ietf-restconf {
+    prefix rc;
+    description
+      "This import statement is only present to access
+       the yang-data extension defined in RFC 8040.";
+    reference "RFC 8040: RESTCONF Protocol";
+  }
+
+  import ietf-voucher-request-prm {
+    prefix "b";
+  }
+
+  import ietf-voucher-request-constrained {
+    prefix "c";
+
+  }
+
+  organization
+   "IETF ANIMA Working Group";
+
+  contact
+   "WG Web:   <http://tools.ietf.org/wg/anima/>
+    WG List:  <mailto:anima@ietf.org>
+    Author:   Kent Watsen
+              <mailto:kwatsen@juniper.net>
+    Author:   Max Pritikin
+              <mailto:pritikin@cisco.com>
+    Author:   Michael Richardson
+              <mailto:mcr+ietf@sandelman.ca>
+    Author:   Toerless Eckert
+              <mailto:tte+ietf@cs.fau.de>";
+
+  description
+   "This is a test of empty augments";
+
+  revision "2022-08-03" {
+    description
+     "Initial version";
+    reference
+     "RFC XXXX: Voucher Profile for Bootstrapping Protocols";
+  }
+
+  uses b:voucher-request-prm-grouping {
+    augment "voucher" { }
+  }
+
+  uses c:voucher-request-constrained-grouping {
+    augment "voucher" { }
+  }
+
+
+
+}
+
