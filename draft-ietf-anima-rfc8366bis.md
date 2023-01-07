@@ -144,7 +144,7 @@ This document only defines the voucher artifact, leaving it to other
 documents to describe specialized protocols for accessing it.
 Some bootstrapping protocols using the voucher artifact defined in
 this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, and
-{{BRSKI}}).
+{{BRSKI}}.
 
 # Terminology
 
