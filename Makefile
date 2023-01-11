@@ -26,7 +26,7 @@ draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
 	yang/ietf-voucher-tree-latest.txt \
 	yang/iana-voucher-assertion-type@${YANGDATE}.yang \
 	yang/ietf-voucher-request@${YANGDATE}.yang \
-	yang/ietf-voucher-request-tree-latest.txt
+	yang/ietf-voucher-request-tree-latest.txt ${CWTSIDLIST1} ${CWTSIDLIST2}
 
 yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang yang/iana-voucher-assertion-type@${YANGDATE}.yang
 	mkdir -p yang
@@ -56,7 +56,7 @@ boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
 
 ${CWTSIDLIST1}: yang/${CWTDATE1}  yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
-	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang ) | ./truncate-sid-table >ietf-voucher-sid.txt
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST1}
 
 # Base SID value for voucher request: 2500
 boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
@@ -65,7 +65,7 @@ boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
 
 ${CWTSIDLIST2}: yang/${CWTDATE2}  yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
-	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang ) | ./truncate-sid-table >ietf-voucher-request-sid.txt
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST2}
 
 
 .PHONY: pyang-install
