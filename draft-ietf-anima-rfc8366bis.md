@@ -20,7 +20,6 @@ abbrev: Voucher Artifact
 area: Operations
 wg: ANIMA Working Group
 kw: voucher
-date: 2022-01
 author:
 - ins: K. Watsen
   name: Kent Watsen
@@ -76,6 +75,7 @@ informative:
   RFC8340:
   RFC6125:
   RFC7435:
+  RFC8971:
   ZERO-TOUCH: RFC8572
   BRSKI: RFC8995
   SECUREJOIN: I-D.ietf-6tisch-dtsecurity-secure-join
@@ -275,6 +275,7 @@ out-of-scope |    |       |                |             |
 
 NOTE: All voucher types include a 'pledge ID serial-number'
       (not shown here for space reasons).
+(XXX - translate me to markdown table)
 ~~~~
 
 Audit Voucher:
@@ -478,6 +479,33 @@ discouraged, as the pledge is unlikely to be able to perform
 online checks and is unlikely to have a trusted clock source.
 As described below, the use of short-lived vouchers and/or a
 pledge-provided nonce provides a freshness guarantee.
+
+# Voucher Request Artifact {#voucher-request}
+
+{{BRSKI, Section 3}} defined a Voucher-Request Artifact as an augmented artifact from the Voucher Artifact originally defined in {{?RFC8366}}.
+That definition has been moved to this document, and translated from YANG-DATA {{RFC8040}} to the SX:STRUCTURE extension {{RFC8971}}.
+
+## Tree Diagram {#voucher-request-tree-diagram}
+
+The following tree diagram illustrates a high-level view of a voucher
+request document.
+The notation used in this diagram is described in {{RFC8340}}.
+Each node in the diagram is fully described by the YANG module in
+{{voucher-request-yang-module}}.
+
+~~~~
+{::include-fold yang/ietf-voucher-request-tree-latest.txt}
+~~~~
+
+## "ietf-voucher-request" Module {#voucher-request-yang-module}
+The ietf-voucher-request YANG module is derived from the ietf-voucher module.
+
+~~~~ yang
+{::include-fold yang/ietf-voucher-request-latest.yang}
+~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2023-01-10.yang”}
+
+
 
 # Design Considerations {#design-con}
 
