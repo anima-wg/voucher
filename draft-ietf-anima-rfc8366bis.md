@@ -431,7 +431,7 @@ The revised ietf-voucher YANG module imports the typedef defined in
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
 
-### ietf-voucher SID definitions
+### ietf-voucher SID values {#ietf-voucher-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
 While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
@@ -530,7 +530,7 @@ The ietf-voucher-request YANG module is derived from the ietf-voucher module.
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2023-01-10.yang”}
 
 
-## ietf-voucher-request SID values
+## ietf-voucher-request SID values {#voucher-request-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
 While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
