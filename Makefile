@@ -4,7 +4,11 @@ CWTSIDLIST1=ietf-voucher-sid.txt
 CWTSIDDATE2=ietf-voucher-request@${YANGDATE}.sid
 CWTSIDLIST2=ietf-voucher-request-sid.txt
 LIBDIR := lib
-YANGPATH=${HOME}/.local/share/yang/modules
+
+# add this because your local install might be newer.
+YANGMODULESPATH=${HOME}/.local/share/yang/modules
+PYANG?=pyang
+PYANGPATH=--path=yang --path=${YANGMODULESPATH}
 include $(LIBDIR)/main.mk
 
 $(LIBDIR)/main.mk:
@@ -22,23 +26,22 @@ draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang yang/ietf-v
 
 yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang yang/iana-voucher-assertion-type@${YANGDATE}.yang
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && pyang -p ${YANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
 yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang yang/iana-voucher-assertion-type@${YANGDATE}.yang
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && pyang -p ${YANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && pyang {PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
 
-yang/iana-voucher-assertion-type@${YANGDATE}.yang: iana-voucher-assertion-type.yang
+yang/iana-voucher-assertion-type@${YANGDATE}.yang: ref-iana-voucher-assertion-type.yang
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' iana-voucher-assertion-type.yang | (cd yang && pyang -p ${YANGPATH} --keep-comments -f yang >iana-voucher-assertion-type@${YANGDATE}.yang )
-	ln -s -f iana-voucher-assertion-type@${YANGDATE}.yang yang/iana-voucher-assertion-type.yang
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ref-iana-voucher-assertion-type.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >iana-voucher-assertion-type@${YANGDATE}.yang )
 	ln -s -f iana-voucher-assertion-type@${YANGDATE}.yang yang/iana-voucher-assertion-type-latest.yang
 
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
-	pyang -p ${YANGPATH} -f tree --tree-print-groupings --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
+	pyang ${PYANGPATH} -f tree --tree-print-groupings --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
 
 yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} -f tree --tree-print-groupings --tree-line-length=70 yang/ietf-voucher-@${YANGDATE} > ietf-voucher-request-constrained-tree.txt
@@ -47,17 +50,17 @@ yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}
 boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2450:50 yang/ietf-voucher@${YANGDATE}.yang
 
-${CWTSIDLIST1}: yang/${CWTDATE1}  ${CWTSIDDATE1}
+${CWTSIDLIST1}: yang/${CWTDATE1}  yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
-	${PYANG} ${PYANGPATH} --sid-list --sid-update-file=${CWTSIDDATE1} yang/${CWTDATE1} | ./truncate-sid-table >ietf-voucher-sid.txt
+	${PYANG} ${PYANGPATH} --sid-list --sid-update-file=${CWTSIDDATE1} yang/ietf-voucher@${YANGDATE}.yang | ./truncate-sid-table >ietf-voucher-sid.txt
 
 # Base SID value for voucher request: 2500
 boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2500:50 yang/ietf-voucher-request@${YANGDATE}.yang
 
-${CWTSIDLIST2}: yang/${CWTDATE2}  ${CWTSIDDATE2}
+${CWTSIDLIST2}: yang/${CWTDATE2}  yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
-	${PYANG} ${PYANGPATH} --sid-list --sid-update-file=${CWTSIDDATE2} yang/${CWTDATE2} | ./truncate-sid-table >ietf-voucher-request-sid.txt
+	${PYANG} ${PYANGPATH} --sid-list --sid-update-file=${CWTSIDDATE2} yang/ietf-voucher-request@${YANGDATE}.yang | ./truncate-sid-table >ietf-voucher-request-sid.txt
 
 
 .PHONY: pyang-install
