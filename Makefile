@@ -39,10 +39,10 @@ yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang
 
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
-	pyang ${PYANGPATH} -f tree --tree-print-groupings --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
+	pyang ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
 
 yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}.yang
-	${PYANG} ${PYANGPATH} -f tree --tree-print-groupings --tree-line-length=70 yang/ietf-voucher-request@${YANGDATE}.yang > yang/ietf-voucher-request-tree-latest.txt
+	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70 yang/ietf-voucher-request@${YANGDATE}.yang > yang/ietf-voucher-request-tree-latest.txt
 
 # Base SID value for voucher: 2450
 boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
