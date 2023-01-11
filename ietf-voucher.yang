@@ -12,11 +12,6 @@ module ietf-voucher {
     prefix sx;
   }
 
-  import iana-voucher-assertion-type {
-    prefix ianavat;
-    reference "RFCZZZZ: Voucher Profile for Bootstrapping Protocols";
-  }
-
   organization
     "IETF ANIMA Working Group";
   contact
@@ -98,14 +93,40 @@ module ietf-voucher {
            of any of the listed 'pinned-domain-cert' certificates.";
       }
       leaf assertion {
-        type ianavat:voucher-assertion;
-        mandatory true;
-        description
-          "The assertion is a statement from the MASA regarding how
-           the owner was verified.  This statement enables pledges
-           to support more detailed policy checks.  Pledges MUST
-           ensure that the assertion provided is acceptable, per
-           local policy, before processing the voucher.";
+        type enumeration {
+          enum verified {
+            value 0;
+            description
+              "Indicates that the ownership has been positively
+               verified by the MASA (e.g., through sales channel
+               integration).";
+          }
+          enum logged {
+            value 1;
+            description
+              "Indicates that the voucher has been issued after
+               minimal verification of ownership or control.  The
+               issuance has been logged for detection of
+               potential security issues (e.g., recipients of
+               vouchers might verify for themselves that unexpected
+               vouchers are not in the log).  This is similar to
+               unsecured trust-on-first-use principles but with the
+               logging providing a basis for detecting unexpected
+               events.";
+          }
+          enum proximity {
+            value 2;
+            description
+              "Indicates that the voucher has been issued after
+               the MASA verified a proximity proof provided by the
+               device and target domain.  The issuance has been logged
+               for detection of potential security issues.  This is
+               stronger than just logging, because it requires some
+               verification that the pledge and owner are
+               in communication but is still dependent on analysis of
+               the logs to detect unexpected events.";
+          }
+        }
       }
       leaf serial-number {
         type string;

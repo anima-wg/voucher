@@ -24,24 +24,18 @@ endif
 
 draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
 	yang/ietf-voucher-tree-latest.txt \
-	yang/iana-voucher-assertion-type@${YANGDATE}.yang \
 	yang/ietf-voucher-request@${YANGDATE}.yang \
 	yang/ietf-voucher-request-tree-latest.txt ${CWTSIDLIST1} ${CWTSIDLIST2}
 
-yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang yang/iana-voucher-assertion-type@${YANGDATE}.yang
+yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	mkdir -p yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
-yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang yang/iana-voucher-assertion-type@${YANGDATE}.yang
+yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang
 	mkdir -p yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
-
-yang/iana-voucher-assertion-type@${YANGDATE}.yang: ref-iana-voucher-assertion-type.yang
-	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ref-iana-voucher-assertion-type.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >iana-voucher-assertion-type@${YANGDATE}.yang )
-	ln -s -f iana-voucher-assertion-type@${YANGDATE}.yang yang/iana-voucher-assertion-type-latest.yang
 
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang

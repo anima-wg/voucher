@@ -409,29 +409,13 @@ using the 'verified' assertion type, which should satisfy all pledges.
 
 ## YANG Module {#voucher-yang-module}
 
-### "iana-voucher-assertion-type" Module
-Following is a YANG {{RFC7950}} module formally
-describing the voucher's assertion type.
-
-
-~~~~ yang
-{::include-fold yang/iana-voucher-assertion-type-latest.yang}
-~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
-
-
-### "ietf-voucher" Module
-The revised ietf-voucher YANG module imports the typedef defined in
-"iana-voucher-assertion-type" YANG module specified in this document.
-
-
 ~~~~ yang
 {::include-fold yang/ietf-voucher-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
 
-### ietf-voucher SID values {#ietf-voucher-sid-values}
+## ietf-voucher SID values {#ietf-voucher-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
 While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
