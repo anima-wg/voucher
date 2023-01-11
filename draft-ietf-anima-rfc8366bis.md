@@ -56,6 +56,8 @@ normative:
   RFC6020:
   RFC8259:
   RFC7950:
+  I-D.ietf-core-sid:
+  RFC9148:
   ITU-T.X690.2015:
     target: https://www.itu.int/rec/T-REC-X.690/
     title: 'Information Technology - ASN.1 encoding rules: Specification of Basic
@@ -429,6 +431,28 @@ The revised ietf-voucher YANG module imports the typedef defined in
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
 
+### ietf-voucher SID definitions
+
+{{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
+While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+It is believed, however, that they will not change.
+
+~~~~
+{::include-fold ietf-voucher-sid.txt}
+~~~~
+
+The "assertion" attribute is an enumerated type {{RFC8366}}, and the current PYANG tooling does not document the valid values for this attribute.
+In the JSON serialization, the literal strings from the enumerated types are used so there is no ambiguity.
+In the CBOR serialization, a small integer is used.
+This following values are documented here, but the YANG module should be considered authoritative. No IANA registry is provided or necessary because the YANG module provides for extensions.
+
+Integer  | Assertion Type
+|-|-|
+0        | verified
+1        | logged
+2        | proximity
+{: #assertion-enums title='CBOR integers for the "assertion" attribute enum'}
+
 
 
 ## CMS Format Voucher Artifact {#cms-voucher}
@@ -506,6 +530,17 @@ The ietf-voucher-request YANG module is derived from the ietf-voucher module.
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2023-01-10.yang”}
 
 
+## ietf-voucher-request SID values
+
+{{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
+While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+It is believed, however, that they will not change.
+
+~~~~
+{::include-fold ietf-voucher-request-sid.txt}
+~~~~
+
+The "assertion" attribute is an enumerated type, and has values as defined above in {{assertion-enums}}.
 
 # Design Considerations {#design-con}
 
