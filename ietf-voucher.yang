@@ -7,12 +7,9 @@ module ietf-voucher {
     prefix yang;
     reference "RFC 6991: Common YANG Data Types";
   }
-  import ietf-restconf {
-    prefix rc;
-    description
-      "This import statement is only present to access
-       the yang-data extension defined in RFC 8040.";
-    reference "RFC 8040: RESTCONF Protocol";
+
+  import ietf-yang-structure-ext {
+    prefix sx;
   }
 
   import iana-voucher-assertion-type {
@@ -64,7 +61,7 @@ module ietf-voucher {
   }
 
   // Top-level statement
-  rc:yang-data voucher-artifact {
+  sx:structure voucher-artifact {
     uses voucher-artifact-grouping;
   }
 
