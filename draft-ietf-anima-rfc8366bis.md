@@ -397,7 +397,7 @@ using the 'verified' assertion type, which should satisfy all pledges.
     "serial-number": "JADA123456789",
     "idevid-issuer": "base64encodedvalue==",
     "pinned-domain-cert": "base64encodedvalue==",
-    "domain-cert-revocation-checks": "true",
+    "domain-cert-revocation-checks": true,
     "last-renewal-date": "2017-10-07T19:31:42Z"
   }
 }
