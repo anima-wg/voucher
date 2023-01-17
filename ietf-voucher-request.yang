@@ -71,7 +71,7 @@ module ietf-voucher-request {
   }
 
   // Top-level statement
-  sx:structure voucher-artifact {
+  sx:structure voucher {
     uses voucher-request-grouping;
   }
 

@@ -20,7 +20,10 @@ else
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
 
-
+# because pyang likes to pick the file ./"foo.yang", when it should be looking for
+# yang/foo@DATE.yang first, most invokations are pyang are done from the yang
+# subdirectory so that pyang won't see the template files in the CWD.
+# maybe a different extension is in order.
 
 draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
 	yang/ietf-voucher-tree-latest.txt \
@@ -48,8 +51,9 @@ yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}
 boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2450:50 yang/ietf-voucher@${YANGDATE}.yang
 
-${CWTSIDLIST1}: yang/${CWTDATE1}  yang/ietf-voucher@${YANGDATE}.yang
+${CWTSIDLIST1}: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
+	ln -s -f ../${CWTSIDDATE1} yang/${CWTSIDDATE1}
 	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST1}
 
 # Base SID value for voucher request: 2500
@@ -57,8 +61,9 @@ boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
 	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2500:50 ietf-voucher-request@${YANGDATE}.yang )
 
-${CWTSIDLIST2}: yang/${CWTDATE2}  yang/ietf-voucher-request@${YANGDATE}.yang
+${CWTSIDLIST2}: yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
+	ln -s -f ../${CWTSIDDATE2} yang/${CWTSIDDATE2}
 	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST2}
 
 
