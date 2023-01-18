@@ -257,28 +257,22 @@ combinations of this information. All scenarios address the primary
 threat of a Man-in-The-Middle (MiTM) registrar gaining control over
 the pledge device. The following combinations are "types" of vouchers:
 
-~~~~
-             |Assertion   |Registrar ID    | Validity    |
-Voucher      |Log-|Veri-  |Trust  |CN-ID or| RTC | Nonce |
-Type         | ged|  fied |Anchor |DNS-ID  |     |       |
----------------------------------------------------------|
-Audit        |  X |       | X     |        |     | X     |
--------------|----|-------|-------|--------|-----|-------|
-Nonceless    |  X |       | X     |        | X   |       |
-Audit        |    |       |       |        |     |       |
--------------|----|-------|-------|--------|-----|-------|
-Owner Audit  |  X |   X   | X     |        | X   | X     |
--------------|----|-------|-------|--------|-----|-------|
-Owner ID     |    |   X   | X     |  X     | X   |       |
--------------|----|-------|----------------|-----|-------|
-Bearer       |  X |       |   wildcard     | optional    |
-out-of-scope |    |       |                |             |
--------------|----|-------|----------------|-------------|
+|            | Assertion || Registrar ID || Validity |
+Voucher Type |Logged|Verified |Trust Anchor|CN-ID or DNS-ID| RTC | Nonce |
+:------------|-----:|--------:|-----------:|--------------:|----:|------:|
+Audit        |  X   |         | X          |               |     | X     |
+|--
+Nonceless Audit|  X |         | X          |               | X   |       |
+|--
+Owner Audit  |  X   |   X     | X          |               | X   | X     |
+|--
+Owner ID     |      |   X     | X          |  X            | X   |       |
+|--
+Bearer out-of-scope| X|       |   wildcard | wildcard      | optional|opt|
+|==
 
 NOTE: All voucher types include a 'pledge ID serial-number'
       (not shown here for space reasons).
-(XXX - translate me to markdown table)
-~~~~
 
 Audit Voucher:
 : An Audit Voucher is named after the logging assertion mechanisms
