@@ -75,7 +75,6 @@ module ietf-voucher {
       leaf created-on {
         type yang:date-and-time;
         mandatory false;
-        must 'not(../created-on-integer)';
         description
           "A value indicating the date this voucher was created.
            This node is primarily for human consumption and auditing.
