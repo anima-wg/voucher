@@ -435,6 +435,7 @@ Integer  | Assertion Type
 0        | verified
 1        | logged
 2        | proximity
+3        | agent-proximity
 {: #assertion-enums title='CBOR integers for the "assertion" attribute enum'}
 
 

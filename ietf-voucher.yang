@@ -131,6 +131,15 @@ module ietf-voucher {
                are in communication but is still dependent on
                analysis of the logs to detect unexpected events.";
           }
+          enum agent-proximity {
+            value 3;
+            description
+              "Indicates that the voucher has been issued
+              after the MASA has verified a statement that
+              a registrar agent has made contact with the device.
+              This type of voucher is weaker than straight
+              proximity, but stronger than logged.";
+          }
         }
       }
       leaf serial-number {
