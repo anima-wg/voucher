@@ -5,7 +5,7 @@ CWTSIDDATE2=ietf-voucher-request@${YANGDATE}.sid
 CWTSIDLIST2=ietf-voucher-request-sid.txt
 LIBDIR := lib
 
-# add this because your local install might be newer.
+# add this path because your local install might be newer.
 YANGMODULESPATH=${HOME}/.local/share/yang/modules
 PYANG?=pyang
 PYANGPATH=--path=yang --path=${YANGMODULESPATH}
