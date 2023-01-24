@@ -51,6 +51,12 @@ author:
   code: '210012'
   country: China
   email: maqiufang1@huawei.com
+
+venue:
+  group: anima
+  mail: anima@ietf.org
+  github: anima-wg/voucher
+
 normative:
   RFC5652:
   RFC6020:
