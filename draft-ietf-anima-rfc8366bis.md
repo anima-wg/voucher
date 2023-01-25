@@ -143,25 +143,23 @@ It is encoded using the rules defined in {{RFC8259}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a
-certificate, the "pinned-domain-cert", that a pledge can
-use to authenticate subsequent interactions. A voucher may be useful
-in several contexts, but the driving motivation
-herein is to support secure bootstrapping mechanisms.  Assigning
-ownership is important to bootstrapping mechanisms so that the pledge
+certificate, the "pinned-domain-cert" (and constrained variations), that a pledge can
+use to authenticate subsequent interactions.
+A voucher may be useful in several contexts, but the driving motivation
+herein is to support secure onboarding mechanisms.
+Assigning ownership is important to device onboarding mechanisms so that the pledge
 can authenticate the network that is trying to take control of it.
 
-The lifetimes of vouchers may vary. In some bootstrapping protocols,
+The lifetimes of vouchers may vary. In some onboarding protocols,
 the vouchers may include a nonce restricting them to a single use,
-whereas the vouchers in other bootstrapping protocols may have an
-indicated lifetime. In order to support long lifetimes, this document
-recommends using short lifetimes with programmatic renewal, see
-{{renewal-over-revocation}}.
+whereas the vouchers in other onboarding protocols may have an
+indicated lifetime.
+In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
 
 This document only defines the voucher artifact, leaving it to other
 documents to describe specialized protocols for accessing it.
-Some bootstrapping protocols using the voucher artifact defined in
-this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, and
-{{BRSKI}}.
+Some onboarding protocols using the voucher artifact defined in
+this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, and {{BRSKI}}.
 
 # Terminology
 
@@ -177,7 +175,7 @@ Bootstrapping:
 Domain:
 : The set of entities or infrastructure under common administrative
   control.
-  The goal of the bootstrapping protocol is to enable a pledge to
+  The goal of the onboarding protocol is to enable a pledge to
   discover and join a domain.
 
 Imprint:
@@ -203,10 +201,10 @@ Join Registrar (and Coordinator):
 MASA (Manufacturer Authorized Signing Authority):
 : The entity that, for the purpose of this document, signs the
   vouchers for a manufacturer's pledges.
-  In some bootstrapping protocols, the MASA may have an Internet
-  presence and be integral to the bootstrapping process, whereas in
+  In some onboarding protocols, the MASA may have an Internet
+  presence and be integral to the onboarding process, whereas in
   other protocols the MASA may be an offline service that has no
-  active role in the bootstrapping process.
+  active role in the onboarding process.
 
 Onboarding:
 : In previous documents the term "bootstrapping" has been used to describe mechanisms such as
@@ -247,7 +245,7 @@ Voucher:
 A voucher is a cryptographically protected statement to the pledge
 device authorizing a zero-touch "imprint" on the join registrar of the
 domain. The specific information a voucher provides is influenced by the
-bootstrapping use case.
+onboarding use case.
 
 The voucher can impart the following information to
 the join registrar and pledge:
@@ -276,7 +274,7 @@ Anti-Replay Protections:
   attempts.
 
 
-A number of bootstrapping scenarios can be met using differing
+A number of onboarding scenarios can be met using differing
 combinations of this information. All scenarios address the primary
 threat of a Man-in-The-Middle (MiTM) registrar gaining control over
 the pledge device. The following combinations are "types" of vouchers:
@@ -571,9 +569,9 @@ The "assertion" attribute is an enumerated type, and has values as defined above
 
 ## Renewals Instead of Revocations {#renewal-over-revocation}
 
-The lifetimes of vouchers may vary.  In some bootstrapping protocols,
+The lifetimes of vouchers may vary.  In some onboarding protocols,
 the vouchers may be created and consumed immediately, whereas in other
-bootstrapping solutions, there may be a significant time delay between
+onboarding solutions, there may be a significant time delay between
 when a voucher is created and when it is consumed.
 In cases when there is a time delay, there is a need for the pledge
 to ensure that the assertions made when the voucher was created are
