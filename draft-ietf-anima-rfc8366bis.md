@@ -90,6 +90,7 @@ informative:
   RFC6125:
   RFC7435:
   RFC8366:
+  CBOR: STD94
   COSE: STD96
   JWS: RFC7515
   YANGCBOR: RFC9254
@@ -136,8 +137,9 @@ by the pledge's manufacturer, i.e., the Manufacturer Authorized
 Signing Authority (MASA).  This artifact is known as the "voucher".
 
 The voucher artifact is a JSON {{RFC8259}} document that
-conforms with a data model described by YANG {{RFC7950}}, is
-encoded using the rules defined in {{RFC8259}}, and
+conforms with a data model described by YANG {{RFC7950}}.
+It may also be serialized to CBOR {{CBOR}}.
+It is encoded using the rules defined in {{RFC8259}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a
@@ -168,6 +170,9 @@ This document uses the following terms:
 Artifact:
 : Used throughout to represent the voucher as instantiated in the form
   of a signed structure.
+
+Bootstrapping:
+: See Onboarding.
 
 Domain:
 : The set of entities or infrastructure under common administrative
@@ -202,6 +207,12 @@ MASA (Manufacturer Authorized Signing Authority):
   presence and be integral to the bootstrapping process, whereas in
   other protocols the MASA may be an offline service that has no
   active role in the bootstrapping process.
+
+Onboarding:
+: In previous documents the term "bootstrapping" has been used to describe mechanisms such as
+{{BRSKI}}.
+The industry has however, converged upon the term "onboarding", and this document uses that
+term throughout.
 
 Owner:
 : The entity that controls the private key of the "pinned-domain-cert"
