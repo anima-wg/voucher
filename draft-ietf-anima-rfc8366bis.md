@@ -693,46 +693,6 @@ guidelines do not follow template described by Section 3.7 of
 
 # IANA Considerations {#iana-considerations}
 
-This section deals with actions and processes necessary for IANA to undertake to maintain
-the "iana-voucher-assertion-type" YANG module.
-The iana-voucher-assertion-type YANG module is intended to reflect the "voucher assertion types" registry in [TBD].
-
-IANA is asked to create the "iana-voucher-assertion-type YANG module" registry.
-
-Voucher assertion types must not be directly added to the iana-voucher-type YANG module.
-They must instead be added to the “voucher assertion types” registry.
-
-Whenever a new enumerated type is added to the “voucher assertion types” registry, IANA
-must also update the "ietf-voucher-assertion-type" YANG module and add a new "enum"
-statement to the "voucher-assertion-type" type.
-The assigned name defined by the "enum" statement SHALL be the same as the mnemonic name of the new assertion type.
-The following substatements to the "enum" statement SHALL be defined:
-
-> "value":
-> : Use the decimal value from the registry.
->
-> "status":
-> : Include only if a class or type registration has been deprecated or obsoleted.
-> IANA "deprecated" maps to YANG status "deprecated", and IANA "obsolete" maps to YANG status   "obsolete".
->
-> "description":
-> : Replicate the corresponding information from the registry, namely the full name of the new assertion type.
->
-> "reference":
-> : Replicate the reference(s) from the registry.
-
-Each time the "iana-voucher-assertion-type" YANG module is updated, a new "revision" statement SHALL be added before the existing "revision" statements.
-IANA has added this note to the "voucher assertion types" registries:
-
-When this registry is modified, the YANG module "iana-voucher-assertion-type" must
-be updated as defined in [RFCXXXX].
-The "Reference" text in the "voucher assertion types" registry has been updated
-as follows:
-OLD:
-| [RFC8366]
-NEW:
-| [RFC8366][RFCXXX]
-
 ## The IETF XML Registry
 
 This document registers two URIs in the "IETF XML Registry" {{RFC3688}}.
@@ -742,18 +702,6 @@ IANA has registered the following:
 > {:compact}
 >    URI:
 >    : urn:ietf:params:xml:ns:yang:ietf-voucher
->
->    Registrant Contact:
->    : The ANIMA WG of the IETF.
->
->    XML:
->    : N/A, the requested URI is an XML namespace.
-
-IANA is asked to register a second URI as follows:
-
-> {:compact}
->    URI:
->    : urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
 >
 >    Registrant Contact:
 >    : The ANIMA WG of the IETF.
