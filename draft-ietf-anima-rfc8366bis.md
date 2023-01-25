@@ -788,6 +788,7 @@ The authors would like to thank for following for
 lively discussions on list and in the halls (ordered
 by last name):
 {{{William Atwood}}},
+{{{Michael H. Behringer}}},
 {{{Esko Dijk}}},
 {{{Steffen Fries}}},
 {{{Sheng Jiang}}},

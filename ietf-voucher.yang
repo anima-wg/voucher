@@ -271,7 +271,7 @@ module ietf-voucher {
       leaf est-domain {
         type ietf:uri;
         description
-          "The est-domain is a URL to which the Pledge should
+          "The est-domain is a URL from which the Pledge should
              continue doing enrollment rather than with the
              Cloud Registrar.
              The pinned-domain-cert contains a trust-anchor
