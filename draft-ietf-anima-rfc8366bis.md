@@ -64,6 +64,8 @@ normative:
   RFC7950:
   I-D.ietf-core-sid:
   RFC9148:
+  cBRSKI: I-D.ietf-anima-constrained-voucher
+  jBRSKI: I-D.ietf-anima-jws-voucher
   ITU-T.X690.2015:
     target: https://www.itu.int/rec/T-REC-X.690/
     title: 'Information Technology - ASN.1 encoding rules: Specification of Basic
@@ -74,6 +76,10 @@ normative:
     date: 2015-08
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
+  ZERO-TOUCH: RFC8572
+  BRSKI: RFC8995
+  PRM: I-D.ietf-anima-brski-prm
+  RFC8971:
 informative:
   RFC5246:
   RFC3688:
@@ -83,9 +89,10 @@ informative:
   RFC8340:
   RFC6125:
   RFC7435:
-  RFC8971:
-  ZERO-TOUCH: RFC8572
-  BRSKI: RFC8995
+  RFC8366:
+  COSE: STD96
+  JWS: RFC7515
+  YANGCBOR: RFC9254
   SECUREJOIN: I-D.ietf-6tisch-dtsecurity-secure-join
   YANG-GUIDE: RFC8407
   Stajano99theresurrecting:
@@ -317,6 +324,36 @@ Bearer Voucher:
   specified pledge into a "TOFU" device with minimal mitigation
   against MiTM registrars. Bearer vouchers are out of scope.
 
+# Changes since RFC8366
+
+{{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
+{{ZERO-TOUCH}} and other work-in-progress efforts.
+Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _onboarding_ rather than _bootstrapping_.
+
+The focus of {{BRSKI}} was onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
+{{ZERO-TOUCH}} has focused upon onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of less import.
+
+Since {{BRSKI}} was published there is now a mature effort to do application-level onboarding of constrained IoT devices defined by The Thread and Fairhair (now OCF) consortia.
+The {{cBRSKI}} document has defined a version of {{BRSKI}} that is useable over constrained 802.15.4 networks using CoAP and DTLS, while {{?I-D.selander-ace-ake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
+
+{{PRM}} has created a new methodology for onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
+This mechanism uses a mobile Registrar Agent that works to collect and transfer signed artifacts via physical travel from one network to another.
+
+Both {{cBRSKI}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher. The new attribtes are required to carry the additional attributes and describe the extended semantics.
+In addition {{cBRSKI}} uses the serialization mechanism described in {{YANGCBOR}} to produce significantly more compact artifacts.
+
+When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{?RFC8040}} _augment_ mechanism to further extend both the voucher request {{BRSKI}} and voucher {{RFC8366}} artifacts.
+However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
+
+An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} voucher artifact.
+The result was invalid YANG, with multiple definitions of the core attributes from the {{RFC8366}} voucher artifact.
+After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8971}} structure mechanisms.
+
+After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
+
+This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}} and {{PRM}}.
+There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
+
 # Voucher Artifact {#voucher}
 
 The voucher's primary purpose is to securely assign a pledge to an
@@ -324,27 +361,19 @@ owner.
 The voucher informs the pledge which entity it should consider to be
 its owner.
 
-This document defines a voucher that is a JSON-encoded instance of the
-YANG module defined in {{voucher-yang-module}} that has been, by
-default, CMS signed.
+This document defines a voucher that is a JSON-encoded or CBOR-encoded instance of the
+YANG module defined in {{voucher-yang-module}} that has been, by default, CMS signed.
+{{cBRSKI}} definies how to encode with CBOR and sign the voucher with {{COSE}}, while {{jBRSKI}} explains how to use {{JWS}} to do JSON signatures.
 
 This format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what vouchers look like
 in practice.
 This description also serves to validate the YANG data model.
 
-Future work is expected to define new mappings of the voucher to
-Concise Binary Object Representation (CBOR) (from JSON) and to change
-the signature container from CMS to JSON Object Signing and Encryption
-(JOSE) or CBOR Object Signing and Encryption (COSE).
-XML or ASN.1 formats are also conceivable.
-
-This document defines a media type and a filename extension for the
-CMS-encoded JSON type.  Future documents on additional formats
-would define additional media types.  Signaling is in the form of a MIME
-Content-Type, an HTTP Accept: header, or more mundane methods like
-use of a filename extension when a voucher is transferred on a USB
-key.
+{{RFC8366}} defined a media type and a filename extension for the
+CMS-encoded JSON type.
+Which type of voucher is expected is signaled (where possible) in the form of a MIME
+Content-Type, an HTTP Accept: header, or more mundane methods like use of a filename extension  when a voucher is transferred on a USB key.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
