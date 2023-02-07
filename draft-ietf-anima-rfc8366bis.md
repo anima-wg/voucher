@@ -79,6 +79,7 @@ normative:
   ZERO-TOUCH: RFC8572
   BRSKI: RFC8995
   PRM: I-D.ietf-anima-brski-prm
+  CLOUD: I-D.ietf-anima-brski-cloud
   RFC8971:
 informative:
   RFC5246:
@@ -360,7 +361,7 @@ After some discussion, it was determined that the _augment_ mechanism did not wo
 
 After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
 
-This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}} and {{PRM}}.
+This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
 
 # Voucher Artifact {#voucher}
