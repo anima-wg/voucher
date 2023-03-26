@@ -1,0 +1,895 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2021-07-08T00:45:55.760890+00:00",
+  "repo": "anima-wg/voucher",
+  "labels": [
+    {
+      "name": "bug",
+      "description": null,
+      "color": "ee0701"
+    },
+    {
+      "name": "duplicate",
+      "description": null,
+      "color": "cccccc"
+    },
+    {
+      "name": "enhancement",
+      "description": null,
+      "color": "84b6eb"
+    },
+    {
+      "name": "help wanted",
+      "description": null,
+      "color": "128A0C"
+    },
+    {
+      "name": "invalid",
+      "description": null,
+      "color": "e6e6e6"
+    },
+    {
+      "name": "question",
+      "description": null,
+      "color": "cc317c"
+    },
+    {
+      "name": "wontfix",
+      "description": null,
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 2,
+      "id": "MDU6SXNzdWUxOTk3MzAxODA=",
+      "title": "what do I need to install to make it build?",
+      "url": "https://github.com/anima-wg/voucher/issues/2",
+      "state": "CLOSED",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "\r\n    cd refs; ./gen-trees.sh; cd ..;\r\n    ../ietf-voucher@2016-10-27.yang:8: error: module \"ietf-yang-types\" not found in search path\r\n    ../ietf-voucher@2017-01-09.yang:98: error: unterminated statement definition for keyword \"description\", looking at '\r\n    ../ietf-voucher-revocation@2016-10-27.yang:8: error: module \"ietf-yang-types\" not found in search path\r\n",
+      "createdAt": "2017-01-10T04:27:40Z",
+      "updatedAt": "2017-01-10T19:45:31Z",
+      "closedAt": "2017-01-10T19:45:13Z",
+      "comments": [
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "\nMicheal,\n\nThe makefile itself lists everything. \n\nOtherwise, be sure to re-initialize the pyang environment whenever using a new shell.   for instance: cd <pyang-dir>; . env.sh; cd --\n\nThose two yang modules are built into pyang...\n\nKent\n\n> On Jan 9, 2017, at 11:27 PM, Michael Richardson <notifications@github.com> wrote:\n> \n> cd refs; ./gen-trees.sh; cd ..;\n> ../ietf-voucher@2016-10-27.yang:8: error: module \"ietf-yang-types\" not found in search path\n> ../ietf-voucher@2017-01-09.yang:98: error: unterminated statement definition for keyword \"description\", looking at '\n> ../ietf-voucher-revocation@2016-10-27.yang:8: error: module \"ietf-yang-types\" not found in search path\n> \u2014\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub, or mute the thread.\n> \n",
+          "createdAt": "2017-01-10T12:07:44Z",
+          "updatedAt": "2017-01-10T12:07:44Z"
+        },
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "solution accepted.",
+          "createdAt": "2017-01-10T19:45:31Z",
+          "updatedAt": "2017-01-10T19:45:31Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "MDU6SXNzdWUyMjI5MDg0NTk=",
+      "title": "Mandatory or optional fields",
+      "url": "https://github.com/anima-wg/voucher/issues/3",
+      "state": "OPEN",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There is some inconsistencies in the existing text that need to be resolved (see below). Additionally if a \"voucher\" can also be a \"voucher request\" then the requester can't necessarily populate all the fields. These related issues need to be dealt with.    \r\n\r\n\r\n   leaf nonce {\r\n         type binary {\r\n           length \"8..32\";\r\n         }\r\n         must \"not(../expires-on)\";\r\n         description\r\n           \"A value that can be used by a pledge in some bootstrapping\r\n            protocols to enable anti-replay protection.  This node is\r\n            optional because it is not used by all bootstrapping\r\n            protocols.",
+      "createdAt": "2017-04-20T00:10:32Z",
+      "updatedAt": "2017-07-01T00:07:13Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "by my reading this is still an issue for date fields\r\n",
+          "createdAt": "2017-06-27T19:29:59Z",
+          "updatedAt": "2017-06-27T19:29:59Z"
+        },
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm unsure what the problem is here?  - what's wrong with the 'nonce' leaf above?\r\n\r\nK.\r\n",
+          "createdAt": "2017-06-28T17:56:15Z",
+          "updatedAt": "2017-06-28T17:56:15Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The BRSKI document creates a voucher for the request that contains only created-on, nonce, assertion, and pinned-domain-cert (see top of tree in brski). It then states that \"All other fields MAY be omitted in a voucher request.\" \r\n\r\nI'm worried that this violates the 'mandatory' statements in the yang. I think there may be other cases were we state that fields may/maynot exist that again isn't consistent with the formal yang. i might be overly worrying. dunno. ",
+          "createdAt": "2017-06-29T14:51:21Z",
+          "updatedAt": "2017-06-29T14:51:21Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I don't know what is the better approach: (1) all yang fields are optional? or (2) the voucher requests have stubbed out fields to exactly conform to the yang mandatory specifications. ",
+          "createdAt": "2017-06-29T14:53:50Z",
+          "updatedAt": "2017-06-29T14:53:50Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Here is an example of the yang being internally inconsistent. \r\nmy position: make this optional because a pledge doesn't have the time and thus can't populate this field correctly. \r\n\r\n     leaf created-on {\r\n        type yang:date-and-time;\r\n        **mandatory true;**\r\n        description\r\n          \"A value indicating the date this voucher was created.  **This\r\n           node is optional** because its primary purpose is for human\r\n           consumption.  However, when present, pledges that have\r\n           reliable clocks SHOULD ensure that this created-on value\r\n           is not greater than the current time.\";\r\n      }",
+          "createdAt": "2017-06-29T15:04:58Z",
+          "updatedAt": "2017-06-29T15:04:58Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Here the BRSKI document doesn't include the serial number from the pledge. The reason why is that the Registrar determines the serial number from the IDevID. There is potential value in a \"claimed\" serial-number that is not authenticated, maybe. But I don't like the idea of the Registrar being forced to make a decision if the serial-number is different than what the IDevID implies. Again I'd vote this be an optional field. \r\n\r\n      leaf serial-number {\r\n        type string;\r\n        mandatory true;\r\n        description\r\n          \"The serial number of the hardware.  When processing a\r\n           voucher, a pledge MUST ensure that its serial number\r\n           matches this value.  If no match occurs, then the\r\n           pledge MUST NOT process this voucher.\";\r\n      }",
+          "createdAt": "2017-06-29T15:05:53Z",
+          "updatedAt": "2017-06-29T15:05:53Z"
+        },
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "It's exactly because of stuff like this that I wanted to keep the request format a distinct separate thing.  My opinion is that you have the pledge fill-in dummy values.  \r\n\r\nThe 'created-on' is suppose to be set by the MASA.  Whether the pledge can make sense of it is not important.  What's important is that inspected by intermediates.   In this sense, it makes sense for it to be mandatory true.\r\n\r\nI don't want to water-down what a voucher should be.   I prefer letting the pledges fill-in dummy values, or us defining an explicit request format.\r\n\r\n",
+          "createdAt": "2017-06-29T22:43:41Z",
+          "updatedAt": "2017-06-29T22:43:41Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "1. When Kent was not present, i voiced the opinion to max that logically all fields could be optional because the sender knows what the receiver needs. But i can see Kents point which i think is to keep the model semantically \"strong\". If we make everything optional and do not even define whether something is a request or an actual voucher, and what element is optional where, then all verification has to be based on context including where on a wire the object is seen, and implementations can much easier make mistakes. That would not be good.\r\n\r\n2. Given how the idea of the voucher-request came in fairly late in the process and we are in last call, i think we should concede that we may not be able to resolve all voucher-request related issues without causing unnecessary delay to the voucher document. I would suggest we\r\n\r\n2.a) keep the text suggestion that voucher \"could\" be used for voucher-request (just one sentence). Even if (see below) we may not use solely the voucher.\r\n2.b) Make sure that mandatory definitions and descriptive text is correct for vouchers (not voucher requests).\r\n2.c) If we have any descriptive text in the yang model that was added specifically for the voucher request, we should explicitly say so , else its confusing.\r\n\r\n3. I have no problems creating a derived voucher format in the BRSKI document that adds a voucher-request container as an alternative to the voucher container if we see that the MUST statements in the voucher document would make workarounds (\"fill in with fake values\") would look too gross to us. \r\n\r\nThe BRSKI voucher-artifact would then be an extended version of the voucher-artifact and be fully backward compatibe: exactly the same for vouchers, just adding voucher-requests. The only non-ideal thing resulting out of this is that we would have to duplicate all the voucher elements into a voucher-request container (to change MUST/optional). But at least we do not need to duplicaet the voucher container (grouping takes care of that). But i would be very happy: It is syntactically strong and explicit, and i can also complain about YANG being a lame language that doesn't allow me to do this easier than through duplication ;-)\r\n\r\n4. If all the above makes sense, i am not quite sure if any of Max'es concerns till need to be resolved, because they look primarily like issues for requests.",
+          "createdAt": "2017-07-01T00:07:13Z",
+          "updatedAt": "2017-07-01T00:07:13Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "MDU6SXNzdWUyMzYyMzY2Njk=",
+      "title": "assertion definition clarification",
+      "url": "https://github.com/anima-wg/voucher/issues/5",
+      "state": "CLOSED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "could explain further that the assertion references the \"pinned-domain-certificate\"",
+      "createdAt": "2017-06-15T15:52:18Z",
+      "updatedAt": "2017-06-27T19:22:46Z",
+      "closedAt": "2017-06-27T19:22:46Z",
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "toerless points out that this might be clearer if it was called \"asserted-domain-certificate\" ",
+          "createdAt": "2017-06-15T15:52:52Z",
+          "updatedAt": "2017-06-15T15:52:52Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Continued changes to what becomes an arbitrary label are unlikely to benefit in the long run.\r\n",
+          "createdAt": "2017-06-27T19:22:43Z",
+          "updatedAt": "2017-06-27T19:22:43Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "MDU6SXNzdWUyMzYyMzc4NjA=",
+      "title": "jws vs pkcs7",
+      "url": "https://github.com/anima-wg/voucher/issues/6",
+      "state": "CLOSED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "this is still open ",
+      "createdAt": "2017-06-15T15:56:14Z",
+      "updatedAt": "2017-07-01T00:44:18Z",
+      "closedAt": "2017-07-01T00:44:18Z",
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "kent: points out that jws doesn't support transport of revocation objects",
+          "createdAt": "2017-06-15T15:56:40Z",
+          "updatedAt": "2017-06-15T15:56:40Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "not supporting transport of revocation object is a benefit (in my opinion)",
+          "createdAt": "2017-06-27T19:21:51Z",
+          "updatedAt": "2017-06-27T19:21:51Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposed resolution for closing this:\r\n\r\nModify section 6 to indicate: \"The voucher signature method does not impact the internal voucher contents. \r\n Unless otherwise signaled the voucher signing method is.... pkcs7 etc. Methods of signaling alternative signature methods are out-of-scope of this document, but documents that leverage vouchers can provide this signaling. For example they might instruct that JWS signing is the signature method in their work.\"\r\n\r\nThis allows 'voucher' to be complete but flexible so that the 'voucher' document doesn't need to be updated if BRSKI or something else comes along and decides to signal, via mime-type for example, that JWS signed vouchers are in use. \r\n\r\nI'll update BRSKI back to pkcs7 for now but via the mime types indicate that future formats might be seen (e.g. registrar should be prepared to deal with mime types it doesn't understand)",
+          "createdAt": "2017-06-29T14:26:36Z",
+          "updatedAt": "2017-06-29T14:26:36Z"
+        },
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Works for me.  Probably the best we can do given the time.",
+          "createdAt": "2017-06-29T22:27:23Z",
+          "updatedAt": "2017-06-29T22:27:23Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "Resolved",
+          "createdAt": "2017-07-01T00:44:18Z",
+          "updatedAt": "2017-07-01T00:44:18Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "MDU6SXNzdWUyMzcyNTIyODM=",
+      "title": "Bill Atwoods text fix",
+      "url": "https://github.com/anima-wg/voucher/issues/7",
+      "state": "CLOSED",
+      "author": "toerless",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Change:\r\n\r\nthe pledge's manufacture or delegate\r\nto\r\n\r\nthe pledge's manufactures or delegate\r\n                                           ^\r\n\r\n(from Bill Atwood)",
+      "createdAt": "2017-06-20T15:28:40Z",
+      "updatedAt": "2017-06-27T19:30:29Z",
+      "closedAt": "2017-06-27T19:30:29Z",
+      "comments": [
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Shouldn't it be \"manufacturer\" (not \"manufactures\")?\n\nK.\n\nOn 6/20/17 11:28 AM, toerless wrote:\n>\n> Change:\n>\n> the pledge's manufacture or delegate\n> to\n>\n> the pledge's manufactures or delegate\n> ^\n>\n> (from Bill Atwood)\n>\n> \u2014\n> You are receiving this because you are subscribed to this thread.\n> Reply to this email directly, view it on GitHub \n> <https://github.com/anima-wg/voucher/issues/7>, or mute the thread \n> <https://github.com/notifications/unsubscribe-auth/ACJp-h_0mxIlEGTVitPqE0ka-btlA2D0ks5sF-UpgaJpZM4N_wh->.\n>\n\n",
+          "createdAt": "2017-06-21T20:52:59Z",
+          "updatedAt": "2017-06-21T20:52:59Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "Yes, just correct english pls. I think MichaelR already fixed it.\n\nOn Wed, Jun 21, 2017 at 01:53:02PM -0700, Kent Watsen wrote:\n> Shouldn't it be \"manufacturer\" (not \"manufactures\")?\n> \n> K.\n> \n> On 6/20/17 11:28 AM, toerless wrote:\n> >\n> > Change:\n> >\n> > the pledge's manufacture or delegate\n> > to\n> >\n> > the pledge's manufactures or delegate\n> > ^\n> >\n> > (from Bill Atwood)\n> >\n> > ???\n> > You are receiving this because you are subscribed to this thread.\n> > Reply to this email directly, view it on GitHub \n> > <https://github.com/anima-wg/voucher/issues/7>, or mute the thread \n> > <https://github.com/notifications/unsubscribe-auth/ACJp-h_0mxIlEGTVitPqE0ka-btlA2D0ks5sF-UpgaJpZM4N_wh->.\n> >\n> \n> \n> \n> -- \n> You are receiving this because you authored the thread.\n> Reply to this email directly or view it on GitHub:\n> https://github.com/anima-wg/voucher/issues/7#issuecomment-310201792\n\n-- \n---\ntte@cs.fau.de\n",
+          "createdAt": "2017-06-21T22:05:31Z",
+          "updatedAt": "2017-06-21T22:05:31Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "xml was fixed. closing issue",
+          "createdAt": "2017-06-22T18:25:09Z",
+          "updatedAt": "2017-06-22T18:25:09Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "sorrry, just abusing this issue to figure out github notification problems. Pls. ignore",
+          "createdAt": "2017-06-22T18:27:09Z",
+          "updatedAt": "2017-06-22T18:27:09Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "looks like this is actually closed",
+          "createdAt": "2017-06-27T19:30:29Z",
+          "updatedAt": "2017-06-27T19:30:29Z"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "id": "MDU6SXNzdWUyMzg4ODMyNzQ=",
+      "title": "Use grouping mechanism to allow for extensibility",
+      "url": "https://github.com/anima-wg/voucher/issues/8",
+      "state": "CLOSED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "As part of closing this comment we need to understand how relying parties would handle extensions. We (our anima group) don't fully understand this. ",
+      "createdAt": "2017-06-27T15:04:57Z",
+      "updatedAt": "2017-06-30T22:43:39Z",
+      "closedAt": "2017-06-30T22:43:39Z",
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "BRSKI won't be needing this extension given the now existing 'prior signed voucher' field. But if there are normative changes needed in order for future extension we need to make these now. We agreed to do this in todays call but i'm unclear exactly what the change looks like. This is our notes: \r\n\r\nvoucher doc uses \"grouping\" \r\nthen when defining a voucher  [future work] can \"augment\" to add fields.\r\n\r\nThis might be useful for BRSKI extensions we are currently discussion\r\nAnother example use might be network endpoint assessment or other extension.",
+          "createdAt": "2017-06-27T19:33:10Z",
+          "updatedAt": "2017-06-27T19:33:10Z"
+        },
+        {
+          "author": "toerless",
+          "authorAssociation": "MEMBER",
+          "body": "`After` an earfull of YANG from colleagues and reading rfc8040:\r\n\r\nYANG grouping defines just a template. If you want to use it in any place you need to instantiate it first. Its meant for reuse. Grouping are great if you want to reuse definitions. Consider a yang object you need in the config store and in the operations store, you simply instantiate the grouping twice.\r\n\r\nAugmentation is another specific YANG construct, but it is only meant to extend an already defined instance in a YANG tree. like some 'bis' version of a module. If you want a derived variant of some tree it's better to first define a grouping and then instantiate the grouping twice with for example extension in the second grouping.\r\n\r\nIn the current voucher doc (Jun 27 - https://github.com/anima-wg/voucher/blob/7480341bf01fda153a80ea55b49811914e8315bc/draft-ietf-anima-voucher.txt), the word grouping is IMHO just a mistake leftover:\r\n\r\n```\r\nrc:yang-data voucher-artifact {\r\n...\r\n} // end voucher-grouping\r\n```\r\n\r\nvoucher-artifact is not a grouping but a YANG data template. Which means that the whole blob inside of it is not a YANG grouping (yang template) or a YANG data instance for any tree, but it is free floating structured message definition in YANG that you can use in any protocol. Aka: just what we need for Netconf and BRSKI.\r\n\r\nBUT: Because we use actually in Netconf and in BRSKI the voucher-artifact, we should be careful in BRSKI to also refer to the term \"voucher artifact\" and not just the \"voucher\". \r\n\r\nFor example. Consider an extension to the voucher artifact adding data that is not logically part of the voucher itself but that makes a lot of sense to be part of the voucher artifact (signed voucher blob):\r\n\r\n```\r\nrc:yang-data voucher-artifact {\r\n    container voucher {\r\n    }\r\n   leaf owner-bootstrap-server {\r\n       // ... string etc to carry a URL indicate method (netconf, BRSKI,...) and server name\r\n   }\r\n} // end of RFC8040 voucher YANG Data scheme\r\n\r\n```\r\nAka if you got a voucher on a USB stick you wouldn't need to have a separate signed file pointing you to your bootstrap server (registrar/zero-touch-netconf-server), but it could be co-signed into the voucher-artifact object - but clearly not necessarily part of the \"voucher\" itself.\r\n\r\nJust an example. With MASA  online we have other ways to signal the owner-bootstrap-server, BUT:\r\n\r\nIt would be great if we could make the voucher-artifact extensible so that for example we could later on write an extended voucher-artefact draft that for example adds this bootstrap server.\r\n\r\nTo that extend, i don't think that the rc:yang-data YANG data schema definition is sufficient to make it easy to build such an extension.\r\n\r\nI think the following is hopefully the right YANG code to provide reuseability: \r\n\r\n```\r\nrc:yang-data voucher-artifact {\r\n    uses voucher-artifact-grouping ;\r\n} // instantiating the YANG DATA scheme \r\n\r\ngrouping voucher-artifact-grouping {\r\n    container voucher {\r\n        // contains all content of voucher\r\n    }\r\n}\r\n```\r\n\r\nAnd then in a voucher-artefact extension document one could say:\r\n\r\n```\r\nmodule ietf-voucher-extended {\r\n    import ietf-voucher {\r\n        prefix \"v\";\r\n    }\r\n\r\n  rc:yang-data voucher-artifact {\r\n      uses voucher-artifact-grouping\r\n  }\r\n\r\n grouping voucher-artifact-grouping {\r\n       uses v:voucher-artifact-grouping {\r\n           augment target/voucher {\r\n           leaf another-voucher-attribute {\r\n               // whatever\r\n           } \r\n       }\r\n       leaf owner-bootstrap-server {\r\n           // ... string etc to carry a URL indicate method (netconf, BRSKI,...) and server name\r\n       }\r\n    }\r\n}\r\n\r\n```\r\nThis example shows:\r\n- you again do grouping so your extension could later be referenced in another document and extended there.\r\n- you inherit and instantiate the grouping from the original voucher draft (\"uses\")\r\n- You insert something into the existing structure (voucher) (augment)\r\n- you add something to the structure at the top level (owner-bootstrap-server), no augmentation needed.\r\n",
+          "createdAt": "2017-06-30T02:34:51Z",
+          "updatedAt": "2017-06-30T20:23:15Z"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "MDU6SXNzdWUyNTM0ODQzOTc=",
+      "title": "Final cleanup post \"voucher-request\" moving to BRSKI",
+      "url": "https://github.com/anima-wg/voucher/issues/10",
+      "state": "OPEN",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "s6 indicates: \r\n\r\n\"A possible other use use could be as a \"signed voucher request\" format originating from pledge or registrar toward the MASA.\"\r\n\r\nThis and potentially other comments might need to be tightened (read: removed). Other than the typo \"use use\" this could remain but is no longer needed? ",
+      "createdAt": "2017-08-28T23:23:33Z",
+      "updatedAt": "2017-08-28T23:23:33Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "MDExOlB1bGxSZXF1ZXN0ODc5MjQ3MDE=",
+      "title": "update affiliation to be correct",
+      "url": "https://github.com/anima-wg/voucher/pull/1",
+      "state": "MERGED",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "mcr is not a cisco employee.\n",
+      "createdAt": "2016-10-04T16:03:49Z",
+      "updatedAt": "2016-10-07T23:01:32Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "eea1c8a62f18e4b4554a4d17100bc5548a38fb51",
+      "headRepository": "ietf-roll/ownership-voucher",
+      "headRefName": "master",
+      "headRefOid": "b6526102859572ac9a64b64df933341309e57ca6",
+      "closedAt": "2016-10-07T23:01:32Z",
+      "mergedAt": "2016-10-07T23:01:32Z",
+      "mergedBy": "kwatsen",
+      "mergeCommit": {
+        "oid": "98c88892f22f37fa90cf253bf7192a9aee31bb02"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTI1NzI2NTEw",
+      "title": "Voucher sync 061417",
+      "url": "https://github.com/anima-wg/voucher/pull/4",
+      "state": "MERGED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Requesting that these minor changes to voucher be sync in. They support:\r\n\r\na) expand the language around signing slightly to support BRSKI's use of signed vouchers by pledge and/or registrar as \"voucher requests\"\r\n\r\nb) adds a 'proximity' assertion which will be useful to BRSKi",
+      "createdAt": "2017-06-15T01:48:15Z",
+      "updatedAt": "2017-06-15T14:36:13Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "b917ed5d7adad90477c1bc157d97792745c5d187",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "voucher_sync_061417",
+      "headRefOid": "73eabd49dc178a5f53430928ca95d0f82b5c7a13",
+      "closedAt": "2017-06-15T14:36:13Z",
+      "mergedAt": "2017-06-15T14:36:13Z",
+      "mergedBy": "pritikin",
+      "mergeCommit": {
+        "oid": "c86f39b05df50f749b37671dd63bf576fc21892b"
+      },
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "ensuring BRSKI can use signed vouchers as \"voucher requests\" without complicating 'voucher' document itself.",
+          "createdAt": "2017-06-15T14:36:05Z",
+          "updatedAt": "2017-06-15T14:36:05Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTI3Nzc5Mjc2",
+      "title": "Voucher sync 061417",
+      "url": "https://github.com/anima-wg/voucher/pull/9",
+      "state": "MERGED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This pull request will sync in the final changes to ensure BRSKI can use voucher final. As per meetings on 6/27",
+      "createdAt": "2017-06-27T19:59:58Z",
+      "updatedAt": "2017-06-27T20:30:12Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "f4bfad20a07055cd3eff5b8a54dc6385d2e01589",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "voucher_sync_061417",
+      "headRefOid": "f0d21f59e4163cfb13816b9156f6ef980b85b924",
+      "closedAt": "2017-06-27T20:30:12Z",
+      "mergedAt": "2017-06-27T20:30:12Z",
+      "mergedBy": "pritikin",
+      "mergeCommit": {
+        "oid": "157ab1ba70c866bafe89516bd964011eae097817"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTQ3NjA3MTE0",
+      "title": "Pkcs7 to cms",
+      "url": "https://github.com/anima-wg/voucher/pull/11",
+      "state": "MERGED",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This changes the PKCS7 description to say CMS, and allocates an eContentType.\r\nIt also makes the CMS signed JSON more of an example and reference voucher, rather than a MUST.\r\n",
+      "createdAt": "2017-10-19T16:39:11Z",
+      "updatedAt": "2017-10-25T18:30:54Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "4e60167839b6669a18be91b3e2afb34cb48cc316",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "pkcs7-to-cms",
+      "headRefOid": "a7750f7ab52692c8b325466254e4eaf29af1b23e",
+      "closedAt": "2017-10-25T18:30:54Z",
+      "mergedAt": "2017-10-25T18:30:54Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "0701b02c10f6dd0107ebe21177d9b39aa4088362"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA2MTgyMjk=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-19T17:27:21Z",
+          "updatedAt": "2017-10-19T17:37:20Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "\"containing a JSON format voucher\" is the *default* expected type unless otherwise specified.",
+              "createdAt": "2017-10-19T17:27:21Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 90,
+              "body": "We probably need to clarify the connection with the eContentType as discussed in the new section 6.4 \"CMS format voucher artifact\". ",
+              "createdAt": "2017-10-19T17:28:55Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 103,
+              "body": "Unless otherwise specified the signature method is via CMS with the voucher contained as the content. The eContentType indicates the JSON voucher format. ",
+              "createdAt": "2017-10-19T17:30:03Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "(aside) should we consider a reference here to the BRSKI doc? how are circular references like that handled? Do both docs have to be submitted at 'the same time'?",
+              "createdAt": "2017-10-19T17:31:22Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 131,
+              "body": "To leave open the possibility of multi-vendor MASA would it make sense to indicate something along the lines of, \"or any signed Pledge voucher-request can serve as a signal from the Pledge concerning the appropriate cmsVersion acceptable\"? Or is that too much of a cross reference and too confusing for a case we don't need to get into?",
+              "createdAt": "2017-10-19T17:33:46Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 139,
+              "body": "An interesting point. I like it.\r\n\r\n(Registrar voucher-requests include the registrar trust anchor for a different reason though)",
+              "createdAt": "2017-10-19T17:34:56Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            },
+            {
+              "originalPosition": 150,
+              "body": "I wish we could simply say \"SHOULD NOT\" but I accept \"MAY\" paired with \"discouraged\". As long as I get to be snotty about it. ",
+              "createdAt": "2017-10-19T17:35:58Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA2MjIxMjQ=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-19T17:40:04Z",
+          "updatedAt": "2017-10-19T17:40:04Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "Is this file missing?",
+              "createdAt": "2017-10-19T17:40:04Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODc5NDg=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T15:55:25Z",
+          "updatedAt": "2017-10-20T15:55:25Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "I feel that this gives confuses people into thinking it's more normative than we want *this document* to be.",
+              "createdAt": "2017-10-20T15:55:25Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODgyNzg=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T15:56:28Z",
+          "updatedAt": "2017-10-20T15:56:28Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "if we specified application/cms here, then I agree we'd have to discuss the parameters that might go with eContentType, but I think we are just saying that \"there will be signaling\"",
+              "createdAt": "2017-10-20T15:56:28Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODgzOTQ=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T15:56:51Z",
+          "updatedAt": "2017-10-20T15:56:51Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "Not sure what text you are suggesting here.",
+              "createdAt": "2017-10-20T15:56:51Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODg4NDA=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T15:58:17Z",
+          "updatedAt": "2017-10-20T15:58:17Z",
+          "comments": [
+            {
+              "originalPosition": 131,
+              "body": "I think you mean multi-tenant MASA? (containing multiple vendors...)...   I think that invoking the prior-signed-voucher-request in the voucher document is too much of a cross-reference.",
+              "createdAt": "2017-10-20T15:58:17Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODkyOTU=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T15:59:48Z",
+          "updatedAt": "2017-10-20T15:59:48Z",
+          "comments": [
+            {
+              "originalPosition": 139,
+              "body": "A different reason?  In the nonceful case with no supply chain integration, the MASA is going to audit the voucher...   or is that the MASA not a \"third party\" here (rather, a first party).\r\nAnd voucher-requests are in BRSKI, not here :-)",
+              "createdAt": "2017-10-20T15:59:48Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA4ODk0MjQ=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T16:00:16Z",
+          "updatedAt": "2017-10-20T16:00:16Z",
+          "comments": [
+            {
+              "originalPosition": 160,
+              "body": "Yes, uploaded.",
+              "createdAt": "2017-10-20T16:00:16Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA5MDY3NjU=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T17:06:21Z",
+          "updatedAt": "2017-10-20T17:06:21Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "By indicating \"is the default unless otherwise specified\" i was attempting to clarify that this isn't the normatively defined only encoding. ",
+              "createdAt": "2017-10-20T17:06:21Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA5MDc3MDc=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T17:10:21Z",
+          "updatedAt": "2017-10-20T17:10:21Z",
+          "comments": [
+            {
+              "originalPosition": 90,
+              "body": "what i mean is that unless otherwise signaled the default type is \"application/cms\" as described in section 6.4; and that within that type the actual eContentType is still relevant. ",
+              "createdAt": "2017-10-20T17:10:21Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA5MDgzMDk=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T17:12:38Z",
+          "updatedAt": "2017-10-20T17:12:38Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "What I mean is that the CMS format is the default, unless otherwise specified, but within the CMS the eContentType of TBD1 indicates that a JSON-encoded voucher is expected. \r\n\r\nThe current wording implies that eContentType of TBD1 indicates a CMS format. This isn't true because eContentType is within the CMS. ",
+              "createdAt": "2017-10-20T17:12:38Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA5MDg0NTQ=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T17:13:10Z",
+          "updatedAt": "2017-10-20T17:13:10Z",
+          "comments": [
+            {
+              "originalPosition": 131,
+              "body": "Agreemsg re limiting cross references. ",
+              "createdAt": "2017-10-20T17:13:10Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzA5MDg2Njk=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-20T17:14:00Z",
+          "updatedAt": "2017-10-20T17:14:00Z",
+          "comments": [
+            {
+              "originalPosition": 139,
+              "body": "I'll buy it. ",
+              "createdAt": "2017-10-20T17:14:00Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NzEwMjE4MDc=",
+          "commit": {
+            "abbreviatedOid": "a93fc4b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2017-10-22T02:06:20Z",
+          "updatedAt": "2017-10-22T02:06:20Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "so, please suggest additional/new text, if you want to put the default wording back in.",
+              "createdAt": "2017-10-22T02:06:20Z",
+              "updatedAt": "2017-10-25T18:13:09Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTQ4ODIwODA2",
+      "title": "Example appendix",
+      "url": "https://github.com/anima-wg/voucher/pull/12",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This ads an appendix with a single voucher example, expanded using asn1parse.\r\n",
+      "createdAt": "2017-10-26T01:54:40Z",
+      "updatedAt": "2018-03-30T21:37:31Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "52890990fe4b9c08745dc910796f20225c9f7350",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "example-appendix",
+      "headRefOid": "4acdb58b8f20fb8066add01d912c09439b4844f2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Let\u2019s be sure to compare our asn1parse outputs.   Or, would you be okay if we just use my output?  ;)\r\n\r\nK.\r\n\r\nSent from my iPhone\r\n\r\nOn Oct 25, 2017, at 9:54 PM, Michael Richardson <notifications@github.com<mailto:notifications@github.com>> wrote:\r\n\r\n\r\nThis ads an appendix with a single voucher example, expanded using asn1parse.\r\n\r\n________________________________\r\nYou can view, comment on, or merge this pull request online at:\r\n\r\n  https://github.com/anima-wg/voucher/pull/12\r\n\r\nCommit Summary\r\n\r\n  *   removed cms-contents\r\n  *   added example keys and example voucher\r\n  *   updated txt file\r\n\r\nFile Changes\r\n\r\n  *   M Makefile<https://github.com/anima-wg/voucher/pull/12/files#diff-0> (6)\r\n  *   D cms-contents.txt<https://github.com/anima-wg/voucher/pull/12/files#diff-1> (28)\r\n  *   M draft-ietf-anima-voucher.txt<https://github.com/anima-wg/voucher/pull/12/files#diff-2> (80)\r\n  *   M draft-ietf-anima-voucher.xml<https://github.com/anima-wg/voucher/pull/12/files#diff-3> (63)\r\n  *   A examples/voucher_00-D0-E5-F2-00-02.asn1.txt<https://github.com/anima-wg/voucher/pull/12/files#diff-4> (129)\r\n  *   A examples/voucher_00-D0-E5-F2-00-02.pkcs<https://github.com/anima-wg/voucher/pull/12/files#diff-5> (40)\r\n  *   A keys/jrc_prime256v1.crt<https://github.com/anima-wg/voucher/pull/12/files#diff-6> (12)\r\n  *   A keys/jrc_prime256v1.key<https://github.com/anima-wg/voucher/pull/12/files#diff-7> (5)\r\n  *   A keys/masa_secp384r1.crt<https://github.com/anima-wg/voucher/pull/12/files#diff-8> (12)\r\n  *   A keys/masa_secp384r1.key<https://github.com/anima-wg/voucher/pull/12/files#diff-9> (6)\r\n\r\nPatch Links:\r\n\r\n  *   https://github.com/anima-wg/voucher/pull/12.patch\r\n  *   https://github.com/anima-wg/voucher/pull/12.diff\r\n\r\n\u2014\r\nYou are receiving this because you are subscribed to this thread.\r\nReply to this email directly, view it on GitHub<https://github.com/anima-wg/voucher/pull/12>, or mute the thread<https://github.com/notifications/unsubscribe-auth/ACJp-sT2-3sONC6bzNCKV_MQYlpq4Olwks5sv-ZhgaJpZM4QG5pI>.\r\n",
+          "createdAt": "2017-10-26T11:04:24Z",
+          "updatedAt": "2017-10-26T11:04:24Z"
+        },
+        {
+          "author": "kwatsen",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "\nKent Watsen <kwatsen@juniper.net> wrote:\n    > Let\u2019s be sure to compare our asn1parse outputs. Or, would you be okay\n    > if we just use my output? ;)\n\nI'm happy with whatever examples.\nI just want some examples that I can validate and even reproduce.\n\n--\n]               Never tell me the odds!                 | ipv6 mesh networks [\n]   Michael Richardson, Sandelman Software Works        | network architect  [\n]     mcr@sandelman.ca  http://www.sandelman.ca/        |   ruby on rails    [\n\n",
+          "createdAt": "2017-10-26T12:45:12Z",
+          "updatedAt": "2017-10-26T12:45:12Z"
+        },
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I like having an example and have no concerns about where the example comes from. \r\n\r\nI don't think we need/want the registrar certificate in there. If anything we'd want to see the \"pinned-domain-cert\" as the domain CA certificate. That way they could see how it ends up in the inner voucher format? \r\n\r\nFrom the voucher document the \"registrar\" entity isn't fully defined. ",
+          "createdAt": "2017-10-26T17:05:51Z",
+          "updatedAt": "2017-10-26T17:05:51Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "Max Pritikin <notifications@github.com> wrote:\n    > I like having an example and have no concerns about where the example\n    > comes from.\n\n    > I don't think we need/want the registrar certificate in there.\n\nDo you mean the owner/registrar private key?\nThat's what you don't think we need.   Fine with me.\n\nI included it as I think that key is self-signed, so someone else could run\nit through their code base to see if they generate an equivalent certificate.\n\n    > anything we'd want to see the \"pinned-domain-cert\" as the domain CA\n    > certificate. That way they could see how it ends up in the inner\n    > voucher format?\n\nYes, so they need to see the owner's public key.\n\n    > From the voucher document the \"registrar\" entity isn't fully defined.\n\nokay, so we need to name things differently.\n\n\n--\n]               Never tell me the odds!                 | ipv6 mesh networks [\n]   Michael Richardson, Sandelman Software Works        | network architect  [\n]     mcr@sandelman.ca  http://www.sandelman.ca/        |   ruby on rails    [\n\n",
+          "createdAt": "2017-10-27T00:18:05Z",
+          "updatedAt": "2017-10-27T00:18:05Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "I rebase this. We did not finish our conversation about this....\r\nRebased a second time.",
+          "createdAt": "2017-12-06T19:53:39Z",
+          "updatedAt": "2018-01-09T15:22:54Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTU2ODEzOTQ3",
+      "title": "Potential new descriptions for enumerations.",
+      "url": "https://github.com/anima-wg/voucher/pull/13",
+      "state": "MERGED",
+      "author": "pritikin",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I think this is clearer. What do you think?",
+      "createdAt": "2017-12-06T19:08:52Z",
+      "updatedAt": "2017-12-08T15:51:50Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "1c25d46bb2e393d0ac8a8581c9f277469f8088f2",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "assertionenums",
+      "headRefOid": "60822219a75d23cc70ed293a9bd69d58f18bb563",
+      "closedAt": "2017-12-08T15:51:45Z",
+      "mergedAt": "2017-12-08T15:51:45Z",
+      "mergedBy": "pritikin",
+      "mergeCommit": {
+        "oid": "2037cd0343f98494f6bd6fce8242c881d01c787b"
+      },
+      "comments": [
+        {
+          "author": "pritikin",
+          "authorAssociation": "COLLABORATOR",
+          "body": "review via email, I asked Kent responded:\r\n>> What do you think:\r\n>> https://github.com/anima-wg/voucher/pull/13/commits/60822219a75d23cc70ed293a9bd69d58f18bb563\r\n> \r\n>Very good!\r\n> \r\n>K.",
+          "createdAt": "2017-12-08T15:51:50Z",
+          "updatedAt": "2017-12-08T15:51:50Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 14,
+      "id": "MDExOlB1bGxSZXF1ZXN0MTU5MzMxMjgz",
+      "title": "Mime type registration",
+      "url": "https://github.com/anima-wg/voucher/pull/14",
+      "state": "MERGED",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This pull request acts on the comments from the IESG, and adds a MIME-Type registration as suggested by Adam Roach.\r\n",
+      "createdAt": "2017-12-20T04:56:29Z",
+      "updatedAt": "2018-01-09T15:21:55Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "master",
+      "baseRefOid": "09d92b49605cbce593a1508e411d1d27357f8fa7",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "mime-type-registration",
+      "headRefOid": "830d4c40eaf921819f2b901716471dc9bb30fbd1",
+      "closedAt": "2018-01-09T15:21:55Z",
+      "mergedAt": "2018-01-09T15:21:55Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "6713b175eab08d6624e29d6e71c812a196963dc9"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
