@@ -1,0 +1,87 @@
+{
+  "assignment-ranges": [
+    {
+      "entry-point": 2450,
+      "size": 50
+    }
+  ],
+  "module-name": "ietf-voucher",
+  "module-revision": "2023-01-10",
+  "items": [
+    {
+      "namespace": "module",
+      "identifier": "ietf-voucher",
+      "sid": 2450
+    },
+    {
+      "namespace": "module",
+      "identifier": "ietf-voucher",
+      "sid": 2464
+    },
+    {
+      "namespace": "module",
+      "identifier": "ietf-yang-types",
+      "sid": 2465
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher",
+      "sid": 2451
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/assertion",
+      "sid": 2452
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/created-on",
+      "sid": 2453
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/domain-cert-revocation-checks",
+      "sid": 2454
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/expires-on",
+      "sid": 2455
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/idevid-issuer",
+      "sid": 2456
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/last-renewal-date",
+      "sid": 2457
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/nonce",
+      "sid": 2458
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-cert",
+      "sid": 2459
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk",
+      "sid": 2460
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk-sha256",
+      "sid": 2461
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/serial-number",
+      "sid": 2462
+    }
+  ]
+}
