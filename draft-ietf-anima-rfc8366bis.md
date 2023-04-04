@@ -756,6 +756,8 @@ IANA is asked to register a second YANG module as follows:
 
 ## The Media Types Registry {#vcj}
 
+### application/voucher-cms+json
+
 This document requests IANA to update the following "Media Types" entry to point to the RFC number that will be assigned to this document:
 
 Type name:
@@ -818,6 +820,50 @@ Change controller:
 
 Provisional registration? (standards tree only):
 : NO
+
+### application/voucher+cose
+
+This section registers the 'application/voucher+cose' in the IANA "Media Types" registry.
+This media type is used to indicate that the content is a CBOR voucher or voucher request
+signed with a COSE_Sign1 structure {{RFC9052}}.
+
+    Type name:  application
+    Subtype name:  voucher+cose
+    Required parameters:  N/A
+    Optional parameters:  N/A
+    Encoding considerations:  binary (CBOR)
+    Security considerations:  Security Considerations of [This RFC].
+    Interoperability considerations:  The format is designed to be
+      broadly interoperable.
+    Published specification:  [This RFC]
+    Applications that use this media type:  ANIMA, 6tisch, and other
+      zero-touch onboarding systems
+    Fragment identifier considerations:  The syntax and semantics of
+      fragment identifiers specified for application/voucher-cose+cbor
+      are as specified for application/cbor.  (At publication of this
+      document, there is no fragment identification syntax defined for
+      application/cbor.)
+    Additional information:
+      Deprecated alias names for this type: N/A
+      Magic number(s):  N/A
+      File extension(s):  .vch
+      Macintosh file type code(s):  N/A
+    Person & email address to contact for further information:  IETF
+      ANIMA Working Group (anima@ietf.org) or IETF Operations and
+      Management Area Working Group (opsawg@ietf.org)
+    Intended usage:  COMMON
+    Restrictions on usage:  N/A
+    Author:  ANIMA WG
+    Change controller:  IETF
+    Provisional registration? (standards tree only):  NO
+
+### CoAP Content-Format Registry
+
+IANA has allocated ID 836 from the sub-registry "CoAP Content-Formats".
+
+    Media type                     Encoding   ID   Reference
+    -----------------------------  --------- ----  ----------
+    application/voucher-cose+cbor  -          836  [This RFC]
 
 
 ## The SMI Security for S/MIME CMS Content Type Registry
