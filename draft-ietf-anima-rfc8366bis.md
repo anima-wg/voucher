@@ -80,7 +80,7 @@ normative:
   BRSKI: RFC8995
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
-  RFC8971:
+  RFC8791:
 informative:
   RFC5246:
   RFC3688:
@@ -357,7 +357,7 @@ However, {{PRM}} needs to extend an enumerated type with additional values and _
 
 An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} voucher artifact.
 The result was invalid YANG, with multiple definitions of the core attributes from the {{RFC8366}} voucher artifact.
-After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8971}} structure mechanisms.
+After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8791}} structure mechanisms.
 
 After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
 
@@ -531,7 +531,7 @@ pledge-provided nonce provides a freshness guarantee.
 # Voucher Request Artifact {#voucher-request}
 
 {{BRSKI, Section 3}} defined a Voucher-Request Artifact as an augmented artifact from the Voucher Artifact originally defined in {{?RFC8366}}.
-That definition has been moved to this document, and translated from YANG-DATA {{RFC8040}} to the SX:STRUCTURE extension {{RFC8971}}.
+That definition has been moved to this document, and translated from YANG-DATA {{RFC8040}} to the SX:STRUCTURE extension {{RFC8791}}.
 
 ## Tree Diagram {#voucher-request-tree-diagram}
 
