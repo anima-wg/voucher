@@ -1,0 +1,17 @@
+           
+      SID Assigned to
+--------- -------------------------------------------------- 
+     2451 data /ietf-voucher:voucher/voucher
+     2452 data /ietf-voucher:voucher/voucher/assertion
+     2453 data /ietf-voucher:voucher/voucher/created-on
+     2454 data .../domain-cert-revocation-checks
+     2455 data /ietf-voucher:voucher/voucher/expires-on
+     2456 data /ietf-voucher:voucher/voucher/idevid-issuer
+     2457 data /ietf-voucher:voucher/voucher/last-renewal-date
+     2458 data /ietf-voucher:voucher/voucher/nonce
+     2459 data /ietf-voucher:voucher/voucher/pinned-domain-cert
+     2460 data /ietf-voucher:voucher/voucher/pinned-domain-pubk
+     2461 data .../pinned-domain-pubk-sha256
+     2462 data /ietf-voucher:voucher/voucher/serial-number
+           
+ WARNING, obsolete definitions
