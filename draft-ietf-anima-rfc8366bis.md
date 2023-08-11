@@ -140,7 +140,7 @@ Signing Authority (MASA).  This artifact is known as the "voucher".
 The voucher artifact is a JSON {{RFC8259}} document that
 conforms with a data model described by YANG {{RFC7950}}.
 It may also be serialized to CBOR {{CBOR}}.
-It is encoded using the rules defined in {{RFC8259}}, and
+It is encoded using the rules defined in {{!RFC7951}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a
