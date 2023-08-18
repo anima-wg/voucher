@@ -14,16 +14,6 @@
       "sid": 2450
     },
     {
-      "namespace": "module",
-      "identifier": "ietf-voucher",
-      "sid": 2464
-    },
-    {
-      "namespace": "module",
-      "identifier": "ietf-yang-types",
-      "sid": 2465
-    },
-    {
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/voucher",
       "sid": 2451
@@ -82,6 +72,28 @@
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/voucher/serial-number",
       "sid": 2462
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/additional-configuration",
+      "status": "unstable",
+      "sid": 2463
+    },
+    {
+      "namespace": "module",
+      "identifier": "ietf-voucher",
+      "sid": 2464
+    },
+    {
+      "namespace": "module",
+      "identifier": "ietf-yang-types",
+      "sid": 2465
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/est-domain",
+      "status": "unstable",
+      "sid": 2466
     }
   ]
 }

@@ -13,5 +13,6 @@
      2460 data /ietf-voucher:voucher/voucher/pinned-domain-pubk
      2461 data .../pinned-domain-pubk-sha256
      2462 data /ietf-voucher:voucher/voucher/serial-number
+     2463 data .../additional-configuration
+     2466 data /ietf-voucher:voucher/voucher/est-domain
            
- WARNING, obsolete definitions
