@@ -166,7 +166,7 @@ this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, and {{BRSKI}}.
 
 This document uses the following terms:
 
-Artifact:
+(Voucher) Artifact:
 : Used throughout to represent the voucher as instantiated in the form
   of a signed structure.
 
@@ -233,8 +233,14 @@ TOFU (Trust on First Use):
   This is also known as the "resurrecting duckling" model.
 
 Voucher:
-: A signed statement from the MASA service that indicates to a pledge
+: A short form for Voucher Artifact.  It refers to the signed statement
+  from the MASA service that indicates to a pledge
   the cryptographic identity of the domain it should trust.
+  When clarity is needed, it may be preceeded by the type of the signature, such as CMS, JWS or COSE.
+
+Voucher Data:
+: The raw (serialized) representation of the YANG without any enclosing signature.
+Current formats include JSON and CBOR.
 
 # Requirements Language
 
