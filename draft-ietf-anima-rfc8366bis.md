@@ -207,6 +207,9 @@ MASA (Manufacturer Authorized Signing Authority):
   other protocols the MASA may be an offline service that has no
   active role in the onboarding process.
 
+malicious registrar:
+: An on-path active attacker that presents itself as a legitimate registrar, but which is in fact under the control of an attacker.
+
 Onboarding:
 : In previous documents the term "bootstrapping" has been used to describe mechanisms such as
 {{BRSKI}}.
@@ -283,8 +286,9 @@ Anti-Replay Protections:
 
 A number of onboarding scenarios can be met using differing
 combinations of this information. All scenarios address the primary
-threat of a Man-in-The-Middle (MiTM) registrar gaining control over
-the pledge device. The following combinations are "types" of vouchers:
+threat of an on-path active attacker (or MiTM) impersonating the registrar.
+This would gain control over the pledge device.
+The following combinations are "types" of vouchers:
 
 |            | Assertion || Registrar ID || Validity |
 Voucher Type |Logged|Verified |Trust Anchor|CN-ID or DNS-ID| RTC | Nonce |
@@ -306,9 +310,10 @@ NOTE: All voucher types include a 'pledge ID serial-number'
 Audit Voucher:
 : An Audit Voucher is named after the logging assertion mechanisms
   that the registrar then "audits" to enforce local policy. The
-  registrar mitigates a MiTM registrar by auditing that an unknown
-  MiTM registrar does not appear in the log entries. This does not
-  directly prevent the MiTM but provides a response mechanism that
+  registrar mitigates a malicious registrar by auditing that an unknown
+  malicious registrar does not appear in the log entries.
+  This does not
+  directly prevent a malicious registrar but provides a response mechanism that
   ensures the MiTM is unsuccessful. The advantage is that actual
   ownership knowledge is not required on the MASA service.
 
