@@ -129,11 +129,7 @@ module ietf-voucher {
               "Indicates that the voucher has been issued after
                the MASA verified a proximity proof provided by the
                device and target domain.  The issuance has been
-               logged for detection of potential security issues.
-               This is stronger than just logging, because it
-               requires some verification that the pledge and owner
-               are in communication but is still dependent on
-               analysis of the logs to detect unexpected events.";
+               logged for detection of potential security issues.";
           }
           enum agent-proximity {
             value 3;
