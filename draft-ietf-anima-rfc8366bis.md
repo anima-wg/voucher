@@ -168,7 +168,7 @@ This document uses the following terms:
 
 (Voucher) Artifact:
 : Used throughout to represent the voucher as instantiated in the form
-  of a signed structure.
+of a signed structure.
 
 Bootstrapping:
 : See Onboarding.
@@ -244,6 +244,15 @@ Voucher:
 Voucher Data:
 : The raw (serialized) representation of the YANG without any enclosing signature.
 Current formats include JSON and CBOR.
+
+Voucher Request:
+: A signed artifact sent from the Pledge to the Registrar, or from the Registrar to the MASA.
+
+Pledge Voucher Request (PVR):
+: A signed artifact sent from the Pledge to the Registrar.
+
+Registrar Voucher Request (RVR):
+: A signed artifact sent from the Registrar to the MASA.
 
 # Requirements Language
 
