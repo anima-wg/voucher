@@ -84,7 +84,6 @@ normative:
 informative:
   RFC5246:
   RFC3688:
-  RFC6838:
   RFC6241:
   RFC8040:
   RFC8340:
