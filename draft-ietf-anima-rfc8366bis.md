@@ -747,12 +747,14 @@ IANA has registered the following:
 >    XML:
 >    : N/A, the requested URI is an XML namespace.
 
+This reference should be updated to point to this document.
+
 ## The YANG Module Names Registry
 
 This document registers two YANG module in the "YANG Module Names"
 registry {{RFC6020}}.
 
-IANA is asked to registrar the following:
+IANA has registred the following:
 
 > {:compact}
 >   name:
@@ -767,94 +769,16 @@ IANA is asked to registrar the following:
 >   reference:
 >   :RFC 8366
 
-IANA is asked to register a second YANG module as follows:
-
-> {:compact}
->    name:
->    : iana-voucher-assertion-type
->
->    namespace:
->    : urn:ietf:params:xml:ns:yang:iana-voucher-assertion-type
->
->   prefix:
->   : ianavat
->
->   reference:
->   : RFC XXXX
+This reference should be updated to point to this document.
 
 ## The Media Types Registry {#vcj}
 
-This document requests IANA to update the following "Media Types" entry to point to the RFC number that will be assigned to this document:
-
-Type name:
-: application
-
-Subtype name:
-: voucher-cms+json
-
-Required parameters:
-: none
-
-Optional parameters:
-: none
-
-Encoding considerations:
-: CMS-signed JSON vouchers are ASN.1/DER encoded.
-
-Security considerations:
-: See {{sec-con}}
-
-Interoperability considerations:
-: The format is designed to be broadly interoperable.
-
-Published specification:
-: RFC 8366
-
-Applications that use this media type:
-: ANIMA, 6tisch, and NETCONF zero-touch imprinting systems.
-
-Fragment identifier considerations:
-: none
-
-Additional information:
-: Deprecated alias names for this type:
-  : none
-
-  Magic number(s):
-  : None
-
-  File extension(s):
-  : .vcj
-
-  Macintosh file type code(s):
-  : none
-
-Person and email address to contact for further information:
-: IETF ANIMA WG
-
-Intended usage:
-: LIMITED
-
-Restrictions on usage:
-: NONE
-
-Author:
-: ANIMA WG
-
-Change controller:
-: IETF
-
-Provisional registration? (standards tree only):
-: NO
-
+IANA has registered the media type: voucher-cms+json, and this registration should be updated to point to this document.
 
 ## The SMI Security for S/MIME CMS Content Type Registry
 
-This document requests IANA to update this  registered OID in the "SMI Security for S/MIME CMS Content Type (1.2.840.113549.1.9.16.1)" registry to point to the RFC number to be assigned to this document:
-
-| Decimal | Description                            | References |
-| ------- | -------------------------------------- | ---------- |
-| 40      | id-ct-animaJSONVoucher                 | RFC 8366   |
+IANA has registered the OID 1.2.840.113549.1.9.16.1.40, id-ct-animaJSONVoucher.
+This registration should be updated to point to this document.
 
 --- back
 
