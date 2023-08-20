@@ -274,8 +274,8 @@ Assertion Basis:
 Authentication of Join Registrar:
 : Indicates how the pledge
   can authenticate the join registrar.  This document defines
-  a mechanism to pin the domain certificate.
-  Pinning a symmetric key, a raw key, or "CN-ID" or "DNS-ID"
+  a mechanism to pin the domain certificate, or a raw public key.
+  Pinning a symmetric key, or "CN-ID" or "DNS-ID"
   information (as defined in {{RFC6125}}) is left for future work.
 
 Anti-Replay Protections:
