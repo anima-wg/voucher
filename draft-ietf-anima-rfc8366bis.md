@@ -449,8 +449,7 @@ The voucher informs the pledge which entity it should consider to be
 its owner.
 
 This document defines a voucher that is a JSON-encoded or CBOR-encoded instance of the
-YANG module defined in {{voucher-yang-module}} that has been, by default, CMS signed.
-{{cBRSKI}} definies how to encode with CBOR and sign the voucher with {{COSE}}, while {{jBRSKI}} explains how to use {{JWS}} to do JSON signatures.
+YANG module defined in {{voucher-yang-module}}.
 
 This format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what vouchers look like
