@@ -384,6 +384,66 @@ After significant discussion the decision was made to simply roll all of the nee
 This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
 
+# Signature mechanisms
+
+Three signature systems have been defined for vouchers and voucher-requests.
+
+{{!I-D.ietf-anima-constrained-voucher}} defines a mechanism that uses COSE {{RFC9052}}, with the voucher data encoded using {{I-D.ietf-core-sid}}.
+However, as the SID processe requires up-to-date YANG, the SID values for this mechanism are presented in this document.
+
+{{!I-D.ietf-anima-jws-voucher}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
+
+The CMS mechanism first defined in {{RFC8366}} continues to be defined here.
+
+## CMS Format Voucher Artifact {#cms-voucher}
+
+The IETF evolution of PKCS#7 is CMS {{RFC5652}}.
+A CMS-signed voucher, the default type, contains a ContentInfo
+structure with the voucher content. An eContentType of 40
+indicates that the content is a JSON-encoded voucher.
+
+The signing structure is a CMS SignedData structure, as specified by
+Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
+Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
+
+To facilitate interoperability, {{vcj}} in this document registers the
+media type "application/voucher-cms+json" and the filename extension
+".vcj".
+
+The CMS structure MUST contain a 'signerInfo' structure, as
+described in Section 5.1 of {{RFC5652}}, containing the
+signature generated over the content using a private key
+trusted by the recipient. Normally, the recipient is the pledge and the
+signer is the MASA. Another possible use could be as a "signed
+voucher request" format originating from the pledge or registrar
+toward the MASA.
+Within this document, the signer is assumed to be the MASA.
+
+Note that Section 5.1 of {{RFC5652}} includes a
+discussion about how to validate a CMS object, which is really a
+PKCS7 object (cmsVersion=1).  Intermediate systems (such the
+Bootstrapping Remote Secure Key Infrastructures {{BRSKI}} registrar)
+that might need to evaluate the voucher in flight MUST be prepared for
+such an older format.
+No signaling is necessary, as the manufacturer knows the capabilities
+of the pledge and will use an appropriate format voucher for each
+pledge.
+
+The CMS structure SHOULD also contain all of the certificates
+leading up to and including the signer's trust anchor certificate
+known to the recipient.  The inclusion of the trust anchor is
+unusual in many applications, but third parties cannot accurately
+audit the transaction without it.
+
+The CMS structure MAY also contain revocation objects for any
+intermediate certificate authorities (CAs) between the
+voucher issuer and the trust anchor known to the recipient.
+However, the use of CRLs and other validity mechanisms is
+discouraged, as the pledge is unlikely to be able to perform
+online checks and is unlikely to have a trusted clock source.
+As described below, the use of short-lived vouchers and/or a
+pledge-provided nonce provides a freshness guarantee.
+
 # Voucher Artifact {#voucher}
 
 The voucher's primary purpose is to securely assign a pledge to an
@@ -487,7 +547,7 @@ It is believed, however, that they will not change.
 The "assertion" attribute is an enumerated type {{RFC8366}}, and the current PYANG tooling does not document the valid values for this attribute.
 In the JSON serialization, the literal strings from the enumerated types are used so there is no ambiguity.
 In the CBOR serialization, a small integer is used.
-This following values are documented here, but the YANG module should be considered authoritative. No IANA registry is provided or necessary because the YANG module provides for extensions.
+This following values are documented here, but the YANG module should be considered authoritative. No IANA registry is provided or necessary because the YANG module (and this document) would be extended when there are new entries to make.
 
 Integer  | Assertion Type
 |-|-|
@@ -496,57 +556,6 @@ Integer  | Assertion Type
 2        | proximity
 3        | agent-proximity
 {: #assertion-enums title='CBOR integers for the "assertion" attribute enum'}
-
-
-
-## CMS Format Voucher Artifact {#cms-voucher}
-
-The IETF evolution of PKCS#7 is CMS {{RFC5652}}.
-A CMS-signed voucher, the default type, contains a ContentInfo
-structure with the voucher content. An eContentType of 40
-indicates that the content is a JSON-encoded voucher.
-
-The signing structure is a CMS SignedData structure, as specified by
-Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
-
-To facilitate interoperability, {{vcj}} in this document registers the
-media type "application/voucher-cms+json" and the filename extension
-".vcj".
-
-The CMS structure MUST contain a 'signerInfo' structure, as
-described in Section 5.1 of {{RFC5652}}, containing the
-signature generated over the content using a private key
-trusted by the recipient. Normally, the recipient is the pledge and the
-signer is the MASA. Another possible use could be as a "signed
-voucher request" format originating from the pledge or registrar
-toward the MASA.
-Within this document, the signer is assumed to be the MASA.
-
-Note that Section 5.1 of {{RFC5652}} includes a
-discussion about how to validate a CMS object, which is really a
-PKCS7 object (cmsVersion=1).  Intermediate systems (such the
-Bootstrapping Remote Secure Key Infrastructures {{BRSKI}} registrar)
-that might need to evaluate the voucher in flight MUST be prepared for
-such an older format.
-No signaling is necessary, as the manufacturer knows the capabilities
-of the pledge and will use an appropriate format voucher for each
-pledge.
-
-The CMS structure SHOULD also contain all of the certificates
-leading up to and including the signer's trust anchor certificate
-known to the recipient.  The inclusion of the trust anchor is
-unusual in many applications, but third parties cannot accurately
-audit the transaction without it.
-
-The CMS structure MAY also contain revocation objects for any
-intermediate certificate authorities (CAs) between the
-voucher issuer and the trust anchor known to the recipient.
-However, the use of CRLs and other validity mechanisms is
-discouraged, as the pledge is unlikely to be able to perform
-online checks and is unlikely to have a trusted clock source.
-As described below, the use of short-lived vouchers and/or a
-pledge-provided nonce provides a freshness guarantee.
 
 # Voucher Request Artifact {#voucher-request}
 
