@@ -37,7 +37,6 @@ author:
 - ins: T. Eckert
   name: Toerless Eckert
   org: Futurewei Technologies Inc.
-  abbrev: Huawei
   street: 2330 Central Expy
   city: Santa Clara
   code: '95050'
