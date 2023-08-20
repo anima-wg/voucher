@@ -412,10 +412,9 @@ media type "application/voucher-cms+json" and the filename extension
 The CMS structure MUST contain a 'signerInfo' structure, as
 described in Section 5.1 of {{RFC5652}}, containing the
 signature generated over the content using a private key
-trusted by the recipient. Normally, the recipient is the pledge and the
-signer is the MASA. Another possible use could be as a "signed
-voucher request" format originating from the pledge or registrar
-toward the MASA.
+trusted by the recipient.
+Normally, the recipient is the pledge and the signer is the MASA.
+In the Voucher Request, the signer is the pledge, or the Registrar.
 Within this document, the signer is assumed to be the MASA.
 
 Note that Section 5.1 of {{RFC5652}} includes a
@@ -787,7 +786,10 @@ This registration should be updated to point to this document.
 
 The authors would like to thank for following for
 lively discussions on list and in the halls (ordered
-by last name): William Atwood, Toerless Eckert, and Sheng Jiang.
+by last name):
+{{{William Atwood}}},
+{{{Esko Dijk}}},
+{{{Steffen Fries}}},
+{{{Sheng Jiang}}},
+{{{Thomas Werner}}}.
 
-Russ Housley provided the upgrade from PKCS7 to CMS (RFC 5652) along
-with the detailed CMS structure diagram.
