@@ -166,10 +166,12 @@ This document uses the following terms:
 
 (Voucher) Artifact:
 : Used throughout to represent the voucher as instantiated in the form
-of a signed structure.
+  of a signed structure.
 
 Bootstrapping:
-: See Onboarding.
+: The process where a pledge device obtains cryptographic key material to identify 
+   and trust future interactions within a domain network, based on imprinted
+   key material provided during manufacturing (see imprinting).
 
 Domain:
 : The set of entities or infrastructure under common administrative
@@ -179,12 +181,12 @@ Domain:
 
 Imprint:
 : The process where a device obtains the cryptographic key material to
-  identify and trust future interactions with a network. This term is
-  taken from Konrad Lorenz's work in biology with new ducklings:
+  identify and trust future interactions generally as part of the manufacturing. 
+  This term is taken from Konrad Lorenz's work in biology with new ducklings:
   "during a critical period, the duckling would assume that anything
   that looks like a mother duck is in fact their mother"
   {{Stajano99theresurrecting}}. An equivalent for a device is to
-  obtain the fingerprint of the network's root certification authority
+  obtain the fingerprint of the manufacturer's root certification authority
   certificate. A device that imprints on an attacker suffers a similar
   fate to a duckling that imprints on a hungry wolf. Imprinting is a
   term from psychology and ethology, as described in {{imprinting}}.
@@ -209,10 +211,9 @@ malicious registrar:
 : An on-path active attacker that presents itself as a legitimate registrar, but which is in fact under the control of an attacker.
 
 Onboarding:
-: In previous documents the term "bootstrapping" has been used to describe mechanisms such as
-{{BRSKI}}.
-The industry has however, converged upon the term "onboarding", and this document uses that
-term throughout.
+: Onboarding describes the process to provide addiotnal operational information 
+  to devices, which may be configuration information, application data, or also 
+  application specific cryptographic key material.
 
 Owner:
 : The entity that controls the private key of the "pinned-domain-cert"
