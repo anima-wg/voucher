@@ -169,15 +169,15 @@ This document uses the following terms:
   of a signed structure.
 
 Bootstrapping:
-: The process where a pledge device obtains cryptographic key material to identify 
-   and trust future interactions within a domain network, based on imprinted
-   key material provided during manufacturing (see imprinting).
+: The process where a pledge component obtains cryptographic key material to identify 
+   and trust future interactions within a specific domain network. Based on imprinted
+   key material provided during manufacturing process (see imprinting).
 
 Domain:
 : The set of entities or infrastructure under common administrative
   control.
-  The goal of the onboarding protocol is to enable a pledge to
-  discover and join a domain.
+  The goal of the onboarding protocol is to enable a pledge component to
+  join a domain and obtain domain specific security credentials.
 
 Imprint:
 : The process where a device obtains the cryptographic key material to
@@ -186,7 +186,7 @@ Imprint:
   "during a critical period, the duckling would assume that anything
   that looks like a mother duck is in fact their mother"
   {{Stajano99theresurrecting}}. An equivalent for a device is to
-  obtain the fingerprint of the manufacturer's root certification authority
+  obtain the fingerprint of the manufacturer's root certification authority (root ca)
   certificate. A device that imprints on an attacker suffers a similar
   fate to a duckling that imprints on a hungry wolf. Imprinting is a
   term from psychology and ethology, as described in {{imprinting}}.
@@ -200,7 +200,7 @@ Join Registrar (and Coordinator):
   this document often refers to this as just "registrar".
 
 MASA (Manufacturer Authorized Signing Authority):
-: The entity that, for the purpose of this document, signs the
+: The entity that, for the purpose of this document, issues and signs the
   vouchers for a manufacturer's pledges.
   In some onboarding protocols, the MASA may have an Internet
   presence and be integral to the onboarding process, whereas in
@@ -211,25 +211,25 @@ malicious registrar:
 : An on-path active attacker that presents itself as a legitimate registrar, but which is in fact under the control of an attacker.
 
 Onboarding:
-: Onboarding describes the process to provide addiotnal operational information 
-  to devices, which may be configuration information, application data, or also 
-  application specific cryptographic key material.
+: Onboarding describes the process to provide needed operational data 
+  to pledge components and complets the bootstrapping process. This may be configuration data, or also 
+  application specific cryptographic key material (application speciifc security credentials).
 
 Owner:
 : The entity that controls the private key of the "pinned-domain-cert"
   certificate conveyed by the voucher.
 
 Pledge:
-: The prospective device attempting to find and securely join a
+: The prospective component attempting to find and securely join a
   domain.
-  When shipped, it only trusts authorized representatives of the
+  When shipped or in factory reset mode, it only trusts authorized representatives of the
   manufacturer.
 
 Registrar:
 : See join registrar.
 
 TOFU (Trust on First Use):
-: Where a pledge device makes no security decisions but rather simply
+: Where a pledge component makes no security decisions but rather simply
   trusts the first domain entity it is contacted by.
   Used similarly to {{RFC7435}}.
   This is also known as the "resurrecting duckling" model.
@@ -245,13 +245,13 @@ Voucher Data:
 Current formats include JSON and CBOR.
 
 Voucher Request:
-: A signed artifact sent from the Pledge to the Registrar, or from the Registrar to the MASA.
+: A signed artifact sent from the Pledge to the Registrar, or from the Registrar to the MASA for Voucher acquisition.
 
 Pledge Voucher Request (PVR):
-: A signed artifact sent from the Pledge to the Registrar.
+: A signed artifact sent from the Pledge to the Registrar. It is a special form of Voucher Request.
 
 Registrar Voucher Request (RVR):
-: A signed artifact sent from the Registrar to the MASA.
+: A signed artifact sent from the Registrar to the MASA. It is a special form of Voucher Request.
 
 # Requirements Language
 
