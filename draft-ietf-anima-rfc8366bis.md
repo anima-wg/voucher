@@ -211,9 +211,10 @@ malicious registrar:
 : An on-path active attacker that presents itself as a legitimate registrar, but which is in fact under the control of an attacker.
 
 Onboarding:
-: Onboarding describes the process to provide needed operational data 
-  to pledge components and complets the bootstrapping process. This may be configuration data, or also 
-  application specific cryptographic key material (application speciifc security credentials).
+: Onboarding describes the process to provide necessary operational data to pledge 
+  components and completes the process to bring a device into an operational state. 
+  This data may be configuration data, or also application specific cryptographic 
+  key material (application speciifc security credentials).
 
 Owner:
 : The entity that controls the private key of the "pinned-domain-cert"
