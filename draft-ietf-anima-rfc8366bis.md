@@ -169,7 +169,7 @@ This document uses the following terms:
   of a signed structure.
 
 Bootstrapping:
-: The process where a pledge component obtains cryptographic key material to identify 
+: The process where a pledge component obtains cryptographic key material to identify
    and trust future interactions within a specific domain network. Based on imprinted
    key material provided during manufacturing process (see imprinting).
 
@@ -181,7 +181,7 @@ Domain:
 
 Imprint:
 : The process where a device obtains the cryptographic key material to
-  identify and trust future interactions generally as part of the manufacturing. 
+  identify and trust future interactions generally as part of the manufacturing.
   This term is taken from Konrad Lorenz's work in biology with new ducklings:
   "during a critical period, the duckling would assume that anything
   that looks like a mother duck is in fact their mother"
@@ -211,9 +211,9 @@ malicious registrar:
 : An on-path active attacker that presents itself as a legitimate registrar, but which is in fact under the control of an attacker.
 
 Onboarding:
-: Onboarding describes the process to provide necessary operational data to pledge 
-  components and completes the process to bring a device into an operational state. 
-  This data may be configuration data, or also application specific cryptographic 
+: Onboarding describes the process to provide necessary operational data to pledge
+  components and completes the process to bring a device into an operational state.
+  This data may be configuration data, or also application specific cryptographic
   key material (application speciifc security credentials).
 
 Owner:
