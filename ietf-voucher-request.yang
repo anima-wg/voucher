@@ -196,15 +196,16 @@ module ietf-voucher-request {
           type binary;
           description
             "The agent-signed-data field contains a data artifact provided
-             by the Registrar-Agent to the Pledge for inclusion into the
-             voucher request.
+            by the Registrar-Agent to the Pledge for inclusion into the
+            voucher request.
 
-             This artifact is signed by the Registrar-Agent and should contains
-             data, which can be verified by the pledge and the registrar like a
-             copy of the pledge's serial-number.
+            This artifact is signed by the Registrar-Agent and contains
+            data, which can be verified by the pledge and the registrar.
+            This data contains the pledge's serial-number and a created-on
+            information of the agent-signed-data.
 
-	     The format is intentionally defined as binary to allow
-	     the document using this leaf to determine the encoding.";
+	    The format is intentionally defined as binary to allow
+	    the document using this leaf to determine the encoding.";
         }
 
         leaf agent-provided-proximity-registrar-cert {
