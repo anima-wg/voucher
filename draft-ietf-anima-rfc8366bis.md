@@ -523,6 +523,8 @@ using the 'verified' assertion type, which should satisfy all pledges.
 }
 ~~~~
 
+{{I-D.ietf-anima-jws-voucher, Section 8}} contains examples of vouchers encoded in JSON, and signed with JOSE.
+{{I-D.ietf-anima-constrained-voucher, Section 9}} contains examples of vouchers encoded in CBOR, and signed with COSE.
 
 ## YANG Module {#voucher-yang-module}
 
@@ -542,10 +544,14 @@ It is believed, however, that they will not change.
 {::include-fold ietf-voucher-sid.txt}
 ~~~~
 
-The "assertion" attribute is an enumerated type {{RFC8366}}, and the current PYANG tooling does not document the valid values for this attribute.
+The "assertion" attribute is an enumerated type in {{RFC8366}}, but no values were provided as part of the enumeration.
+This document provides enumerated values as part of the YANG module.
+
 In the JSON serialization, the literal strings from the enumerated types are used so there is no ambiguity.
-In the CBOR serialization, a small integer is used.
-This following values are documented here, but the YANG module should be considered authoritative. No IANA registry is provided or necessary because the YANG module (and this document) would be extended when there are new entries to make.
+
+In the CBOR serialization, a small integer is used, and the following values are repeated here.
+The YANG module should be considered authoritative in the future.
+No IANA registry is provided or necessary because the YANG module (and this document) would be extended when there are new entries to make.
 
 Integer  | Assertion Type
 |-|-|
