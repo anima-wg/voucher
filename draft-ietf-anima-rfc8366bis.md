@@ -388,10 +388,10 @@ There are some difficulties with this approach: this document does not attempt t
 
 Three signature systems have been defined for vouchers and voucher-requests.
 
-{{!I-D.ietf-anima-constrained-voucher}} defines a mechanism that uses COSE {{RFC9052}}, with the voucher data encoded using {{I-D.ietf-core-sid}}.
+{{!cBRSKI}} defines a mechanism that uses COSE {{RFC9052}}, with the voucher data encoded using {{I-D.ietf-core-sid}}.
 However, as the SID processe requires up-to-date YANG, the SID values for this mechanism are presented in this document.
 
-{{!I-D.ietf-anima-jws-voucher}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
+{{!jBRSKI}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
 
 The CMS mechanism first defined in {{RFC8366}} continues to be defined here.
 
@@ -523,8 +523,8 @@ using the 'verified' assertion type, which should satisfy all pledges.
 }
 ~~~~
 
-{{I-D.ietf-anima-jws-voucher, Section 8}} contains examples of vouchers encoded in JSON, and signed with JOSE.
-{{I-D.ietf-anima-constrained-voucher, Section 9}} contains examples of vouchers encoded in CBOR, and signed with COSE.
+{{jBRSKI, Section 8}} contains examples of vouchers encoded in JSON, and signed with {{JWS}}.
+{{cBRSKI, Section 9}} contains examples of vouchers encoded in CBOR, and signed with {{COSE}}.
 
 ## YANG Module {#voucher-yang-module}
 
@@ -786,6 +786,61 @@ IANA has registered the OID 1.2.840.113549.1.9.16.1.40, id-ct-animaJSONVoucher.
 This registration should be updated to point to this document.
 
 --- back
+
+# Examples
+
+## Key pairs associated with examples
+
+The following voucher request has been produced using the IDevID public (certificate) and private key.
+They are included so that other developers can match the same output.
+
+The private RSA key:
+
+~~~~
+{::include-fold examples/00-D0-E5-F2-00-02.pem}
+~~~~
+
+The IDevID certificate (public key):
+
+~~~~
+{::include-fold examples/00-D0-E5-F2-00-02.crt}
+~~~~
+
+The Certification Authority that created the IDevID:
+
+~~~~
+{::include-fold examples/vendor-00-D0-E5-F2-00-02.crt}
+~~~~
+
+The private key for the Certification Authority that created the IDevID:
+
+~~~~
+{::include-fold examples/vendor-00-D0-E5-F2-00-02.pem}
+~~~~
+
+The MASA certificate that signs the voucher:
+
+~~~~
+{::include-fold examples/masa-00-D0-E5-F2-00-02.crt}
+~~~~
+
+The private key for MASA certificate signs the voucher:
+
+~~~~
+{::include-fold examples/masa-00-D0-E5-F2-00-02.pem}
+~~~~
+
+## Example CMS signed voucher request
+
+~~~~
+{::include-fold examples/vr_00-D0-E5-F2-00-02.b64}
+~~~~
+
+## Example CMS signed voucher from MASA
+
+~~~~
+{::include-fold examples/voucher_00-D0-E5-F2-00-02.b64}
+~~~~
 
 # Acknowledgements
 {: numbered="no"}

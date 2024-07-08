@@ -3,6 +3,9 @@ CWTSIDDATE1=ietf-voucher@${YANGDATE}.sid
 CWTSIDLIST1=ietf-voucher-sid.txt
 CWTSIDDATE2=ietf-voucher-request@${YANGDATE}.sid
 CWTSIDLIST2=ietf-voucher-request-sid.txt
+EXAMPLES+=$(wildcard examples/voucher*.b64)
+EXAMPLES+=$(wildcard examples/*.pem)
+EXAMPLES+=$(wildcard examples/*.crt)
 LIBDIR := lib
 
 # add this path because your local install might be newer.
@@ -28,7 +31,7 @@ endif
 draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
 	yang/ietf-voucher-tree-latest.txt \
 	yang/ietf-voucher-request@${YANGDATE}.yang \
-	yang/ietf-voucher-request-tree-latest.txt ${CWTSIDLIST1} ${CWTSIDLIST2}
+	yang/ietf-voucher-request-tree-latest.txt ${CWTSIDLIST1} ${CWTSIDLIST2} ${EXAMPLES}
 
 yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	# make sure we are running a new enough pyang
