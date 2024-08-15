@@ -41,7 +41,7 @@ author:
   city: Santa Clara
   code: '95050'
   country: United States of America
-  email: tte+ietf@cs.fau.de
+  email: tte@cs.fau.de
 - ins: Q. Ma
   name: Qiufang Ma
   org: Huawei
