@@ -1,2 +1,3 @@
-# Automatically generated CODEOWNERS file.
-draft-richardson-anima-rfc8366bis.md kwatsen@juniper.netmcr+ietf@sandelman.capritikin@cisco.comtte+ietf@cs.fau.de
+# Automatically generated CODEOWNERS
+# Regenerate with `make update-codeowners`
+draft-ietf-anima-rfc8366bis.md kent+ietf@watsen.net mcr+ietf@sandelman.ca pritikin@cisco.com tte@cs.fau.de maqiufang1@huawei.com
