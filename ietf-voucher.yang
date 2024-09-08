@@ -89,21 +89,6 @@ module ietf-voucher {
            Future work MAY create verification requirements based on
            this node.";
       }
-      leaf expires-on {
-        type yang:date-and-time;
-        must 'not(../nonce)';
-        description
-          "A value indicating when this voucher expires.  The node is
-           optional as not all pledges support expirations, such as
-           pledges lacking a reliable clock.
-
-           If this field exists, then the pledges MUST ensure that
-           the expires-on time has not yet passed. A pledge without
-           an accurate clock cannot meet this requirement.
-
-           The expires-on value MUST NOT exceed the expiration date
-           of any of the listed 'pinned-domain-cert' certificates.";
-      }
       leaf assertion {
         type enumeration {
           enum verified {
@@ -245,23 +230,38 @@ module ietf-voucher {
            normal PKIX behavior applies to validation of the domain
            certificate.";
       }
-      leaf nonce {
-        type binary {
-          length "8..32";
-        }
-        must 'not(../expires-on)';
-        description
-          "A value that can be used by a pledge in some bootstrapping
-           protocols to enable anti-replay protection.  This node is
-           optional because it is not used by all bootstrapping
-           protocols.
+      choice nonceless {
+        leaf expires-on {
+          type yang:date-and-time;
+          description
+            "A value indicating when this voucher expires.  The node is
+             optional as not all pledges support expirations, such as
+             pledges lacking a reliable clock.
 
-           When present, the pledge MUST compare the provided nonce
-           value with another value that the pledge randomly
-           generated and sent to a bootstrap server in an earlier
-           bootstrapping message.  If the value is present, but
-           the values do not match, then the pledge MUST NOT process
-           this voucher.";
+             If this field exists, then the pledges MUST ensure that
+             the expires-on time has not yet passed. A pledge without
+             an accurate clock cannot meet this requirement.
+
+             The expires-on value MUST NOT exceed the expiration date
+             of any of the listed 'pinned-domain-cert' certificates.";
+        }
+        leaf nonce {
+          type binary {
+            length "8..32";
+          }
+          description
+            "A value that can be used by a pledge in some bootstrapping
+             protocols to enable anti-replay protection.  This node is
+             optional because it is not used by all bootstrapping
+             protocols.
+
+             When present, the pledge MUST compare the provided nonce
+             value with another value that the pledge randomly
+             generated and sent to a bootstrap server in an earlier
+             bootstrapping message.  If the value is present, but
+             the values do not match, then the pledge MUST NOT process
+             this voucher.";
+        }
       }
       leaf last-renewal-date {
         type yang:date-and-time;
