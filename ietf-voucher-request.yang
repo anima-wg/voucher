@@ -94,8 +94,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
         mandatory false;
       }
 
-      refine "voucher/pinned-domain-cert" {
-        mandatory false;
+      refine "voucher/pinning/pinned-domain-cert" {
         description "A pinned-domain-cert field
                      is not valid in a voucher request, and
                      any occurrence MUST be ignored";
