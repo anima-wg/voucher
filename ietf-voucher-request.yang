@@ -64,6 +64,8 @@ module ietf-voucher-request {
      (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
      for full legal notices.
 
+RFCEDITOR: please replace XXXX with the RFC number assigned.
+
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
      'MAY', and 'OPTIONAL' in this document are to be interpreted as
@@ -147,25 +149,26 @@ module ietf-voucher-request {
             the final voucher size.";
         }
 
-        leaf proximity-registrar-cert {
-          type binary;
-          description
-           "An X.509 v3 certificate structure as specified by
-            RFC 5280, Section 4 encoded using the ASN.1
-            distinguished encoding rules (DER), as specified
-            in [ITU.X690.1994].
+        choice registrar-identity {
+          leaf proximity-registrar-cert {
+            type binary;
+            description
+              "An X.509 v3 certificate structure as specified by
+               RFC 5280, Section 4 encoded using the ASN.1
+               distinguished encoding rules (DER), as specified
+               in [ITU.X690.1994].
 
-            The first certificate in the Registrar TLS server
-            certificate_list sequence  (the end-entity TLS
-            certificate, see [RFC8446]) presented by the Registrar
-            to the Pledge.
-            This MUST be populated in a Pledge's voucher request
-            when a proximity assertion is requested.";
-        }
+               The first certificate in the Registrar TLS server
+               certificate_list sequence  (the end-entity TLS
+               certificate, see [RFC8446]) presented by the Registrar
+               to the Pledge.
+               This MUST be populated in a Pledge's voucher request
+               when a proximity assertion is requested.";
+          }
 
-        leaf proximity-registrar-pubk {
-          type binary;
-          description
+          leaf proximity-registrar-pubk {
+            type binary;
+            description
             "The proximity-registrar-pubk replaces
              the proximity-registrar-cert in constrained uses of
              the voucher-request.
@@ -178,11 +181,11 @@ module ietf-voucher-request {
              Support for the DSA algorithm is not recommended.
              Support for the RSA algorithm is a MAY, but due to
              size is discouraged.";
-        }
+          }
 
-        leaf proximity-registrar-pubk-sha256 {
-          type binary;
-          description
+          leaf proximity-registrar-pubk-sha256 {
+            type binary;
+            description
             "The proximity-registrar-pubk-sha256
              is an alternative to both
              proximity-registrar-pubk and pinned-domain-cert.
@@ -197,6 +200,7 @@ module ietf-voucher-request {
              Algorithm agility is provided by extensions to this
              specification which may define a new leaf for another
              hash type.";
+          }
         }
 
         leaf agent-signed-data {
