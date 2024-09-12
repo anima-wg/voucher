@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-10T01:11:28.849297+00:00",
+  "timestamp": "2024-09-12T01:10:51.486197+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -650,9 +650,17 @@
       "labels": [],
       "body": "\r\n    > 15) Line 427ff: As per comment #2, please state more clearly what you\r\n    > mean with \"merge\", as well as what happens to the other documents.\u00a0 Are\r\n    > you expecting that what you \"merge\" here will \"replace\" stuff elsewhere\r\n    > - will [BRSKI] be updated to remove the voucher-request here; hat are\r\n    > the extensions from [cBRSKI], [CLOUD] and [PRM] and will those be\r\n    > updated; if the other documents are not updated, how are they expected\r\n    > to coexist?\r\n\r\n",
       "createdAt": "2023-08-27T01:31:39Z",
-      "updatedAt": "2023-08-27T01:31:39Z",
+      "updatedAt": "2024-09-10T16:16:01Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "already clarified in #61 ",
+          "createdAt": "2024-09-10T16:16:01Z",
+          "updatedAt": "2024-09-10T16:16:01Z"
+        }
+      ]
     },
     {
       "number": 42,
@@ -731,16 +739,24 @@
       "id": "I_kwDOBBihcM5vXFaa",
       "title": "synchronize order of authors in yang model",
       "url": "https://github.com/anima-wg/voucher/issues/46",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mcr",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-08-27T01:40:48Z",
-      "updatedAt": "2023-08-27T01:40:48Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-09-10T16:14:46Z",
+      "closedAt": "2024-09-10T16:14:46Z",
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "authors synchronized.",
+          "createdAt": "2024-09-10T16:14:46Z",
+          "updatedAt": "2024-09-10T16:14:46Z"
+        }
+      ]
     },
     {
       "number": 47,
@@ -770,9 +786,17 @@
       "labels": [],
       "body": "\r\n    > 38) Lines 815 ff - leaf pinned-domain-pubk: 38a) The description is a\r\n    > bit confusing.\u00a0 What happens if both algorithms are supported?\u00a0 Why are\r\n    > the two algorithms combined into one leaf, another one in a separate\r\n    > leaf (pinned-domain-pubk-sha256)?  38b) The description contains\r\n    > information that probably does not belong here.\u00a0 This should define the\r\n    > semantics of the data model and what the data nodes represent, not\r\n    > which algorithms an implementation should or must support.\u00a0 Please\r\n    > rephrase accordingly (indicating what the leaf may or may not contain).\r\n    > 38c) Analogous comment to earlier - have you considered defining a\r\n    > separate type for this (since you are very specific about the\r\n    > constraints that the contents of this must adhere to - phrasing this as\r\n    > part of a separate typedef may make the implementatin of certain\r\n    > aspects such as validation easier).\r\n",
       "createdAt": "2023-08-27T01:45:30Z",
-      "updatedAt": "2023-08-27T01:45:30Z",
+      "updatedAt": "2024-09-10T16:13:27Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "maybe fixed already by #62 ",
+          "createdAt": "2024-09-10T16:13:26Z",
+          "updatedAt": "2024-09-10T16:13:26Z"
+        }
+      ]
     },
     {
       "number": 49,
@@ -945,6 +969,24 @@
       "createdAt": "2024-07-26T01:29:31Z",
       "updatedAt": "2024-08-15T18:23:21Z",
       "closedAt": "2024-08-15T18:23:21Z",
+      "comments": []
+    },
+    {
+      "number": 63,
+      "id": "I_kwDOBBihcM6V_3vk",
+      "title": "Assertion differentiation necessary?",
+      "url": "https://github.com/anima-wg/voucher/issues/63",
+      "state": "OPEN",
+      "author": "stfries",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "mcr"
+      ],
+      "labels": [],
+      "body": "RFC 8366bis (and originally RFC 8366) define assertions that are provided in the voucher as enum. For RFC8366bis, these assertions comprise:\r\n\r\n- verified\r\n- logged\r\n- proximity\r\n- agent-proximity \r\n\r\nThe YANG module defines the assertions as statement from the MASA regarding **how the owner was verified**. This fits in general for verified and logged and describe the MASA \"trust\" into a potential customer domain. \r\nProximity (and agent-proximity) seems rather an assertion that attests that the pledge has seen the correct registrar, which can be attested by the MASA. The current YANG description does not explicitly relate to the ownership verification or supply chain integration for this assertion. \r\n\r\nThe MASA may provide a proximity assertion by verifying the relation of the Registrar Certificate in the PVR and the Registrar Certificate related to the RVR. This may be independent from the supply chain and the MASA may provide this assertion independent, if he has a direct connection to the customer or no connection to the customer if the pledge was sold via a distributor. \r\n\r\nThis may lead to the discussion of having two different assertions, one focusing on the ownership related status or the trust between the customer and the MASA (currently \"verified\" and \"logged\") and the second one for the relation of Pledge and Registrar in the customer domain (currently \"proximity\" and agent-proximity\"). \r\n\r\nIf both assertions are evaluated they may lead to different pledge behavior (e.g., a proximity assertion together with the supply chain integration information may lead to enable additional functionality of the pledge). Currently I don't have a dedicated use case in mind and would expect the pledge is reaction in a similar way. But having semantically different information as distinct assertions could help addressing future scenarios. \r\n\r\nThe trust between customer and MASA may be established in different ways:  \r\n- supply chain integration\r\n- customer registration at MASA \r\n- based on publicly trusted certificate of registrar in customer domain\r\n\r\nSee also [email discussion](https://mailarchive.ietf.org/arch/msg/anima/wuVBTBOXG8O7_kvzOTQgeWjqx7o/)",
+      "createdAt": "2024-09-10T13:52:37Z",
+      "updatedAt": "2024-09-10T13:55:24Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -2045,9 +2087,9 @@
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
-      "body": "close #29 ",
+      "body": "close #29 \r\nclose #41 ",
       "createdAt": "2024-09-08T16:43:32Z",
-      "updatedAt": "2024-09-08T16:46:18Z",
+      "updatedAt": "2024-09-10T16:16:19Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "main",
       "baseRefOid": "1d86b1b1ff4f4f59bc784fd3fddf09a276dfd42a",
@@ -2079,9 +2121,9 @@
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
-      "body": "close #44 ",
+      "body": "close #44 \r\nclose #48",
       "createdAt": "2024-09-08T22:31:49Z",
-      "updatedAt": "2024-09-08T22:31:49Z",
+      "updatedAt": "2024-09-10T16:14:10Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "main",
       "baseRefOid": "19684fc39976d9f48f63142db628ab124d22fa79",
@@ -2094,6 +2136,100 @@
       "mergeCommit": null,
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 64,
+      "id": "PR_kwDOBBihcM57AY15",
+      "title": "Clarify how mime type relates to voucher",
+      "url": "https://github.com/anima-wg/voucher/pull/64",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #43 ",
+      "createdAt": "2024-09-10T16:07:42Z",
+      "updatedAt": "2024-09-11T02:06:39Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "use-choice-for-conflicting-leaves",
+      "baseRefOid": "5a1ffad7eaae5c59e8b090fb223dbd09ca460af7",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "clarify-how-mime-type-relates-to-voucher",
+      "headRefOid": "650a06608be66735a3d67be9d610b03cb9fde28e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6IyWu4",
+          "commit": {
+            "abbreviatedOid": "650a066"
+          },
+          "author": "QiufangMa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-11T02:06:39Z",
+          "updatedAt": "2024-09-11T02:06:39Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I think this might be sort of confusing, we won't encode a yang module, but the data modeled by a yang module.",
+              "createdAt": "2024-09-11T02:06:39Z",
+              "updatedAt": "2024-09-11T02:06:39Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 65,
+      "id": "PR_kwDOBBihcM57AazY",
+      "title": "Yang issues",
+      "url": "https://github.com/anima-wg/voucher/pull/65",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #52",
+      "createdAt": "2024-09-10T16:12:15Z",
+      "updatedAt": "2024-09-11T02:11:41Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "clarify-how-mime-type-relates-to-voucher",
+      "baseRefOid": "650a06608be66735a3d67be9d610b03cb9fde28e",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "yang-issues",
+      "headRefOid": "0befb4384214b5ac073044c0f0970ef4e9175aff",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6Iyb1k",
+          "commit": {
+            "abbreviatedOid": "0befb43"
+          },
+          "author": "QiufangMa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-09-11T02:11:41Z",
+          "updatedAt": "2024-09-11T02:11:41Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "This change makes only one of the three leaf nodes to be configured, which i think might be the real intention after reading the description. but maybe add a description for the choice statement.\r\n\r\n",
+              "createdAt": "2024-09-11T02:11:41Z",
+              "updatedAt": "2024-09-11T02:11:41Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
