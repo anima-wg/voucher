@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-15T01:18:39.801099+00:00",
+  "timestamp": "2024-09-17T00:59:27.345953+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -985,9 +985,17 @@
       "labels": [],
       "body": "RFC 8366bis (and originally RFC 8366) define assertions that are provided in the voucher as enum. For RFC8366bis, these assertions comprise:\r\n\r\n- verified\r\n- logged\r\n- proximity\r\n- agent-proximity \r\n\r\nThe YANG module defines the assertions as statement from the MASA regarding **how the owner was verified**. This fits in general for verified and logged and describe the MASA \"trust\" into a potential customer domain. \r\nProximity (and agent-proximity) seems rather an assertion that attests that the pledge has seen the correct registrar, which can be attested by the MASA. The current YANG description does not explicitly relate to the ownership verification or supply chain integration for this assertion. \r\n\r\nThe MASA may provide a proximity assertion by verifying the relation of the Registrar Certificate in the PVR and the Registrar Certificate related to the RVR. This may be independent from the supply chain and the MASA may provide this assertion independent, if he has a direct connection to the customer or no connection to the customer if the pledge was sold via a distributor. \r\n\r\nThis may lead to the discussion of having two different assertions, one focusing on the ownership related status or the trust between the customer and the MASA (currently \"verified\" and \"logged\") and the second one for the relation of Pledge and Registrar in the customer domain (currently \"proximity\" and agent-proximity\"). \r\n\r\nIf both assertions are evaluated they may lead to different pledge behavior (e.g., a proximity assertion together with the supply chain integration information may lead to enable additional functionality of the pledge). Currently I don't have a dedicated use case in mind and would expect the pledge is reaction in a similar way. But having semantically different information as distinct assertions could help addressing future scenarios. \r\n\r\nThe trust between customer and MASA may be established in different ways:  \r\n- supply chain integration\r\n- customer registration at MASA \r\n- based on publicly trusted certificate of registrar in customer domain\r\n\r\nSee also [email discussion](https://mailarchive.ietf.org/arch/msg/anima/wuVBTBOXG8O7_kvzOTQgeWjqx7o/)",
       "createdAt": "2024-09-10T13:52:37Z",
-      "updatedAt": "2024-09-10T13:55:24Z",
+      "updatedAt": "2024-09-16T19:15:33Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "body": "@stfries In the current design of the assertions, both aspects are combined into one.\r\n* \"logged\" means that the onboarding action (i.e. each issued voucher) is just logged with minimal validation. E.g. only validate that the Pledge is a genuine device and write the domain claiming its ownership into the log.\r\n* \"proximity\" means that proximity was verified and that the action is also logged like above.\r\n* \"verified\" means ownership was positively verified in some way, which the Pledge wouldn't need to care about how, just that it has been done successfully. In this case it's not needed to state \"proximity + verified\" I think, because \"verified\" alone should be all the Pledge needs to make its decision to accept the Voucher!\r\n\r\nSo \"proximity\" looks like a weaker variant than \"verified\".  For example if ownership is already validate through sales integration then the \"agent-proximity\" assertion would also not be used.\r\n\"verified\" includes also \"logged\" by definition, because the MASA would anyhow need to log the issued voucher. For tracability or to avoid issuing unlimited vouchers for the same device.\r\n\r\nTBH I don't see a need to split the assertion into two parts.  Or is there a specific reason to include the proximity information separately in the Voucher?\r\n\r\n> e.g., a proximity assertion together with the supply chain integration information may lead to enable additional functionality of the pledge\r\n\r\nIf the vendor has already \"verified\" the customer, and writes this in the Voucher , it means the Pledge can enable all its features that are intended for verified users. There should be no difference in functions if the Voucher would state \"verified + proximity\". If there are distinct features to be enabled for the target customer: vendor-specific fields with those features can be included in the Voucher and no need to use the assertion for that.\r\n\r\nMaybe I miss something here but I think the intended design was a single assertion that spans the spectrum from \"barely verified\" to \"fully verified\" and everything in between.  Any other feature selection can be placed in vendor-specific fields. See also the 8366bis text that says:\r\n\r\n> The MASA generated this voucher using the 'verified' assertion type, which should satisfy all pledges\r\n",
+          "createdAt": "2024-09-16T19:15:33Z",
+          "updatedAt": "2024-09-16T19:15:33Z"
+        }
+      ]
     }
   ],
   "pulls": [
