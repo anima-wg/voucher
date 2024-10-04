@@ -296,7 +296,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              found at this URI.
             ";
       }
-      leaf additional-configuration {
+      leaf additional-configuration-url {
         type ietf:uri;
         description
           "The additional-configuration attribute contains a
