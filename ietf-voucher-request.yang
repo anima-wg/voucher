@@ -150,6 +150,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
         }
 
         choice registrar-identity {
+          description "One of these three attributes will be used to pin the registrar identity";
           leaf proximity-registrar-cert {
             type binary;
             description

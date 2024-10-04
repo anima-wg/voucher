@@ -165,6 +165,9 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            otherwise unique within the scope of the MASA.";
       }
       choice pinning {
+        description "One of these attributes is used by the pledge to
+                     specify the registrar, and how the pledge would like
+                     the registrar's identity to be pinned";
         leaf pinned-domain-cert {
           type binary;
           description
@@ -233,6 +236,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            certificate.";
       }
       choice nonceless {
+        description "Either a nonce must be present, or an expires-on header";
         leaf expires-on {
           type yang:date-and-time;
           description
