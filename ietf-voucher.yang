@@ -54,6 +54,8 @@ module ietf-voucher {
      (https://www.rfc-editor.org/info/rfcXXXX); see the RFC itself
      for full legal notices.
 
+RFCEDITOR: please replace XXXX with the RFC number assigned.
+
      The key words 'MUST', 'MUST NOT', 'REQUIRED', 'SHALL', 'SHALL
      NOT', 'SHOULD', 'SHOULD NOT', 'RECOMMENDED', 'NOT RECOMMENDED',
      'MAY', and 'OPTIONAL' in this document are to be interpreted as
@@ -163,6 +165,9 @@ module ietf-voucher {
            otherwise unique within the scope of the MASA.";
       }
       choice pinning {
+        description "One of these attributes is used by the pledge to
+                     specify the registrar, and how the pledge would like
+                     the registrar's identity to be pinned";
         leaf pinned-domain-cert {
           type binary;
           description
@@ -231,6 +236,7 @@ module ietf-voucher {
            certificate.";
       }
       choice nonceless {
+        description "Either a nonce must be present, or an expires-on header";
         leaf expires-on {
           type yang:date-and-time;
           description
