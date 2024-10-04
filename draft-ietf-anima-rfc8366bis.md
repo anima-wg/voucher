@@ -315,7 +315,7 @@ Owner Audit  |  X   |   X     | X          |               | X   | X     |
 |--
 Owner ID     |      |   X     | X          |  X            | X   |       |
 |--
-Bearer out-of-scope| X|       |   wildcard | wildcard      | optional|opt|
+Bearer voucher| X|       |   wildcard | wildcard      | optional|opt|
 |==
 
 NOTE: All voucher types include a 'Pledge ID serial-number'
@@ -354,10 +354,14 @@ Bearer Voucher:
 : A Bearer Voucher is named after the inclusion of a registrar ID
   wildcard. Because the registrar identity is not indicated, this
   voucher type must be treated as a secret and protected from exposure
-  as any 'bearer' of the voucher can claim the Pledge
-  device. Publishing a nonceless bearer voucher effectively turns the
-  specified Pledge into a "TOFU" device with minimal mitigation
-  against MiTM registrars. Bearer vouchers are out of scope.
+  as any 'bearer' of the voucher can claim the pledge
+  device.  This variation is included in the above description in order to clearly
+  how other voucher types differ.
+  This specification does not support bearer vouchers at this time.
+  There are other specifications in the industry which are equivalent though.
+  Publishing a nonceless bearer voucher effectively turns the
+  specified pledge into a "TOFU" device with minimal mitigation
+  against MiTM registrars. Bearer vouchers are therefore out of scope.
 
 # Changes since RFC8366
 
