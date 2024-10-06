@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-03T01:14:37.560781+00:00",
+  "timestamp": "2024-10-06T01:19:32.674127+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2204,13 +2204,13 @@
       "labels": [],
       "body": "close #52",
       "createdAt": "2024-09-10T16:12:15Z",
-      "updatedAt": "2024-09-11T02:11:41Z",
+      "updatedAt": "2024-10-04T16:28:33Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "clarify-how-mime-type-relates-to-voucher",
       "baseRefOid": "650a06608be66735a3d67be9d610b03cb9fde28e",
       "headRepository": "anima-wg/voucher",
       "headRefName": "yang-issues",
-      "headRefOid": "0befb4384214b5ac073044c0f0970ef4e9175aff",
+      "headRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2236,8 +2236,80 @@
               "updatedAt": "2024-09-11T02:11:41Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6L-rbU",
+          "commit": {
+            "abbreviatedOid": "0befb43"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-10-04T16:28:32Z",
+          "updatedAt": "2024-10-04T16:28:33Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "I have made updates to include a description.",
+              "createdAt": "2024-10-04T16:28:33Z",
+              "updatedAt": "2024-10-04T16:28:33Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 66,
+      "id": "PR_kwDOBBihcM59pBq9",
+      "title": "Bearer vouchers",
+      "url": "https://github.com/anima-wg/voucher/pull/66",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #37 ",
+      "createdAt": "2024-10-04T16:22:29Z",
+      "updatedAt": "2024-10-04T16:23:40Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "yang-issues",
+      "baseRefOid": "0befb4384214b5ac073044c0f0970ef4e9175aff",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "bearer-vouchers",
+      "headRefOid": "d56c5b6218f268155ee72e01373b84e77af71237",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 67,
+      "id": "PR_kwDOBBihcM59pEfy",
+      "title": "Configuration url",
+      "url": "https://github.com/anima-wg/voucher/pull/67",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "rename attribute.  close #50",
+      "createdAt": "2024-10-04T16:30:35Z",
+      "updatedAt": "2024-10-04T16:31:04Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "yang-issues",
+      "baseRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "configuration-url",
+      "headRefOid": "7272261d785d1a10dd343b4b8f1fba1666f22f96",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
