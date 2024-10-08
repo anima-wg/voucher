@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-06T01:19:32.674127+00:00",
+  "timestamp": "2024-10-08T01:14:21.771278+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -996,6 +996,24 @@
           "updatedAt": "2024-09-16T19:15:33Z"
         }
       ]
+    },
+    {
+      "number": 68,
+      "id": "I_kwDOBBihcM6ZJr0w",
+      "title": "Generalization of leaf est-domain",
+      "url": "https://github.com/anima-wg/voucher/issues/68",
+      "state": "OPEN",
+      "author": "stfries",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [
+        "mcr"
+      ],
+      "labels": [],
+      "body": "In the YANG voucher description the following leafe is included \r\n```\r\n         // from BRSKI-CLOUD\r\n         leaf est-domain {\r\n           type ietf:uri;\r\n           description\r\n             \"The est-domain is a URL from which the Pledge should\r\n                continue doing enrollment rather than with the\r\n                Cloud Registrar.\r\n                The pinned-domain-cert contains a trust-anchor\r\n                which is to be used to authenticate the server\r\n                found at this URI.\r\n               \";\r\n         }\r\n```\r\nWould it be better to have a more generalized description to not make it specific to the enrollment protocol? As we have BRSKI-AE, it may be interesting to outsource the RA functionality also for other enrollment protocols. \r\nA more general name may be ra-domain.\r\n",
+      "createdAt": "2024-10-07T06:28:12Z",
+      "updatedAt": "2024-10-07T06:28:12Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -2297,7 +2315,7 @@
       "labels": [],
       "body": "rename attribute.  close #50",
       "createdAt": "2024-10-04T16:30:35Z",
-      "updatedAt": "2024-10-04T16:31:04Z",
+      "updatedAt": "2024-10-07T06:23:15Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "yang-issues",
       "baseRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
@@ -2308,7 +2326,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "stfries",
+          "authorAssociation": "COLLABORATOR",
+          "body": "BRSKI-PRM does not use this component of the voucher. So it should not provide problems as we look for known and used values of BRSKI-PRM. It is defined and used in BRSKI-Cloud and likely affects implementations using the component additional-configuration. \r\n\r\nIn general as it is an optional value, the explaining text in RFC 8366bis should state \"This node is optional because it is not used by all bootstrapping protocols.\" as for instance for the nonce leaf of the voucher.\r\n\r\nWhile thinking about the naming, maybe \"additional-manufacturer-configuration-uri\" is more specific as the leaf description states the relation to the vendor/manufacturer. BTW, maybe it is better to call it manufacturer in the description instead of vendor.\r\n\r\nTwo further thoughts regarding this:\r\n\r\n- In general in RFC8366bis there should be a statement that unknown values or leafs in the voucher or voucher request should be ignored by the implementation. \r\n- Nevertheless, the additional-configuration-url in general could also be interesting for BRSKI, BRSKI-PRM, or BRSKI-AE if it would be included in the registrar-voucher-request (as domain local URL) and populated in the voucher by the MASA. That way the pledge could get information where to find a configuration server in the registrar's domain. But this is just a thought. Maybe it is better to define such functionality via an additional leaf as the description of the additional-configuration-uri is set by the vendor/manufacturer (as stated in the description). \r\n\r\n",
+          "createdAt": "2024-10-07T06:23:14Z",
+          "updatedAt": "2024-10-07T06:23:14Z"
+        }
+      ],
       "reviews": []
     }
   ]
