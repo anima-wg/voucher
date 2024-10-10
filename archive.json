@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T01:14:21.771278+00:00",
+  "timestamp": "2024-10-10T01:13:57.317104+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2222,7 +2222,7 @@
       "labels": [],
       "body": "close #52",
       "createdAt": "2024-09-10T16:12:15Z",
-      "updatedAt": "2024-10-04T16:28:33Z",
+      "updatedAt": "2024-10-08T06:16:50Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "clarify-how-mime-type-relates-to-voucher",
       "baseRefOid": "650a06608be66735a3d67be9d610b03cb9fde28e",
@@ -2274,6 +2274,19 @@
               "updatedAt": "2024-10-04T16:28:33Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6MR357",
+          "commit": {
+            "abbreviatedOid": "0710ba5"
+          },
+          "author": "QiufangMa",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-10-08T06:16:50Z",
+          "updatedAt": "2024-10-08T06:16:50Z",
+          "comments": []
         }
       ]
     },
@@ -2315,7 +2328,7 @@
       "labels": [],
       "body": "rename attribute.  close #50",
       "createdAt": "2024-10-04T16:30:35Z",
-      "updatedAt": "2024-10-07T06:23:15Z",
+      "updatedAt": "2024-10-09T08:31:24Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "yang-issues",
       "baseRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
@@ -2333,9 +2346,30 @@
           "body": "BRSKI-PRM does not use this component of the voucher. So it should not provide problems as we look for known and used values of BRSKI-PRM. It is defined and used in BRSKI-Cloud and likely affects implementations using the component additional-configuration. \r\n\r\nIn general as it is an optional value, the explaining text in RFC 8366bis should state \"This node is optional because it is not used by all bootstrapping protocols.\" as for instance for the nonce leaf of the voucher.\r\n\r\nWhile thinking about the naming, maybe \"additional-manufacturer-configuration-uri\" is more specific as the leaf description states the relation to the vendor/manufacturer. BTW, maybe it is better to call it manufacturer in the description instead of vendor.\r\n\r\nTwo further thoughts regarding this:\r\n\r\n- In general in RFC8366bis there should be a statement that unknown values or leafs in the voucher or voucher request should be ignored by the implementation. \r\n- Nevertheless, the additional-configuration-url in general could also be interesting for BRSKI, BRSKI-PRM, or BRSKI-AE if it would be included in the registrar-voucher-request (as domain local URL) and populated in the voucher by the MASA. That way the pledge could get information where to find a configuration server in the registrar's domain. But this is just a thought. Maybe it is better to define such functionality via an additional leaf as the description of the additional-configuration-uri is set by the vendor/manufacturer (as stated in the description). \r\n\r\n",
           "createdAt": "2024-10-07T06:23:14Z",
           "updatedAt": "2024-10-07T06:23:14Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "Oh, my mistake for thinking additional-configuration was from PRM!\nBRSKI-Cloud. Oops.\n\n",
+          "createdAt": "2024-10-08T17:44:42Z",
+          "updatedAt": "2024-10-08T17:44:42Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6MdIqK",
+          "commit": {
+            "abbreviatedOid": "7272261"
+          },
+          "author": "upros",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I'm good with this as is, but Steffen's comment about using term manufacturer instead of vendor seems ok too.",
+          "createdAt": "2024-10-09T08:31:24Z",
+          "updatedAt": "2024-10-09T08:31:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
