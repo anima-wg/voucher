@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-10T01:13:57.317104+00:00",
+  "timestamp": "2024-10-13T01:19:22.880519+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2328,13 +2328,13 @@
       "labels": [],
       "body": "rename attribute.  close #50",
       "createdAt": "2024-10-04T16:30:35Z",
-      "updatedAt": "2024-10-09T08:31:24Z",
+      "updatedAt": "2024-10-11T20:11:27Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "yang-issues",
       "baseRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
       "headRepository": "anima-wg/voucher",
       "headRefName": "configuration-url",
-      "headRefOid": "7272261d785d1a10dd343b4b8f1fba1666f22f96",
+      "headRefOid": "58e1faf7b6d0acc179221e4b6ca39ca2a208670d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
