@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-15T01:15:32.009438+00:00",
+  "timestamp": "2024-10-17T01:14:39.158697+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2328,7 +2328,7 @@
       "labels": [],
       "body": "rename attribute.  close #50",
       "createdAt": "2024-10-04T16:30:35Z",
-      "updatedAt": "2024-10-11T20:11:27Z",
+      "updatedAt": "2024-10-16T06:31:28Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "yang-issues",
       "baseRefOid": "0710ba5eab0d330223cc8bfeef6d3411ef63a231",
@@ -2353,6 +2353,20 @@
           "body": "Oh, my mistake for thinking additional-configuration was from PRM!\nBRSKI-Cloud. Oops.\n\n",
           "createdAt": "2024-10-08T17:44:42Z",
           "updatedAt": "2024-10-08T17:44:42Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "\r\nstfries ***@***.***> wrote:\r\n    > - As it is an optional value, the explaining text in RFC 8366bis should\r\n    > state \"This node is optional because it is not used by all\r\n    > bootstrapping protocols.\" as for instance for the nonce leaf of the\r\n    > voucher.\r\n\r\nokay.\r\n\r\n    > - Would a further optional value\r\n    > \"additional-operator-configuration-uri\" be beneficial to allow for\r\n    > populating a domain local configuration uri or mDNS name? In that case\r\n    > it would be good to rename the current \"additional-configuration-uri\"\r\n    > to \"additional-manufacturer-configuration-uri\"\r\n\r\nIs this like DNS search path?\r\n\r\n--\r\nMichael Richardson ***@***.***>   . o O ( IPv6 I\u00f8T consulting )\r\n           Sandelman Software Works Inc, Ottawa and Worldwide\r\n\r\n\r\n\r\n\r\n",
+          "createdAt": "2024-10-15T21:16:13Z",
+          "updatedAt": "2024-10-15T21:16:13Z"
+        },
+        {
+          "author": "stfries",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Michael,\r\n\r\nIt could be a DNS search path, an mDNS service name, or the actual URL to a domain local device management server. The latter will likely not really be used due to privacy reasons, but it could be an option. That way, no additional communication between registrar and pledge is necessary to communicate this information. If a mDNS service name is used, it could ease finding the device configuration in the customer domain.\r\n\r\nBest regards\r\nSteffen\r\n\r\nFrom: Michael Richardson ***@***.***>\r\nSent: Tuesday, October 15, 2024 11:17 PM\r\nTo: anima-wg/voucher ***@***.***>\r\nCc: Fries, Steffen (FT RPD CST) ***@***.***>; Review requested ***@***.***>\r\nSubject: Re: [anima-wg/voucher] Configuration url (PR #67)\r\n\r\n\r\nstfries ***@***.***<mailto:***@***.***>> wrote:\r\n> - As it is an optional value, the explaining text in RFC 8366bis should\r\n> state \"This node is optional because it is not used by all\r\n> bootstrapping protocols.\" as for instance for the nonce leaf of the\r\n> voucher.\r\n\r\nokay.\r\n\r\n> - Would a further optional value\r\n> \"additional-operator-configuration-uri\" be beneficial to allow for\r\n> populating a domain local configuration uri or mDNS name? In that case\r\n> it would be good to rename the current \"additional-configuration-uri\"\r\n> to \"additional-manufacturer-configuration-uri\"\r\n\r\nIs this like DNS search path?\r\n\r\n--\r\nMichael Richardson ***@***.***<mailto:***@***.***>> . o O ( IPv6 I\u00f8T consulting )\r\nSandelman Software Works Inc, Ottawa and Worldwide\r\n\r\n\r\n\r\n\r\n\r\n\r\n-\r\nReply to this email directly, view it on GitHub<https://github.com/anima-wg/voucher/pull/67#issuecomment-2415183031>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/AJEUR5ODO4XVEOK54JO5GFDZ3WA3HAVCNFSM6AAAAABPMGY7IGVHI2DSMVQWIX3LMV43OSLTON2WKQ3PNVWWK3TUHMZDIMJVGE4DGMBTGE>.\r\nYou are receiving this because your review was requested.Message ID: ***@***.******@***.***>>\r\n",
+          "createdAt": "2024-10-16T06:31:27Z",
+          "updatedAt": "2024-10-16T06:31:27Z"
         }
       ],
       "reviews": [
@@ -2367,6 +2381,19 @@
           "body": "I'm good with this as is, but Steffen's comment about using term manufacturer instead of vendor seems ok too.",
           "createdAt": "2024-10-09T08:31:24Z",
           "updatedAt": "2024-10-09T08:31:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBBihcM6NPNJu",
+          "commit": {
+            "abbreviatedOid": "58e1faf"
+          },
+          "author": "stfries",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "The change in general is fine. What is open from my perspective are the following points:\r\n\r\n- As it is an optional value, the explaining text in RFC 8366bis should state \"This node is optional because it is not used by all bootstrapping protocols.\" as for instance for the nonce leaf of the voucher.\r\n- Would a further optional value \"additional-operator-configuration-uri\" be beneficial to allow for populating a domain local configuration uri or mDNS name? In that case it would be good to rename the current \"additional-configuration-uri\" to \"additional-manufacturer-configuration-uri\"",
+          "createdAt": "2024-10-15T14:35:01Z",
+          "updatedAt": "2024-10-15T14:35:01Z",
           "comments": []
         }
       ]
