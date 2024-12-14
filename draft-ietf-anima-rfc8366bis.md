@@ -451,7 +451,7 @@ The voucher informs the pledge which entity it should consider to be
 its owner.
 
 This document defines a voucher that is JSON-encoded, and CMS signed encoding of the
-YANG module defined in {{voucher-yang-module}}.
+data defined in the YANG module {{voucher-yang-module}}.
 
 This format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what vouchers look like
