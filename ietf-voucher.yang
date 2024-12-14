@@ -89,21 +89,6 @@ module ietf-voucher {
            Future work MAY create verification requirements based on
            this node.";
       }
-      leaf expires-on {
-        type yang:date-and-time;
-        must 'not(../nonce)';
-        description
-          "A value indicating when this voucher expires.  The node is
-           optional as not all pledges support expirations, such as
-           pledges lacking a reliable clock.
-
-           If this field exists, then the pledges MUST ensure that
-           the expires-on time has not yet passed. A pledge without
-           an accurate clock cannot meet this requirement.
-
-           The expires-on value MUST NOT exceed the expiration date
-           of any of the listed 'pinned-domain-cert' certificates.";
-      }
       leaf assertion {
         type enumeration {
           enum verified {
@@ -177,10 +162,11 @@ module ietf-voucher {
            field is populated for serial-numbers that are not
            otherwise unique within the scope of the MASA.";
       }
-      leaf pinned-domain-cert {
-        type binary;
-        description
-          "An X.509 v3 certificate structure, as specified by
+      choice pinning {
+        leaf pinned-domain-cert {
+          type binary;
+          description
+            "An X.509 v3 certificate structure, as specified by
            RFC 5280, using Distinguished Encoding Rules (DER)
            encoding, as defined in ITU-T X.690.
 
@@ -191,7 +177,7 @@ module ietf-voucher {
            certificate somewhere in its chain of certificates.
            This certificate MAY be an end-entity certificate,
            including a self-signed entity.";
-        reference
+          reference
           "RFC 5280:
              Internet X.509 Public Key Infrastructure Certificate
              and Certificate Revocation List (CRL) Profile.
@@ -200,38 +186,11 @@ module ietf-voucher {
               Specification of Basic Encoding Rules (BER),
               Canonical Encoding Rules (CER) and Distinguished
               Encoding Rules (DER).";
-      }
-      leaf domain-cert-revocation-checks {
-        type boolean;
-        description
-          "A processing instruction to the pledge that it MUST (true)
-           or MUST NOT (false) verify the revocation status for the
-           pinned domain certificate.  If this field is not set, then
-           normal PKIX behavior applies to validation of the domain
-           certificate.";
-      }
-      leaf nonce {
-        type binary {
-          length "8..32";
         }
-        must 'not(../expires-on)';
-        description
-          "A value that can be used by a pledge in some bootstrapping
-           protocols to enable anti-replay protection.  This node is
-           optional because it is not used by all bootstrapping
-           protocols.
-
-           When present, the pledge MUST compare the provided nonce
-           value with another value that the pledge randomly
-           generated and sent to a bootstrap server in an earlier
-           bootstrapping message.  If the value is present, but
-           the values do not match, then the pledge MUST NOT process
-           this voucher.";
-      }
-      leaf pinned-domain-pubk {
-        type binary;
-        description
-          "The pinned-domain-pubk may replace the
+        leaf pinned-domain-pubk {
+          type binary;
+          description
+            "The pinned-domain-pubk may replace the
              pinned-domain-cert in constrained uses of
              the voucher. The pinned-domain-pubk
              is the Raw Public Key of the Registrar.
@@ -242,12 +201,12 @@ module ietf-voucher {
              draft-ietf-tls-rfc4492bis-17 SHOULD be supported.
              Support for the DSA algorithm is not recommended.
              Support for the RSA algorithm is a MAY.";
-      }
+        }
 
-      leaf pinned-domain-pubk-sha256 {
-        type binary;
-        description
-          "The pinned-domain-pubk-sha256 is a second
+        leaf pinned-domain-pubk-sha256 {
+          type binary;
+          description
+            "The pinned-domain-pubk-sha256 is a second
              alternative to pinned-domain-cert.  In many cases the
              public key of the domain has already been transmitted
              during the key agreement process, and it is wasteful
@@ -259,6 +218,50 @@ module ietf-voucher {
              Algorithm agility is provided by extensions to this
              specification which can define a new leaf for another
              hash type.";
+        }
+      }
+
+      leaf domain-cert-revocation-checks {
+        type boolean;
+        description
+          "A processing instruction to the pledge that it MUST (true)
+           or MUST NOT (false) verify the revocation status for the
+           pinned domain certificate.  If this field is not set, then
+           normal PKIX behavior applies to validation of the domain
+           certificate.";
+      }
+      choice nonceless {
+        leaf expires-on {
+          type yang:date-and-time;
+          description
+            "A value indicating when this voucher expires.  The node is
+             optional as not all pledges support expirations, such as
+             pledges lacking a reliable clock.
+
+             If this field exists, then the pledges MUST ensure that
+             the expires-on time has not yet passed. A pledge without
+             an accurate clock cannot meet this requirement.
+
+             The expires-on value MUST NOT exceed the expiration date
+             of any of the listed 'pinned-domain-cert' certificates.";
+        }
+        leaf nonce {
+          type binary {
+            length "8..32";
+          }
+          description
+            "A value that can be used by a pledge in some bootstrapping
+             protocols to enable anti-replay protection.  This node is
+             optional because it is not used by all bootstrapping
+             protocols.
+
+             When present, the pledge MUST compare the provided nonce
+             value with another value that the pledge randomly
+             generated and sent to a bootstrap server in an earlier
+             bootstrapping message.  If the value is present, but
+             the values do not match, then the pledge MUST NOT process
+             this voucher.";
+        }
       }
       leaf last-renewal-date {
         type yang:date-and-time;
