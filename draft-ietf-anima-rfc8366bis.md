@@ -455,8 +455,8 @@ owner.
 The voucher informs the Pledge which entity it should consider to be
 its owner.
 
-This document defines a voucher that is a JSON-encoded or CBOR-encoded instance of the
-YANG module defined in {{voucher-yang-module}}.
+This document defines a voucher that is JSON-encoded, and CMS signed encoding of the
+data defined in the YANG module {{voucher-yang-module}}.
 
 This format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what vouchers look like
@@ -465,8 +465,15 @@ This description also serves to validate the YANG data model.
 
 {{RFC8366}} defined a media type and a filename extension for the
 CMS-encoded JSON type.
-Which type of voucher is expected is signaled (where possible) in the form of a MIME
-Content-Type, an HTTP Accept: header, or more mundane methods like use of a filename extension  when a voucher is transferred on a USB key.
+The media types for JOSE format vouchers is defined in {{jBRSKI}} and the COSE format voucher is defined in {{cBRSKI}}.
+
+The Media Type is used by the Pledge (to the Registrar) and from the Registrar (to the MASA) to signal what format of voucher is expected.
+Other aspects of the voucher, such as it being nonce-less or which kind of pinned anchor is used is not part of the Media type.
+
+Only the format of voucher that is expected is signaled in the form of a (MIME)  Media
+Content-Type in the HTTP Accept: header.
+
+For vouchers stored/transferred via methods like a USB storage device (USB key), then the voucher format is usually signaled by a filename extension.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
