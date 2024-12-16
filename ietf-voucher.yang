@@ -296,13 +296,13 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              found at this URI.
             ";
       }
-      leaf additional-configuration {
+      leaf additional-configuration-url {
         type ietf:uri;
         description
           "The additional-configuration attribute contains a
              URL to which the Pledge can retrieve additional
              configuration information.
-             The contents of this URL are vendor specific.
+             The contents of this URL are manufacturer specific.
              This is intended to do things like configure
              a VoIP phone to point to the correct hosted
              PBX, for example.";
