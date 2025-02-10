@@ -20,5 +20,10 @@
      2517 data .../agent-signed-data
      2518 data .../pinned-domain-pubk
      2519 data .../pinned-domain-pubk-sha256
+     2520 data .../additional-configuration-url
+     2521 data /ietf-voucher-request:voucher/est-domain
+     2522 data /ietf-voucher-request:voucher/expires-on
+     2523 data /ietf-voucher-request:voucher/nonce
            
  WARNING, obsolete definitions
+           

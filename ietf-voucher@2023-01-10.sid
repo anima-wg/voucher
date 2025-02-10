@@ -94,6 +94,30 @@
       "identifier": "/ietf-voucher:voucher/voucher/est-domain",
       "status": "unstable",
       "sid": 2466
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/additional-configuration-url",
+      "status": "unstable",
+      "sid": 2467
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/est-domain",
+      "status": "unstable",
+      "sid": 2468
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/expires-on",
+      "status": "unstable",
+      "sid": 2469
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/nonce",
+      "status": "unstable",
+      "sid": 2470
     }
   ]
 }

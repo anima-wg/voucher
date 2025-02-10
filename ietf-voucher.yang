@@ -300,8 +300,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              a VoIP phone to point to the correct hosted
              PBX, for example.";
       }
-    } // end voucher
-  } // end voucher-grouping
+  }
 
   // Top-level statement
   sx:structure voucher {
