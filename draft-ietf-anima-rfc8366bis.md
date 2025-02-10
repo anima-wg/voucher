@@ -371,6 +371,8 @@ Bearer Voucher:
 
 # Changes since RFC8366
 
+## Attempts and motivation to extend RFC8366
+
 {{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{ZERO-TOUCH}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _onboarding_ rather than _bootstrapping_.
@@ -395,6 +397,8 @@ The result was invalid YANG, with multiple definitions of the core attributes fr
 After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8791}} structure mechanisms.
 
 After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
+
+## Informational Model changes since RFC8366
 
 This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
