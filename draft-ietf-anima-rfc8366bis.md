@@ -404,7 +404,7 @@ After significant discussion the decision was made to simply roll all of the nee
 ## Informational Model changes since RFC8366
 
 This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
-There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
+The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.
 
 # Signature mechanisms
 
