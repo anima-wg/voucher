@@ -65,15 +65,8 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
   revision YYYY-MM-DD {
     description
       "updated to support new assertion enumerated type";
-    reference "RFC ZZZZ Voucher Profile for Bootstrapping Protocols";
+    reference "RFC XXXX Voucher Profile for Bootstrapping Protocols";
   }
-
-  // Top-level statement
-  sx:structure voucher {
-    uses voucher-artifact-grouping;
-  }
-
-  // Grouping defined for future augmentations
 
   grouping voucher-artifact-grouping {
     description
@@ -308,4 +301,10 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
     } // end voucher
   } // end voucher-grouping
+
+  // Top-level statement
+  sx:structure voucher {
+    uses voucher-artifact-grouping;
+  }
+
 }
