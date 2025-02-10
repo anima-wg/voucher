@@ -108,6 +108,12 @@ informative:
     author:
     - org: Wikipedia
     date: 2018-02
+  fairhair:
+    target: "https://openconnectivity.org/developer/specifications/fairhair/"
+    title: 'Fairhair Specification'
+    author:
+    - org: Open Connectivity Foundation
+    date: 2019-11-01
 
 --- abstract
 
@@ -372,7 +378,7 @@ Since then the industry has matured significantly, and the in-the-field activity
 The focus of {{BRSKI}} was onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
 {{ZERO-TOUCH}} has focused upon onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of less import.
 
-Since {{BRSKI}} was published there is now a mature effort to do application-level onboarding of constrained IoT devices defined by The Thread and Fairhair (now OCF) consortia.
+Since {{BRSKI}} was published there is now a mature effort to do application-level onboarding of constrained IoT devices defined by The Thread and Fairhair (now OCF) consortia {{fairhair}}.
 The {{cBRSKI}} document has defined a version of {{BRSKI}} that is useable over constrained 802.15.4 networks using CoAP and DTLS, while {{?I-D.selander-ace-ake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
 
 {{PRM}} has created a new methodology for onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
