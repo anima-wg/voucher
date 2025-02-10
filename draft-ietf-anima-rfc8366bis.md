@@ -335,7 +335,7 @@ Audit Voucher:
   This does not
   directly prevent a malicious registrar but provides a response mechanism that
   ensures the on-path-attack is unsuccessful.
-  An advantage is that actual ownership knowledge (sales integration) is not required on the MASA service.
+  An advantage is that actual ownership knowledge (i.e., sales integration providing an indication of who purchased the device) is not required on the MASA service.
 
 Nonceless Audit Voucher:
 : An Audit Voucher without a validity period statement. Fundamentally,
