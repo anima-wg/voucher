@@ -20,21 +20,6 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-provided-proximity-registrar-cert",
-      "sid": 2515
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-sign-cert",
-      "sid": 2516
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-signed-data",
-      "sid": 2517
-    },
-    {
-      "namespace": "data",
       "identifier": "/ietf-voucher-request:voucher/voucher/assertion",
       "sid": 2502
     },
@@ -75,16 +60,6 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk",
-      "sid": 2518
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk-sha256",
-      "sid": 2519
-    },
-    {
-      "namespace": "data",
       "identifier": "/ietf-voucher-request:voucher/voucher/prior-signed-voucher-request",
       "sid": 2510
     },
@@ -95,18 +70,67 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk",
-      "sid": 2513
-    },
-    {
-      "namespace": "data",
       "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk-sha256",
       "sid": 2512
     },
     {
       "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk",
+      "sid": 2513
+    },
+    {
+      "namespace": "data",
       "identifier": "/ietf-voucher-request:voucher/voucher/serial-number",
       "sid": 2514
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/agent-provided-proximity-registrar-cert",
+      "sid": 2515
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/agent-sign-cert",
+      "sid": 2516
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/agent-signed-data",
+      "sid": 2517
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk",
+      "sid": 2518
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk-sha256",
+      "sid": 2519
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/additional-configuration-url",
+      "status": "unstable",
+      "sid": 2520
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/est-domain",
+      "status": "unstable",
+      "sid": 2521
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/expires-on",
+      "status": "unstable",
+      "sid": 2522
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher-request:voucher/nonce",
+      "status": "unstable",
+      "sid": 2523
     }
   ]
 }

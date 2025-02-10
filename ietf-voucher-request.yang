@@ -17,7 +17,7 @@ module ietf-voucher-request {
         an 'owner', so that the pledge may establish a secure
         connection to the owner's network infrastructure";
 
-    reference "RFC 8366: Voucher Artifact for
+    reference "RFC XXXX: Voucher Artifact for
                Bootstrapping Protocols";
   }
 
@@ -79,12 +79,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
      "RFC XXXX: Bootstrapping Remote Secure Key Infrastructure";
   }
 
-  // Top-level statement
-  sx:structure voucher {
-    uses voucher-request-grouping;
-  }
-
-  // Grouping defined for future usage
   grouping voucher-request-grouping {
     description
       "Grouping to allow reuse/extensions in future work.";
@@ -265,4 +259,11 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
     }
   }
+
+  // Top-level statement
+  sx:structure voucher {
+    uses voucher-request-grouping;
+  }
+
+
 }
