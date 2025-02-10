@@ -20,21 +20,6 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-provided-proximity-registrar-cert",
-      "sid": 2515
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-sign-cert",
-      "sid": 2516
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/agent-signed-data",
-      "sid": 2517
-    },
-    {
-      "namespace": "data",
       "identifier": "/ietf-voucher-request:voucher/voucher/assertion",
       "sid": 2502
     },
