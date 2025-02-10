@@ -84,21 +84,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            Future work MAY create verification requirements based on
            this node.";
       }
-      leaf last-renewal-date {
-        type yang:date-and-time;
-        must '../expires-on';
-        description
-            "The date that the MASA projects to be the last date it
-             will renew a voucher on. This field is merely
-             informative; it is not processed by pledges.
-
-           Circumstances may occur after a voucher is generated that
-           may alter a voucher's validity period.  For instance,
-           a vendor may associate validity periods with support
-           contracts, which may be terminated or extended
-           over time.";
-        }
-      }
       leaf assertion {
         type enumeration {
           enum verified {
@@ -242,6 +227,21 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            pinned domain certificate.  If this field is not set, then
            normal PKIX behavior applies to validation of the domain
            certificate.";
+      }
+      leaf last-renewal-date {
+        type yang:date-and-time;
+        must '../expires-on';
+        description
+            "The date that the MASA projects to be the last date it
+             will renew a voucher on. This field is merely
+             informative; it is not processed by pledges.
+
+           Circumstances may occur after a voucher is generated that
+           may alter a voucher's validity period.  For instance,
+           a vendor may associate validity periods with support
+           contracts, which may be terminated or extended
+           over time.";
+        }
       }
       choice nonceless {
         description "Either a nonce must be present, or an expires-on header";
