@@ -144,16 +144,15 @@ Signing Authority (MASA).  This artifact is known as the "voucher".
 The voucher artifact is a JSON {{RFC8259}} document that
 conforms with a data model described by YANG {{RFC7950}}.
 It may also be serialized to CBOR {{CBOR}}.
-It is encoded using the rules defined in {{!RFC7951}}, and
+It is encoded using the rules defined in {{!RFC7951}} or {{!RFC9254}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
-The trust anchor may be in the form of a certificate, the "pinned-domain-cert", a hash of a certificate, or it might be a raw public key (in constrained variations).
-A voucher may be useful in several contexts, but the driving motivation
-herein is to support secure onboarding mechanisms.
-Assigning ownership is important to device onboarding mechanisms so that the Pledge
-can authenticate the network that will control it.
+The trust anchor may be in the form of a certificate, the "pinned-domain-cert", a hash of a certificate, or it can be a raw public key (in constrained variations).
+
+A voucher may be useful in several contexts, but the driving motivation herein is to support secure onboarding mechanisms.
+This is accomplished by assigning an owner to the Pledge, enabling it to authenticate the network that it is connected to.
 
 {{RFC8366}} originally defined just the voucher artifact, leaving the Voucher Request artifiact that is important to BRSKI to be defined in {{BRSKI}}.
 This document includes both Voucher and Voucher-Request, and therefore updates {{BRSKI}}.
@@ -162,6 +161,8 @@ YANG is not easily extended except by updating the YANG definition.
 Since {{RFC8366}} was written, the pattern is to publish YANG modules as two documents: one with only the YANG module, and the other one with usage, motivation and further explanation.
 This allows the YANG module to be updated without replacing all of the context.
 This document does not follow that pattern, but future updates are may update only the YANG.
+
+This document also introduces an experimental mechanism to support future extensions without requiring the YANG to be replaced.
 
 The lifetimes of vouchers may vary.
 In some onboarding protocols, the vouchers may include a nonce restricting them to a single use,  whereas the vouchers in other onboarding protocols may have an
