@@ -151,6 +151,12 @@ The primary purpose of a voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
 The trust anchor may be in the form of a certificate (the "pinned-domain-cert" attribute), a hash of a certificate, or it can be a raw public key (in constrained variations).
 
+This trust anchor represents the authority of the owner of a network.
+Communicating this trust anchor securely to the Pledge is the job of the voucher artifact.
+The act of communicating this trust anchor is known as pinning the trust anchor, as the Pledge can then use the resulting anchor to authenticate other actors who are part of the network.
+The collection of all these actors is collectively known as the network domain.
+(This is not related to the domain name system, but rather the term is of mathematical origin)
+
 A voucher may be useful in several contexts, but the driving motivation herein is to support secure onboarding mechanisms.
 This is accomplished by assigning an owner to the Pledge, enabling it to authenticate the network that it is connected to.
 
