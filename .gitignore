@@ -1,4 +1,3 @@
-/yang
 *~
 /*-[0-9][0-9].xml
 archive.json
@@ -21,4 +20,5 @@ report.xml
 /.venv/
 /versioned/
 /.vscode/
+/yang
 !requirements.txt
