@@ -149,7 +149,7 @@ is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
-The trust anchor may be in the form of a certificate, the "pinned-domain-cert", a hash of a certificate, or it can be a raw public key (in constrained variations).
+The trust anchor may be in the form of a certificate (the "pinned-domain-cert" attribute), a hash of a certificate, or it can be a raw public key (in constrained variations).
 
 A voucher may be useful in several contexts, but the driving motivation herein is to support secure onboarding mechanisms.
 This is accomplished by assigning an owner to the Pledge, enabling it to authenticate the network that it is connected to.
