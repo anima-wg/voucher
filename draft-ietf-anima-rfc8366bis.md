@@ -292,7 +292,7 @@ Assertion Basis:
   the imprint (this is distinct from the voucher signature that
   protects the voucher itself). This includes
   manufacturer-asserted ownership verification, assured
-  logging operations, or reliance on Pledge endpoint behavior
+  logging operations, or reliance on Pledge behavior
   such as secure root of trust
   of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge intot he network.
   Only some methods are normatively defined in this
@@ -314,7 +314,7 @@ Anti-Replay Protections:
 A number of onboarding scenarios can be met using differing
 combinations of this information. All scenarios address the primary
 threat of an on-path active attacker (or MiTM) impersonating the registrar.
-This would gain control over the Pledge device.
+This would gain control over the Pledge.
 The following combinations are "types" of vouchers:
 
 |            | Assertion || Registrar ID || Validity |
