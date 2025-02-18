@@ -8,17 +8,15 @@
      2455 data /ietf-voucher:voucher/voucher/expires-on
      2456 data /ietf-voucher:voucher/voucher/idevid-issuer
      2457 data /ietf-voucher:voucher/voucher/last-renewal-date
-     2458 data /ietf-voucher:voucher/voucher/nonce
+     2458 data /ietf-voucher:voucher/nonce
      2459 data /ietf-voucher:voucher/voucher/pinned-domain-cert
      2460 data /ietf-voucher:voucher/voucher/pinned-domain-pubk
      2461 data .../pinned-domain-pubk-sha256
      2462 data /ietf-voucher:voucher/voucher/serial-number
-     2463 data .../additional-configuration
-     2466 data /ietf-voucher:voucher/voucher/est-domain
-     2467 data .../additional-configuration-url
-     2468 data /ietf-voucher:voucher/est-domain
-     2469 data /ietf-voucher:voucher/expires-on
-     2470 data /ietf-voucher:voucher/nonce
+     2463 data .../additional-configuration-url
+     2464 data /ietf-voucher:voucher/voucher/est-domain
+     2465 data .../additional-configuration-url
+     2466 data /ietf-voucher:voucher/est-domain
+     2467 data /ietf-voucher:voucher/expires-on
            
  WARNING, obsolete definitions
-           

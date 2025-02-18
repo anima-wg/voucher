@@ -61,7 +61,7 @@ normative:
   RFC6020:
   RFC8259:
   RFC7950:
-  I-D.ietf-core-sid:
+  CORESID: RFC9595
   RFC9148:
   cBRSKI: I-D.ietf-anima-constrained-voucher
   jBRSKI: I-D.ietf-anima-jws-voucher
@@ -573,7 +573,7 @@ using the 'verified' assertion type, which should satisfy all Pledges.
 ## ietf-voucher SID values {#ietf-voucher-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+While {{CORESID}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
 It is believed, however, that they will not change.
 
 ~~~~
@@ -626,7 +626,7 @@ The ietf-voucher-request YANG module is derived from the ietf-voucher module.
 ## ietf-voucher-request SID values {#voucher-request-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+While {{CORESID}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
 It is believed, however, that they will not change.
 
 ~~~~
