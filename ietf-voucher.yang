@@ -84,6 +84,17 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            Future work MAY create verification requirements based on
            this node.";
       }
+
+      leaf-list extensions {
+         type string {
+           length "1..40";
+         }
+         description
+           "A list of extension names that are used in this Voucher
+            file.  Each name is registered with the IANA and
+            described in an RFC.";
+      }
+
       leaf assertion {
         type enumeration {
           enum verified {
