@@ -381,7 +381,7 @@ Bearer Voucher:
 
 # Changes since RFC8366
 
-## Attempts and motivation to extend RFC8366
+## Attempts and motivation to extend RFC8366 {#extendfail}
 
 {{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{ZERO-TOUCH}} and other work-in-progress efforts.
@@ -596,6 +596,37 @@ Integer  | Assertion Type
 2        | proximity
 3        | agent-proximity
 {: #assertion-enums title='CBOR integers for the "assertion" attribute enum'}
+
+## Voucher Extensions
+
+An unstated assumption in {{RFC8366}} was that vouchers could be extended in proprietary ways by manufacturers.
+This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG.
+
+The JSON serialization of vouchers implicitely accomodates the above, since the voucher is just a map (or dictionary).
+Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's domain name.
+
+In CBOR serialization {{RFC9148}}/{{RFC9254}}, the situation is not so clear.
+The delta encoding for keys requires new keys to use the absolute Tag(47) for new entities.
+The extensions might need to use the Private Use SID values, or acquire SID values for their own use.
+
+Where the process has become complex is when making standard extensions, as has happened recently, resulting in this document.
+The processes which were anticipated to be useful, (the "augment" mechanism) turned out not to be the case, see {{extendfail}}.
+
+The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
+Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
+
+Extensions are full YANG moduals, which are subject to SID allocation process described in {{RFC9254}}.
+When serialized the extensions are placed in a sub-map in the value section.
+In JSON serialization, the key is the name of the extension, prefixed by the string "extension:"
+In CBOR serialization, the key is the SID which is allocated as the module SID.
+This will typically require the absolute Tag(47) to be applied to this key.
+
+Note that this differs from the mechanism described in {{?RFC8520}} in that a sub-map is not used.
+Instead keys are created by combining the module name and the attribute as a string.
+The {{?RFC8520}} mechanism uses more bytes, but is also not translateable easily to CBOR.
+
+As the Voucher Request artifact is created by augment on the voucher artifact, any extension defined for the voucher is also valid for Voucher Requests.
+
 
 # Voucher Request Artifact {#voucher-request}
 
@@ -820,6 +851,19 @@ IANA has registered the media type: voucher-cms+json, and this registration shou
 
 IANA has registered the OID 1.2.840.113549.1.9.16.1.40, id-ct-animaJSONVoucher.
 This registration should be updated to point to this document.
+
+## Extensions Registry
+
+IANA is asked to create a registry of extensions as follows:
+
+      Registry name: Voucher Extensions
+      Registry policy: Standards Action
+      Reference: the document
+      Extension name: UTF-8-encoded string, not to exceed 40 characters.
+      Extension SID: the module SID value as allocated
+
+Each extension MUST follow the rules specified in this specification.
+As is usual, the IANA issues early allocations in accordance with {{!RFC7120}}.
 
 --- back
 

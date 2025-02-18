@@ -18,5 +18,7 @@
      2465 data .../additional-configuration-url
      2466 data /ietf-voucher:voucher/est-domain
      2467 data /ietf-voucher:voucher/expires-on
+     2468 data /ietf-voucher:voucher/voucher/extensions
            
  WARNING, obsolete definitions
+           

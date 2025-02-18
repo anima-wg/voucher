@@ -102,6 +102,12 @@
       "identifier": "/ietf-voucher:voucher/expires-on",
       "status": "unstable",
       "sid": 2467
+    },
+    {
+      "namespace": "data",
+      "identifier": "/ietf-voucher:voucher/voucher/extensions",
+      "status": "unstable",
+      "sid": 2468
     }
   ]
 }
