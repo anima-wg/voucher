@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T01:12:18.424899+00:00",
+  "timestamp": "2025-02-18T01:14:49.480840+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -499,16 +499,24 @@
       "id": "I_kwDOBBihcM5vW-eR",
       "title": "Explain how the use TOFU might differ",
       "url": "https://github.com/anima-wg/voucher/issues/32",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mcr",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Alexander Clemm asks:\r\n\r\n    > 5) TOFU, Line 242: Is this a special case to what is defined here, or\r\n    > is it different?\u00a0 The relevance here is not quite clear and it is not\r\n    > really used in the remainder of the text.\u00a0 The way it is explained is\r\n    > not clear to me (probably due to my ignorance); at the same time if it\r\n    > not really relevant for the remainder of the draft is this even needed?\r\n",
       "createdAt": "2023-08-26T23:17:29Z",
-      "updatedAt": "2023-08-26T23:18:00Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-02-17T19:09:07Z",
+      "closedAt": "2025-02-17T19:09:05Z",
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "closed without change; the term is used once about nonceless vouchers.",
+          "createdAt": "2025-02-17T19:09:05Z",
+          "updatedAt": "2025-02-17T19:09:05Z"
+        }
+      ]
     },
     {
       "number": 33,
@@ -563,16 +571,24 @@
       "id": "I_kwDOBBihcM5vW-kW",
       "title": "example is unclear",
       "url": "https://github.com/anima-wg/voucher/issues/36",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mcr",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "\r\n    > 9) Lines 303, 306:\u00a0 Presumably lines 304 and 305 are part of the\r\n    > header; should the \"===\" delineation be moved from 303 to 306? Also 301\r\n    > / 302: Maybe delineate the columns between assertion, registrar ID, and\r\n    > validity more clearly so it is clear which column belongs to which.\r\n",
       "createdAt": "2023-08-26T23:19:58Z",
-      "updatedAt": "2023-08-26T23:19:58Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-02-10T16:56:36Z",
+      "closedAt": "2025-02-10T16:56:35Z",
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "Markdown does not seem to let us fix the table this way.\n",
+          "createdAt": "2025-02-10T16:56:35Z",
+          "updatedAt": "2025-02-10T16:56:35Z"
+        }
+      ]
     },
     {
       "number": 37,
@@ -730,9 +746,17 @@
       "labels": [],
       "body": "    > 25) \"last-renewal-date\": Some questions regarding the underlying data\r\n    > model:\r\n\r\n    > 25a) would it make sense to put the last-renewal-date next to the\r\n    > created-on?\r\n\r\n    > 25b) It seems that \"last-renewal-date\" can be present only if there is\r\n    > also an \"expires-on\".\u00a0 Again, you could simply move this into a\r\n    > corresponding choice, e.g. something like: choice validity { \u00a0 case\r\n    > perpetual: {leaf nonce {....}}  \u00a0 case limited: {leaf expires on {...}\r\n    > \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 {leaf last-renewal-date{...}}\r\n\r\n    > (and, if within the choice any node must be present, indicate by making\r\n    > the corresponding leaf mandatory within the choice, not just the choice\r\n    > itself - not sure if this applies here)\r\n",
       "createdAt": "2023-08-27T01:40:02Z",
-      "updatedAt": "2023-08-27T01:40:02Z",
+      "updatedAt": "2025-02-10T17:16:12Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "not going with choice, as the combinatorics are too many.\n",
+          "createdAt": "2025-02-10T17:16:11Z",
+          "updatedAt": "2025-02-10T17:16:11Z"
+        }
+      ]
     },
     {
       "number": 46,
@@ -1002,7 +1026,7 @@
       "id": "I_kwDOBBihcM6ZJr0w",
       "title": "Generalization of leaf est-domain",
       "url": "https://github.com/anima-wg/voucher/issues/68",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "stfries",
       "authorAssociation": "COLLABORATOR",
       "assignees": [
@@ -1011,7 +1035,33 @@
       "labels": [],
       "body": "In the YANG voucher description the following leafe is included \r\n```\r\n         // from BRSKI-CLOUD\r\n         leaf est-domain {\r\n           type ietf:uri;\r\n           description\r\n             \"The est-domain is a URL from which the Pledge should\r\n                continue doing enrollment rather than with the\r\n                Cloud Registrar.\r\n                The pinned-domain-cert contains a trust-anchor\r\n                which is to be used to authenticate the server\r\n                found at this URI.\r\n               \";\r\n         }\r\n```\r\nWould it be better to have a more generalized description to not make it specific to the enrollment protocol? As we have BRSKI-AE, it may be interesting to outsource the RA functionality also for other enrollment protocols. \r\nA more general name may be ra-domain.\r\n",
       "createdAt": "2024-10-07T06:28:12Z",
-      "updatedAt": "2024-10-07T06:28:12Z",
+      "updatedAt": "2025-02-17T19:10:05Z",
+      "closedAt": "2025-02-17T19:10:04Z",
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "keeping est-domain as is.",
+          "createdAt": "2025-02-17T19:10:04Z",
+          "updatedAt": "2025-02-17T19:10:04Z"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "id": "I_kwDOBBihcM6pmIBE",
+      "title": "Allow vendor-specific info items to be stored in the Voucher",
+      "url": "https://github.com/anima-wg/voucher/issues/74",
+      "state": "OPEN",
+      "author": "EskoDijk",
+      "authorAssociation": "NONE",
+      "assignees": [
+        "mcr"
+      ],
+      "labels": [],
+      "body": "As discussed in some of the Tuesday calls: since the voucher is created by the manufacturer (server), for consumption by the Pledge (from the same manufacturer), it's easy to include vendor-specific flags, fields and configuration elements in the Voucher.\n\nIt's a secure (signed) way to transport such configuration back to the Pledge already before it joins a prospective network.\n\nHow to encode this in the Voucher YANG definition? (Is it even possible with YANG?)",
+      "createdAt": "2025-02-11T13:05:09Z",
+      "updatedAt": "2025-02-11T16:11:40Z",
       "closedAt": null,
       "comments": []
     }
@@ -2409,6 +2459,310 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 69,
+      "id": "PR_kwDOBBihcM6KrME9",
+      "title": "link to Fairhair consortia and split history",
+      "url": "https://github.com/anima-wg/voucher/pull/69",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #40",
+      "createdAt": "2025-02-10T16:31:49Z",
+      "updatedAt": "2025-02-12T08:36:17Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "main",
+      "baseRefOid": "402d9e7cd4ed36edbef20dfcf0be6aba21ce2b7b",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "divide-changes-history",
+      "headRefOid": "06509ba317285dc61db308318a56445771a337ef",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6bo1tW",
+          "commit": {
+            "abbreviatedOid": "06509ba"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-12T08:36:17Z",
+          "updatedAt": "2025-02-12T08:36:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "id": "PR_kwDOBBihcM6KrVFZ",
+      "title": "Nonce validity period",
+      "url": "https://github.com/anima-wg/voucher/pull/70",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #39 \r\nclose #38 ",
+      "createdAt": "2025-02-10T16:46:35Z",
+      "updatedAt": "2025-02-12T08:45:07Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "main",
+      "baseRefOid": "402d9e7cd4ed36edbef20dfcf0be6aba21ce2b7b",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "nonce-validity-period",
+      "headRefOid": "f737d453958ac33eaf4e75a181cecc8e23386ef2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6bo6n7",
+          "commit": {
+            "abbreviatedOid": "f737d45"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "The text for the Nonceless Audit Voucher (and also the \"without a validity period statement\" old text) is incompatible with the table above this, which lists an \"X\" in the column \"Validity -> RTC\" which implies that RTC is used for validity period checking instead of a Nonce.\r\n\r\nIf the \"X\" in this table is wrong, it should be updated as well (in this PR or in the future).\r\nIf the \"X\" in this table is right, then the text is all wrong.\r\n\r\nNote that a Nonceless Audit Voucher *with* validity period can also be used for the purpose of issuing it in advance!  E.g. it can have a 2-year validity or so.",
+          "createdAt": "2025-02-12T08:45:07Z",
+          "updatedAt": "2025-02-12T08:45:07Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "id": "PR_kwDOBBihcM6KrgiO",
+      "title": "Clarify brski cloud",
+      "url": "https://github.com/anima-wg/voucher/pull/71",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #49 ",
+      "createdAt": "2025-02-10T17:05:37Z",
+      "updatedAt": "2025-02-12T08:45:46Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "nonce-validity-period",
+      "baseRefOid": "f737d453958ac33eaf4e75a181cecc8e23386ef2",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "clarify-brski-cloud",
+      "headRefOid": "39933eef8294e23277103db48a4ac6e004447dac",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6bo6_W",
+          "commit": {
+            "abbreviatedOid": "39933ee"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-12T08:45:46Z",
+          "updatedAt": "2025-02-12T08:45:46Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "id": "PR_kwDOBBihcM6Krkev",
+      "title": "adjustments to YANG structure",
+      "url": "https://github.com/anima-wg/voucher/pull/72",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #47 \r\nclose #45 ",
+      "createdAt": "2025-02-10T17:13:01Z",
+      "updatedAt": "2025-02-12T08:56:57Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "clarify-brski-cloud",
+      "baseRefOid": "39933eef8294e23277103db48a4ac6e004447dac",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "yang-tweaks",
+      "headRefOid": "753343051f507a21deca43e0f59ee0003215ca80",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6bpCWC",
+          "commit": {
+            "abbreviatedOid": "7533430"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "Why are duplicate SID numbers assigned?\r\n\r\nE.g. \"expires-on\" has 2469 and also 2455.\r\n\"nonce\" has 2458 and 2470.",
+          "createdAt": "2025-02-12T08:56:57Z",
+          "updatedAt": "2025-02-12T08:56:57Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "id": "PR_kwDOBBihcM6Ksu3b",
+      "title": "clarify what the difficulties are",
+      "url": "https://github.com/anima-wg/voucher/pull/73",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #42 ",
+      "createdAt": "2025-02-10T19:36:04Z",
+      "updatedAt": "2025-02-12T08:58:02Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "yang-tweaks",
+      "baseRefOid": "753343051f507a21deca43e0f59ee0003215ca80",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "difficulties-clarification",
+      "headRefOid": "0f712c754c3f955581265535aa424c0c8c43b492",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6bpC_-",
+          "commit": {
+            "abbreviatedOid": "0f712c7"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-12T08:58:02Z",
+          "updatedAt": "2025-02-12T08:58:02Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "id": "PR_kwDOBBihcM6Lf-mQ",
+      "title": "split up the introduction a bit",
+      "url": "https://github.com/anima-wg/voucher/pull/75",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #30 \r\nclose #31 ",
+      "createdAt": "2025-02-17T18:51:44Z",
+      "updatedAt": "2025-02-17T18:58:40Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "difficulties-clarification",
+      "baseRefOid": "0f712c754c3f955581265535aa424c0c8c43b492",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "introduction-too-dense",
+      "headRefOid": "61fc10299fc8200bc1264e5421361785ad736e1d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 76,
+      "id": "PR_kwDOBBihcM6LgCkS",
+      "title": "Clarify pin domain term",
+      "url": "https://github.com/anima-wg/voucher/pull/76",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #35",
+      "createdAt": "2025-02-17T19:03:49Z",
+      "updatedAt": "2025-02-17T19:04:06Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "introduction-too-dense",
+      "baseRefOid": "61fc10299fc8200bc1264e5421361785ad736e1d",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "clarify-pin-domain-term",
+      "headRefOid": "c1c7395d8877622014ea9de27e204baaaa0720ad",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 77,
+      "id": "PR_kwDOBBihcM6LgDcy",
+      "title": "Registrar uses information",
+      "url": "https://github.com/anima-wg/voucher/pull/77",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #34 ",
+      "createdAt": "2025-02-17T19:06:00Z",
+      "updatedAt": "2025-02-17T19:06:18Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "clarify-pin-domain-term",
+      "baseRefOid": "c1c7395d8877622014ea9de27e204baaaa0720ad",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "registrar-uses-information",
+      "headRefOid": "b390e27b50b655bbc304b7a7649ab7a1e3d367d7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 78,
+      "id": "PR_kwDOBBihcM6LgEGE",
+      "title": "consistently use term Pledge",
+      "url": "https://github.com/anima-wg/voucher/pull/78",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #33 ",
+      "createdAt": "2025-02-17T19:07:47Z",
+      "updatedAt": "2025-02-17T19:07:48Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "registrar-uses-information",
+      "baseRefOid": "b390e27b50b655bbc304b7a7649ab7a1e3d367d7",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "pledge-device",
+      "headRefOid": "af06efc12282e8f21bb1d80bf5595369f0039497",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
