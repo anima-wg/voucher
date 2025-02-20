@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T01:14:49.480840+00:00",
+  "timestamp": "2025-02-20T01:15:29.110509+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -1035,8 +1035,8 @@
       "labels": [],
       "body": "In the YANG voucher description the following leafe is included \r\n```\r\n         // from BRSKI-CLOUD\r\n         leaf est-domain {\r\n           type ietf:uri;\r\n           description\r\n             \"The est-domain is a URL from which the Pledge should\r\n                continue doing enrollment rather than with the\r\n                Cloud Registrar.\r\n                The pinned-domain-cert contains a trust-anchor\r\n                which is to be used to authenticate the server\r\n                found at this URI.\r\n               \";\r\n         }\r\n```\r\nWould it be better to have a more generalized description to not make it specific to the enrollment protocol? As we have BRSKI-AE, it may be interesting to outsource the RA functionality also for other enrollment protocols. \r\nA more general name may be ra-domain.\r\n",
       "createdAt": "2024-10-07T06:28:12Z",
-      "updatedAt": "2025-02-17T19:10:05Z",
-      "closedAt": "2025-02-17T19:10:04Z",
+      "updatedAt": "2025-02-18T08:20:53Z",
+      "closedAt": "2025-02-18T08:20:52Z",
       "comments": [
         {
           "author": "mcr",
@@ -2757,6 +2757,73 @@
       "headRepository": "anima-wg/voucher",
       "headRefName": "pledge-device",
       "headRefOid": "af06efc12282e8f21bb1d80bf5595369f0039497",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 79,
+      "id": "PR_kwDOBBihcM6LpA5C",
+      "title": "Voucher extension registry",
+      "url": "https://github.com/anima-wg/voucher/pull/79",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #74 ",
+      "createdAt": "2025-02-18T18:17:12Z",
+      "updatedAt": "2025-02-19T17:39:31Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "fix-up-sid-allocations",
+      "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "voucher-extension-registry",
+      "headRefOid": "f71580be2575f8232bb5de9f500d26024ed6dea0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "body": "@mcr I'm unable to review this or understand this without further context. Why not use one of the design team calls to go over this? That would be very useful.\r\n\r\nI very much doubt at this point that we need the registry defined by this PR, but obviously you do so I must be missing some hugely important point.\r\n\r\nThere are 2 different extendibility reasons in general:\r\n1. vendor-specific, private extensions just to send data to the Pledge (no public definitions required of the data fields)\r\n2. IETF-defined voucher extensions   (assume we can just spin another RFC to do these, just like 8366bis does?)\r\n\r\nIn both cases I don't see a need for any registry or the need to include data elements any differently in the voucher than the way we've defined so far.",
+          "createdAt": "2025-02-19T09:56:08Z",
+          "updatedAt": "2025-02-19T09:56:08Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "body": "Esko Dijk ***@***.***> wrote:\n    > @mcr I'm unable to review this or understand this without further\n    > context. Why not use one of the design team calls to go over this? That\n    > would be very useful.\n\nI intend to, but I only managed to finish this last night :-)\nI also intend to discuss this Thursday, if there is time.\n\n    > I very much doubt at this point that we need the registry defined by\n    > this PR, but obviously you do so I must be missing some hugely\n    > important point.\n\nThat's how RFC8520 did it, and I'm proposing that in draft-richardson-netmod-atrest-extensions.\n\n    > There are 2 different extendibility reasons in general:\n    > 1. vendor-specific, private extensions just to send data to the Pledge\n    > (no public definitions required of the data fields)\n\na) Vendor can define a YANG module, ask for SID values, or use the 60,000 to 99,999 range.\nb) ... (me re-reads RFC9595...) damn, I thought we made allowance for using\n   PEN values.  We should do that.\nc) for JSON serialization, no big problem, just do vendor.example:foobar as\n   the map key.\n\n    > 2. IETF-defined voucher extensions   (assume we can just spin another\n    > RFC to do these, just like 8366bis does?)\n\nYes, we can just spin this again, and that's the YANG way.\nRFC8520 didn't do this, as it turns out, and I wish I hadn't spent three\nyears sorting that out, and had just noticed and done what 8520 did.\n\n    > In both cases I don't see a need for any registry or the need to\n    > include data elements any differently in the voucher than the way we've\n    > defined so far.\n\n--\n]               Never tell me the odds!                 | ipv6 mesh networks [\n]   Michael Richardson, Sandelman Software Works        |    IoT architect   [\n]     ***@***.***  http://www.sandelman.ca/        |   ruby on rails    [\n\n",
+          "createdAt": "2025-02-19T17:39:28Z",
+          "updatedAt": "2025-02-19T17:39:28Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 80,
+      "id": "PR_kwDOBBihcM6LpBlM",
+      "title": "Fix up sid allocations",
+      "url": "https://github.com/anima-wg/voucher/pull/80",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-18T18:18:35Z",
+      "updatedAt": "2025-02-18T18:18:36Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "pledge-device",
+      "baseRefOid": "af06efc12282e8f21bb1d80bf5595369f0039497",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "fix-up-sid-allocations",
+      "headRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
