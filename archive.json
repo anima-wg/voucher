@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T01:15:29.110509+00:00",
+  "timestamp": "2025-02-23T01:20:23.857343+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2776,7 +2776,7 @@
       "labels": [],
       "body": "close #74 ",
       "createdAt": "2025-02-18T18:17:12Z",
-      "updatedAt": "2025-02-19T17:39:31Z",
+      "updatedAt": "2025-02-21T14:33:28Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "fix-up-sid-allocations",
       "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
@@ -2801,6 +2801,13 @@
           "body": "Esko Dijk ***@***.***> wrote:\n    > @mcr I'm unable to review this or understand this without further\n    > context. Why not use one of the design team calls to go over this? That\n    > would be very useful.\n\nI intend to, but I only managed to finish this last night :-)\nI also intend to discuss this Thursday, if there is time.\n\n    > I very much doubt at this point that we need the registry defined by\n    > this PR, but obviously you do so I must be missing some hugely\n    > important point.\n\nThat's how RFC8520 did it, and I'm proposing that in draft-richardson-netmod-atrest-extensions.\n\n    > There are 2 different extendibility reasons in general:\n    > 1. vendor-specific, private extensions just to send data to the Pledge\n    > (no public definitions required of the data fields)\n\na) Vendor can define a YANG module, ask for SID values, or use the 60,000 to 99,999 range.\nb) ... (me re-reads RFC9595...) damn, I thought we made allowance for using\n   PEN values.  We should do that.\nc) for JSON serialization, no big problem, just do vendor.example:foobar as\n   the map key.\n\n    > 2. IETF-defined voucher extensions   (assume we can just spin another\n    > RFC to do these, just like 8366bis does?)\n\nYes, we can just spin this again, and that's the YANG way.\nRFC8520 didn't do this, as it turns out, and I wish I hadn't spent three\nyears sorting that out, and had just noticed and done what 8520 did.\n\n    > In both cases I don't see a need for any registry or the need to\n    > include data elements any differently in the voucher than the way we've\n    > defined so far.\n\n--\n]               Never tell me the odds!                 | ipv6 mesh networks [\n]   Michael Richardson, Sandelman Software Works        |    IoT architect   [\n]     ***@***.***  http://www.sandelman.ca/        |   ruby on rails    [\n\n",
           "createdAt": "2025-02-19T17:39:28Z",
           "updatedAt": "2025-02-19T17:39:28Z"
+        },
+        {
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "body": "@mcr So let's discuss in one of the Tuesday calls or otherwise IETF (if agenda/time permits).\r\n\r\nJust wanted to note that with CBOR vouchers with SIDs, it's also possible to add a few string-key / value pairs as well i.e. mix SIDs and string-keys. This allows the \"vendor.example:foobar\" key also.  It's just not very efficient.\r\n\r\nThe range 60,000 to 99,999 is Experimental Use which formally seems to disallow use by a vendor for its products, although in practice it wouldn't hurt. \r\n\r\nMaybe the range 2550-2600 could be allocated to vendor-specific usage in both vouchers and voucher-requests. Or alternatively allocate a single SID in the 2450-2499 range and a single SID in the 2500-2549 range for holding a container (map) of vendor-specific keys/values. The latter would be easier to understand and easier to avoid encoding mistakes.",
+          "createdAt": "2025-02-21T14:33:25Z",
+          "updatedAt": "2025-02-21T14:33:25Z"
         }
       ],
       "reviews": []
