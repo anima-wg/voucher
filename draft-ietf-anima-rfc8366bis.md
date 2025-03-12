@@ -169,6 +169,7 @@ This allows the YANG module to be updated without replacing all of the context.
 This document does not follow that pattern, but future updates are may update only the YANG.
 
 This document also introduces an experimental mechanism to support future extensions without requiring the YANG to be replaced.
+This includes both new IETF Standard mechanisms, as well as a facility for manufacturer private extensions.
 
 The lifetimes of vouchers may vary.
 In some onboarding protocols, the vouchers may include a nonce restricting them to a single use,  whereas the vouchers in other onboarding protocols may have an
@@ -406,7 +407,7 @@ An attempt was then made to determine what would happen if one wanted to have a 
 The result was invalid YANG, with multiple definitions of the core attributes from the {{RFC8366}} voucher artifact.
 After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8791}} structure mechanisms.
 
-After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
+After significant discussion the decision was made to simply roll all of the needed extensions  into this document.
 
 ## Informational Model changes since RFC8366
 
@@ -603,13 +604,16 @@ This allows for manufacturers to communicate new things from the MASA to the Ple
 The JSON serialization of vouchers implicitely accomodates the above, since the voucher is just a map (or dictionary).
 Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's domain name.
 
-In CBOR serialization {{RFC9148}}/{{RFC9254}}, the situation is not so clear.
+In CBOR serialization {{RFC9148}}/{{RFC9254}}, the situation is not so easy.
 The delta encoding for keys requires new keys to use the absolute Tag(47) for new entities.
-The extensions might need to use the Private Use SID values, or acquire SID values for their own use.
+An extension might need to use the Private Use SID values, or acquire SID values for their own use.
 
 Where the process has become complex is when making standard extensions, as has happened recently, resulting in this document.
 The processes which were anticipated to be useful, (the "augment" mechanism) turned out not to be the case, see {{extendfail}}.
 
+Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
+In this, extensions are listed in a new leaf by that name.
+In JSON serialization, these extensions require a unique name, and this MUST be allocated with IANA in the
 The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
 Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
 
@@ -624,6 +628,15 @@ Instead keys are created by combining the module name and the attribute as a str
 The {{?RFC8520}} mechanism uses more bytes, but is also not translateable easily to CBOR.
 
 As the Voucher Request artifact is created by augment on the voucher artifact, any extension defined for the voucher is also valid for Voucher Requests.
+
+## Manufacturer Private extensions
+
+In addition to the above described extensions mechanism, a manufacturer might need to communicate content in the voucher (or in the voucher-request), which are never subject to standardization.
+While they can use the mechanism above, it does require allocation of a SID in order to do minimal sized encoding.  Note that {{RFC9148}} does not require use of SIDs.
+
+Instead, a manufacturer MAY use the manufacturer-private leaf to put any content they wish.
+In CBOR serialization, if a map is used, then it will be subject to delta encoding, so use of this leaf requires that the content are bstr-encoded {{RFC8949, Section 3.1}} (Major type 2).
+In JSON serialization, delta-encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.
 
 
 # Voucher Request Artifact {#voucher-request}
@@ -854,14 +867,30 @@ This registration should be updated to point to this document.
 
 IANA is asked to create a registry of extensions as follows:
 
-      Registry name: Voucher Extensions
-      Registry policy: Standards Action
-      Reference: the document
+      Registry name: Voucher Extensions Registry
+      Registry policy: First Come First Served
+      Reference: an optional document
       Extension name: UTF-8-encoded string, not to exceed 40 characters.
       Extension SID: the module SID value as allocated
 
 Each extension MUST follow the rules specified in this specification.
 As is usual, the IANA issues early allocations in accordance with {{!RFC7120}}.
+
+Note that the SID module value is allocated as part of a {{!RFC9595}} process.
+This may be from a SID range managed by IANA, or from any other MegaRange.
+Future work may allow for PEN based allocations.
+IANA does not need to separately allocate a SID value for this column.
+
+Extension name strings for standards track documents are single words, given by the YANG Module Name.
+They do not contain dots.
+For vendor proprietary extensions, the string SHOULD be made unique by putting the extension name in the form a FQDN {{?RFC5822}}, such as "fuubar.example.com"
+
+Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
+
+Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
+There are no choices in the extension names (which is the YANG module), or SID (which is from another IANA process).
+For non-standard track extensions, the Designated Expert should review whatever document is provided, if any.  The stability of the reference may be of concern.  The Desigtnated Expert should determine if the work overlaps existing efforts; and if so suggest merging.
+However, as registration is optional, the designated expert should not block any registrations.
 
 --- back
 
