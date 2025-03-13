@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-11T01:18:44.018656+00:00",
+  "timestamp": "2025-03-13T01:19:15.628321+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2776,7 +2776,7 @@
       "labels": [],
       "body": "close #74 ",
       "createdAt": "2025-02-18T18:17:12Z",
-      "updatedAt": "2025-02-21T14:33:28Z",
+      "updatedAt": "2025-03-11T15:51:05Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "fix-up-sid-allocations",
       "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
@@ -2810,7 +2810,28 @@
           "updatedAt": "2025-02-21T14:33:25Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6fc93J",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-11T15:51:05Z",
+          "updatedAt": "2025-03-11T15:51:05Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "```suggestion\r\n      Registry policy: First Come First Served\r\n```",
+              "createdAt": "2025-03-11T15:51:05Z",
+              "updatedAt": "2025-03-11T15:51:06Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 80,
@@ -2831,6 +2852,32 @@
       "headRepository": "anima-wg/voucher",
       "headRefName": "fix-up-sid-allocations",
       "headRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 81,
+      "id": "PR_kwDOBBihcM6OaP58",
+      "title": "Private vendor work",
+      "url": "https://github.com/anima-wg/voucher/pull/81",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Create new manufacturer-private extension.\r\n",
+      "createdAt": "2025-03-12T21:24:33Z",
+      "updatedAt": "2025-03-12T21:24:34Z",
+      "baseRepository": "anima-wg/voucher",
+      "baseRefName": "voucher-extension-registry",
+      "baseRefOid": "f71580be2575f8232bb5de9f500d26024ed6dea0",
+      "headRepository": "anima-wg/voucher",
+      "headRefName": "private-vendor-work",
+      "headRefOid": "34009644a9cc0c33031bdddfab65d3e5c4584d36",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
