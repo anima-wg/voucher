@@ -619,7 +619,7 @@ The "extensions" list attribute definied in this model allows for new standard e
 Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
 
 Extensions are full YANG modules, which are subject to the SID allocation process described in {{RFC9254}}.
-When serialized the extensions are placed in a sub-map in the value section.
+When an extension is serialized,  the extension is placed in a sub-map in the value section.
 In JSON serialization, the key is the name of the extension, prefixed by the string "extension:"
 In CBOR serialization, the key is the SID which is allocated as the module SID.
 This will typically require the absolute Tag(47) to be applied to this key.
