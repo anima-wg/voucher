@@ -613,7 +613,8 @@ The processes which were anticipated to be useful, (the "augment" mechanism) tur
 
 Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
 In this, extensions are listed in a leaf named "extensions"
-In JSON serialization, these extensions require a unique name, and this MUST be allocated with IANA in the
+In JSON serialization, these extensions require a unique name, and this MUST be allocated by IANA.
+The name MUST be the same as the YANG module name.
 The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
 Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
 
