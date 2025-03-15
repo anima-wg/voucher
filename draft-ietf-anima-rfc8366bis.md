@@ -612,7 +612,7 @@ Where the process has become complex is when making standard extensions, as has 
 The processes which were anticipated to be useful, (the "augment" mechanism) turned out not to be the case, see {{extendfail}}.
 
 Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
-In this, extensions are listed in a new leaf by that name.
+In this, extensions are listed in a leaf named "extensions"
 In JSON serialization, these extensions require a unique name, and this MUST be allocated with IANA in the
 The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
 Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
