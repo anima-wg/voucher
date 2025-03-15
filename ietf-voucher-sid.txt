@@ -21,4 +21,3 @@
      2468 data /ietf-voucher:voucher/voucher/extensions
            
  WARNING, obsolete definitions
-           
