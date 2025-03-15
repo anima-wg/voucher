@@ -633,7 +633,7 @@ As the Voucher Request artifact is created by augment on the voucher artifact, a
 ## Manufacturer Private extensions
 
 In addition to the above described extensions mechanism, a manufacturer might need to communicate content in the voucher (or in the voucher-request), which are never subject to standardization.
-While they can use the mechanism above, it does require allocation of a SID in order to do minimal sized encoding.  Note that {{RFC9148}} does not require use of SIDs.
+While they can use the mechanism above, it does require allocation of a SID in order to do minimal sized encoding.  Note that {{RFC9254}} does not require use of SIDs.
 
 Instead, a manufacturer MAY use the manufacturer-private leaf to put any content they wish.
 In CBOR serialization, if a map is used, then it will be subject to delta encoding, so use of this leaf requires that the content are bstr-encoded {{RFC8949, Section 3.1}} (Major type 2).
