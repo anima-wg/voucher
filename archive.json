@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-13T01:19:15.628321+00:00",
+  "timestamp": "2025-03-16T01:24:03.566475+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2776,13 +2776,13 @@
       "labels": [],
       "body": "close #74 ",
       "createdAt": "2025-02-18T18:17:12Z",
-      "updatedAt": "2025-03-11T15:51:05Z",
+      "updatedAt": "2025-03-14T14:03:20Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "fix-up-sid-allocations",
       "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
       "headRepository": "anima-wg/voucher",
       "headRefName": "voucher-extension-registry",
-      "headRefOid": "f71580be2575f8232bb5de9f500d26024ed6dea0",
+      "headRefOid": "335d589c8a0db09965dece361dc046c2bce29549",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2830,6 +2830,192 @@
               "updatedAt": "2025-03-11T15:51:06Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fzoHi",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T09:20:09Z",
+          "updatedAt": "2025-03-13T09:20:09Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Other part of sentence missing?",
+              "createdAt": "2025-03-13T09:20:09Z",
+              "updatedAt": "2025-03-13T09:20:09Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fzp9G",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T09:22:51Z",
+          "updatedAt": "2025-03-13T09:22:51Z",
+          "comments": [
+            {
+              "originalPosition": 32,
+              "body": "Oops, misunderstood. Maybe\r\n\r\n```suggestion\r\nWhen an extension is serialized,  the extension is placed in a sub-map in the value section.\r\n```",
+              "createdAt": "2025-03-13T09:22:51Z",
+              "updatedAt": "2025-03-13T09:22:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fzrHV",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T09:24:13Z",
+          "updatedAt": "2025-03-13T09:24:13Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\nExtensions are full YANG modules, which are subject to the SID allocation process described in {{RFC9254}}.\r\n```",
+              "createdAt": "2025-03-13T09:24:13Z",
+              "updatedAt": "2025-03-13T09:24:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fzthP",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T09:27:18Z",
+          "updatedAt": "2025-03-13T09:27:18Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "If it's a list of strings, how do we envision the CBOR serialization?\r\nFormally it also have to be strings. It would be strange to put SID integer values in string e.g. [ \"123\", \"456\" ] ?",
+              "createdAt": "2025-03-13T09:27:18Z",
+              "updatedAt": "2025-03-13T09:27:18Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6f61Uz",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "stfries",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Changes are fine with me, just added two comments. ",
+          "createdAt": "2025-03-13T18:17:20Z",
+          "updatedAt": "2025-03-13T18:32:23Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "Should we add in the registry that a new extention is always defined in a way to get an extension name and a SID? The assumption would be that in certain installations JSON is used and in more constrain environment CBOR but with the same functioanl target (based on the extension).\r\nJumping back from the IANA section, yes, it is done that way, so no real need to describe it here. ",
+              "createdAt": "2025-03-13T18:17:20Z",
+              "updatedAt": "2025-03-13T18:32:23Z"
+            },
+            {
+              "originalPosition": 13,
+              "body": "I'm not really deep in YANG, so I was wondering where the extension would be placed in the YANG module, if defined by a further RFC? Would it be placed directly here?  I understood here it would be rather the declaration. Maybe an example would be good. ",
+              "createdAt": "2025-03-13T18:31:48Z",
+              "updatedAt": "2025-03-13T18:32:23Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDrnK",
+          "commit": {
+            "abbreviatedOid": "9df1220"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T12:10:39Z",
+          "updatedAt": "2025-03-14T12:10:39Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Uhm. Oh. yes. Damn.",
+              "createdAt": "2025-03-14T12:10:39Z",
+              "updatedAt": "2025-03-14T12:10:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDr5Y",
+          "commit": {
+            "abbreviatedOid": "9df1220"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T12:11:14Z",
+          "updatedAt": "2025-03-14T12:11:14Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "Not directly here.  This is the place where you declare which extensions are expected.",
+              "createdAt": "2025-03-14T12:11:14Z",
+              "updatedAt": "2025-03-14T12:11:14Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDsWw",
+          "commit": {
+            "abbreviatedOid": "9df1220"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T12:12:07Z",
+          "updatedAt": "2025-03-14T12:12:07Z",
+          "comments": [
+            {
+              "originalPosition": 56,
+              "body": "Already changed this in another pull request.",
+              "createdAt": "2025-03-14T12:12:07Z",
+              "updatedAt": "2025-03-14T12:12:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gFA56",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T14:03:20Z",
+          "updatedAt": "2025-03-14T14:03:20Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "See also my email to ANIMA. There's a difference if we want to extend attributes in the voucher module (e.g. by a future RFC), or extend with attributes defined outside of the 'voucher' module (e.g. by an RFC or by vendor registration).\r\n\r\nAnything defined within the 'voucher' module would not be an extension that's imported with this mechanism. Rather, it would be a revision of the YANG module.",
+              "createdAt": "2025-03-14T14:03:20Z",
+              "updatedAt": "2025-03-14T14:03:20Z"
+            }
+          ]
         }
       ]
     },
@@ -2871,19 +3057,187 @@
       "labels": [],
       "body": "Create new manufacturer-private extension.\r\n",
       "createdAt": "2025-03-12T21:24:33Z",
-      "updatedAt": "2025-03-12T21:24:34Z",
+      "updatedAt": "2025-03-15T14:16:23Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "voucher-extension-registry",
       "baseRefOid": "f71580be2575f8232bb5de9f500d26024ed6dea0",
       "headRepository": "anima-wg/voucher",
       "headRefName": "private-vendor-work",
-      "headRefOid": "34009644a9cc0c33031bdddfab65d3e5c4584d36",
+      "headRefOid": "1b3ca5c2e696bfa9095af57339e9112643472c0b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "body": "@mcr Yes, thanks, ok to apply these fixes! \r\n\r\nBefore I can fully review and appreciate the voucher extensions feature, I had some open questions on the list: see https://mailarchive.ietf.org/arch/msg/anima/FlZtbwtr0-Lv0bBeDKerQAT6dko/ \r\n",
+          "createdAt": "2025-03-14T11:28:00Z",
+          "updatedAt": "2025-03-14T11:28:00Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6fzYTF",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T08:58:37Z",
+          "updatedAt": "2025-03-13T08:58:38Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "\"by that name\" - does this mean the name of the leaf is literally \"extensions\" ? If so, best to make that explicit. E.g.\r\n\r\n   extensions are listed in a leaf named \"extensions\".",
+              "createdAt": "2025-03-13T08:58:38Z",
+              "updatedAt": "2025-03-13T08:58:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fzY6T",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T08:59:21Z",
+          "updatedAt": "2025-03-13T08:59:21Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "sentence partly missing?",
+              "createdAt": "2025-03-13T08:59:21Z",
+              "updatedAt": "2025-03-13T08:59:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6fza01",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-13T09:02:01Z",
+          "updatedAt": "2025-03-13T09:02:02Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "another RFC reference was intended here. (EST-coaps doesn't use vouchers)",
+              "createdAt": "2025-03-13T09:02:01Z",
+              "updatedAt": "2025-03-13T09:02:02Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6f7P5D",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "BoomchainLabs",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Lgtm",
+          "createdAt": "2025-03-13T19:07:49Z",
+          "updatedAt": "2025-03-13T19:07:49Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDHjF",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T11:04:49Z",
+          "updatedAt": "2025-03-14T11:04:50Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nIn this, extensions are listed in a leaf named \"extensions\"\r\n```",
+              "createdAt": "2025-03-14T11:04:49Z",
+              "updatedAt": "2025-03-14T11:04:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDH-A",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T11:05:39Z",
+          "updatedAt": "2025-03-14T11:05:40Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "```suggestion\r\nIn JSON serialization, these extensions require a unique name, and this MUST be allocated by IANA.\r\nThe name MUST be the same as the YANG module name.\r\n```",
+              "createdAt": "2025-03-14T11:05:39Z",
+              "updatedAt": "2025-03-14T11:05:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDIbl",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-14T11:06:36Z",
+          "updatedAt": "2025-03-14T11:06:36Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\nWhile they can use the mechanism above, it does require allocation of a SID in order to do minimal sized encoding.  Note that {{RFC9254}} does not require use of SIDs.\r\n```",
+              "createdAt": "2025-03-14T11:06:36Z",
+              "updatedAt": "2025-03-14T11:06:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gDIp_",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "Does this work for you Esko?",
+          "createdAt": "2025-03-14T11:07:01Z",
+          "updatedAt": "2025-03-14T11:07:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBBihcM6gHoxx",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "BoomchainLabs",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-14T17:46:59Z",
+          "updatedAt": "2025-03-14T17:46:59Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
