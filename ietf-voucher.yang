@@ -84,6 +84,18 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            Future work MAY create verification requirements based on
            this node.";
       }
+
+      leaf-list extensions {
+         type string {
+           length "1..40";
+         }
+         description
+           "A list of extension names that are used in this Voucher
+            file.  These are names of YANG modules
+            or SID values.  They may be public standards
+            or vendor private extensions.";
+      }
+
       leaf assertion {
         type enumeration {
           enum verified {
