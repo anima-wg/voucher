@@ -91,8 +91,9 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
          }
          description
            "A list of extension names that are used in this Voucher
-            file.  Each name is registered with the IANA and
-            described in an RFC.";
+            file.  These are names of YANG modules
+            or SID values.  They may be public standards
+            or vendor private extensions.";
       }
 
       leaf assertion {
