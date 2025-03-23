@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-20T01:18:32.498772+00:00",
+  "timestamp": "2025-03-23T01:24:46.938252+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2776,13 +2776,13 @@
       "labels": [],
       "body": "close #74 ",
       "createdAt": "2025-02-18T18:17:12Z",
-      "updatedAt": "2025-03-19T17:29:59Z",
+      "updatedAt": "2025-03-20T13:23:46Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "fix-up-sid-allocations",
       "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
       "headRepository": "anima-wg/voucher",
       "headRefName": "voucher-extension-registry",
-      "headRefOid": "335d589c8a0db09965dece361dc046c2bce29549",
+      "headRefOid": "20ab082849dea67ca77b3ceafcf899dbe8cc19db",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -3034,6 +3034,66 @@
               "body": "The part about \"described in an RFC\" seems also unneeded. It could be a public module registered by another SDO ... ?",
               "createdAt": "2025-03-19T17:29:59Z",
               "updatedAt": "2025-03-19T17:29:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6hBe0W",
+          "commit": {
+            "abbreviatedOid": "335d589"
+          },
+          "author": "mcr",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-20T07:13:18Z",
+          "updatedAt": "2025-03-20T07:13:18Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\n            file.  These are names of YANG modules\r\n            or SID values.  They may be public standards\r\n            or vendor private extensions.\";\r\n```",
+              "createdAt": "2025-03-20T07:13:18Z",
+              "updatedAt": "2025-03-20T07:13:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6hBr4c",
+          "commit": {
+            "abbreviatedOid": "335d589"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-20T07:41:11Z",
+          "updatedAt": "2025-03-20T07:41:11Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "Agree!",
+              "createdAt": "2025-03-20T07:41:11Z",
+              "updatedAt": "2025-03-20T07:41:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6hGGZF",
+          "commit": {
+            "abbreviatedOid": "20ab082"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-20T13:23:46Z",
+          "updatedAt": "2025-03-20T13:23:46Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "(That part about \"RFC\" is resolved now.)",
+              "createdAt": "2025-03-20T13:23:46Z",
+              "updatedAt": "2025-03-20T13:23:46Z"
             }
           ]
         }
