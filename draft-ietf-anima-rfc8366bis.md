@@ -294,7 +294,7 @@ Assertion Basis:
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge endpoint behavior
   such as secure root of trust
-  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge intot he network.
+  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
 
