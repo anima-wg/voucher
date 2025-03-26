@@ -108,6 +108,12 @@ informative:
     author:
     - org: Wikipedia
     date: 2018-02
+  fairhair:
+    target: "https://openconnectivity.org/developer/specifications/fairhair/"
+    title: 'Fairhair Specification'
+    author:
+    - org: Open Connectivity Foundation
+    date: 2019-11-01
 
 --- abstract
 
@@ -328,14 +334,17 @@ Audit Voucher:
   malicious registrar does not appear in the log entries.
   This does not
   directly prevent a malicious registrar but provides a response mechanism that
-  ensures the MiTM is unsuccessful. The advantage is that actual
-  ownership knowledge is not required on the MASA service.
+  ensures the on-path-attack is unsuccessful.
+  An advantage is that actual ownership knowledge (i.e., sales integration providing an indication of who purchased the device) is not required on the MASA service.
 
 Nonceless Audit Voucher:
 : An Audit Voucher without a validity period statement. Fundamentally,
   it is the same as an Audit Voucher except that it can be issued in
   advance to support network partitions or to provide a permanent
   voucher for remote deployments.
+  Being issued in advance of the Pledge being online, the Pledge can not provide a nonce to be included for freshness.
+  This compromise in reducing the freshness allows for the resulting voucher can be carried across air-gapped infrastructure.
+  In addition, as there is no end to the validity period, the voucher can be used after the manufacturer (and it's delegates) has gone out of business.
 
 Ownership Audit Voucher:
 : An Audit Voucher where the MASA service has verified the registrar
@@ -365,6 +374,8 @@ Bearer Voucher:
 
 # Changes since RFC8366
 
+## Attempts and motivation to extend RFC8366
+
 {{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{ZERO-TOUCH}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _onboarding_ rather than _bootstrapping_.
@@ -372,7 +383,7 @@ Since then the industry has matured significantly, and the in-the-field activity
 The focus of {{BRSKI}} was onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
 {{ZERO-TOUCH}} has focused upon onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of less import.
 
-Since {{BRSKI}} was published there is now a mature effort to do application-level onboarding of constrained IoT devices defined by The Thread and Fairhair (now OCF) consortia.
+Since {{BRSKI}} was published there is now a mature effort to do application-level onboarding of constrained IoT devices defined by The Thread and Fairhair (now OCF) consortia {{fairhair}}.
 The {{cBRSKI}} document has defined a version of {{BRSKI}} that is useable over constrained 802.15.4 networks using CoAP and DTLS, while {{?I-D.selander-ace-ake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
 
 {{PRM}} has created a new methodology for onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
@@ -389,6 +400,8 @@ The result was invalid YANG, with multiple definitions of the core attributes fr
 After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8791}} structure mechanisms.
 
 After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
+
+## Informational Model changes since RFC8366
 
 This document therefore represents a merge of YANG definitions from {{RFC8366}}, the voucher-request from {{BRSKI}}, and then extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 There are some difficulties with this approach: this document does not attempt to establish rigorous semantic definitions for how some attributes are to be used, referring normatively instead to the other relevant documents.
