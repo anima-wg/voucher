@@ -436,7 +436,7 @@ The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
 Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
 
-To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj". were registered by {{RFC8366}}.
+To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
 
 The CMS structure MUST contain a 'signerInfo' structure, as
 described in Section 5.1 of {{RFC5652}}, containing the
