@@ -290,11 +290,11 @@ the join registrar and Pledge:
 Assertion Basis:
 : Indicates the method that protects
   the imprint (this is distinct from the voucher signature that
-  protects the voucher itself). This might include
+  protects the voucher itself). This includes
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge endpoint behavior
   such as secure root of trust
-  of measurement. The join registrar might use this information.
+  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
 
