@@ -50,7 +50,7 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/nonce",
+      "identifier": "/ietf-voucher:voucher/nonce",
       "sid": 2458
     },
     {
@@ -75,49 +75,33 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/additional-configuration",
+      "identifier": "/ietf-voucher:voucher/voucher/additional-configuration-url",
       "status": "unstable",
       "sid": 2463
-    },
-    {
-      "namespace": "module",
-      "identifier": "ietf-voucher",
-      "sid": 2464
-    },
-    {
-      "namespace": "module",
-      "identifier": "ietf-yang-types",
-      "sid": 2465
     },
     {
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/voucher/est-domain",
       "status": "unstable",
-      "sid": 2466
+      "sid": 2464
     },
     {
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/additional-configuration-url",
       "status": "unstable",
-      "sid": 2467
+      "sid": 2465
     },
     {
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/est-domain",
       "status": "unstable",
-      "sid": 2468
+      "sid": 2466
     },
     {
       "namespace": "data",
       "identifier": "/ietf-voucher:voucher/expires-on",
       "status": "unstable",
-      "sid": 2469
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/nonce",
-      "status": "unstable",
-      "sid": 2470
+      "sid": 2467
     }
   ]
 }
