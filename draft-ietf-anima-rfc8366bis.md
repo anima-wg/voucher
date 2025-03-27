@@ -169,6 +169,7 @@ This allows the YANG module to be updated without replacing all of the context.
 This document does not follow that pattern, but future updates are may update only the YANG.
 
 This document also introduces an experimental mechanism to support future extensions without requiring the YANG to be replaced.
+This includes both new IETF Standard mechanisms, as well as a facility for manufacturer private extensions.
 
 The lifetimes of vouchers may vary.
 In some onboarding protocols, the vouchers may include a nonce restricting them to a single use,  whereas the vouchers in other onboarding protocols may have an
@@ -381,7 +382,7 @@ Bearer Voucher:
 
 # Changes since RFC8366
 
-## Attempts and motivation to extend RFC8366
+## Attempts and motivation to extend RFC8366 {#extendfail}
 
 {{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{ZERO-TOUCH}} and other work-in-progress efforts.
@@ -406,7 +407,7 @@ An attempt was then made to determine what would happen if one wanted to have a 
 The result was invalid YANG, with multiple definitions of the core attributes from the {{RFC8366}} voucher artifact.
 After some discussion, it was determined that the _augment_ mechanism did not work, nor did it work better when {{RFC8040}} yang-data was replaced with the {{RFC8791}} structure mechanisms.
 
-After significant discussion the decision was made to simply roll all of the needed extensions up into this document as "RFC8366bis".
+After significant discussion the decision was made to simply roll all of the needed extensions  into this document.
 
 ## Informational Model changes since RFC8366
 
@@ -435,9 +436,7 @@ The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
 Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
 
-To facilitate interoperability, {{vcj}} in this document registers the
-media type "application/voucher-cms+json" and the filename extension
-".vcj".
+To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
 
 The CMS structure MUST contain a 'signerInfo' structure, as
 described in Section 5.1 of {{RFC5652}}, containing the
@@ -596,6 +595,50 @@ Integer  | Assertion Type
 2        | proximity
 3        | agent-proximity
 {: #assertion-enums title='CBOR integers for the "assertion" attribute enum'}
+
+## Voucher Extensions
+
+An unstated assumption in {{RFC8366}} was that vouchers could be extended in proprietary ways by manufacturers.
+This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG.
+
+The JSON serialization of vouchers implicitely accomodates the above, since the voucher is just a map (or dictionary).
+Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's domain name.
+
+In CBOR serialization {{RFC9148}}/{{RFC9254}}, the situation is not so easy.
+The delta encoding for keys requires new keys to use the absolute Tag(47) for new entities.
+An extension might need to use the Private Use SID values, or acquire SID values for their own use.
+
+Where the process has become complex is when making standard extensions, as has happened recently, resulting in this document.
+The processes which were anticipated to be useful, (the "augment" mechanism) turned out not to be the case, see {{extendfail}}.
+
+Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
+In this, extensions are listed in a leaf named "extensions".
+In JSON serialization, these extensions require a unique name, and this MUST be allocated by IANA.
+The name MUST be the same as the YANG module name.
+The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
+Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
+
+Extensions are full YANG modules, which are subject to the SID allocation process described in {{RFC9254}}.
+When an extension is serialized,  the extension is placed in a sub-map in the value section.
+In JSON serialization, the key is the name of the extension, prefixed by the string "extension:"
+In CBOR serialization, the key is the SID which is allocated as the module SID.
+This will typically require the absolute Tag(47) to be applied to this key.
+
+Note that this differs from the mechanism described in {{?RFC8520}} in that a sub-map is not used.
+Instead keys are created by combining the module name and the attribute as a string.
+The {{?RFC8520}} mechanism uses more bytes, but is also not translateable easily to CBOR.
+
+As the Voucher Request artifact is created by augment on the voucher artifact, any extension defined for the voucher is also valid for Voucher Requests.
+
+## Manufacturer Private extensions
+
+In addition to the above described extensions mechanism, a manufacturer might need to communicate content in the voucher (or in the voucher-request), which are never subject to standardization.
+While they can use the mechanism above, it does require allocation of a SID in order to do minimal sized encoding.  Note that {{RFC9254}} does not require use of SIDs.
+
+Instead, a manufacturer MAY use the manufacturer-private leaf to put any content they wish.
+In CBOR serialization, if a map is used, then it will be subject to delta encoding, so use of this leaf requires that the content are bstr-encoded {{RFC8949, Section 3.1}} (Major type 2).
+In JSON serialization, delta-encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.
+
 
 # Voucher Request Artifact {#voucher-request}
 
@@ -820,6 +863,35 @@ IANA has registered the media type: voucher-cms+json, and this registration shou
 
 IANA has registered the OID 1.2.840.113549.1.9.16.1.40, id-ct-animaJSONVoucher.
 This registration should be updated to point to this document.
+
+## Extensions Registry
+
+IANA is asked to create a registry of extensions as follows:
+
+      Registry name: Voucher Extensions Registry
+      Registry policy: First Come First Served
+      Reference: an optional document
+      Extension name: UTF-8-encoded string, not to exceed 40 characters.
+      Extension SID: the module SID value as allocated
+
+Each extension MUST follow the rules specified in this specification.
+As is usual, the IANA issues early allocations in accordance with {{!RFC7120}}.
+
+Note that the SID module value is allocated as part of a {{!RFC9595}} process.
+This may be from a SID range managed by IANA, or from any other MegaRange.
+Future work may allow for PEN based allocations.
+IANA does not need to separately allocate a SID value for this column.
+
+Extension name strings for standards track documents are single words, given by the YANG Module Name.
+They do not contain dots.
+For vendor proprietary extensions, the string SHOULD be made unique by putting the extension name in the form a FQDN {{?RFC5822}}, such as "fuubar.example.com"
+
+Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
+
+Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
+There are no choices in the extension names (which is the YANG module), or SID (which is from another IANA process).
+For non-standard track extensions, the Designated Expert should review whatever document is provided, if any.  The stability of the reference may be of concern.  The Desigtnated Expert should determine if the work overlaps existing efforts; and if so suggest merging.
+However, as registration is optional, the designated expert should not block any registrations.
 
 --- back
 
