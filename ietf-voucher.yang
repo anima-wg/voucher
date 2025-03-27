@@ -91,9 +91,17 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
          }
          description
            "A list of extension names that are used in this Voucher
-            file.  These are names of YANG modules
-            or SID values.  They may be public standards
-            or vendor private extensions.";
+            file.  Each name is registered with the IANA.  Standard
+            extensions are described in an RFC, while vendor proprietary
+            ones are not.";
+      }
+
+      leaf manufacturer-private {
+        type binary;
+         description
+           "In CBOR serialization, this is a CBOR bstr containing any valid CBOR that
+            the manufacturer wishes to share with it's Pledge.  In JSON serializations,
+            this contains additional JSON instead, and it is base64URL encoded.";
       }
 
       leaf assertion {
