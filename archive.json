@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-25T01:20:35.328029+00:00",
+  "timestamp": "2025-03-27T01:19:53.988551+00:00",
   "repo": "anima-wg/voucher",
   "labels": [
     {
@@ -2672,7 +2672,7 @@
       "labels": [],
       "body": "close #30 \r\nclose #31 ",
       "createdAt": "2025-02-17T18:51:44Z",
-      "updatedAt": "2025-02-17T18:58:40Z",
+      "updatedAt": "2025-03-26T14:53:20Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "difficulties-clarification",
       "baseRefOid": "0f712c754c3f955581265535aa424c0c8c43b492",
@@ -2684,7 +2684,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6h-rTn",
+          "commit": {
+            "abbreviatedOid": "61fc102"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-26T14:53:20Z",
+          "updatedAt": "2025-03-26T14:53:20Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 76,
@@ -2698,7 +2712,7 @@
       "labels": [],
       "body": "close #35",
       "createdAt": "2025-02-17T19:03:49Z",
-      "updatedAt": "2025-02-17T19:04:06Z",
+      "updatedAt": "2025-03-26T14:55:30Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "introduction-too-dense",
       "baseRefOid": "61fc10299fc8200bc1264e5421361785ad736e1d",
@@ -2710,7 +2724,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6h-tMy",
+          "commit": {
+            "abbreviatedOid": "c1c7395"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-26T14:55:30Z",
+          "updatedAt": "2025-03-26T14:55:30Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 77,
@@ -2724,19 +2752,53 @@
       "labels": [],
       "body": "close #34 ",
       "createdAt": "2025-02-17T19:06:00Z",
-      "updatedAt": "2025-02-17T19:06:18Z",
+      "updatedAt": "2025-03-26T14:58:09Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "clarify-pin-domain-term",
       "baseRefOid": "c1c7395d8877622014ea9de27e204baaaa0720ad",
       "headRepository": "anima-wg/voucher",
       "headRefName": "registrar-uses-information",
-      "headRefOid": "b390e27b50b655bbc304b7a7649ab7a1e3d367d7",
+      "headRefOid": "4d2df5c3152de3abc7414d430f1614128d49eb0e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6h-t6M",
+          "commit": {
+            "abbreviatedOid": "b390e27"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T14:56:21Z",
+          "updatedAt": "2025-03-26T14:56:22Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.\r\n```",
+              "createdAt": "2025-03-26T14:56:21Z",
+              "updatedAt": "2025-03-26T14:56:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-vd9",
+          "commit": {
+            "abbreviatedOid": "4d2df5c"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "Ok to merge - I did fix one typo with a commit.",
+          "createdAt": "2025-03-26T14:58:09Z",
+          "updatedAt": "2025-03-26T14:58:09Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 78,
@@ -2750,7 +2812,7 @@
       "labels": [],
       "body": "close #33 ",
       "createdAt": "2025-02-17T19:07:47Z",
-      "updatedAt": "2025-02-17T19:07:48Z",
+      "updatedAt": "2025-03-26T14:56:48Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "registrar-uses-information",
       "baseRefOid": "b390e27b50b655bbc304b7a7649ab7a1e3d367d7",
@@ -2762,7 +2824,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6h-uTP",
+          "commit": {
+            "abbreviatedOid": "af06efc"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-26T14:56:48Z",
+          "updatedAt": "2025-03-26T14:56:48Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 79,
@@ -2776,7 +2852,7 @@
       "labels": [],
       "body": "close #74 ",
       "createdAt": "2025-02-18T18:17:12Z",
-      "updatedAt": "2025-03-20T13:23:46Z",
+      "updatedAt": "2025-03-26T15:09:39Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "fix-up-sid-allocations",
       "baseRefOid": "c50309cdb91c8d7d402fb826e6ae2e92c53a3f2d",
@@ -3096,6 +3172,59 @@
               "updatedAt": "2025-03-20T13:23:46Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-za_",
+          "commit": {
+            "abbreviatedOid": "f71580b"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:02:50Z",
+          "updatedAt": "2025-03-26T15:02:50Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "As I recall it, the SID system was designed such that SIDs are assigned even if the original YANG module authors didn't consider it.  How that's exactly done - I don't know the details of this. Carsten was working on a tool to make such assignments, but that's not finished yet.\r\n\r\nBut I do think that SIDs are always needed; otherwise some features can't be used in CBOR vouchers.",
+              "createdAt": "2025-03-26T15:02:50Z",
+              "updatedAt": "2025-03-26T15:02:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-1xo",
+          "commit": {
+            "abbreviatedOid": "20ab082"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:05:33Z",
+          "updatedAt": "2025-03-26T15:05:34Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "@mcr If we add this structure here, in the file with the name `2023-01-10` in it, the date in that file kind of becomes meaningless. So something seems wrong here. It would have to be a new 2025 revision of the YANG. With a new date in the filename, right?",
+              "createdAt": "2025-03-26T15:05:33Z",
+              "updatedAt": "2025-03-26T15:05:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-5MY",
+          "commit": {
+            "abbreviatedOid": "20ab082"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "CHANGES_REQUESTED",
+          "body": "During discussion, some issues have been identified to be fixed.  For example to define some YANG type that allows both SID numbers and name strings to be used to identify a module. I'm assuming that both in CBOR and in JSON, either the \"number\" or the \"string-name\" can be used.  In cBRSKI, typically this would be the \"number\".\r\n\r\nAlso it looks like the YANG file of a *previous* 2023 revision is being changed? (See comment on that)\r\n\r\n",
+          "createdAt": "2025-03-26T15:09:39Z",
+          "updatedAt": "2025-03-26T15:09:39Z",
+          "comments": []
         }
       ]
     },
@@ -3111,7 +3240,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-02-18T18:18:35Z",
-      "updatedAt": "2025-02-18T18:18:36Z",
+      "updatedAt": "2025-03-26T15:12:34Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "pledge-device",
       "baseRefOid": "af06efc12282e8f21bb1d80bf5595369f0039497",
@@ -3123,7 +3252,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBBihcM6h-7m9",
+          "commit": {
+            "abbreviatedOid": "c50309c"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "The change-upon-change makes it somewhat difficult to review and track.\r\nI propose to merge this and then publish a new revision, so we can check the SID allocation there in detail.",
+          "createdAt": "2025-03-26T15:12:34Z",
+          "updatedAt": "2025-03-26T15:12:34Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 81,
@@ -3137,13 +3280,13 @@
       "labels": [],
       "body": "Create new manufacturer-private extension.\r\n",
       "createdAt": "2025-03-12T21:24:33Z",
-      "updatedAt": "2025-03-15T14:16:23Z",
+      "updatedAt": "2025-03-26T15:19:01Z",
       "baseRepository": "anima-wg/voucher",
       "baseRefName": "voucher-extension-registry",
       "baseRefOid": "f71580be2575f8232bb5de9f500d26024ed6dea0",
       "headRepository": "anima-wg/voucher",
       "headRefName": "private-vendor-work",
-      "headRefOid": "1b3ca5c2e696bfa9095af57339e9112643472c0b",
+      "headRefOid": "c5e7683fd362911279a092ee501c6488c1cbc2ae",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -3315,6 +3458,139 @@
           "body": "",
           "createdAt": "2025-03-14T17:46:59Z",
           "updatedAt": "2025-03-14T17:46:59Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-8hO",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:13:41Z",
+          "updatedAt": "2025-03-26T15:13:42Z",
+          "comments": [
+            {
+              "originalPosition": 43,
+              "body": "This was resolved in a later commit.",
+              "createdAt": "2025-03-26T15:13:41Z",
+              "updatedAt": "2025-03-26T15:13:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-8va",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:13:58Z",
+          "updatedAt": "2025-03-26T15:13:58Z",
+          "comments": [
+            {
+              "originalPosition": 54,
+              "body": "was resolved in a later commit",
+              "createdAt": "2025-03-26T15:13:58Z",
+              "updatedAt": "2025-03-26T15:13:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-9kZ",
+          "commit": {
+            "abbreviatedOid": "1b3ca5c"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:14:58Z",
+          "updatedAt": "2025-03-26T15:15:03Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nIn this, extensions are listed in a leaf named \"extensions\".\r\n```",
+              "createdAt": "2025-03-26T15:15:00Z",
+              "updatedAt": "2025-03-26T15:15:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-9wo",
+          "commit": {
+            "abbreviatedOid": "1b3ca5c"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:15:11Z",
+          "updatedAt": "2025-03-26T15:15:12Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\nIn this, extensions are listed in a leaf named \"extensions\".\r\n```",
+              "createdAt": "2025-03-26T15:15:12Z",
+              "updatedAt": "2025-03-26T15:15:12Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h--Yq",
+          "commit": {
+            "abbreviatedOid": "125e11c"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:15:56Z",
+          "updatedAt": "2025-03-26T15:15:56Z",
+          "comments": [
+            {
+              "originalPosition": 24,
+              "body": "```suggestion\r\nTo facilitate interoperability, {{vcj}} the media type \"application/voucher-cms+json\" and the filename extension \".vcj\" were registered by {{RFC8366}}.\r\n```",
+              "createdAt": "2025-03-26T15:15:56Z",
+              "updatedAt": "2025-03-26T15:15:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h-_BO",
+          "commit": {
+            "abbreviatedOid": "3400964"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-26T15:16:40Z",
+          "updatedAt": "2025-03-26T15:16:41Z",
+          "comments": [
+            {
+              "originalPosition": 42,
+              "body": "was resolved in a later commit.",
+              "createdAt": "2025-03-26T15:16:40Z",
+              "updatedAt": "2025-03-26T15:16:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBBihcM6h_A75",
+          "commit": {
+            "abbreviatedOid": "c5e7683"
+          },
+          "author": "EskoDijk",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "I fixed some minor typos in commits. Suggesting to include this in the next revision; and then we / WG can review in more detail in the updated revision.",
+          "createdAt": "2025-03-26T15:19:00Z",
+          "updatedAt": "2025-03-26T15:19:00Z",
           "comments": []
         }
       ]
