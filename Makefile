@@ -39,21 +39,22 @@ draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
 
 yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	# make sure we are running a new enough pyang
-	pyang --help | grep sid-finalize
+	${PYANG} --help | grep sid-finalize
+	which ${PYANG}
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
 yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && pyang ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
 
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	# make sure we are running a new enough pyang
-	pyang --help | grep sid-finalize
+	${PYANG} --help | grep sid-finalize
 	mkdir -p yang
-	pyang ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
+	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
 
 yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70 yang/ietf-voucher-request@${YANGDATE}.yang > yang/ietf-voucher-request-tree-latest.txt
