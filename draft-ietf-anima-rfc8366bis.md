@@ -61,7 +61,7 @@ normative:
   RFC6020:
   RFC8259:
   RFC7950:
-  I-D.ietf-core-sid:
+  CORESID: RFC9595
   RFC9148:
   cBRSKI: I-D.ietf-anima-constrained-voucher
   jBRSKI: I-D.ietf-anima-jws-voucher
@@ -292,7 +292,7 @@ Assertion Basis:
   the imprint (this is distinct from the voucher signature that
   protects the voucher itself). This includes
   manufacturer-asserted ownership verification, assured
-  logging operations, or reliance on Pledge endpoint behavior
+  logging operations, or reliance on Pledge behavior
   such as secure root of trust
   of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
@@ -314,7 +314,7 @@ Anti-Replay Protections:
 A number of onboarding scenarios can be met using differing
 combinations of this information. All scenarios address the primary
 threat of an on-path active attacker (or MiTM) impersonating the registrar.
-This would gain control over the Pledge device.
+This would gain control over the Pledge.
 The following combinations are "types" of vouchers:
 
 |            | Assertion || Registrar ID || Validity |
@@ -573,7 +573,7 @@ using the 'verified' assertion type, which should satisfy all Pledges.
 ## ietf-voucher SID values {#ietf-voucher-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+While {{CORESID}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
 It is believed, however, that they will not change.
 
 ~~~~
@@ -626,7 +626,7 @@ The ietf-voucher-request YANG module is derived from the ietf-voucher module.
 ## ietf-voucher-request SID values {#voucher-request-sid-values}
 
 {{RFC9148}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-While {{I-D.ietf-core-sid}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
+While {{CORESID}} defines the management process for these values, due to the immaturity  of the tooling around this YANG-SID mechanisms, the following values are considered normative.
 It is believed, however, that they will not change.
 
 ~~~~

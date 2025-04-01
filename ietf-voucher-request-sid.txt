@@ -8,7 +8,7 @@
      2505 data /ietf-voucher-request:voucher/voucher/expires-on
      2506 data .../idevid-issuer
      2507 data .../last-renewal-date
-     2508 data /ietf-voucher-request:voucher/voucher/nonce
+     2508 data /ietf-voucher-request:voucher/nonce
      2509 data .../pinned-domain-cert
      2510 data .../prior-signed-voucher-request
      2511 data .../proximity-registrar-cert
@@ -23,7 +23,5 @@
      2520 data .../additional-configuration-url
      2521 data /ietf-voucher-request:voucher/est-domain
      2522 data /ietf-voucher-request:voucher/expires-on
-     2523 data /ietf-voucher-request:voucher/nonce
            
  WARNING, obsolete definitions
-           

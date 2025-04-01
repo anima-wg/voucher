@@ -50,7 +50,7 @@
     },
     {
       "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/voucher/nonce",
+      "identifier": "/ietf-voucher-request:voucher/nonce",
       "sid": 2508
     },
     {
@@ -125,12 +125,6 @@
       "identifier": "/ietf-voucher-request:voucher/expires-on",
       "status": "unstable",
       "sid": 2522
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher-request:voucher/nonce",
-      "status": "unstable",
-      "sid": 2523
     }
   ]
 }
