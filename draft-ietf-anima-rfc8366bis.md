@@ -334,14 +334,17 @@ Audit Voucher:
   malicious registrar does not appear in the log entries.
   This does not
   directly prevent a malicious registrar but provides a response mechanism that
-  ensures the MiTM is unsuccessful. The advantage is that actual
-  ownership knowledge is not required on the MASA service.
+  ensures the on-path-attack is unsuccessful.
+  An advantage is that actual ownership knowledge (i.e., sales integration providing an indication of who purchased the device) is not required on the MASA service.
 
 Nonceless Audit Voucher:
 : An Audit Voucher without a validity period statement. Fundamentally,
   it is the same as an Audit Voucher except that it can be issued in
   advance to support network partitions or to provide a permanent
   voucher for remote deployments.
+  Being issued in advance of the Pledge being online, the Pledge can not provide a nonce to be included for freshness.
+  This compromise in reducing the freshness allows for the resulting voucher can be carried across air-gapped infrastructure.
+  In addition, as there is no end to the validity period, the voucher can be used after the manufacturer (and it's delegates) has gone out of business.
 
 Ownership Audit Voucher:
 : An Audit Voucher where the MASA service has verified the registrar
