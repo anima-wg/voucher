@@ -284,7 +284,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            over time.";
       }
 
-      // from BRSKI-CLOUD
       leaf est-domain {
         type ietf:uri;
         description
