@@ -1,6 +1,6 @@
 # A Voucher Artifact for Bootstrapping Protocols
 
-This is the working area for the IETF [ANIMA Working Group](https://datatracker.ietf.org/wg/anima/documents/) Internet-Draft, "A Voucher Artifact for Bootstrapping Protocols".
+This is the working area for the IETF [ANIMA Working Group](https://datatracker.ietf.org/group/anima/documents/) Internet-Draft, "A Voucher Artifact for Bootstrapping Protocols".
 
 * [Editor's Copy](https://anima-wg.github.io/voucher/#go.draft-ietf-anima-rfc8366bis.html)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-anima-rfc8366bis)

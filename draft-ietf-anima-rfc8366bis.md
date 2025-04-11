@@ -295,7 +295,7 @@ Assertion Basis:
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge behavior
   such as secure root of trust
-  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge intot he network.
+  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
 
@@ -436,7 +436,7 @@ The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
 Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
 
-To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj". were registered by {{RFC8366}}.
+To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
 
 The CMS structure MUST contain a 'signerInfo' structure, as
 described in Section 5.1 of {{RFC5652}}, containing the
@@ -612,7 +612,7 @@ Where the process has become complex is when making standard extensions, as has 
 The processes which were anticipated to be useful, (the "augment" mechanism) turned out not to be the case, see {{extendfail}}.
 
 Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
-In this, extensions are listed in a leaf named "extensions"
+In this, extensions are listed in a leaf named "extensions".
 In JSON serialization, these extensions require a unique name, and this MUST be allocated by IANA.
 The name MUST be the same as the YANG module name.
 The "extensions" list attribute definied in this model allows for new standard extensions to be defined.

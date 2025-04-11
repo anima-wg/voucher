@@ -86,8 +86,9 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
 
       leaf-list extensions {
-         type string {
-           length "1..40";
+         type union {
+            type uint64;   // when serialized to CBOR with SID
+            type string;    // when serialized to CBOR or JSON
          }
          description
            "A list of extension names that are used in this Voucher
