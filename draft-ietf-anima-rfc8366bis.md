@@ -439,12 +439,17 @@ The CMS signing mechanism first defined in {{RFC8366}} continues to be defined h
 
 The IETF evolution of PKCS#7 is CMS {{RFC5652}}.
 A CMS-signed voucher, the default type, contains a ContentInfo
-structure with the voucher content. An eContentType of 40
-indicates that the content is a JSON-encoded voucher.
+structure with the voucher content.
+An OID for JSON-encoded voucher is allocated in {{iana-contenttype}}, and
+it is to be placed in the eContentType field in the ContentInfo.
 
 The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
 Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
+
+{{RFC5652}} mandates that SignedAttributes MUST be present when the content type is not id-data.
+This mitigates attacks on CMS as described in {{?I-D.vangeest-lamps-cms-euf-cma-signeddata}}.
+Decoders MUST verify that SignedAttributes are present.
 
 To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
 
@@ -872,7 +877,7 @@ This reference should be updated to point to this document.
 
 IANA has registered the media type: application/voucher-cms+json, and this registration should be updated to point to this document.
 
-## The SMI Security for S/MIME CMS Content Type Registry
+## The SMI Security for S/MIME CMS Content Type Registry {#iana-contenttype}
 
 IANA has registered the OID 1.2.840.113549.1.9.16.1.40, id-ct-animaJSONVoucher.
 This registration should be updated to point to this document.
