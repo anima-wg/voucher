@@ -215,7 +215,7 @@ Join Registrar (and Coordinator):
 : A representative of the domain that is configured, perhaps
   autonomically, to decide whether a new device is allowed to join the
   domain. The administrator of the domain interfaces with a join
-  registrar (and coordinator) to control this process.
+  registrar (and Coordinator) to control this process.
   Typically, a join registrar is "inside" its domain. For simplicity,
   this document often refers to this as just "registrar".
 
