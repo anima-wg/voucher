@@ -251,7 +251,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
       leaf last-renewal-date {
         type yang:date-and-time;
-        must '../expires-on';
+        must '../nonceless/expires-on';
         description
             "The date that the MASA projects to be the last date it
              will renew a voucher on. This field is merely
@@ -262,7 +262,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            a vendor may associate validity periods with support
            contracts, which may be terminated or extended
            over time.";
-        }
       }
       choice nonceless {
         description "Either a nonce must be present, or an expires-on header";
@@ -321,6 +320,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              a VoIP phone to point to the correct hosted
              PBX, for example.";
       }
+    }
   }
 
   // Top-level statement
