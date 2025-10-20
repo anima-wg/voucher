@@ -303,8 +303,8 @@ Assertion Basis:
   protects the voucher itself). Methods include
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge behavior
-  such as secure root of trust
-  of measurement. The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
+  such as secure or measured boot.
+  The join registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
 
@@ -356,7 +356,7 @@ Audit Voucher:
   An advantage is that actual ownership knowledge (i.e., sales integration providing an indication of who purchased the device) is not required on the MASA service.
 
 Nonceless Audit Voucher:
-: An Audit Voucher without a validity period statement. Fundamentally,
+: An Audit Voucher with a validity period statement, but no guarantee of freshness. Fundamentally,
   it is the same as an Audit Voucher except that it can be issued in
   advance to support network partitions or to provide a permanent
   voucher for remote deployments.
@@ -459,7 +459,6 @@ signature generated over the content using a private key
 trusted by the recipient.
 Normally, the recipient is the Pledge and the signer is the MASA.
 In the Voucher Request, the signer is the Pledge, or the Registrar.
-Within this document, the signer is assumed to be the MASA.
 
 Note that Section 5.1 of {{RFC5652}} includes a
 discussion about how to validate a CMS object, which is really a
@@ -631,7 +630,7 @@ The processes which were anticipated to be useful, (the "augment" mechanism) tur
 Instead, a process similiar to what was done by {{?RFC8520}} has been adopted.
 In this, extensions are listed in a leaf named "extensions".
 In JSON serialization, these extensions require a unique name, and this MUST be allocated by IANA.
-The name MUST be the same as the YANG module name.
+The name MUST be the same as the YANG extension module name.
 The "extensions" list attribute definied in this model allows for new standard extensions to be defined.
 Items within that list are strings (in JSON serialization), or integers (in CBOR serialization), as defined by the Voucher Extension Registry.
 

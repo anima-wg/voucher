@@ -74,7 +74,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
     container voucher {
       description
         "A voucher assigns a pledge to an owner using
-         the (pinned-domain-cert) value.";
+         one of the (pinned-domain-*) value.";
 
       leaf created-on {
         type yang:date-and-time;
@@ -179,9 +179,8 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            otherwise unique within the scope of the MASA.";
       }
       choice pinning {
-        description "One of these attributes is used by the pledge to
-                     specify the registrar, and how the pledge would like
-                     the registrar's identity to be pinned";
+        description "One of these attributes is used by the
+                     MASA to pin the registrar identity";
         leaf pinned-domain-cert {
           type binary;
           description

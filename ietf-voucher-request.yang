@@ -84,10 +84,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       "Grouping to allow reuse/extensions in future work.";
 
     uses vch:voucher-artifact-grouping {
-      refine "voucher/created-on" {
-        mandatory false;
-      }
-
       refine "voucher/last-renewal-date" {
         description "A last-renewal-date field
                      is not valid in a voucher request, and
@@ -101,7 +97,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
 
       refine "voucher/assertion" {
-        mandatory false;
         description "Any assertion included in registrar voucher
               requests SHOULD be ignored by the MASA.";
       }
@@ -114,7 +109,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
           type binary;
           description
            "If it is necessary to change a voucher, or re-sign and
-            forward a voucher that was previously provided along a
+            forward a voucher request that was previously provided along a
             protocol path, then the previously signed voucher SHOULD
             be included in this field.
 
@@ -127,17 +122,16 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
 
             The Registrar and MASA MAY examine the prior signed
             voucher information for the
-            purposes of policy decisions. For example this
-            information could be useful to a MASA to determine
-            that both pledge and registrar agree on proximity
-            assertions. The MASA SHOULD remove all
+            purposes of policy decisions. The MASA SHOULD remove all
             prior-signed-voucher-request information when
             signing a voucher for imprinting so as to minimize
             the final voucher size.";
         }
 
         choice registrar-identity {
-          description "One of these three attributes will be used to pin the registrar identity";
+          description "One of these attributes will be used by a
+                       Pledge to specify the proximity to, and the
+                       identity of, a Registrar it is communicating with"
           leaf proximity-registrar-cert {
             type binary;
             description
