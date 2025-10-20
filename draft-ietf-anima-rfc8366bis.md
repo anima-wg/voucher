@@ -63,7 +63,6 @@ normative:
   RFC6020:
   RFC7950:
   RFC8259:
-  RFC8791:
   RFC9148:
   RFC9254:
   CBOR: STD94
@@ -153,7 +152,7 @@ Signing Authority (MASA).  This artifact is known as the "voucher".
 The voucher artifact is a JSON {{RFC8259}} document that
 conforms with a data model described by YANG {{RFC7950}}.
 It may also be serialized to CBOR {{CBOR}}.
-It is encoded using the rules defined in {{!RFC7951}} or {{!RFC9254}}, and
+It is encoded using the rules defined in {{!RFC7951}} or {{RFC9254}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
 The primary purpose of a voucher is to securely convey a trust anchor
@@ -394,7 +393,7 @@ Bearer Voucher:
 
 ## Attempts and motivation to extend RFC8366 {#extendfail}
 
-{{?RFC8366}} was published in 2018 during the development of {{BRSKI}},
+{{RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{ZERO-TOUCH}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _onboarding_ rather than _bootstrapping_.
 
@@ -410,7 +409,7 @@ This mechanism uses a mobile Registrar Agent that works to collect and transfer 
 Both {{cBRSKI}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher. The new attribtes are required to carry the additional attributes and describe the extended semantics.
 In addition {{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
 
-When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{?RFC8040}} _augment_ mechanism to further extend both the voucher request {{BRSKI}} and voucher {{RFC8366}} artifacts.
+When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC8040}} _augment_ mechanism to further extend both the voucher request {{BRSKI}} and voucher {{RFC8366}} artifacts.
 However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
 
 An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} voucher artifact.
@@ -428,10 +427,10 @@ The difficulty with this approach is that the semantics of the definitions neede
 
 Three signature systems have been defined for vouchers and voucher-requests.
 
-{{!cBRSKI}} defines a mechanism that uses COSE {{RFC9052}}, with the voucher data encoded using {{?RFC9254}}.
+{{cBRSKI}} defines a mechanism that uses COSE {{RFC9052}}, with the voucher data encoded using {{RFC9254}}.
 However, as the SID process requires up-to-date YANG, the SID values for this mechanism are presented in this document.
 
-{{!jBRSKI}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
+{{jBRSKI}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
 
 The CMS signing mechanism first defined in {{RFC8366}} continues to be defined here.
 
@@ -656,7 +655,7 @@ In JSON serialization, delta-encoding does not get in the way, and the manufactu
 
 # Voucher Request Artifact {#voucher-request}
 
-{{BRSKI, Section 3}} defined a Voucher-Request Artifact as an augmented artifact from the Voucher Artifact originally defined in {{?RFC8366}}.
+{{BRSKI, Section 3}} defined a Voucher-Request Artifact as an augmented artifact from the Voucher Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from YANG-DATA {{RFC8040}} to the SX:STRUCTURE extension {{RFC8791}}.
 
 ## Tree Diagram {#voucher-request-tree-diagram}
@@ -912,7 +911,7 @@ However, as registration is optional, the Designated Expert should not block any
 
 ## Key pairs associated with examples
 
-The following voucher request has been produced using the IDevID {{IDevID}} public (certificate) and private key.
+The following voucher request has been produced using the IDevID {{IDEVID}} public (certificate) and private key.
 They are included so that other developers can match the same output.
 
 The private RSA key:
