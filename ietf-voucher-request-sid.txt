@@ -25,4 +25,3 @@
      2522 data /ietf-voucher-request:voucher/expires-on
      2523 data /ietf-voucher-request:voucher/voucher/extensions
            
- WARNING, obsolete definitions
