@@ -24,4 +24,5 @@
      2521 data /ietf-voucher-request:voucher/est-domain
      2522 data /ietf-voucher-request:voucher/expires-on
      2523 data /ietf-voucher-request:voucher/voucher/extensions
+     2524 data .../manufacturer-private
            

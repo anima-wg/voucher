@@ -1,4 +1,3 @@
-           
       SID Assigned to
 --------- -------------------------------------------------- 
      2451 data /ietf-voucher:voucher/voucher
@@ -15,8 +14,6 @@
      2462 data /ietf-voucher:voucher/voucher/serial-number
      2463 data .../additional-configuration-url
      2464 data /ietf-voucher:voucher/voucher/est-domain
-     2465 data .../additional-configuration-url
-     2466 data /ietf-voucher:voucher/est-domain
-     2467 data /ietf-voucher:voucher/expires-on
-     2468 data /ietf-voucher:voucher/voucher/extensions
+     2465 data .../manufacturer-private
+     2466 data /ietf-voucher:voucher/voucher/extensions
            
