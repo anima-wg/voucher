@@ -11,6 +11,7 @@ while(<ARGV>) {
     next if(/^Number/);
     next if(/^No .sid file/);
     next if(/module/);
+    next if(/WARNING/);
 
     ($sid, $type, $object) = split;
 

@@ -54,7 +54,7 @@ yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang
 	# make sure we are running a new enough pyang
 	${PYANG} --help | grep sid-finalize
 	mkdir -p yang
-	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang > yang/ietf-voucher-tree-latest.txt
+	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70  yang/ietf-voucher@${YANGDATE}.yang >yang/ietf-voucher-tree-latest.txt
 
 yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}.yang
 	${PYANG} ${PYANGPATH} -f tree --tree-print-structures --tree-line-length=70 yang/ietf-voucher-request@${YANGDATE}.yang > yang/ietf-voucher-request-tree-latest.txt

@@ -99,6 +99,7 @@ informative:
   RFC8040:
   RFC8340:
   RFC8366:
+  RFC8792:
   COSE: STD96
   JWS: RFC7515
   SECUREJOIN: I-D.ietf-6tisch-dtsecurity-zerotouch-join
