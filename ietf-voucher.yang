@@ -251,7 +251,8 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
       }
       leaf last-renewal-date {
         type yang:date-and-time;
-        must '../nonceless/expires-on';
+        // this does not work, the XPath does not evaluate
+        // must '../nonceless/expires-on';
         description
             "The date that the MASA projects to be the last date it
              will renew a voucher on. This field is merely
