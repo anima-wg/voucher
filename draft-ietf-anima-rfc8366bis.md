@@ -28,7 +28,9 @@ author:
 - ins: M. Richardson
   name: Michael C. Richardson
   org: Sandelman Software
-  email: mcr+ietf@sandelman.ca
+  email:
+  - mcr+ietf@sandelman.ca
+  - https://orcid.org/0000-0002-0773-8388
   uri: http://www.sandelman.ca/
 - ins: M. Pritikin
   name: Max Pritikin
@@ -82,7 +84,13 @@ normative:
   BRSKI: RFC8995
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
-
+  IDEVID:
+    target: https://1.ieee802.org/security/802-1ar/
+    title: IEEE 802.1AR Secure Device Identifier
+    author:
+    - org: IEEE Standard
+    date: 2018
+  RFC8791:
 informative:
   RFC3688:
   RFC5246:
@@ -904,7 +912,7 @@ However, as registration is optional, the Designated Expert should not block any
 
 ## Key pairs associated with examples
 
-The following voucher request has been produced using the IDevID public (certificate) and private key.
+The following voucher request has been produced using the IDevID {{IDevID}} public (certificate) and private key.
 They are included so that other developers can match the same output.
 
 The private RSA key:
