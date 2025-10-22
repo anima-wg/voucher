@@ -131,7 +131,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
         choice registrar-identity {
           description "One of these attributes will be used by a
                        Pledge to specify the proximity to, and the
-                       identity of, a Registrar it is communicating with"
+                       identity of, a Registrar it is communicating with.";
           leaf proximity-registrar-cert {
             type binary;
             description
