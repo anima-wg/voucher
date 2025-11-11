@@ -12,6 +12,8 @@ while(<ARGV>) {
     next if(/^No .sid file/);
     next if(/module/);
     next if(/WARNING/);
+    next if(/^$/);     # remove completely empty lines
+    next if(/^\s+$/);  # remove lines with only spaces
 
     ($sid, $type, $object) = split;
 
