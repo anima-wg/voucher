@@ -177,8 +177,8 @@ Since {{RFC8366}} was written, the pattern is to publish YANG modules as two doc
 This allows the YANG module to be updated without replacing all of the context.
 This document does not follow that pattern, but future updates may update only the YANG.
 
-This document also introduces an experimental mechanism to support future extensions without requiring the YANG module to be replaced.
-This includes both new IETF Standard mechanisms, as well as a facility for manufacturer private extensions.
+This document introduces a mechanism to support future extensions without requiring the YANG module to be replaced.
+This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer private extensions.
 
 The lifetimes of vouchers may vary.
 In some onboarding protocols, the vouchers may include a nonce restricting them to a single use,  whereas the vouchers in other onboarding protocols may have an
@@ -190,7 +190,8 @@ this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, {{BRSKI}} and {{cBRSKI}}.
 
 # Terminology
 
-This document uses the following terms:
+This document uses and defines the following terms.
+They are used in this document and related documents.
 
 (Voucher) Artifact:
 : Used throughout to represent the voucher as instantiated in the form
@@ -200,12 +201,14 @@ Bootstrapping:
 : The process where a Pledge obtains cryptographic key material to identify
    and trust future interactions within a specific domain network. Based on imprinted
    key material provided during the manufacturing process (see: Imprint).
+   This term was used in {{RFC8366}}, but has been supplanted by the term Onboarding.
 
 Domain:
 : The set of entities or infrastructure under common administrative
   control.
   The goal of the onboarding protocol is to enable a Pledge to
   join a domain and obtain domain specific security credentials.
+  This term is not related to the similiar DNS term.
 
 Imprint:
 : The process where a device obtains the cryptographic key material to
@@ -241,8 +244,9 @@ Malicious Registrar:
 Onboarding:
 : Onboarding describes the process to provide necessary operational data to a Pledge
   and to complete the process of bringing the Pledge into an operational state.
-  This data may be configuration data, or also application-specific cryptographic
+  This data may include configuration data, but specifically deals with application-specific cryptographic
   key material (application-specific security credentials).
+  Since {{RFC8366}}, this term has replaced the term Bootstrapping.
 
 Owner:
 : The entity that controls the private key of the trust anchor conveyed by the voucher.
@@ -255,7 +259,7 @@ Pledge:
   manufacturer.
 
 Registrar:
-: See join registrar.
+: See Join Registrar. This term is not related to term DNS Registrar {{?RFC9499}}.
 
 TOFU (Trust on First Use):
 : When a Pledge makes no security decisions but rather simply
@@ -295,7 +299,7 @@ domain. The specific information a voucher provides is influenced by the
 onboarding use case.
 
 The voucher can convey the following information to
-the join registrar and Pledge:
+the Join Registrar and Pledge:
 
 Assertion Basis:
 : Indicates the method that protects
@@ -375,7 +379,7 @@ Ownership Audit Voucher:
 Ownership ID Voucher:
 : Named after inclusion of the Pledge's CN-ID or DNS-ID within the
   voucher. The MASA service mitigates a MiTM registrar by identifying
-  the specific registrar (via WebPKI) authorized to own the Pledge.
+  the specific Registrar (via WebPKI) authorized to own the Pledge.
 
 Bearer Voucher:
 : A Bearer Voucher is named after the inclusion of a registrar ID
