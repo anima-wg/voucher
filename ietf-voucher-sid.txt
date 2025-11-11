@@ -8,12 +8,21 @@
      2456 data /ietf-voucher:voucher/voucher/idevid-issuer
      2457 data /ietf-voucher:voucher/voucher/last-renewal-date
      2458 data /ietf-voucher:voucher/nonce
-     2459 data /ietf-voucher:voucher/voucher/pinned-domain-cert
-     2460 data /ietf-voucher:voucher/voucher/pinned-domain-pubk
+     2459 data .../pinned-domain-cert
+     2460 data .../pinned-domain-pubk
      2461 data .../pinned-domain-pubk-sha256
      2462 data /ietf-voucher:voucher/voucher/serial-number
      2463 data .../additional-configuration-url
      2464 data /ietf-voucher:voucher/voucher/est-domain
      2465 data .../manufacturer-private
      2466 data /ietf-voucher:voucher/voucher/extensions
-           
+     2467 data /ietf-voucher:voucher
+     2468 data /ietf-voucher:voucher/voucher/nonceless
+     2469 data .../expires-on
+     2470 data .../expires-on
+     2471 data /ietf-voucher:voucher/voucher/nonceless/nonce
+     2472 data .../nonce
+     2473 data /ietf-voucher:voucher/voucher/pinning
+     2475 data .../pinned-domain-cert
+     2478 data .../pinned-domain-pubk-sha256
+     2479 data .../pinned-domain-pubk
