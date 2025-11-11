@@ -1,101 +1,179 @@
 {
-  "assignment-ranges": [
-    {
-      "entry-point": 2450,
-      "size": 50
-    }
-  ],
-  "module-name": "ietf-voucher",
-  "module-revision": "2023-01-10",
-  "items": [
-    {
-      "namespace": "module",
-      "identifier": "ietf-voucher",
-      "sid": 2450
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher",
-      "sid": 2451
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/assertion",
-      "sid": 2452
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/created-on",
-      "sid": 2453
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/domain-cert-revocation-checks",
-      "sid": 2454
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/expires-on",
-      "sid": 2455
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/idevid-issuer",
-      "sid": 2456
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/last-renewal-date",
-      "sid": 2457
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/nonce",
-      "sid": 2458
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-cert",
-      "sid": 2459
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk",
-      "sid": 2460
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk-sha256",
-      "sid": 2461
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/serial-number",
-      "sid": 2462
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/additional-configuration-url",
-      "status": "unstable",
-      "sid": 2463
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/est-domain",
-      "status": "unstable",
-      "sid": 2464
-    },
-    {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/manufacturer-private",
-      "status": "unstable",
-      "sid": 2465
-    },
-   {
-      "namespace": "data",
-      "identifier": "/ietf-voucher:voucher/voucher/extensions",
-      "status": "unstable",
-      "sid": 2466
-    }
-  ]
+  "ietf-sid-file:sid-file": {
+    "module-name": "ietf-voucher",
+    "module-revision": "2023-01-10",
+    "sid-file-version": 1,
+    "sid-file-status": "unpublished",
+    "dependency-revision": [
+      {
+        "module-name": "ietf-yang-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-inet-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      }
+    ],
+    "assignment-range": [
+      {
+        "entry-point": "2450",
+        "size": "50"
+      }
+    ],
+    "item": [
+      {
+        "namespace": "module",
+        "identifier": "ietf-voucher",
+        "sid": "2450"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher",
+        "sid": "2451"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/assertion",
+        "sid": "2452"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/created-on",
+        "sid": "2453"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/domain-cert-revocation-checks",
+        "sid": "2454"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/expires-on",
+        "sid": "2455"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/idevid-issuer",
+        "sid": "2456"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/last-renewal-date",
+        "sid": "2457"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/nonce",
+        "sid": "2458"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk",
+        "sid": "2460"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk-sha256",
+        "sid": "2461"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/serial-number",
+        "sid": "2462"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/additional-configuration-url",
+        "status": "unstable",
+        "sid": "2463"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/est-domain",
+        "status": "unstable",
+        "sid": "2464"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/manufacturer-private",
+        "status": "unstable",
+        "sid": "2465"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/extensions",
+        "status": "unstable",
+        "sid": "2466"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher",
+        "status": "unstable",
+        "sid": "2467"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless",
+        "status": "unstable",
+        "sid": "2468"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on",
+        "status": "unstable",
+        "sid": "2469"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on/expires-on",
+        "status": "unstable",
+        "sid": "2470"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless/nonce",
+        "status": "unstable",
+        "sid": "2471"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless/nonce/nonce",
+        "status": "unstable",
+        "sid": "2472"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning",
+        "status": "unstable",
+        "sid": "2473"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-cert",
+        "sid": "2459"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-cert/pinned-domain-cert",
+        "status": "unstable",
+        "sid": "2475"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk-sha256/pinned-domain-pubk-sha256",
+        "status": "unstable",
+        "sid": "2478"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk/pinned-domain-pubk",
+        "status": "unstable",
+        "sid": "2479"
+      }
+    ]
+  }
 }
