@@ -52,7 +52,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/expires-on",
+        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on/expires-on",
         "sid": "2455"
       },
       {
@@ -126,12 +126,6 @@
         "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on",
         "status": "unstable",
         "sid": "2469"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on/expires-on",
-        "status": "unstable",
-        "sid": "2470"
       },
       {
         "namespace": "data",
