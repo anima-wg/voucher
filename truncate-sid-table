@@ -17,11 +17,11 @@ while(<ARGV>) {
 
     ($sid, $type, $object) = split;
 
-    if(length($object) > 48) {
+    #if(length($object) > 48) {
         $object = substr($object, -48);
         # now actually align it on the /.
         $object =~ s,.*(/[^/]+),...\1,;
-    }
+    #}
 
     print sprintf("%9s %s %s\n", $sid, $type, $object);
 }

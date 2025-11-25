@@ -56,7 +56,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/expires-on",
+        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/expires-on/expires-on",
         "sid": "2505"
       },
       {
@@ -76,7 +76,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-cert",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-cert/pinned-domain-cert",
         "status": "unstable",
         "sid": "2509"
       },
@@ -98,8 +98,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk",
-        "sid": "2513"
+        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk/proximity-registrar-pubk",
+        "status": "unstable",
+        "sid": "2547"
       },
       {
         "namespace": "data",
@@ -108,8 +109,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/agent-provided-proximity-registrar-cert",
-        "sid": "2515"
+        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-cert/proximity-registrar-cert",
+        "status": "unstable",
+        "sid": "2543"
       },
       {
         "namespace": "data",
@@ -123,12 +125,12 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk/pinned-domain-pubk",
         "sid": "2518"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk-sha256",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk-sha256/pinned-domain-pubk-sha256",
         "status": "unstable",
         "sid": "2519"
       },
@@ -176,33 +178,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/expires-on/expires-on",
-        "status": "unstable",
-        "sid": "2531"
-      },
-      {
-        "namespace": "data",
         "identifier": "/ietf-voucher-request:voucher/voucher/pinning",
         "status": "unstable",
         "sid": "2534"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-cert/pinned-domain-cert",
-        "status": "unstable",
-        "sid": "2536"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk-sha256/pinned-domain-pubk-sha256",
-        "status": "unstable",
-        "sid": "2539"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk/pinned-domain-pubk",
-        "status": "unstable",
-        "sid": "2540"
       },
       {
         "namespace": "data",
@@ -212,28 +190,10 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-cert/proximity-registrar-cert",
-        "status": "unstable",
-        "sid": "2543"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk-sha256",
-        "status": "unstable",
-        "sid": "2545"
-      },
-      {
-        "namespace": "data",
         "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk-sha256/proximity-registrar-pubk-sha256",
         "status": "unstable",
         "sid": "2546"
       },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk/proximity-registrar-pubk",
-        "status": "unstable",
-        "sid": "2547"
-      }
     ]
   }
 }
