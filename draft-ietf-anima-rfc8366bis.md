@@ -316,8 +316,8 @@ Authentication of Join Registrar:
 : Indicates how the Pledge
   can authenticate the join registrar.  This document defines
   a mechanism to pin the domain certificate, or a raw public key.
-  Pinning a symmetric key, or "CN-ID" or "DNS-ID"
-  information (as defined in {{RFC6125}}) is left for future work.
+  Pinning a symmetric key, or "CN-ID" ({{?RFC6125}}) or "DNS-ID"
+  information (as defined in {{?RFC9125}}) is left for future work.
 
 Anti-Replay Protections:
 : Time- or nonce-based
