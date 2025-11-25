@@ -178,9 +178,9 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            field is populated for serial-numbers that are not
            otherwise unique within the scope of the MASA.";
       }
-      choice pinning {
-        description "One of these attributes is used by the
-                     MASA to pin the registrar identity";
+      // choice pinning {
+      //  description "One of these attributes is used by the
+      //               MASA to pin the registrar identity";
         leaf pinned-domain-cert {
           type binary;
           description
@@ -237,7 +237,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              specification which can define a new leaf for another
              hash type.";
         }
-      }
+      // }  choice pinning removed
 
       leaf domain-cert-revocation-checks {
         type boolean;
@@ -263,8 +263,8 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
            contracts, which may be terminated or extended
            over time.";
       }
-      choice nonceless {
-        description "Either a nonce must be present, or an expires-on header";
+      //choice nonceless {
+      //  description "Either a nonce must be present, or an expires-on header";
         leaf expires-on {
           type yang:date-and-time;
           description
@@ -296,7 +296,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              the values do not match, then the pledge MUST NOT process
              this voucher.";
         }
-      }
+      // } choice nonceless
 
       leaf est-domain {
         type ietf:uri;

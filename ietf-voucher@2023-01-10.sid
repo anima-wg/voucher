@@ -2,9 +2,45 @@
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher",
     "module-revision": "2023-01-10",
-    "sid-file-version": 1,
+    "sid-file-version": 4,
     "sid-file-status": "unpublished",
     "dependency-revision": [
+      {
+        "module-name": "ietf-yang-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-inet-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-yang-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-inet-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-yang-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-inet-types",
+        "module-revision": "2013-07-15"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
       {
         "module-name": "ietf-yang-types",
         "module-revision": "2013-07-15"
@@ -52,7 +88,8 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on/expires-on",
+        "identifier": "/ietf-voucher:voucher/voucher/expires-on",
+        "status": "unstable",
         "sid": "2455"
       },
       {
@@ -72,12 +109,20 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk",
+        "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-cert",
+        "status": "unstable",
+        "sid": "2459"
+      },
+      {
+        "namespace": "data",
+        "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk",
+        "status": "unstable",
         "sid": "2460"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk-sha256",
+        "identifier": "/ietf-voucher:voucher/voucher/pinned-domain-pubk-sha256",
+        "status": "unstable",
         "sid": "2461"
       },
       {
@@ -105,7 +150,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/extensions",
+        "identifier": "/ietf-voucher:voucher/voucher/nonce",
         "status": "unstable",
         "sid": "2466"
       },
@@ -117,56 +162,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless",
+        "identifier": "/ietf-voucher:voucher/voucher/extensions",
         "status": "unstable",
         "sid": "2468"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless/expires-on",
-        "status": "unstable",
-        "sid": "2469"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless/nonce",
-        "status": "unstable",
-        "sid": "2471"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/nonceless/nonce/nonce",
-        "status": "unstable",
-        "sid": "2472"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning",
-        "status": "unstable",
-        "sid": "2473"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-cert",
-        "sid": "2459"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-cert/pinned-domain-cert",
-        "status": "unstable",
-        "sid": "2475"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk-sha256/pinned-domain-pubk-sha256",
-        "status": "unstable",
-        "sid": "2478"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/voucher/pinning/pinned-domain-pubk/pinned-domain-pubk",
-        "status": "unstable",
-        "sid": "2479"
       }
     ]
   }

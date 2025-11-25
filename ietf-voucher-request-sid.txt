@@ -1,8 +1,8 @@
       SID Assigned to
 --------- -------------------------------------------------- 
-     2501 data /ietf-voucher-request:voucher
-     2502 data /ietf-voucher-request:voucher/voucher/assertion
-     2503 data /ietf-voucher-request:voucher/voucher/created-on
+     2501 data .../voucher
+     2502 data .../assertion
+     2503 data .../created-on
      2504 data .../domain-cert-revocation-checks
      2505 data .../expires-on
      2506 data .../idevid-issuer
@@ -11,7 +11,7 @@
      2509 data .../pinned-domain-cert
      2510 data .../prior-signed-voucher-request
      2511 data .../proximity-registrar-cert
-     2512 data .../proximity-registrar-pubk
+     2512 data .../proximity-registrar-pubk-sha256
      2513 data .../proximity-registrar-pubk
      2514 data .../serial-number
      2515 data .../agent-provided-proximity-registrar-cert
@@ -21,17 +21,6 @@
      2519 data .../pinned-domain-pubk-sha256
      2520 data .../additional-configuration-url
      2521 data .../est-domain
-     2522 data .../voucher
-     2523 data .../extensions
-     2524 data .../manufacturer-private
-     2525 data .../nonce
-     2529 data .../nonceless
-     2534 data .../pinning
-     2536 data .../pinned-domain-cert
-     2539 data .../pinned-domain-pubk-sha256
-     2540 data .../pinned-domain-pubk
-     2541 data .../registrar-identity
-     2543 data .../proximity-registrar-cert
-     2545 data .../proximity-registrar-pubk-sha256
-     2546 data .../proximity-registrar-pubk-sha256
-     2547 data .../proximity-registrar-pubk
+     2522 data .../extensions
+     2523 data .../manufacturer-private
+     2524 data .../ietf-voucher-request:voucher

@@ -2,9 +2,65 @@
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher-request",
     "module-revision": "2023-01-10",
-    "sid-file-version": 2,
+    "sid-file-version": 9,
     "sid-file-status": "unpublished",
     "dependency-revision": [
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
       {
         "module-name": "ietf-yang-structure-ext",
         "module-revision": "2020-06-17"
@@ -36,8 +92,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher",
-        "sid": "2501"
+        "identifier": "/ietf-voucher-request:voucher/voucher",
+        "sid": "2501",
+        "status": "unstable"
       },
       {
         "namespace": "data",
@@ -56,7 +113,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/expires-on/expires-on",
+        "identifier": "/ietf-voucher-request:voucher/voucher/expires-on",
         "sid": "2505"
       },
       {
@@ -71,12 +128,12 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/nonce/nonce",
+        "identifier": "/ietf-voucher-request:voucher/voucher/nonce",
         "sid": "2508"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-cert/pinned-domain-cert",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-cert",
         "status": "unstable",
         "sid": "2509"
       },
@@ -87,20 +144,20 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-cert",
+        "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-cert",
         "status": "unstable",
         "sid": "2511"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk",
+        "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk-sha256",
+        "status": "unstable",
         "sid": "2512"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk/proximity-registrar-pubk",
-        "status": "unstable",
-        "sid": "2547"
+        "identifier": "/ietf-voucher-request:voucher/voucher/proximity-registrar-pubk",
+        "sid": "2513"
       },
       {
         "namespace": "data",
@@ -109,9 +166,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-cert/proximity-registrar-cert",
+        "identifier": "/ietf-voucher-request:voucher/voucher/agent-provided-proximity-registrar-cert",
         "status": "unstable",
-        "sid": "2543"
+        "sid": "2515"
       },
       {
         "namespace": "data",
@@ -125,12 +182,13 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk/pinned-domain-pubk",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk",
+        "status": "unstable",
         "sid": "2518"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning/pinned-domain-pubk-sha256/pinned-domain-pubk-sha256",
+        "identifier": "/ietf-voucher-request:voucher/voucher/pinned-domain-pubk-sha256",
         "status": "unstable",
         "sid": "2519"
       },
@@ -148,52 +206,22 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher",
+        "identifier": "/ietf-voucher-request:voucher/voucher/extensions",
         "status": "unstable",
         "sid": "2522"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/extensions",
+        "identifier": "/ietf-voucher-request:voucher/voucher/manufacturer-private",
         "status": "unstable",
         "sid": "2523"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/manufacturer-private",
+        "identifier": "/ietf-voucher-request:voucher",
         "status": "unstable",
         "sid": "2524"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless/nonce",
-        "status": "unstable",
-        "sid": "2525"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/nonceless",
-        "status": "unstable",
-        "sid": "2529"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/pinning",
-        "status": "unstable",
-        "sid": "2534"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity",
-        "status": "unstable",
-        "sid": "2541"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher/voucher/registrar-identity/proximity-registrar-pubk-sha256/proximity-registrar-pubk-sha256",
-        "status": "unstable",
-        "sid": "2546"
-      },
+      }
     ]
   }
 }

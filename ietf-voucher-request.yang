@@ -128,10 +128,10 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
             the final voucher size.";
         }
 
-        choice registrar-identity {
-          description "One of these attributes will be used by a
-                       Pledge to specify the proximity to, and the
-                       identity of, a Registrar it is communicating with.";
+        // choice registrar-identity {
+        //  description "One of these attributes will be used by a
+        //               Pledge to specify the proximity to, and the
+        //               identity of, a Registrar it is communicating with.";
           leaf proximity-registrar-cert {
             type binary;
             description
@@ -183,7 +183,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              specification which may define a new leaf for another
              hash type.";
           }
-        }
+        // }  choice registrar identity
 
         leaf agent-signed-data {
           type binary;

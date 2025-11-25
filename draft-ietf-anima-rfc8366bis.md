@@ -584,16 +584,23 @@ using the 'verified' assertion type, which should satisfy all Pledges.
 
 ## YANG Module {#voucher-yang-module}
 
+During development of this merged YANG module, advice was given to better organize mutually exclusive attributes such as `pinned-domain-cert` vs `pinned-domain-pubk`, or `expires-on` vs `nonce`.
+Unfortunately, {{CORESID}} does not explain how and why choice statements are assigned SID values,
+and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
+As the simplest way forward, the choice mechanisms that was introduced has been commented out in the YANG, allowing the SID values to be generated.
+As a result, the SID values presented here, in sections {{voucher-sid-values}} and {{voucher-request-sid-values}} are to be considered normative, rather than relying exclusively on the
+sid file.
+The presented sid file is believed to be correct, but reprocessing of it could result in changes as the tooling is fixed.
+
 ~~~~ yang
 {::include-fold yang/ietf-voucher-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
 
 
-## ietf-voucher SID values {#ietf-voucher-sid-values}
+## ietf-voucher SID values {#voucher-sid-values}
 
 {{RFC9254}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-While {{CORESID}} defines the management process for these values, due to the immaturity of the tooling around this YANG-SID mechanism, the following values are considered normative.
 
 ~~~~
 {::include-fold ietf-voucher-sid.txt}
