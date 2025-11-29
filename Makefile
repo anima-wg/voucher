@@ -45,7 +45,7 @@ yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
-yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang
+yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang
 	mkdir -p yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang

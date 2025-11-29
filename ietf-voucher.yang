@@ -71,10 +71,6 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
   grouping voucher-artifact-grouping {
     description
       "Grouping to allow reuse/extensions in future work.";
-    container voucher {
-      description
-        "A voucher assigns a pledge to an owner using
-         one of the (pinned-domain-*) value.";
 
       leaf created-on {
         type yang:date-and-time;
@@ -320,8 +316,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
              a VoIP phone to point to the correct hosted
              PBX, for example.";
       }
-    }
-  }
+      }
 
   // Top-level statement
   sx:structure voucher {
