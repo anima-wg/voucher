@@ -14,10 +14,6 @@
         "module-revision": "2023-01-10"
       },
       {
-        "module-name": "ietf-yang-structure-ext",
-        "module-revision": "2020-06-17"
-      },
-      {
         "module-name": "ietf-voucher",
         "module-revision": "2023-01-10"
       }

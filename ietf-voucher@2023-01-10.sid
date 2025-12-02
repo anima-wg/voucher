@@ -16,54 +16,6 @@
       {
         "module-name": "ietf-yang-structure-ext",
         "module-revision": "2020-06-17"
-      },
-      {
-        "module-name": "ietf-yang-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-inet-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-yang-structure-ext",
-        "module-revision": "2020-06-17"
-      },
-      {
-        "module-name": "ietf-yang-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-inet-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-yang-structure-ext",
-        "module-revision": "2020-06-17"
-      },
-      {
-        "module-name": "ietf-yang-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-inet-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-yang-structure-ext",
-        "module-revision": "2020-06-17"
-      },
-      {
-        "module-name": "ietf-yang-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-inet-types",
-        "module-revision": "2013-07-15"
-      },
-      {
-        "module-name": "ietf-yang-structure-ext",
-        "module-revision": "2020-06-17"
       }
     ],
     "assignment-range": [
