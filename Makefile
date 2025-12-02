@@ -85,3 +85,6 @@ pyang-install:
 
 settings:
 	echo pyang: ${PYANG}
+
+redosid:
+	rm *-sid.txt && rm -rf yang && make
