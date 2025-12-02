@@ -87,4 +87,4 @@ settings:
 	echo pyang: ${PYANG}
 
 redosid:
-	rm *-sid.txt && rm -rf yang && make
+	rm *-sid.txt && make

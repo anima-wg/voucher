@@ -180,14 +180,14 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
     leaf agent-signed-data {
         type binary;
         description
-          "The agent-signed-data field contains a data artifact provided
-          by the Registrar-Agent to the Pledge for inclusion into the
-          voucher request.
+          "The agent-signed-data field contains a data artifact
+          provided by the Registrar-Agent to the Pledge for
+          inclusion into the voucher request.
 
           This artifact is signed by the Registrar-Agent and contains
           data, which can be verified by the pledge and the registrar.
-          This data contains the pledge's serial-number and a created-on
-          information of the agent-signed-data.
+          This data contains the pledge's serial-number and a
+          created-on information of the agent-signed-data.
 
           The format is intentionally defined as binary to allow
           the document using this leaf to determine the encoding.";
