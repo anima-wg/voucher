@@ -106,9 +106,9 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
         type binary;
         description
          "If it is necessary to change a voucher, or re-sign and
-          forward a voucher request that was previously provided along a
-          protocol path, then the previously signed voucher SHOULD
-          be included in this field.
+          forward a voucher request that was previously provided
+          along a protocol path, then the previously signed
+          voucher SHOULD be included in this field.
 
           For example, a pledge might sign a voucher request
           with a proximity-registrar-cert, and the registrar

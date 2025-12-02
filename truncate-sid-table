@@ -21,7 +21,6 @@ while(<ARGV>) {
     ($sid, $type, $object) = split;
 
     unless($first) {
-    print STDERR "FIRST: $first\n";
         $object = substr($object, -48);
         # now actually align it on the /.
         $object =~ s,.*(/[^/]+),...\1,;
