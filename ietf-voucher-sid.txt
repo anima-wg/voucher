@@ -15,6 +15,4 @@
      2463 data .../additional-configuration-url
      2464 data /ietf-voucher:voucher/est-domain
      2465 data /ietf-voucher:voucher/manufacturer-private
-     2466 data /ietf-voucher:voucher/nonce
-     2467 data /ietf-voucher:voucher
-     2468 data /ietf-voucher:voucher/extensions
+     2466 data /ietf-voucher:voucher/extensions

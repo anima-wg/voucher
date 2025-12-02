@@ -162,21 +162,9 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/nonce",
-        "status": "unstable",
-        "sid": "2466"
-      },
-      {
-        "namespace": "data",
-        "identifier": "/ietf-voucher:voucher",
-        "status": "unstable",
-        "sid": "2467"
-      },
-      {
-        "namespace": "data",
         "identifier": "/ietf-voucher:voucher/extensions",
         "status": "unstable",
-        "sid": "2468"
+        "sid": "2466"
       }
     ]
   }
