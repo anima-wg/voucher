@@ -61,7 +61,7 @@ yang/ietf-voucher-request-tree-latest.txt: yang/ietf-voucher-request@${YANGDATE}
 
 # Base SID value for voucher: 2450
 boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
-	${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2450:50 yang/ietf-voucher@${YANGDATE}.yang
+	${PYANG} ${PYANGPATH} --sid-list --sid-generate-file 2450:50 yang/ietf-voucher@${YANGDATE}.yang
 
 ${CWTSIDLIST1}: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
@@ -71,7 +71,7 @@ ${CWTSIDLIST1}: yang/ietf-voucher@${YANGDATE}.yang
 # Base SID value for voucher request: 2500
 boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
-	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --generate-sid-file 2500:50 ietf-voucher-request@${YANGDATE}.yang )
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-generate-file 2500:50 ietf-voucher-request@${YANGDATE}.yang )
 
 ${CWTSIDLIST2}: yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
