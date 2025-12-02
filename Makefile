@@ -83,4 +83,5 @@ ${CWTSIDLIST2}: yang/ietf-voucher-request@${YANGDATE}.yang
 pyang-install:
 	pip3 install pyang
 
-
+settings:
+	echo pyang: ${PYANG}
