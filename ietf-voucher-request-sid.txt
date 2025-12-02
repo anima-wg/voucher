@@ -1,6 +1,6 @@
       SID Assigned to
 --------- -------------------------------------------------- 
-     2501 data .../voucher
+     2501 data .../ietf-voucher-request:voucher
      2502 data .../assertion
      2503 data .../created-on
      2504 data .../domain-cert-revocation-checks
@@ -23,4 +23,3 @@
      2521 data .../est-domain
      2522 data .../extensions
      2523 data .../manufacturer-private
-     2524 data .../ietf-voucher-request:voucher

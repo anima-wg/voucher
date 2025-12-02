@@ -245,6 +245,7 @@ RFCEDITOR: please replace XXXX with the RFC number assigned.
   }
 
   // Top-level statement
+  // Called "voucher" to match RFC8995
   sx:structure voucher {
     uses voucher-request-grouping;
   }

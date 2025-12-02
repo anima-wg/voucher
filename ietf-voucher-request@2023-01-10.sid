@@ -2,9 +2,17 @@
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher-request",
     "module-revision": "2023-01-10",
-    "sid-file-version": 10,
+    "sid-file-version": 11,
     "sid-file-status": "unpublished",
     "dependency-revision": [
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2023-01-10"
+      },
       {
         "module-name": "ietf-yang-structure-ext",
         "module-revision": "2020-06-17"
@@ -28,7 +36,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher-request:voucher-request",
+        "identifier": "/ietf-voucher-request:voucher",
         "sid": "2501",
         "status": "unstable"
       },
