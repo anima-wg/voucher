@@ -1,25 +1,25 @@
       SID Assigned to
 --------- -------------------------------------------------- 
-     2501 data .../ietf-voucher-request:voucher
-     2502 data .../assertion
-     2503 data .../created-on
+     2501 data /ietf-voucher-request:voucher
+     2502 data /ietf-voucher-request:voucher/assertion
+     2503 data /ietf-voucher-request:voucher/created-on
      2504 data .../domain-cert-revocation-checks
-     2505 data .../expires-on
-     2506 data .../idevid-issuer
-     2507 data .../last-renewal-date
-     2508 data .../nonce
-     2509 data .../pinned-domain-cert
+     2505 data /ietf-voucher-request:voucher/expires-on
+     2506 data /ietf-voucher-request:voucher/idevid-issuer
+     2507 data /ietf-voucher-request:voucher/last-renewal-date
+     2508 data /ietf-voucher-request:voucher/nonce
+     2509 data /ietf-voucher-request:voucher/pinned-domain-cert
      2510 data .../prior-signed-voucher-request
      2511 data .../proximity-registrar-cert
      2512 data .../proximity-registrar-pubk-sha256
      2513 data .../proximity-registrar-pubk
-     2514 data .../serial-number
+     2514 data /ietf-voucher-request:voucher/serial-number
      2515 data .../agent-provided-proximity-registrar-cert
-     2516 data .../agent-sign-cert
-     2517 data .../agent-signed-data
-     2518 data .../pinned-domain-pubk
+     2516 data /ietf-voucher-request:voucher/agent-sign-cert
+     2517 data /ietf-voucher-request:voucher/agent-signed-data
+     2518 data /ietf-voucher-request:voucher/pinned-domain-pubk
      2519 data .../pinned-domain-pubk-sha256
      2520 data .../additional-configuration-url
-     2521 data .../est-domain
-     2522 data .../extensions
+     2521 data /ietf-voucher-request:voucher/est-domain
+     2522 data /ietf-voucher-request:voucher/extensions
      2523 data .../manufacturer-private

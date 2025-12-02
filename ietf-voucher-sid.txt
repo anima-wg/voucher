@@ -1,20 +1,20 @@
       SID Assigned to
 --------- -------------------------------------------------- 
-     2451 data .../ietf-voucher:voucher
-     2452 data .../assertion
-     2453 data .../created-on
+     2451 data /ietf-voucher:voucher
+     2452 data /ietf-voucher:voucher/assertion
+     2453 data /ietf-voucher:voucher/created-on
      2454 data .../domain-cert-revocation-checks
-     2455 data .../expires-on
-     2456 data .../idevid-issuer
-     2457 data .../last-renewal-date
-     2458 data .../nonce
-     2459 data .../pinned-domain-cert
-     2460 data .../pinned-domain-pubk
-     2461 data .../pinned-domain-pubk-sha256
-     2462 data .../serial-number
+     2455 data /ietf-voucher:voucher/expires-on
+     2456 data /ietf-voucher:voucher/idevid-issuer
+     2457 data /ietf-voucher:voucher/last-renewal-date
+     2458 data /ietf-voucher:voucher/nonce
+     2459 data /ietf-voucher:voucher/pinned-domain-cert
+     2460 data /ietf-voucher:voucher/pinned-domain-pubk
+     2461 data /ietf-voucher:voucher/pinned-domain-pubk-sha256
+     2462 data /ietf-voucher:voucher/serial-number
      2463 data .../additional-configuration-url
-     2464 data .../est-domain
-     2465 data .../manufacturer-private
-     2466 data .../nonce
-     2467 data .../ietf-voucher:voucher
-     2468 data .../extensions
+     2464 data /ietf-voucher:voucher/est-domain
+     2465 data /ietf-voucher:voucher/manufacturer-private
+     2466 data /ietf-voucher:voucher/nonce
+     2467 data /ietf-voucher:voucher
+     2468 data /ietf-voucher:voucher/extensions
