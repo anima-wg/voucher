@@ -24,6 +24,11 @@ jobs:
     - name: "Checkout"
       uses: actions/checkout@v4
 
+    - name: "Install Perl"
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y perl
+
     - name: "Setup"
       id: setup
       run: date -u "+date=%FT%T" >>"$GITHUB_OUTPUT"
