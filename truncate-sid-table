@@ -1,33 +1,51 @@
 #!/usr/bin/perl
+use strict;
+use warnings;
 
-# process the table SID output from pyang and make it fit into 70 columns.
-# do this by truncating the left-hand side of the third column, except for the module
-# name, which is the first entry.
-# first two columns are allocated 22 characters, so 70-22 = 48.
+# Process the table SID output from pyang.
+# 1. Shorten SID column to 4 chars.
+# 2. Abbreviate paths containing /ietf...:voucher/ to .../
 
-my $first = 1;
-
-while(<ARGV>) {
+while(<>) {
     chomp;
 
+    # Skip metadata lines
     next if(/^File/);
     next if(/^Number/);
     next if(/^No .sid file/);
-    next if(/module/);
     next if(/WARNING/);
-    next if(/^$/);     # remove completely empty lines
-    next if(/^\s+$/);  # remove lines with only spaces
+    next if(/^\s*$/);  # Matches empty lines or lines with only whitespace
 
-    ($sid, $type, $object) = split;
-
-    unless($first) {
-        $object = substr($object, -48);
-        # now actually align it on the /.
-        $object =~ s,.*(/[^/]+),...\1,;
+    # 1. Handle Header Modification
+    if (/^SID/) {
+        # Print tighter header
+        print "SID  Assigned to\n";
+        next;
     }
 
-    print sprintf("%9s %6s %s\n", $sid, $type, $object);
-    $first = 0;
+    # 2. Handle Separator Modification
+    if (/^---/) {
+        # Print 4 dashes for SID, space, then the rest
+        print "---- --------------------------------------------------\n";
+        next;
+    }
+
+    # Split the line into 3 parts: SID, Type, and the Object/Path
+    my ($sid, $type, $object) = split(' ', $_, 3);
+
+    # Safety check if split didn't find enough columns
+    next unless defined $object;
+
+    # 3. Abbreviation Logic
+    # We match "/ietf", followed by characters until ":voucher", followed by a slash.
+    # This replaces "/ietf-voucher-request:voucher/" with ".../"
+    # Note: This logic inherently skips the "first" entry (the module) because it has no slashes.
+    # It also skips the root node (e.g. "...:voucher") because there is no trailing slash.
+    $object =~ s{^/ietf.*?:voucher/}{.../};
+
+    # 4. Output Formatting
+    # %-4s : Left-align SID in 4 spaces
+    # %-6s : Left-align Type (width of "module")
+    # %s   : The object path
+    printf("%-4s %-6s %s\n", $sid, $type, $object);
 }
-
-
