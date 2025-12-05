@@ -3,6 +3,7 @@ docname: draft-ietf-anima-rfc8366bis-latest
 stand_alone: true
 ipr: trust200902
 cat: std
+updates: 8366, 8995
 consensus: 'yes'
 pi:
   toc: 'yes'
@@ -91,6 +92,7 @@ normative:
     - org: IEEE Standard
     date: 2018
   RFC8791:
+
 informative:
   RFC3688:
   RFC5246:
