@@ -425,7 +425,7 @@ However, {{PRM}} needs to extend an enumerated type with additional values and _
 An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} Voucher Artifact.
 The result was invalid YANG, with multiple definitions of the core Attributes from the {{RFC8366}} Voucher Artifact.
 After some discussion, it was determined that the _augment_ mechanism did not work for this use case,
-nor did it work better when the {{RFC8040}} "yang-data" extension was replaced with the {{RFC8791}} structure mechanisms.
+nor did it work better when the {{RFC8040}} "yang-data" extension was replaced with the {{RFC8791}} "structure" extension.
 
 After significant discussion the decision was made to simply roll all of the needed extensions  into this document.
 
@@ -866,9 +866,9 @@ before the signing of Vouchers.
 ## YANG Module Security Considerations
 
 The YANG modules specified in this document define the schema
-for data that is subsequently encapsulated by secure signed-data structure,
+for data that is subsequently encapsulated by secure signed-data structures,
 such as the CMS signed-data described in {{cms-voucher}}.  As such,
-all of the YANG modeled data is protected from modification.
+all of the YANG-modeled data is protected from modification.
 
 Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
@@ -884,12 +884,12 @@ content type with an enveloped-data content type (Section 6
 of {{RFC5652}}), though details for how to do this are outside
 the scope of this document.
 
-The use of YANG to define data structures, via the "yang-data"
-statement, is relatively new and distinct from the traditional use of
+The use of YANG to define data structures, via the "sx:structure"
+extension {{RFC8791}}, is relatively new and distinct from the traditional use of
 YANG to define an API accessed by network management protocols such as
-NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, these
-guidelines do not follow the template described by Section 3.7 of
-{{YANG-GUIDE}}.
+NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, this
+security considerations section does not follow the template described
+by Section 3.7 of {{YANG-GUIDE}}.
 
 
 # IANA Considerations {#iana-considerations}
