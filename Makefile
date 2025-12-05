@@ -66,7 +66,7 @@ boot-sid1: yang/ietf-voucher@${YANGDATE}.yang
 ${CWTSIDLIST1}: yang/ietf-voucher@${YANGDATE}.yang
 	mkdir -p yang
 	ln -s -f ../${CWTSIDDATE1} yang/${CWTSIDDATE1}
-	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST1}
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang ) | perl ./truncate-sid-table >${CWTSIDLIST1}
 
 # Base SID value for voucher request: 2500
 boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
@@ -76,7 +76,7 @@ boot-sid2: yang/ietf-voucher-request@${YANGDATE}.yang
 ${CWTSIDLIST2}: yang/ietf-voucher-request@${YANGDATE}.yang
 	mkdir -p yang
 	ln -s -f ../${CWTSIDDATE2} yang/${CWTSIDDATE2}
-	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang ) | ./truncate-sid-table >${CWTSIDLIST2}
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang ) | perl ./truncate-sid-table >${CWTSIDLIST2}
 
 
 .PHONY: pyang-install
