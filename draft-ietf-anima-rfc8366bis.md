@@ -646,7 +646,7 @@ Any such changes will be recorded as errata on this document.
 ~~~~ yang
 {::include-fold yang/ietf-voucher-latest.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang”}
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2021-07-02.yang"}
 
 
 ## ietf-voucher SID values {#voucher-sid-values}
@@ -749,7 +749,7 @@ The '`ietf-voucher-request`' YANG module is derived from the '`ietf-voucher`' mo
 ~~~~ yang
 {::include-fold yang/ietf-voucher-request-latest.yang}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2023-01-10.yang”}
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2023-01-10.yang"}
 
 
 ## ietf-voucher-request SID values {#voucher-request-sid-values}
