@@ -107,9 +107,10 @@ module ietf-voucher {
       leaf manufacturer-private {
         type binary;
         description
-          "In CBOR serialization, this is a CBOR bstr containing any valid CBOR that
-           the manufacturer wishes to share with its pledge.  In JSON serializations,
-           this contains additional JSON instead, and it is base64URL encoded.";
+          "In CBOR serialization, this is a CBOR bstr containing any
+           valid CBOR that the manufacturer wishes to share with its
+           pledge.  In JSON serializations, this contains additional
+           JSON instead, and it is base64URL encoded.";
       }
 
       leaf assertion {
