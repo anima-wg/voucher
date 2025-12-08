@@ -271,7 +271,8 @@ module ietf-voucher {
            over time.";
       }
       //choice nonceless {
-      //  description "Either a nonce must be present, or an expires-on header";
+      //  description "Either a nonce must be present,
+      //               or an expires-on header";
         leaf expires-on {
           type yang:date-and-time;
           description
