@@ -108,6 +108,7 @@ informative:
   RFC8340:
   RFC8366:
   RFC8792:
+  RFC9525:
   COSE: STD96
   JWS: RFC7515
   SECUREJOIN: I-D.ietf-6tisch-dtsecurity-zerotouch-join
@@ -329,7 +330,7 @@ Authentication of Join Registrar:
   can authenticate the Join Registrar.  This document defines
   a mechanism to pin the Domain certificate, or a raw public key.
   Pinning a symmetric key, or CN-ID ({{RFC6125}}) or DNS-ID
-  information (as defined in {{?RFC9125}}) is left for future work.
+  information (as defined in {{?RFC9525}}) is left for future work.
 
 Anti-Replay Protections:
 : Time- or nonce-based
