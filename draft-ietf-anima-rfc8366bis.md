@@ -28,11 +28,16 @@ author:
   email: kent+ietf@watsen.net
 - ins: M. Richardson
   name: Michael C. Richardson
+  role: editor
   org: Sandelman Software
   email:
   - mcr+ietf@sandelman.ca
   - https://orcid.org/0000-0002-0773-8388
   uri: http://www.sandelman.ca/
+- ins: E. Dijk
+  name: Esko Dijk
+  org: IoTconsultancy.nl
+  email: esko.dijk@iotconsultancy.nl
 - ins: M. Pritikin
   name: Max Pritikin
   org: Cisco Systems
@@ -1102,8 +1107,8 @@ lively discussions on list and in the halls (ordered
 by last name):
 {{{William Atwood}}},
 {{{Michael H. Behringer}}},
-{{{Esko Dijk}}},
 {{{Steffen Fries}}},
 {{{Sheng Jiang}}},
 {{{Thomas Werner}}}.
 
+{{{Max Pritikin}}} and {{{Kent Watsen}}} were instrumental in creating the original {{RFC8366}}.
