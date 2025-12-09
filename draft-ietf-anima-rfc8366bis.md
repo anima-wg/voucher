@@ -70,7 +70,6 @@ normative:
   RFC6020:
   RFC7950:
   RFC8259:
-  RFC9148:
   RFC9254:
   CBOR: STD94
   CORESID: RFC9595
@@ -100,7 +99,7 @@ normative:
 
 informative:
   RFC3688:
-  RFC5246:
+  RFC8446:
   RFC6125:
   RFC6241:
   RFC7435:
@@ -330,7 +329,7 @@ Authentication of Join Registrar:
   can authenticate the Join Registrar.  This document defines
   a mechanism to pin the Domain certificate, or a raw public key.
   Pinning a symmetric key, or CN-ID ({{RFC6125}}) or DNS-ID
-  information (as defined in {{?RFC9525}}) is left for future work.
+  information (as defined in {{RFC9525}}) is left for future work.
 
 Anti-Replay Protections:
 : Time- or nonce-based
@@ -529,7 +528,7 @@ The media type is used by the Pledge (requesting to the Registrar) and by the Re
 Other aspects of the Voucher, such as it being nonceless or which kind of pinned anchor is used, are not part of the media type.
 
 Only the format of Voucher that is expected is signaled in the form of a (MIME) media
-type in the HTTP "Accept" header {{?RFC7231}}.
+type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
@@ -895,7 +894,7 @@ and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.  When privacy is important,
 the CMS signed-data content type SHOULD be encrypted, either by
 conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS {{RFC5246}}) or by encapsulating the signed-data
+(e.g., TLS {{RFC8446}}) or by encapsulating the signed-data
 content type with an enveloped-data content type (Section 6
 of {{RFC5652}}), though details for how to do this are outside
 the scope of this document.
