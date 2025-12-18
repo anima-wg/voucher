@@ -1,4 +1,4 @@
-YANGDATE=2023-01-10
+YANGDATE=2025-12-18
 CWTSIDDATE1=ietf-voucher@${YANGDATE}.sid
 CWTSIDLIST1=ietf-voucher-sid.txt
 CWTSIDDATE2=ietf-voucher-request@${YANGDATE}.sid
