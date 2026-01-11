@@ -1,51 +1,51 @@
-#!/usr/bin/perl
-use strict;
-use warnings;
+#!/usr/bin/ruby
 
-# Process the table SID output from pyang.
+# this translated from perl
+# Process the table SID output from pyang (
 # 1. Shorten SID column to 4 chars.
 # 2. Abbreviate paths containing /ietf...:voucher/ to .../
 
-while(<>) {
-    chomp;
+ARGF.each_line do |line|
+  line.chomp!;
 
-    # Skip metadata lines
-    next if(/^File/);
-    next if(/^Number/);
-    next if(/^No .sid file/);
-    next if(/WARNING/);
-    next if(/^\s*$/);  # Matches empty lines or lines with only whitespace
+  #print "Working on #{line}\n";
+  # Skip metadata lines
+  next if(/^File/ =~ line);
+  next if(/^Number/ =~ line);
+  next if(/^No .sid file/ =~ line);
+  next if(/WARNING/ =~ line);
+  next if(/^\s*$/ =~ line);  # Matches empty lines or lines with only whitespace
 
-    # 1. Handle Header Modification
-    if (/^SID/) {
-        # Print tighter header
-        print "SID  Assigned to\n";
-        next;
-    }
+  # 1. Handle Header Modification
+  if (/^SID/ =~ line)
+       # Print tighter header
+       print "SID  Assigned to\n";
+       next;
+  end
 
     # 2. Handle Separator Modification
-    if (/^---/) {
-        # Print 4 dashes for SID, space, then the rest
-        print "---- --------------------------------------------------\n";
-        next;
-    }
+  if (/^---/ =~ line)
+    # Print 4 dashes for SID, space, then the rest
+    print "---- --------------------------------------------------\n";
+    next;
+  end
 
-    # Split the line into 3 parts: SID, Type, and the Object/Path
-    my ($sid, $type, $object) = split(' ', $_, 3);
+  # Split the line into 3 parts: SID, Type, and the Object/Path
+  (sid, type, object) = line.split(' ', 3);
 
-    # Safety check if split didn't find enough columns
-    next unless defined $object;
+  # Safety check if split didn't find enough columns
+  next if object==nil;
 
-    # 3. Abbreviation Logic
-    # We match "/ietf", followed by characters until ":voucher", followed by a slash.
-    # This replaces "/ietf-voucher-request:voucher/" with ".../"
-    # Note: This logic inherently skips the "first" entry (the module) because it has no slashes.
-    # It also skips the root node (e.g. "...:voucher") because there is no trailing slash.
-    $object =~ s{^/ietf.*?:voucher/}{.../};
+  # 3. Abbreviation Logic
+  # We match "/ietf", followed by characters until ":voucher", followed by a slash.
+  # This replaces "/ietf-voucher-request:voucher/" with ".../"
+  # Note: This logic inherently skips the "first" entry (the module) because it has no slashes.
+  # It also skips the root node (e.g. "...:voucher") because there is no trailing slash.
+  object.gsub!('^/ietf.*?:voucher/','.../');
 
-    # 4. Output Formatting
-    # %-4s : Left-align SID in 4 spaces
-    # %-6s : Left-align Type (width of "module")
-    # %s   : The object path
-    printf("%-4s %-6s %s\n", $sid, $type, $object);
-}
+  # 4. Output Formatting
+  # %-4s : Left-align SID in 4 spaces
+  # %-6s : Left-align Type (width of "module")
+  # %s   : The object path
+  print "%-4s %-6s %s\n" % [sid, type, object];
+end
