@@ -1097,7 +1097,21 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
 ~~~~
 {: #ExampleVoucherJWSfigure title="Example JWS Voucher" artwork-align="left"}
 
+# SID Allocations
 
+## SID Allocations for Voucher
+
+~~~~ json
+{::include-fold ietf-voucher@2025-12-18.sid}
+~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2025-12-18.sid"}
+
+## SID Allocations for Voucher Request
+
+~~~~ json
+{::include-fold ietf-voucher-request@2025-12-18.sid}
+~~~~
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2025-12-18.sid"}
 
 # Acknowledgements
 {: numbered="no"}
