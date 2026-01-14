@@ -78,6 +78,9 @@ ${CWTSIDLIST2}: yang/ietf-voucher-request@${YANGDATE}.yang
 	ln -s -f ../${CWTSIDDATE2} yang/${CWTSIDDATE2}
 	(cd yang && ${PYANG} ${PYANGPATH} --sid-list --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang | tee voucher-request.sidlist) | ruby ./truncate-sid-table >${CWTSIDLIST2}
 
+finalize: yang/ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher@${YANGDATE}.yang
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-finalize --sid-update-file=../${CWTSIDDATE1} ietf-voucher@${YANGDATE}.yang )
+	(cd yang && ${PYANG} ${PYANGPATH} --sid-finalize --sid-update-file=../${CWTSIDDATE2} ietf-voucher-request@${YANGDATE}.yang )
 
 .PHONY: pyang-install
 pyang-install:
