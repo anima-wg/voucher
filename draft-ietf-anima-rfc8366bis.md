@@ -38,10 +38,6 @@ author:
   name: Esko Dijk
   org: IoTconsultancy.nl
   email: esko.dijk@iotconsultancy.nl
-- ins: M. Pritikin
-  name: Max Pritikin
-  org: Cisco Systems
-  email: pritikin@cisco.com
 - ins: T. Eckert
   name: Toerless Eckert
   org: Futurewei Technologies Inc.
