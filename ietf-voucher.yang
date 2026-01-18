@@ -172,12 +172,13 @@ module ietf-voucher {
         type binary;
         description
           "The Authority Key Identifier OCTET STRING (as defined in
-           Section 4.2.1.1 of RFC 5280) from the pledge's IDevID
-           certificate.  Optional since some serial-numbers are
-           already unique within the scope of a MASA.
-           Inclusion of the statistically unique key identifier
-           ensures statistically unique identification of the
-           hardware.
+          Section 4.2.1.1 of RFC 5280) from the pledge's IDevID
+           certificate.  In the voucher, it is optional
+           as some manufacturers know that all serial-numbers
+           are unique within the scope of a MASA.
+           In the voucher request, it is mandatory,
+           as the Registrar may not know if the serial-number is
+           unique within the manufacturer.
            When processing a voucher, a pledge MUST ensure that its
            IDevID Authority Key Identifier matches this value.  If no
            match occurs, then the pledge MUST NOT process this
