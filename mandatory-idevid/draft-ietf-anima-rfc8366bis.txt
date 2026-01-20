@@ -6,13 +6,13 @@ ANIMA Working Group                                            K. Watsen
 Internet-Draft                                           Watsen Networks
 Updates: 8366, 8995 (if approved)                     M. Richardson, Ed.
 Intended status: Standards Track                      Sandelman Software
-Expires: 22 July 2026                                            E. Dijk
+Expires: 24 July 2026                                            E. Dijk
                                                        IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                         18 January 2026
+                                                         20 January 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 July 2026.
+   This Internet-Draft will expire on 24 July 2026.
 
 Copyright Notice
 
@@ -720,6 +720,8 @@ Table of Contents
    document.
 
    <CODE BEGINS> file "ietf-voucher@2025-12-18.yang"
+   =============== NOTE: '\' line wrapping per RFC 8792 ================
+
    module ietf-voucher {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-voucher";
@@ -892,9 +894,10 @@ Table of Contents
             certificate.  In the voucher, it is optional
             as some manufacturers know that all serial-numbers
             are unique within the scope of a MASA.
-            In the voucher request, it is mandatory,
-            as the Registrar may not know if the serial-number is
-            unique within the manufacturer.
+            In the voucher request, whether it is mandatory or \
+                                                        optional depends
+            upon the which protocol is used, such as RFC8995 and \
+                                                             variations.
             When processing a voucher, a pledge MUST ensure that its
             IDevID Authority Key Identifier matches this value.  If no
             match occurs, then the pledge MUST NOT process this
