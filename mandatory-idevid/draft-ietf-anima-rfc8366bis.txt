@@ -1213,7 +1213,7 @@ Table of Contents
        +-- manufacturer-private?                      binary
        +-- assertion?                                 enumeration
        +-- serial-number                              string
-       +-- idevid-issuer                              binary
+       +-- idevid-issuer?                             binary
        +-- pinned-domain-cert?                        binary
        +-- pinned-domain-pubk?                        binary
        +-- pinned-domain-pubk-sha256?                 binary
@@ -1323,9 +1323,6 @@ Table of Contents
        description
          "Grouping to allow reuse/extensions in future work.";
        uses vch:voucher-artifact-grouping {
-         refine "idevid-issuer" {
-           mandatory true;
-         }
          refine "last-renewal-date" {
            description
              "A last-renewal-date field

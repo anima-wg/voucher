@@ -2480,7 +2480,7 @@ module: ietf-voucher-request
     +-- manufacturer-private?                      binary
     +-- assertion?                                 enumeration
     +-- serial-number                              string
-    +-- idevid-issuer                              binary
+    +-- idevid-issuer?                             binary
     +-- pinned-domain-cert?                        binary
     +-- pinned-domain-pubk?                        binary
     +-- pinned-domain-pubk-sha256?                 binary
@@ -2596,9 +2596,6 @@ module ietf-voucher-request {
     description
       "Grouping to allow reuse/extensions in future work.";
     uses vch:voucher-artifact-grouping {
-      refine "idevid-issuer" {
-        mandatory true;
-      }
       refine "last-renewal-date" {
         description
           "A last-renewal-date field
