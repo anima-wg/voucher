@@ -90,10 +90,6 @@ module ietf-voucher-request {
       "Grouping to allow reuse/extensions in future work.";
 
     uses vch:voucher-artifact-grouping {
-      refine "idevid-issuer" {
-        mandatory true;
-      }
-
       refine "last-renewal-date" {
         description "A last-renewal-date field
                      is not valid in a voucher request, and
