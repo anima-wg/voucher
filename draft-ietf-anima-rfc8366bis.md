@@ -432,13 +432,13 @@ nor did it work better when the {{RFC8040}} "yang-data" extension was replaced w
 
 After significant discussion the decision was made to simply roll all of the needed extensions  into this document.
 
-## Informational Model changes since RFC8995
+# Updates to RFC8995
 
 This document therefore represents a merge of YANG definitions from {{RFC8366}}, the Voucher Request from {{BRSKI}}, and extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.
 
-The voucher-request that was in {{BRSKI}} is now included in this document.
-There is a change to the voucher-request: the idevid-issuer MUST be included in the Registrar Voucher Request (RVR).  
+The voucher-request definition that was in {{BRSKI}} sections 3.2 (tree diagram) and 3.4  (YANG module) is now included in this document.
+There is a change to the voucher-request: the idevid-issuer MUST be included in the Registrar Voucher Request (RVR).
 Like the serial-number, the idevid-issuer is to be taken from client certificate.
 In some varations of BRSKI, such as {{PRM}} there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.
 
