@@ -92,6 +92,9 @@ normative:
     - org: IEEE Standard
     date: 2018
   RFC8791:
+  eid7263:
+    target: "https://www.rfc-editor.org/errata/eid7263"
+    title: "Errata 7263, RFC8995"
 
 informative:
   RFC3688:
@@ -442,6 +445,9 @@ There is a change to the voucher-request: the idevid-issuer MUST be included in 
 Like the serial-number, the idevid-issuer is to be taken from client certificate.
 In some varations of BRSKI, such as {{PRM}} there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.
 
+## Errata closed
+
+This above updates to {{BRSKI}} addresses errata {{eid7263}}.
 
 # Signature mechanisms
 
