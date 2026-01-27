@@ -440,7 +440,7 @@ The difficulty with this approach is that the semantics of the definitions neede
 The voucher-request that was in {{BRSKI}} is now included in this document.
 There is a change to the voucher-request: the idevid-issuer MUST be included in the Registrar Voucher Request (RVR).  
 Like the serial-number, the idevid-issuer is to be taken from client certificate.
-In some varations of BRSKI, such as {{PRM}} there is no direct connection between Pledge and Registrar, the Pledge certificate has been provided in an attribute like x5c.
+In some varations of BRSKI, such as {{PRM}} there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.
 
 
 # Signature mechanisms
