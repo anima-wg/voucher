@@ -37,7 +37,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.2.14
+    wcwidth 0.3.0
 -->
 <link href="draft-ietf-anima-rfc8366bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -578,6 +578,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -648,7 +649,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1060,7 +1061,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 24 July 2026</td>
+<td class="center">Expires 31 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1076,12 +1077,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc8366" class="eref">8366</a>, <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-20" class="published">20 January 2026</time>
+<time datetime="2026-01-27" class="published">27 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-24">24 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-31">31 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1156,7 +1157,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 31 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1203,148 +1204,148 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-attempts-and-motivation-to-" class="internal xref">Attempts and motivation to extend RFC8366</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-informational-model-changes" class="internal xref">Informational Model changes since RFC8366</a></p>
-</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-signature-mechanisms" class="internal xref">Signature mechanisms</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-cms-format-voucher-artifact" class="internal xref">CMS Format Voucher Artifact</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-updates-to-rfc8995" class="internal xref">Updates to RFC8995</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-voucher-artifact" class="internal xref">Voucher Artifact</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-signature-mechanisms" class="internal xref">Signature mechanisms</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-tree-diagram" class="internal xref">Tree Diagram</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-examples" class="internal xref">Examples</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-yang-module" class="internal xref">YANG Module</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
-                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="auto internal xref">7.4</a>.  <a href="#name-ietf-voucher-sid-values" class="internal xref">ietf-voucher SID values</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.5">
-                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="auto internal xref">7.5</a>.  <a href="#name-voucher-extensions" class="internal xref">Voucher Extensions</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.6">
-                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="auto internal xref">7.6</a>.  <a href="#name-manufacturer-private-extens" class="internal xref">Manufacturer Private Extensions</a></p>
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-cms-format-voucher-artifact" class="internal xref">CMS Format Voucher Artifact</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-voucher-request-artifact" class="internal xref">Voucher Request Artifact</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-voucher-artifact" class="internal xref">Voucher Artifact</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-tree-diagram-2" class="internal xref">Tree Diagram</a></p>
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-tree-diagram" class="internal xref">Tree Diagram</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-ietf-voucher-request-module" class="internal xref">"ietf-voucher-request" Module</a></p>
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-examples" class="internal xref">Examples</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-ietf-voucher-request-sid-va" class="internal xref">ietf-voucher-request SID values</a></p>
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="auto internal xref">8.3</a>.  <a href="#name-yang-module" class="internal xref">YANG Module</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#section-8.4" class="auto internal xref">8.4</a>.  <a href="#name-ietf-voucher-sid-values" class="internal xref">ietf-voucher SID values</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5">
+                <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="auto internal xref">8.5</a>.  <a href="#name-voucher-extensions" class="internal xref">Voucher Extensions</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-manufacturer-private-extens" class="internal xref">Manufacturer Private Extensions</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-design-considerations" class="internal xref">Design Considerations</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-voucher-request-artifact" class="internal xref">Voucher Request Artifact</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-renewals-instead-of-revocat" class="internal xref">Renewals Instead of Revocations</a></p>
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-tree-diagram-2" class="internal xref">Tree Diagram</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-voucher-per-pledge" class="internal xref">Voucher Per Pledge</a></p>
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-ietf-voucher-request-module" class="internal xref">"ietf-voucher-request" Module</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="auto internal xref">9.3</a>.  <a href="#name-ietf-voucher-request-sid-va" class="internal xref">ietf-voucher-request SID values</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-design-considerations" class="internal xref">Design Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
-                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-clock-sensitivity" class="internal xref">Clock Sensitivity</a></p>
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-renewals-instead-of-revocat" class="internal xref">Renewals Instead of Revocations</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
-                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-protect-masa-signing-key-in" class="internal xref">Protect MASA Signing Key in HSM</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
-                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-test-domain-certificate-val" class="internal xref">Test Domain Certificate Validity When Signing</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.4">
-                <p id="section-toc.1-1.10.2.4.1"><a href="#section-10.4" class="auto internal xref">10.4</a>.  <a href="#name-yang-module-security-consid" class="internal xref">YANG Module Security Considerations</a></p>
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-voucher-per-pledge" class="internal xref">Voucher Per Pledge</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-the-ietf-xml-registry" class="internal xref">The IETF XML Registry</a></p>
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-clock-sensitivity" class="internal xref">Clock Sensitivity</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-the-yang-module-names-regis" class="internal xref">The YANG Module Names Registry</a></p>
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-protect-masa-signing-key-in" class="internal xref">Protect MASA Signing Key in HSM</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.3">
-                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-the-media-types-registry" class="internal xref">The Media Types Registry</a></p>
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-test-domain-certificate-val" class="internal xref">Test Domain Certificate Validity When Signing</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4">
-                <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-the-smi-security-for-s-mime" class="internal xref">The SMI Security for S/MIME CMS Content Type Registry</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.5">
-                <p id="section-toc.1-1.11.2.5.1"><a href="#section-11.5" class="auto internal xref">11.5</a>.  <a href="#name-the-voucher-extensions-regi" class="internal xref">The Voucher Extensions Registry</a></p>
+                <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-yang-module-security-consid" class="internal xref">YANG Module Security Considerations</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-references" class="internal xref">References</a></p>
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="auto internal xref">12</a>. <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.1">
-                <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="auto internal xref">12.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+                <p id="section-toc.1-1.12.2.1.1"><a href="#section-12.1" class="auto internal xref">12.1</a>.  <a href="#name-the-ietf-xml-registry" class="internal xref">The IETF XML Registry</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.2">
-                <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="auto internal xref">12.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+                <p id="section-toc.1-1.12.2.2.1"><a href="#section-12.2" class="auto internal xref">12.2</a>.  <a href="#name-the-yang-module-names-regis" class="internal xref">The YANG Module Names Registry</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.3">
+                <p id="section-toc.1-1.12.2.3.1"><a href="#section-12.3" class="auto internal xref">12.3</a>.  <a href="#name-the-media-types-registry" class="internal xref">The Media Types Registry</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.4">
+                <p id="section-toc.1-1.12.2.4.1"><a href="#section-12.4" class="auto internal xref">12.4</a>.  <a href="#name-the-smi-security-for-s-mime" class="internal xref">The SMI Security for S/MIME CMS Content Type Registry</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12.2.5">
+                <p id="section-toc.1-1.12.2.5.1"><a href="#section-12.5" class="auto internal xref">12.5</a>.  <a href="#name-the-voucher-extensions-regi" class="internal xref">The Voucher Extensions Registry</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-examples-2" class="internal xref">Examples</a></p>
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="auto internal xref">13</a>. <a href="#name-references" class="internal xref">References</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.1">
-                <p id="section-toc.1-1.13.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-key-pairs-associated-with-e" class="internal xref">Key pairs associated with examples</a></p>
+                <p id="section-toc.1-1.13.2.1.1"><a href="#section-13.1" class="auto internal xref">13.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.2">
-                <p id="section-toc.1-1.13.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-example-cms-signed-voucher-" class="internal xref">Example CMS-signed Voucher Request</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.3">
-                <p id="section-toc.1-1.13.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-example-cms-signed-voucher-f" class="internal xref">Example CMS-signed Voucher from MASA</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13.2.4">
-                <p id="section-toc.1-1.13.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-example-jws-signed-voucher-" class="internal xref">Example JWS-signed Voucher from MASA</a></p>
+                <p id="section-toc.1-1.13.2.2.1"><a href="#section-13.2" class="auto internal xref">13.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-sid-allocations" class="internal xref">SID Allocations</a></p>
+            <p id="section-toc.1-1.14.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-examples-2" class="internal xref">Examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.1">
-                <p id="section-toc.1-1.14.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-sid-allocations-for-voucher" class="internal xref">SID Allocations for Voucher</a></p>
+                <p id="section-toc.1-1.14.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-key-pairs-associated-with-e" class="internal xref">Key pairs associated with examples</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.2">
-                <p id="section-toc.1-1.14.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-sid-allocations-for-voucher-" class="internal xref">SID Allocations for Voucher Request</a></p>
+                <p id="section-toc.1-1.14.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-example-cms-signed-voucher-" class="internal xref">Example CMS-signed Voucher Request</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.3">
+                <p id="section-toc.1-1.14.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-example-cms-signed-voucher-f" class="internal xref">Example CMS-signed Voucher from MASA</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14.2.4">
+                <p id="section-toc.1-1.14.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-example-jws-signed-voucher-" class="internal xref">Example JWS-signed Voucher from MASA</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
-            <p id="section-toc.1-1.15.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+            <p id="section-toc.1-1.15.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-sid-allocations" class="internal xref">SID Allocations</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.1">
+                <p id="section-toc.1-1.15.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-sid-allocations-for-voucher" class="internal xref">SID Allocations for Voucher</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.2">
+                <p id="section-toc.1-1.15.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-sid-allocations-for-voucher-" class="internal xref">SID Allocations for Voucher Request</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
-            <p id="section-toc.1-1.16.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.16.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgements" class="internal xref">Acknowledgements</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
+            <p id="section-toc.1-1.17.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1385,7 +1386,7 @@ This includes both a new IETF standard mechanism for extensions modeled after th
 <p id="section-1-9">The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
-In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 9.1</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
+In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">Some Onboarding protocols using the Voucher Artifact defined in
 this document include: <span>[<a href="#ZERO-TOUCH" class="cite xref">ZERO-TOUCH</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 </section>
@@ -1757,51 +1758,55 @@ nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8
 <p id="section-5.1-8">After significant discussion the decision was made to simply roll all of the needed extensions  into this document.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="informational-model-changes-since-rfc8366">
-<section id="section-5.2">
-        <h3 id="name-informational-model-changes">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-informational-model-changes" class="section-name selfRef">Informational Model changes since RFC8366</a>
-        </h3>
-<p id="section-5.2-1">This document therefore represents a merge of YANG definitions from <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, the Voucher Request from <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>, and extensions to each of these from <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>.
-The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="updates-to-rfc8995">
+<section id="section-6">
+      <h2 id="name-updates-to-rfc8995">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-updates-to-rfc8995" class="section-name selfRef">Updates to RFC8995</a>
+      </h2>
+<p id="section-6-1">This document therefore represents a merge of YANG definitions from <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, the Voucher Request from <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>, and extensions to each of these from <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>.
+The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">The voucher-request definition that was in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> sections 3.2 (tree diagram) and 3.4  (YANG module) is now included in this document.
+There is a change to the voucher-request: the idevid-issuer <span class="bcp14">MUST</span> be included in the Registrar Voucher Request (RVR).
+Like the serial-number, the idevid-issuer is to be taken from client certificate.
+In some varations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.<a href="#section-6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="signature-mechanisms">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-signature-mechanisms">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-signature-mechanisms" class="section-name selfRef">Signature mechanisms</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-signature-mechanisms" class="section-name selfRef">Signature mechanisms</a>
       </h2>
-<p id="section-6-1">Three signature systems have been defined for Vouchers Artifacts.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> defines a mechanism that uses COSE <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>, with the Voucher Data encoded using <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
-However, as the SID <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> allocation process requires up-to-date YANG, the SID values for this mechanism are presented in this document.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3"><span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>]</span> defines a mechanism that uses JSON <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> and <span>[<a href="#JWS" class="cite xref">JWS</a>]</span>.<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">The CMS signing mechanism first defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> continues to be defined here.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-7-1">Three signature systems have been defined for Vouchers Artifacts.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> defines a mechanism that uses COSE <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>, with the Voucher Data encoded using <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
+However, as the SID <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> allocation process requires up-to-date YANG, the SID values for this mechanism are presented in this document.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-3"><span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>]</span> defines a mechanism that uses JSON <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> and <span>[<a href="#JWS" class="cite xref">JWS</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<p id="section-7-4">The CMS signing mechanism first defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> continues to be defined here.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <div id="cms-voucher">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-cms-format-voucher-artifact">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-cms-format-voucher-artifact" class="section-name selfRef">CMS Format Voucher Artifact</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-cms-format-voucher-artifact" class="section-name selfRef">CMS Format Voucher Artifact</a>
         </h3>
-<p id="section-6.1-1">The IETF evolution of PKCS#7 is CMS <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>.
+<p id="section-7.1-1">The IETF evolution of PKCS#7 is CMS <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>.
 A CMS-signed Voucher, the default type, contains a ContentInfo
 structure with the Voucher Data.
-An OID for JSON-encoded Voucher Data is allocated in <a href="#iana-contenttype" class="auto internal xref">Section 11.4</a>, and
-it is to be placed in the '<code>eContentType</code>' field in the ContentInfo.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.1-2">The signing structure is a CMS SignedData structure, as specified by
+An OID for JSON-encoded Voucher Data is allocated in <a href="#iana-contenttype" class="auto internal xref">Section 12.4</a>, and
+it is to be placed in the '<code>eContentType</code>' field in the ContentInfo.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690.2015" class="cite xref">ITU-T.X690.2015</a>]</span>.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.1-3"><span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
+Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690.2015" class="cite xref">ITU-T.X690.2015</a>]</span>.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<p id="section-7.1-3"><span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
 This mitigates attacks on CMS as described in <span>[<a href="#I-D.vangeest-lamps-cms-euf-cma-signeddata" class="cite xref">I-D.vangeest-lamps-cms-euf-cma-signeddata</a>]</span>.
-Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> are present.<a href="#section-6.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1-4">To facilitate interoperability, <a href="#vcj" class="auto internal xref">Section 11.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
-<p id="section-6.1-5">The CMS structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
+Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> are present.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
+<p id="section-7.1-4">To facilitate interoperability, <a href="#vcj" class="auto internal xref">Section 12.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">The CMS structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
 described in Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, containing the
 signature generated over the content using a private key
 trusted by the recipient.
 Normally, the recipient is the Pledge and the signer is the MASA.
-In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).<a href="#section-6.1-5" class="pilcrow">¶</a></p>
-<p id="section-6.1-6">Note that Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a
+In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">Note that Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a
 discussion about how to validate a CMS object, which is really a
 PKCS7 object (cmsVersion=1).  Intermediate systems (such as the
 Bootstrapping Remote Secure Key Infrastructures <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> Registrar)
@@ -1809,63 +1814,63 @@ that might need to evaluate the Voucher in flight <span class="bcp14">MUST</span
 such an older format.
 No signaling of the format version is necessary, as the manufacturer knows the capabilities
 of the Pledge and will use an appropriate format Voucher for each
-Pledge.<a href="#section-6.1-6" class="pilcrow">¶</a></p>
-<p id="section-6.1-7">The CMS structure <span class="bcp14">SHOULD</span> also contain all of the certificates
+Pledge.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+<p id="section-7.1-7">The CMS structure <span class="bcp14">SHOULD</span> also contain all of the certificates
 leading up to and including the signer's trust anchor certificate
 known to the recipient.  The inclusion of the trust anchor is
 unusual in many applications, but third parties cannot accurately
-audit the transaction without it.<a href="#section-6.1-7" class="pilcrow">¶</a></p>
-<p id="section-6.1-8">The CMS structure <span class="bcp14">MAY</span> also contain revocation objects for any
+audit the transaction without it.<a href="#section-7.1-7" class="pilcrow">¶</a></p>
+<p id="section-7.1-8">The CMS structure <span class="bcp14">MAY</span> also contain revocation objects for any
 intermediate certificate authorities (CAs) between the
 Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
 online checks and is unlikely to have a trusted clock source.
 As described below, the use of short-lived Vouchers and/or a
-Pledge-provided nonce provides a freshness guarantee.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
+Pledge-provided nonce provides a freshness guarantee.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="voucher">
-<section id="section-7">
+<section id="section-8">
       <h2 id="name-voucher-artifact">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-voucher-artifact" class="section-name selfRef">Voucher Artifact</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-voucher-artifact" class="section-name selfRef">Voucher Artifact</a>
       </h2>
-<p id="section-7-1">The Voucher's primary purpose is to securely assign a Pledge to an
+<p id="section-8-1">The Voucher's primary purpose is to securely assign a Pledge to an
 Owner.
 The Voucher informs the Pledge which entity it should consider to be
-its Owner.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2">This document defines a Voucher Artifact that is a CMS-signed encoding of the
-JSON-encoded Voucher Data as defined by the YANG module <a href="#voucher-yang-module" class="auto internal xref">Section 7.3</a>.
+its Owner.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-8-2">This document defines a Voucher Artifact that is a CMS-signed encoding of the
+JSON-encoded Voucher Data as defined by the YANG module <a href="#voucher-yang-module" class="auto internal xref">Section 8.3</a>.
 Also, this document defines Voucher Data that is CBOR-encoded based on the same YANG model.
-The CBOR-encoded (signed) Voucher based on this CBOR Voucher Data is defined in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-7-2" class="pilcrow">¶</a></p>
-<p id="section-7-3">The Voucher Data format is described here as a practical basis for some uses (such
+The CBOR-encoded (signed) Voucher based on this CBOR Voucher Data is defined in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-8-2" class="pilcrow">¶</a></p>
+<p id="section-8-3">The Voucher Data format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what Vouchers look like
 in practice.
-This description also serves to validate the YANG data model.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> defined a media type and a filename extension for the
+This description also serves to validate the YANG data model.<a href="#section-8-3" class="pilcrow">¶</a></p>
+<p id="section-8-4"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> defined a media type and a filename extension for the
 CMS-encoded JSON type.
 The media type for JOSE format Vouchers is defined in <span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>]</span> and the media type for COSE format Vouchers is defined in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.
-Both include respective filename extensions.<a href="#section-7-4" class="pilcrow">¶</a></p>
-<p id="section-7-5">The media type is used by the Pledge (requesting to the Registrar) and by the Registrar (requesting to the MASA) to signal what Voucher format is expected.
-Other aspects of the Voucher, such as it being nonceless or which kind of pinned anchor is used, are not part of the media type.<a href="#section-7-5" class="pilcrow">¶</a></p>
-<p id="section-7-6">Only the format of Voucher that is expected is signaled in the form of a (MIME) media
-type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-7-6" class="pilcrow">¶</a></p>
-<p id="section-7-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-7-7" class="pilcrow">¶</a></p>
+Both include respective filename extensions.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-5">The media type is used by the Pledge (requesting to the Registrar) and by the Registrar (requesting to the MASA) to signal what Voucher format is expected.
+Other aspects of the Voucher, such as it being nonceless or which kind of pinned anchor is used, are not part of the media type.<a href="#section-8-5" class="pilcrow">¶</a></p>
+<p id="section-8-6">Only the format of Voucher that is expected is signaled in the form of a (MIME) media
+type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-8-6" class="pilcrow">¶</a></p>
+<p id="section-8-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-8-7" class="pilcrow">¶</a></p>
 <div id="voucher-tree-diagram">
-<section id="section-7.1">
+<section id="section-8.1">
         <h3 id="name-tree-diagram">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-tree-diagram" class="section-name selfRef">Tree Diagram</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-tree-diagram" class="section-name selfRef">Tree Diagram</a>
         </h3>
-<p id="section-7.1-1">The following tree diagram illustrates a high-level view of a Voucher
+<p id="section-8.1-1">The following tree diagram illustrates a high-level view of a Voucher
 document.
 The notation used in this diagram is described in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.
 Each node in the diagram is fully described by the YANG module in
-<a href="#voucher-yang-module" class="auto internal xref">Section 7.3</a>.
+<a href="#voucher-yang-module" class="auto internal xref">Section 8.3</a>.
 Please review the YANG module for a detailed description of the
-Voucher format.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.1-2">
+Voucher format.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.1-2">
 <pre>
 module: ietf-voucher
 
@@ -1885,22 +1890,22 @@ module: ietf-voucher
     +-- nonce?                           binary
     +-- est-domain?                      ietf:uri
     +-- additional-configuration-url?    ietf:uri
-</pre><a href="#section-7.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-8.1-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="voucher-examples">
-<section id="section-7.2">
+<section id="section-8.2">
         <h3 id="name-examples">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-examples" class="section-name selfRef">Examples</a>
         </h3>
-<p id="section-7.2-1">This section provides Voucher Data examples for illustration
+<p id="section-8.2-1">This section provides Voucher Data examples for illustration
 purposes.  These examples conform to the JSON encoding rules
-defined in <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span>.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<p id="section-7.2-2">The following example illustrates an ephemeral Voucher (uses a nonce).
+defined in <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span>.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
+<p id="section-8.2-2">The following example illustrates an ephemeral Voucher (uses a nonce).
 The MASA generated this Voucher using the '<code>logged</code>' assertion type, knowing
-that it would be suitable for the Pledge making the request.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.2-3">
+that it would be suitable for the Pledge making the request.<a href="#section-8.2-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.2-3">
 <pre>
 {
   "ietf-voucher:voucher": {
@@ -1912,13 +1917,13 @@ that it would be suitable for the Pledge making the request.<a href="#section-7.
     "nonce": "base64encodedvalue=="
   }
 }
-</pre><a href="#section-7.2-3" class="pilcrow">¶</a>
+</pre><a href="#section-8.2-3" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-4">The following example illustrates a non-ephemeral Voucher (containing no nonce, or "nonceless").
+<p id="section-8.2-4">The following example illustrates a non-ephemeral Voucher (containing no nonce, or "nonceless").
 While the Voucher itself expires after two weeks, it presumably can
 be renewed for up to a year.   The MASA generated this Voucher
-using the '<code>verified</code>' assertion type, which should satisfy all Pledges.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.2-5">
+using the '<code>verified</code>' assertion type, which should satisfy all Pledges.<a href="#section-8.2-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.2-5">
 <pre>
 {
   "ietf-voucher:voucher": {
@@ -1932,12 +1937,12 @@ using the '<code>verified</code>' assertion type, which should satisfy all Pledg
     "last-renewal-date": "2017-10-07T19:31:42Z"
   }
 }
-</pre><a href="#section-7.2-5" class="pilcrow">¶</a>
+</pre><a href="#section-8.2-5" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-6">The final two examples illustrate a Voucher that includes an (example) extension per <a href="#voucher-ext" class="auto internal xref">Section 7.5</a>.
+<p id="section-8.2-6">The final two examples illustrate a Voucher that includes an (example) extension per <a href="#voucher-ext" class="auto internal xref">Section 8.5</a>.
 The hypothetical YANG module name of the extension is "<code>example-my-extension</code>".
-First, a JSON serialization is shown.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.2-7">
+First, a JSON serialization is shown.<a href="#section-8.2-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.2-7">
 <pre>
 {
   "ietf-voucher:voucher": {
@@ -1953,12 +1958,12 @@ First, a JSON serialization is shown.<a href="#section-7.2-6" class="pilcrow">¶
     }
   }
 }
-</pre><a href="#section-7.2-7" class="pilcrow">¶</a>
+</pre><a href="#section-8.2-7" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-8">Next, a CBOR serialization is shown in CBOR diagnostic notation.
+<p id="section-8.2-8">Next, a CBOR serialization is shown in CBOR diagnostic notation.
 This uses again the extension module '<code>example-my-extension</code>' and refers to it using its SID value 305823299950.
-Note that for this example, long binary strings are abbreviated using the ellipsis (<code>...</code>) notation.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.2-9">
+Note that for this example, long binary strings are abbreviated using the ellipsis (<code>...</code>) notation.<a href="#section-8.2-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.2-9">
 <pre>
 {
   2451: {                          / ietf-voucher:voucher  /
@@ -1974,26 +1979,26 @@ Note that for this example, long binary strings are abbreviated using the ellips
     }
   }
 }
-</pre><a href="#section-7.2-9" class="pilcrow">¶</a>
+</pre><a href="#section-8.2-9" class="pilcrow">¶</a>
 </div>
-<p id="section-7.2-10"><span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-jws-voucher-16#section-8" class="relref">Section 8</a></span> contains examples of Vouchers encoded in JSON, and signed with <span>[<a href="#JWS" class="cite xref">JWS</a>]</span>.
-<span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-constrained-voucher-29#section-9" class="relref">Section 9</a></span> contains examples of Vouchers encoded in CBOR, and signed with <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>.<a href="#section-7.2-10" class="pilcrow">¶</a></p>
+<p id="section-8.2-10"><span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-jws-voucher-16#section-8" class="relref">Section 8</a></span> contains examples of Vouchers encoded in JSON, and signed with <span>[<a href="#JWS" class="cite xref">JWS</a>]</span>.
+<span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-constrained-voucher-29#section-9" class="relref">Section 9</a></span> contains examples of Vouchers encoded in CBOR, and signed with <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>.<a href="#section-8.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-yang-module">
-<section id="section-7.3">
+<section id="section-8.3">
         <h3 id="name-yang-module">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-yang-module" class="section-name selfRef">YANG Module</a>
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-yang-module" class="section-name selfRef">YANG Module</a>
         </h3>
-<p id="section-7.3-1">During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '<code>pinned-domain-cert</code>' vs '<code>pinned-domain-pubk</code>', or '<code>expires-on</code>' vs '<code>nonce</code>'.
+<p id="section-8.3-1">During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '<code>pinned-domain-cert</code>' vs '<code>pinned-domain-pubk</code>', or '<code>expires-on</code>' vs '<code>nonce</code>'.
 Unfortunately, <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
 As the simplest way forward, the choice mechanisms that were introduced have been commented out in the YANG, allowing the SID values to be generated correctly.
-As a result, the SID values presented in <a href="#voucher-sid-values" class="auto internal xref">Section 7.4</a> and <a href="#voucher-request-sid-values" class="auto internal xref">Section 8.3</a> are to be considered normative, rather than relying exclusively on the
+As a result, the SID values presented in <a href="#voucher-sid-values" class="auto internal xref">Section 8.4</a> and <a href="#voucher-request-sid-values" class="auto internal xref">Section 9.3</a> are to be considered normative, rather than relying exclusively on the
 ".sid" file <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> generated from the YANG modules.
 The presented SID values are believed to be correct, but future reprocessing of the YANG module to a ".sid" file could result in changes as the tooling is fixed.
-Any such changes will be recorded as errata on this document.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
-<div class="breakable lang-yang sourcecode" id="section-7.3-2">
+Any such changes will be recorded as errata on this document.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
+<div class="breakable lang-yang sourcecode" id="section-8.3-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-voucher@2025-12-18.yang"
 
 =============== NOTE: '\' line wrapping per RFC 8792 ================
@@ -2328,21 +2333,21 @@ module ietf-voucher {
   }
 }
 
-&lt;CODE ENDS&gt;</pre><a href="#section-7.3-2" class="pilcrow">¶</a>
+&lt;CODE ENDS&gt;</pre><a href="#section-8.3-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="voucher-sid-values">
-<section id="section-7.4">
+<section id="section-8.4">
         <h3 id="name-ietf-voucher-sid-values">
-<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-ietf-voucher-sid-values" class="section-name selfRef">ietf-voucher SID values</a>
+<a href="#section-8.4" class="section-number selfRef">8.4. </a><a href="#name-ietf-voucher-sid-values" class="section-name selfRef">ietf-voucher SID values</a>
         </h3>
-<p id="section-7.4-1"><span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-The below SID values are assigned to the '<code>ietf-voucher</code>' YANG module elements and are considered normative.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
-<p id="section-7.4-2">The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
+<p id="section-8.4-1"><span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> explains how to serialize YANG into CBOR, and for this a series of SID values are required.
+The below SID values are assigned to the '<code>ietf-voucher</code>' YANG module elements and are considered normative.<a href="#section-8.4-1" class="pilcrow">¶</a></p>
+<p id="section-8.4-2">The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
 In the XPath, the ellipsis (<code>...</code>) notation is used to abbreviate the structure path '<code>/ietf-voucher:voucher</code>'
-to let each entry fit on one line.<a href="#section-7.4-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.4-3">
+to let each entry fit on one line.<a href="#section-8.4-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-8.4-3">
 <pre>
 SID  Assigned to
 ---- --------------------------------------------------
@@ -2363,14 +2368,14 @@ SID  Assigned to
 2464 data   /ietf-voucher:voucher/est-domain
 2465 data   /ietf-voucher:voucher/manufacturer-private
 2466 data   /ietf-voucher:voucher/extensions
-</pre><a href="#section-7.4-3" class="pilcrow">¶</a>
+</pre><a href="#section-8.4-3" class="pilcrow">¶</a>
 </div>
-<p id="section-7.4-4">The '<code>assertion</code>' Attribute is an enumerated type in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, but no values were provided as part of the enumeration.
-This document provides enumerated values as part of the YANG module.<a href="#section-7.4-4" class="pilcrow">¶</a></p>
-<p id="section-7.4-5">In the JSON serialization, the literal strings from the enumerated types are used so there is no ambiguity.<a href="#section-7.4-5" class="pilcrow">¶</a></p>
-<p id="section-7.4-6">In the CBOR serialization, a small integer is used, and the enumeration values are repeated here for convenience.
+<p id="section-8.4-4">The '<code>assertion</code>' Attribute is an enumerated type in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, but no values were provided as part of the enumeration.
+This document provides enumerated values as part of the YANG module.<a href="#section-8.4-4" class="pilcrow">¶</a></p>
+<p id="section-8.4-5">In the JSON serialization, the literal strings from the enumerated types are used so there is no ambiguity.<a href="#section-8.4-5" class="pilcrow">¶</a></p>
+<p id="section-8.4-6">In the CBOR serialization, a small integer is used, and the enumeration values are repeated here for convenience.
 However, the YANG module should be considered authoritative.
-No IANA registry is provided or necessary because the YANG module (and this document) would be extended when there are new entries required.<a href="#section-7.4-6" class="pilcrow">¶</a></p>
+No IANA registry is provided or necessary because the YANG module (and this document) would be extended when there are new entries required.<a href="#section-8.4-6" class="pilcrow">¶</a></p>
 <span id="name-cbor-integers-for-the-asser"></span><div id="assertion-enums">
 <table class="center" id="table-2">
           <caption>
@@ -2406,71 +2411,71 @@ No IANA registry is provided or necessary because the YANG module (and this docu
 </section>
 </div>
 <div id="voucher-ext">
-<section id="section-7.5">
+<section id="section-8.5">
         <h3 id="name-voucher-extensions">
-<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-voucher-extensions" class="section-name selfRef">Voucher Extensions</a>
+<a href="#section-8.5" class="section-number selfRef">8.5. </a><a href="#name-voucher-extensions" class="section-name selfRef">Voucher Extensions</a>
         </h3>
-<p id="section-7.5-1">An unstated assumption in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was that Vouchers could be extended in proprietary ways by manufacturers.
-This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG model.<a href="#section-7.5-1" class="pilcrow">¶</a></p>
-<p id="section-7.5-2">The JSON serialization of Vouchers implicitly accomodates the above, since the Voucher is just a map (or dictionary).
-Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's DNS domain name.<a href="#section-7.5-2" class="pilcrow">¶</a></p>
-<p id="section-7.5-3">In CBOR serialization <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>, the situation is not so easy when SID keys are used.
-An extension might need to use "Private range" <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> SID values, or acquire SID values for their own use.<a href="#section-7.5-3" class="pilcrow">¶</a></p>
-<p id="section-7.5-4">Where the process has become complex is when making standard extensions, as has happened recently, resulting in this document.
-The processes which were anticipated to be useful (the YANG "augment" mechanism), turned out not to be, see <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-7.5-4" class="pilcrow">¶</a></p>
-<p id="section-7.5-5">Instead, a process similar to what was done by <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> has been adopted.
+<p id="section-8.5-1">An unstated assumption in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was that Vouchers could be extended in proprietary ways by manufacturers.
+This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG model.<a href="#section-8.5-1" class="pilcrow">¶</a></p>
+<p id="section-8.5-2">The JSON serialization of Vouchers implicitly accomodates the above, since the Voucher is just a map (or dictionary).
+Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's DNS domain name.<a href="#section-8.5-2" class="pilcrow">¶</a></p>
+<p id="section-8.5-3">In CBOR serialization <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>, the situation is not so easy when SID keys are used.
+An extension might need to use "Private range" <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> SID values, or acquire SID values for their own use.<a href="#section-8.5-3" class="pilcrow">¶</a></p>
+<p id="section-8.5-4">Where the process has become complex is when making standard extensions, as has happened recently, resulting in this document.
+The processes which were anticipated to be useful (the YANG "augment" mechanism), turned out not to be, see <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-8.5-4" class="pilcrow">¶</a></p>
+<p id="section-8.5-5">Instead, a process similar to what was done by <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> has been adopted.
 In the Voucher Data, any extensions are listed in a list Attribute named '<code>extensions</code>'.
 In JSON serialization, these extensions each require a unique name, and therefore this name <span class="bcp14">MUST</span> be allocated by IANA.
 The name <span class="bcp14">MUST</span> be the same as the YANG extension module name.
 The '<code>extensions</code>' list Attribute allows for new standard extensions to be defined without changes to the '<code>ietf-voucher</code>' YANG module.
 Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs);
-both are always defined in the entries of the Voucher Extensions Registry (see <a href="#voucher-ext-reg" class="auto internal xref">Section 11.5</a>).<a href="#section-7.5-5" class="pilcrow">¶</a></p>
-<p id="section-7.5-6">Extensions are full YANG modules, which are subject to the SID allocation process described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
+both are always defined in the entries of the Voucher Extensions Registry (see <a href="#voucher-ext-reg" class="auto internal xref">Section 12.5</a>).<a href="#section-8.5-5" class="pilcrow">¶</a></p>
+<p id="section-8.5-6">Extensions are full YANG modules, which are subject to the SID allocation process described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
 When an extension is serialized, the extension is placed in a sub-map in the value of a new key/value pair in the '<code>voucher</code>' container element.
 In JSON serialization, the corresponding key is the name of the extension, prefixed by the string "extension:".
 In CBOR serialization, the corresponding key is the SID which is allocated as the YANG extension module SID.
 This will typically require the absolute SID value Tag(47) to be applied to this key (see <span><a href="https://rfc-editor.org/rfc/rfc9254#section-4.2.1" class="relref">Section 4.2.1</a> of [<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>
-or the final example in <a href="#voucher-examples" class="auto internal xref">Section 7.2</a>).<a href="#section-7.5-6" class="pilcrow">¶</a></p>
-<p id="section-7.5-7">Note that this differs from the mechanism described in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span>: there, a sub-map is not used.
+or the final example in <a href="#voucher-examples" class="auto internal xref">Section 8.2</a>).<a href="#section-8.5-6" class="pilcrow">¶</a></p>
+<p id="section-8.5-7">Note that this differs from the mechanism described in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span>: there, a sub-map is not used.
 Instead, keys are created by combining the module name and the Attribute as a string, as a result of using the YANG
 "augment" mechanism.
-The <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> mechanism uses more bytes, but is also not easily translatable to CBOR.<a href="#section-7.5-7" class="pilcrow">¶</a></p>
-<p id="section-7.5-8">As the Voucher Request YANG module is created by YANG augment of the Voucher YANG module, any extension defined for the Voucher is also valid for a Voucher Request.<a href="#section-7.5-8" class="pilcrow">¶</a></p>
+The <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> mechanism uses more bytes, but is also not easily translatable to CBOR.<a href="#section-8.5-7" class="pilcrow">¶</a></p>
+<p id="section-8.5-8">As the Voucher Request YANG module is created by YANG augment of the Voucher YANG module, any extension defined for the Voucher is also valid for a Voucher Request.<a href="#section-8.5-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="manufacturer-private-extensions">
-<section id="section-7.6">
+<section id="section-8.6">
         <h3 id="name-manufacturer-private-extens">
-<a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-manufacturer-private-extens" class="section-name selfRef">Manufacturer Private Extensions</a>
+<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-manufacturer-private-extens" class="section-name selfRef">Manufacturer Private Extensions</a>
         </h3>
-<p id="section-7.6-1">A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
-While they can use the Voucher extensions mechanism defined in <a href="#voucher-ext" class="auto internal xref">Section 7.5</a>, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.
+<p id="section-8.6-1">A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
+While they can use the Voucher extensions mechanism defined in <a href="#voucher-ext" class="auto internal xref">Section 8.5</a>, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.
 Note that <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> does not strictly require use of SIDs: instead of a SID value, the full string name can always
-be used. But this would significantly increase the size of the Voucher Data.<a href="#section-7.6-1" class="pilcrow">¶</a></p>
-<p id="section-7.6-2">Instead, a manufacturer <span class="bcp14">MAY</span> use the '<code>manufacturer-private</code>' Attribute to put any content they wish.
+be used. But this would significantly increase the size of the Voucher Data.<a href="#section-8.6-1" class="pilcrow">¶</a></p>
+<p id="section-8.6-2">Instead, a manufacturer <span class="bcp14">MAY</span> use the '<code>manufacturer-private</code>' Attribute to put any content they wish.
 In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded <span>[<a href="#CBOR" class="cite xref">CBOR</a>]</span> <span>[<a href="#RFC8949" class="cite xref">RFC8949</a>], <a href="https://rfc-editor.org/rfc/rfc8949#section-3.1" class="relref">Section 3.1</a></span> (Major type 2).
-In JSON serialization, delta encoding does not get in the way, and the manufacturer <span class="bcp14">MAY</span> use any encoding that is convenient for them, but base64URL encoding <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>], <a href="https://rfc-editor.org/rfc/rfc4648#section-5" class="relref">Section 5</a></span> is <span class="bcp14">RECOMMENDED</span>.<a href="#section-7.6-2" class="pilcrow">¶</a></p>
+In JSON serialization, delta encoding does not get in the way, and the manufacturer <span class="bcp14">MAY</span> use any encoding that is convenient for them, but base64URL encoding <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>], <a href="https://rfc-editor.org/rfc/rfc4648#section-5" class="relref">Section 5</a></span> is <span class="bcp14">RECOMMENDED</span>.<a href="#section-8.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="voucher-request">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-voucher-request-artifact">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-voucher-request-artifact" class="section-name selfRef">Voucher Request Artifact</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-voucher-request-artifact" class="section-name selfRef">Voucher Request Artifact</a>
       </h2>
-<p id="section-8-1"><span>[<a href="#BRSKI" class="cite xref">BRSKI</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-3" class="relref">Section 3</a></span> defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.
-That definition has been moved to this document, and translated from the "yang-data" extension <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> to the "sx:structure" extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<p id="section-9-1"><span>[<a href="#BRSKI" class="cite xref">BRSKI</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-3" class="relref">Section 3</a></span> defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.
+That definition has been moved to this document, and translated from the "yang-data" extension <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> to the "sx:structure" extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <div id="voucher-request-tree-diagram">
-<section id="section-8.1">
+<section id="section-9.1">
         <h3 id="name-tree-diagram-2">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-tree-diagram-2" class="section-name selfRef">Tree Diagram</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-tree-diagram-2" class="section-name selfRef">Tree Diagram</a>
         </h3>
-<p id="section-8.1-1">The following tree diagram illustrates a high-level view of a Voucher Request document.
+<p id="section-9.1-1">The following tree diagram illustrates a high-level view of a Voucher Request document.
 The notation used in this diagram is described in <span>[<a href="#RFC8340" class="cite xref">RFC8340</a>]</span>.
 Each node in the diagram is fully described by the YANG module in
-<a href="#voucher-request-yang-module" class="auto internal xref">Section 8.2</a>.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-8.1-2">
+<a href="#voucher-request-yang-module" class="auto internal xref">Section 9.2</a>.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.1-2">
 <pre>
 module: ietf-voucher-request
 
@@ -2497,17 +2502,17 @@ module: ietf-voucher-request
     +-- agent-signed-data?                         binary
     +-- agent-provided-proximity-registrar-cert?   binary
     +-- agent-sign-cert?                           binary
-</pre><a href="#section-8.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-9.1-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="voucher-request-yang-module">
-<section id="section-8.2">
+<section id="section-9.2">
         <h3 id="name-ietf-voucher-request-module">
-<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-ietf-voucher-request-module" class="section-name selfRef">"ietf-voucher-request" Module</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-ietf-voucher-request-module" class="section-name selfRef">"ietf-voucher-request" Module</a>
         </h3>
-<p id="section-8.2-1">The '<code>ietf-voucher-request</code>' YANG module is derived from the '<code>ietf-voucher</code>' module.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
-<div class="breakable lang-yang sourcecode" id="section-8.2-2">
+<p id="section-9.2-1">The '<code>ietf-voucher-request</code>' YANG module is derived from the '<code>ietf-voucher</code>' module.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+<div class="breakable lang-yang sourcecode" id="section-9.2-2">
 <pre>&lt;CODE BEGINS&gt; file "ietf-voucher-request@2025-12-18.yang"
 
 module ietf-voucher-request {
@@ -2756,21 +2761,21 @@ module ietf-voucher-request {
   }
 }
 
-&lt;CODE ENDS&gt;</pre><a href="#section-8.2-2" class="pilcrow">¶</a>
+&lt;CODE ENDS&gt;</pre><a href="#section-9.2-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="voucher-request-sid-values">
-<section id="section-8.3">
+<section id="section-9.3">
         <h3 id="name-ietf-voucher-request-sid-va">
-<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-ietf-voucher-request-sid-va" class="section-name selfRef">ietf-voucher-request SID values</a>
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-ietf-voucher-request-sid-va" class="section-name selfRef">ietf-voucher-request SID values</a>
         </h3>
-<p id="section-8.3-1"><span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> explains how to serialize YANG into CBOR, and for this a series of SID values are required.
-The below SID values are assigned to the '<code>ietf-voucher-request</code>' YANG module elements and are considered normative.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
-<p id="section-8.3-2">The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
+<p id="section-9.3-1"><span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> explains how to serialize YANG into CBOR, and for this a series of SID values are required.
+The below SID values are assigned to the '<code>ietf-voucher-request</code>' YANG module elements and are considered normative.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
+<p id="section-9.3-2">The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
 In the XPath, the ellipsis (<code>...</code>) notation is used to abbreviate the structure path '<code>/ietf-voucher-request:voucher</code>'
-to let each entry fit on one line.<a href="#section-8.3-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-8.3-3">
+to let each entry fit on one line.<a href="#section-9.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.3-3">
 <pre>
 =============== NOTE: '\' line wrapping per RFC 8792 ================
 
@@ -2805,38 +2810,38 @@ SID  Assigned to
 2521 data   /ietf-voucher-request:voucher/est-domain
 2522 data   /ietf-voucher-request:voucher/extensions
 2523 data   /ietf-voucher-request:voucher/manufacturer-private
-</pre><a href="#section-8.3-3" class="pilcrow">¶</a>
+</pre><a href="#section-9.3-3" class="pilcrow">¶</a>
 </div>
-<p id="section-8.3-4">The '<code>assertion</code>' Attribute is an enumerated type, and has values as defined in <a href="#assertion-enums" class="auto internal xref">Table 2</a>.<a href="#section-8.3-4" class="pilcrow">¶</a></p>
+<p id="section-9.3-4">The '<code>assertion</code>' Attribute is an enumerated type, and has values as defined in <a href="#assertion-enums" class="auto internal xref">Table 2</a>.<a href="#section-9.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="design-con">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-design-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-design-considerations" class="section-name selfRef">Design Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-design-considerations" class="section-name selfRef">Design Considerations</a>
       </h2>
 <div id="renewal-over-revocation">
-<section id="section-9.1">
+<section id="section-10.1">
         <h3 id="name-renewals-instead-of-revocat">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-renewals-instead-of-revocat" class="section-name selfRef">Renewals Instead of Revocations</a>
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-renewals-instead-of-revocat" class="section-name selfRef">Renewals Instead of Revocations</a>
         </h3>
-<p id="section-9.1-1">The lifetimes of Vouchers may vary.  In some Onboarding protocols,
+<p id="section-10.1-1">The lifetimes of Vouchers may vary.  In some Onboarding protocols,
 the Vouchers may be created and consumed immediately, whereas in other
 Onboarding solutions, there may be a significant time delay between
 when a Voucher is created and when it is consumed.
 In cases when there is a time delay, there is a need for the Pledge
 to ensure that the assertions made when the Voucher was created are
-still valid.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1-2">A revocation artifact is generally used to verify the continued validity
+still valid.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
+<p id="section-10.1-2">A revocation artifact is generally used to verify the continued validity
 of an assertion such as a PKIX certificate <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>, web token, or Voucher.  With
 this approach, a potentially long-lived assertion is paired with a reasonably
 fresh revocation status check to ensure that the assertion is still valid.
 However, this approach increases solution complexity, as it introduces the
 need for additional protocols and code paths to distribute and process the
-revocations.<a href="#section-9.1-2" class="pilcrow">¶</a></p>
-<p id="section-9.1-3">Addressing the shortcomings of revocations, this document recommends
+revocations.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
+<p id="section-10.1-3">Addressing the shortcomings of revocations, this document recommends
 instead the use of lightweight renewals of short-lived non-revocable
 Vouchers.  That is, rather than issue a long-lived Voucher, where the
 '<code>expires-on</code>' Attribute is set to some distant date, the expectation
@@ -2852,100 +2857,100 @@ With this approach, there is
 only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder (<span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>) is
-not reachable.<a href="#section-9.1-3" class="pilcrow">¶</a></p>
-<p id="section-9.1-4">While this document recommends issuing short-lived Vouchers, the
+not reachable.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+<p id="section-10.1-4">While this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
-Vouchers, if required; however, no revocation method is described.<a href="#section-9.1-4" class="pilcrow">¶</a></p>
-<p id="section-9.1-5">Note that a Voucher may be signed by a chain of intermediate CAs
+Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.1-5">Note that a Voucher may be signed by a chain of intermediate CAs
 leading up to the trust anchor CA known by the Pledge.  Even
 though the Voucher itself is not revocable, it is still revoked,
-per se, if one of the intermediate CA certificates is revoked.<a href="#section-9.1-5" class="pilcrow">¶</a></p>
+per se, if one of the intermediate CA certificates is revoked.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-per-pledge">
-<section id="section-9.2">
+<section id="section-10.2">
         <h3 id="name-voucher-per-pledge">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-voucher-per-pledge" class="section-name selfRef">Voucher Per Pledge</a>
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-voucher-per-pledge" class="section-name selfRef">Voucher Per Pledge</a>
         </h3>
-<p id="section-9.2-1">The solution described herein originally enabled a single Voucher to
+<p id="section-10.2-1">The solution described herein originally enabled a single Voucher to
 apply to many Pledges, using lists of regular expressions to represent
 ranges of serial numbers.  However, it was determined that blocking the
 renewal of a Voucher that applied to many devices would be excessive
 when only the ownership for a single Pledge needed to be blocked.
 Thus, the Voucher format now only supports a single serial number
-to be listed.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
+to be listed.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="sec-con">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-security-considerations">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <div id="clock-sensitivity">
-<section id="section-10.1">
+<section id="section-11.1">
         <h3 id="name-clock-sensitivity">
-<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-clock-sensitivity" class="section-name selfRef">Clock Sensitivity</a>
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-clock-sensitivity" class="section-name selfRef">Clock Sensitivity</a>
         </h3>
-<p id="section-10.1-1">An attacker could use an expired Voucher to gain control over
+<p id="section-11.1-1">An attacker could use an expired Voucher to gain control over
 a device that has no understanding of time.  The device cannot
 trust NTP as a time reference, as an attacker could control
-the NTP stream.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
-<p id="section-10.1-2">There are three things to defend against this: 1) devices are
+the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">There are three things to defend against this: 1) devices are
 required to verify that the '<code>expires-on</code>' Attribute has not yet passed,
 2) devices without access to time can use nonces to
 get ephemeral Vouchers, and 3) Vouchers without expiration times
 may be used, which will appear in the audit log, informing the
-security decision.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
-<p id="section-10.1-3">This document defines a Voucher format that contains time values
+security decision.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-11.1-3">This document defines a Voucher format that contains time values
 for expirations, which require an accurate clock
 in order to be processed correctly.  Vendors planning on
 issuing Vouchers with expiration values must ensure that devices
 have an accurate clock when shipped from manufacturing
 facilities and take steps to prevent clock tampering.
 If it is not possible to ensure clock accuracy, then
-Vouchers with time values for expirations should not be issued.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+Vouchers with time values for expirations should not be issued.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="protect-masa-signing-key-in-hsm">
-<section id="section-10.2">
+<section id="section-11.2">
         <h3 id="name-protect-masa-signing-key-in">
-<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-protect-masa-signing-key-in" class="section-name selfRef">Protect MASA Signing Key in HSM</a>
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-protect-masa-signing-key-in" class="section-name selfRef">Protect MASA Signing Key in HSM</a>
         </h3>
-<p id="section-10.2-1">Pursuant to the recommendation made in Section 6.1 for the MASA to be
+<p id="section-11.2-1">Pursuant to the recommendation made in Section 6.1 for the MASA to be
 deployed as an online Voucher signing service, it is <span class="bcp14">RECOMMENDED</span> that
 the MASA's private key used for signing Vouchers is protected by
-a hardware security module (HSM).<a href="#section-10.2-1" class="pilcrow">¶</a></p>
+a hardware security module (HSM).<a href="#section-11.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="test-domain-certificate-validity-when-signing">
-<section id="section-10.3">
+<section id="section-11.3">
         <h3 id="name-test-domain-certificate-val">
-<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-test-domain-certificate-val" class="section-name selfRef">Test Domain Certificate Validity When Signing</a>
+<a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-test-domain-certificate-val" class="section-name selfRef">Test Domain Certificate Validity When Signing</a>
         </h3>
-<p id="section-10.3-1">If a Domain certificate is compromised, then any outstanding
+<p id="section-11.3-1">If a Domain certificate is compromised, then any outstanding
 Vouchers for that Domain could be used by the attacker.  In this case, the Domain
 administrator is clearly expected to initiate revocation of any
-Domain identity certificates (as is normal in PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> solutions).<a href="#section-10.3-1" class="pilcrow">¶</a></p>
-<p id="section-10.3-2">Similarly, they are expected to contact the MASA to indicate that
+Domain identity certificates (as is normal in PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> solutions).<a href="#section-11.3-1" class="pilcrow">¶</a></p>
+<p id="section-11.3-2">Similarly, they are expected to contact the MASA to indicate that
 an outstanding (presumably short lifetime) Voucher should be blocked from
 automated renewal.
 Protocols for Voucher distribution are
 <span class="bcp14">RECOMMENDED</span> to check for revocation of Domain identity certificates
-before the signing of Vouchers.<a href="#section-10.3-2" class="pilcrow">¶</a></p>
+before the signing of Vouchers.<a href="#section-11.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="yang-module-security-considerations">
-<section id="section-10.4">
+<section id="section-11.4">
         <h3 id="name-yang-module-security-consid">
-<a href="#section-10.4" class="section-number selfRef">10.4. </a><a href="#name-yang-module-security-consid" class="section-name selfRef">YANG Module Security Considerations</a>
+<a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-yang-module-security-consid" class="section-name selfRef">YANG Module Security Considerations</a>
         </h3>
-<p id="section-10.4-1">The YANG modules specified in this document define the schema
+<p id="section-11.4-1">The YANG modules specified in this document define the schema
 for data that is subsequently encapsulated by secure signed-data structures,
-such as the CMS signed-data described in <a href="#cms-voucher" class="auto internal xref">Section 6.1</a>.  As such,
-all of the YANG-modeled data is protected from modification.<a href="#section-10.4-1" class="pilcrow">¶</a></p>
-<p id="section-10.4-2">Implementations should be aware that the signed data is only
+such as the CMS signed-data described in <a href="#cms-voucher" class="auto internal xref">Section 7.1</a>.  As such,
+all of the YANG-modeled data is protected from modification.<a href="#section-11.4-1" class="pilcrow">¶</a></p>
+<p id="section-11.4-2">Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
 so much as privacy.  In particular, adversaries can glean
@@ -2957,172 +2962,172 @@ conveying it via a mutually authenticated secure transport protocol
 (e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>) or by encapsulating the signed-data
 content type with an enveloped-data content type (Section 6
 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>), though details for how to do this are outside
-the scope of this document.<a href="#section-10.4-2" class="pilcrow">¶</a></p>
-<p id="section-10.4-3">The use of YANG to define data structures, via the "sx:structure"
+the scope of this document.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
+<p id="section-11.4-3">The use of YANG to define data structures, via the "sx:structure"
 extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>, is relatively new and distinct from the traditional use of
 YANG to define an API accessed by network management protocols such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. For this reason, this
 security considerations section does not follow the template described
-by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-10.4-3" class="pilcrow">¶</a></p>
+by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="iana-considerations">
-<section id="section-11">
+<section id="section-12">
       <h2 id="name-iana-considerations">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
 <div id="the-ietf-xml-registry">
-<section id="section-11.1">
+<section id="section-12.1">
         <h3 id="name-the-ietf-xml-registry">
-<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-the-ietf-xml-registry" class="section-name selfRef">The IETF XML Registry</a>
+<a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-the-ietf-xml-registry" class="section-name selfRef">The IETF XML Registry</a>
         </h3>
-<p id="section-11.1-1">This document registers two URIs in the "IETF XML Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
-<p id="section-11.1-2">IANA has registered the following:<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-12.1-1">This document registers two URIs in the "IETF XML Registry" <span>[<a href="#RFC3688" class="cite xref">RFC3688</a>]</span>.<a href="#section-12.1-1" class="pilcrow">¶</a></p>
+<p id="section-12.1-2">IANA has registered the following:<a href="#section-12.1-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-11.1-3.1">
-            <span class="break"></span><dl class="dlCompact dlParallel" id="section-11.1-3.1.1">
-              <dt id="section-11.1-3.1.1.1">URI:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.1-3.1.1.2">
-                <p id="section-11.1-3.1.1.2.1">urn:ietf:params:xml:ns:yang:ietf-voucher<a href="#section-11.1-3.1.1.2.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-12.1-3.1">
+            <span class="break"></span><dl class="dlCompact dlParallel" id="section-12.1-3.1.1">
+              <dt id="section-12.1-3.1.1.1">URI:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.1-3.1.1.2">
+                <p id="section-12.1-3.1.1.2.1">urn:ietf:params:xml:ns:yang:ietf-voucher<a href="#section-12.1-3.1.1.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.1-3.1.1.3">Registrant Contact:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.1-3.1.1.4">
-                <p id="section-11.1-3.1.1.4.1">The ANIMA WG of the IETF.<a href="#section-11.1-3.1.1.4.1" class="pilcrow">¶</a></p>
+<dt id="section-12.1-3.1.1.3">Registrant Contact:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.1-3.1.1.4">
+                <p id="section-12.1-3.1.1.4.1">The ANIMA WG of the IETF.<a href="#section-12.1-3.1.1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.1-3.1.1.5">XML:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.1-3.1.1.6">
-                <p id="section-11.1-3.1.1.6.1">N/A, the requested URI is an XML namespace.<a href="#section-11.1-3.1.1.6.1" class="pilcrow">¶</a></p>
+<dt id="section-12.1-3.1.1.5">XML:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.1-3.1.1.6">
+                <p id="section-12.1-3.1.1.6.1">N/A, the requested URI is an XML namespace.<a href="#section-12.1-3.1.1.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
 </li>
         </ul>
-<p id="section-11.1-4">This reference should be updated to point to this document.<a href="#section-11.1-4" class="pilcrow">¶</a></p>
+<p id="section-12.1-4">This reference should be updated to point to this document.<a href="#section-12.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="the-yang-module-names-registry">
-<section id="section-11.2">
+<section id="section-12.2">
         <h3 id="name-the-yang-module-names-regis">
-<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-the-yang-module-names-regis" class="section-name selfRef">The YANG Module Names Registry</a>
+<a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-the-yang-module-names-regis" class="section-name selfRef">The YANG Module Names Registry</a>
         </h3>
-<p id="section-11.2-1">This document registers two YANG module in the "YANG Module Names"
-registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
-<p id="section-11.2-2">IANA has registered the following:<a href="#section-11.2-2" class="pilcrow">¶</a></p>
+<p id="section-12.2-1">This document registers two YANG module in the "YANG Module Names"
+registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span>.<a href="#section-12.2-1" class="pilcrow">¶</a></p>
+<p id="section-12.2-2">IANA has registered the following:<a href="#section-12.2-2" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-11.2-3.1">
-            <span class="break"></span><dl class="dlCompact dlParallel" id="section-11.2-3.1.1">
-              <dt id="section-11.2-3.1.1.1">name:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.2-3.1.1.2">
-                <p id="section-11.2-3.1.1.2.1">ietf-voucher<a href="#section-11.2-3.1.1.2.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-12.2-3.1">
+            <span class="break"></span><dl class="dlCompact dlParallel" id="section-12.2-3.1.1">
+              <dt id="section-12.2-3.1.1.1">name:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.2-3.1.1.2">
+                <p id="section-12.2-3.1.1.2.1">ietf-voucher<a href="#section-12.2-3.1.1.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.2-3.1.1.3">namespace:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.2-3.1.1.4">
-                <p id="section-11.2-3.1.1.4.1">urn:ietf:params:xml:ns:yang:ietf-voucher<a href="#section-11.2-3.1.1.4.1" class="pilcrow">¶</a></p>
+<dt id="section-12.2-3.1.1.3">namespace:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.2-3.1.1.4">
+                <p id="section-12.2-3.1.1.4.1">urn:ietf:params:xml:ns:yang:ietf-voucher<a href="#section-12.2-3.1.1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.2-3.1.1.5">prefix:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.2-3.1.1.6">
-                <p id="section-11.2-3.1.1.6.1">vch<a href="#section-11.2-3.1.1.6.1" class="pilcrow">¶</a></p>
+<dt id="section-12.2-3.1.1.5">prefix:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.2-3.1.1.6">
+                <p id="section-12.2-3.1.1.6.1">vch<a href="#section-12.2-3.1.1.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.2-3.1.1.7">reference:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.2-3.1.1.8">
-                <p id="section-11.2-3.1.1.8.1">RFC 8366<a href="#section-11.2-3.1.1.8.1" class="pilcrow">¶</a></p>
+<dt id="section-12.2-3.1.1.7">reference:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.2-3.1.1.8">
+                <p id="section-12.2-3.1.1.8.1">RFC 8366<a href="#section-12.2-3.1.1.8.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
 </li>
         </ul>
-<p id="section-11.2-4">This reference should be updated to point to this document.<a href="#section-11.2-4" class="pilcrow">¶</a></p>
+<p id="section-12.2-4">This reference should be updated to point to this document.<a href="#section-12.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="vcj">
-<section id="section-11.3">
+<section id="section-12.3">
         <h3 id="name-the-media-types-registry">
-<a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-the-media-types-registry" class="section-name selfRef">The Media Types Registry</a>
+<a href="#section-12.3" class="section-number selfRef">12.3. </a><a href="#name-the-media-types-registry" class="section-name selfRef">The Media Types Registry</a>
         </h3>
-<p id="section-11.3-1">IANA has registered the media type: <code>application/voucher-cms+json</code>, and this registration should be updated to point to this document.<a href="#section-11.3-1" class="pilcrow">¶</a></p>
+<p id="section-12.3-1">IANA has registered the media type: <code>application/voucher-cms+json</code>, and this registration should be updated to point to this document.<a href="#section-12.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-contenttype">
-<section id="section-11.4">
+<section id="section-12.4">
         <h3 id="name-the-smi-security-for-s-mime">
-<a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-the-smi-security-for-s-mime" class="section-name selfRef">The SMI Security for S/MIME CMS Content Type Registry</a>
+<a href="#section-12.4" class="section-number selfRef">12.4. </a><a href="#name-the-smi-security-for-s-mime" class="section-name selfRef">The SMI Security for S/MIME CMS Content Type Registry</a>
         </h3>
-<p id="section-11.4-1">IANA has registered the OID 1.2.840.113549.1.9.16.1.40, '<code>id-ct-animaJSONVoucher</code>'.
-This registration should be updated to point to this document.<a href="#section-11.4-1" class="pilcrow">¶</a></p>
+<p id="section-12.4-1">IANA has registered the OID 1.2.840.113549.1.9.16.1.40, '<code>id-ct-animaJSONVoucher</code>'.
+This registration should be updated to point to this document.<a href="#section-12.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-ext-reg">
-<section id="section-11.5">
+<section id="section-12.5">
         <h3 id="name-the-voucher-extensions-regi">
-<a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-the-voucher-extensions-regi" class="section-name selfRef">The Voucher Extensions Registry</a>
+<a href="#section-12.5" class="section-number selfRef">12.5. </a><a href="#name-the-voucher-extensions-regi" class="section-name selfRef">The Voucher Extensions Registry</a>
         </h3>
-<p id="section-11.5-1">IANA is asked to create a registry of Voucher extensions as follows:<a href="#section-11.5-1" class="pilcrow">¶</a></p>
+<p id="section-12.5-1">IANA is asked to create a registry of Voucher extensions as follows:<a href="#section-12.5-1" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-11.5-2.1">
-            <span class="break"></span><dl class="dlCompact dlParallel" id="section-11.5-2.1.1">
-              <dt id="section-11.5-2.1.1.1">Registry name:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.5-2.1.1.2">
-                <p id="section-11.5-2.1.1.2.1">Voucher Extensions Registry<a href="#section-11.5-2.1.1.2.1" class="pilcrow">¶</a></p>
+<li class="normal ulEmpty" id="section-12.5-2.1">
+            <span class="break"></span><dl class="dlCompact dlParallel" id="section-12.5-2.1.1">
+              <dt id="section-12.5-2.1.1.1">Registry name:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.2">
+                <p id="section-12.5-2.1.1.2.1">Voucher Extensions Registry<a href="#section-12.5-2.1.1.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.5-2.1.1.3">Registry policy:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.5-2.1.1.4">
-                <p id="section-11.5-2.1.1.4.1">First Come First Served<a href="#section-11.5-2.1.1.4.1" class="pilcrow">¶</a></p>
+<dt id="section-12.5-2.1.1.3">Registry policy:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.4">
+                <p id="section-12.5-2.1.1.4.1">First Come First Served<a href="#section-12.5-2.1.1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.5-2.1.1.5">Reference:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.5-2.1.1.6">
-                <p id="section-11.5-2.1.1.6.1">an optional document<a href="#section-11.5-2.1.1.6.1" class="pilcrow">¶</a></p>
+<dt id="section-12.5-2.1.1.5">Reference:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.6">
+                <p id="section-12.5-2.1.1.6.1">an optional document<a href="#section-12.5-2.1.1.6.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.5-2.1.1.7">Extension name:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.5-2.1.1.8">
-                <p id="section-11.5-2.1.1.8.1">UTF-8-encoded string, not to exceed 40 characters.<a href="#section-11.5-2.1.1.8.1" class="pilcrow">¶</a></p>
+<dt id="section-12.5-2.1.1.7">Extension name:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.8">
+                <p id="section-12.5-2.1.1.8.1">UTF-8-encoded string, not to exceed 40 characters.<a href="#section-12.5-2.1.1.8.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-11.5-2.1.1.9">Extension SID:</dt>
-              <dd style="margin-left: 1.5em" id="section-11.5-2.1.1.10">
-                <p id="section-11.5-2.1.1.10.1">the YANG module SID value that defines the extension per <a href="#voucher-ext" class="auto internal xref">Section 7.5</a>.<a href="#section-11.5-2.1.1.10.1" class="pilcrow">¶</a></p>
+<dt id="section-12.5-2.1.1.9">Extension SID:</dt>
+              <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.10">
+                <p id="section-12.5-2.1.1.10.1">the YANG module SID value that defines the extension per <a href="#voucher-ext" class="auto internal xref">Section 8.5</a>.<a href="#section-12.5-2.1.1.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
 </li>
         </ul>
-<p id="section-11.5-3">Each extension <span class="bcp14">MUST</span> follow the rules specified in this specification.
-As is usual, the IANA issues early allocations in accordance with <span>[<a href="#RFC7120" class="cite xref">RFC7120</a>]</span>.<a href="#section-11.5-3" class="pilcrow">¶</a></p>
-<p id="section-11.5-4">Note that the SID module value is allocated as part of a <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> process.
+<p id="section-12.5-3">Each extension <span class="bcp14">MUST</span> follow the rules specified in this specification.
+As is usual, the IANA issues early allocations in accordance with <span>[<a href="#RFC7120" class="cite xref">RFC7120</a>]</span>.<a href="#section-12.5-3" class="pilcrow">¶</a></p>
+<p id="section-12.5-4">Note that the SID module value is allocated as part of a <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
 Future work may allow for PEN based allocations.
-IANA does not need to separately allocate a SID value for this column.<a href="#section-11.5-4" class="pilcrow">¶</a></p>
-<p id="section-11.5-5">Extension name strings for standards track documents are single words, given by the YANG Module Name.
+IANA does not need to separately allocate a SID value for this column.<a href="#section-12.5-4" class="pilcrow">¶</a></p>
+<p id="section-12.5-5">Extension name strings for standards track documents are single words, given by the YANG Module Name.
 They do not contain dots.
-For vendor proprietary extensions, the string <span class="bcp14">SHOULD</span> be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) <span>[<a href="#RFC3696" class="cite xref">RFC3696</a>]</span>, such as "fuubar.example.com"<a href="#section-11.5-5" class="pilcrow">¶</a></p>
-<p id="section-11.5-6">Vendor proprietary extensions do not need to be registered with IANA, but vendors <span class="bcp14">MAY</span> do so.<a href="#section-11.5-6" class="pilcrow">¶</a></p>
-<p id="section-11.5-7">Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
+For vendor proprietary extensions, the string <span class="bcp14">SHOULD</span> be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) <span>[<a href="#RFC3696" class="cite xref">RFC3696</a>]</span>, such as "fuubar.example.com"<a href="#section-12.5-5" class="pilcrow">¶</a></p>
+<p id="section-12.5-6">Vendor proprietary extensions do not need to be registered with IANA, but vendors <span class="bcp14">MAY</span> do so.<a href="#section-12.5-6" class="pilcrow">¶</a></p>
+<p id="section-12.5-7">Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
 There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
 For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
 The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging.
-However, as registration is optional, the Designated Expert should not block any registrations.<a href="#section-11.5-7" class="pilcrow">¶</a></p>
+However, as registration is optional, the Designated Expert should not block any registrations.<a href="#section-12.5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="sec-combined-references">
-<section id="section-12">
+<section id="section-13">
       <h2 id="name-references">
-<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
 <div id="sec-normative-references">
-<section id="section-12.1">
+<section id="section-13.1">
         <h3 id="name-normative-references">
-<a href="#section-12.1" class="section-number selfRef">12.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-13.1" class="section-number selfRef">13.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="BRSKI">[BRSKI]</dt>
@@ -3217,9 +3222,9 @@ However, as registration is optional, the Designated Expert should not block any
 </section>
 </div>
 <div id="sec-informative-references">
-<section id="section-12.2">
+<section id="section-13.2">
         <h3 id="name-informative-references">
-<a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-13.2" class="section-number selfRef">13.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="COSE">[COSE]</dt>
