@@ -1767,7 +1767,7 @@ nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8
 The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The voucher-request that was in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> is now included in this document.
 There is a change to the voucher-request: the idevid-issuer in the voucher request is mandatory in the Registrar Voucher Request (RVR).  As explained in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-5.5" class="relref">Section 5.5</a></span>, the serial-number is to be derived from the client certificate of the mutually authenticated TLS connection from Pledge to Registrar.
-The same considerations apply to idevid-issuer.
+Like the serial-number, the idevid-issuer is to be taken from client certificate.
 In some varations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> there is no direct connection between Pledge and Registrar, the Pledge certificate has been provided in an attribute like x5c.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
