@@ -919,9 +919,9 @@ by Section 3.7 of {{YANG-GUIDE}}.
 
 ## The IETF XML Registry
 
-This document registers two URIs in the "IETF XML Registry" {{RFC3688}}.
+This document updates two URIs in the "IETF XML Registry" {{RFC3688}}.
 
-IANA has registered the following:
+IANA has registered the following based on {{RFC8366}} and {{BRSKI}} respectively:
 
 > {:compact}
 >    URI:
@@ -933,14 +933,24 @@ IANA has registered the following:
 >    XML:
 >    : N/A, the requested URI is an XML namespace.
 
-This reference should be updated to point to this document.
+> {:compact}
+>    URI:
+>    : urn:ietf:params:xml:ns:yang:ietf-voucher-request
+>
+>    Registrant Contact:
+>    : The ANIMA WG of the IETF.
+>
+>    XML:
+>    : N/A, the requested URI is an XML namespace.
+
+For both entries, the reference should be updated to point to this document.
 
 ## The YANG Module Names Registry
 
-This document registers two YANG module in the "YANG Module Names"
+This document updates two entries in the "YANG Module Names"
 registry {{RFC6020}}.
 
-IANA has registered the following:
+IANA has registered the following based on {{RFC8366}}:
 
 > {:compact}
 >   name:
@@ -955,7 +965,32 @@ IANA has registered the following:
 >   reference:
 >   : RFC 8366
 
-This reference should be updated to point to this document.
+This reference should be updated to point to this document and the "File" entry should be updated to point to the
+new module revision in {{voucher-yang-module}}.
+
+IANA has registered the following based on {{BRSKI}}:
+
+> {:compact}
+>   name:
+>   : ietf-voucher-request
+>
+>   namespace:
+>   : urn:ietf:params:xml:ns:yang:ietf-voucher-request
+>
+>   prefix:
+>   : vch
+>
+>   reference:
+>   : RFC 8995
+
+This reference should also be updated to point to this document and the "File" entry should be updated to point to the
+new module revision in {{voucher-request-yang-module}}.
+Additionally, the "prefix" field should be updated as follows:
+
+> {:compact}
+>   prefix:
+>   : vcr
+>
 
 ## The Media Types Registry {#vcj}
 
