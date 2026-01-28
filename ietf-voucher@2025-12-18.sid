@@ -1,7 +1,7 @@
 {
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher",
-    "module-revision": "2023-01-10",
+    "module-revision": "2025-12-18",
     "sid-file-version": 5,
     "sid-file-status": "unpublished",
     "dependency-revision": [
