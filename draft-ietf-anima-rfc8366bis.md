@@ -1006,6 +1006,26 @@ For non-standards track extensions, the Designated Expert should review whatever
 The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging.
 However, as registration is optional, the Designated Expert should not block any registrations.
 
+## The IETF YANG-SID Ranges Registry
+
+IANA is requested to register the following entries in the IETF YANG-SID Ranges registry:
+
+| Entry Point | Size  | Module Name          | Reference    |
+|:-----------:|:-----:|:---------------------|:-------------|
+| 2450        |  50   | ietf-voucher         | \[This RFC\] |
+|--
+| 2500        |  50   | ietf-voucher-request | \[This RFC\] |
+|--
+{: #ietf-yang-sid-ranges-table title='Registered SID ranges'}
+
+## The IETF YANG-SID Modules Registry
+
+IANA is requested to register the following YANG modules in the IETF YANG-SID Modules registry, per the {{CORESID}}
+procedure:
+
+* `ietf-voucher` defined in {{voucher-yang-module}}.
+* `ietf-voucher-request` defined in {{voucher-request-yang-module}}.
+
 --- back
 
 # Examples
@@ -1105,7 +1125,10 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
 ~~~~
 {: #ExampleVoucherJWSfigure title="Example JWS Voucher" artwork-align="left"}
 
+{:removeinrfc}
 # SID Allocations
+
+It is temporarily included for review purposes, following the guidelines in {{Section 6.4.3 of CORESID}}.
 
 ## SID Allocations for Voucher
 
