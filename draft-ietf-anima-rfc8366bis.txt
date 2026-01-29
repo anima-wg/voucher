@@ -6,13 +6,13 @@ ANIMA Working Group                                            K. Watsen
 Internet-Draft                                           Watsen Networks
 Updates: 8366, 8995 (if approved)                     M. Richardson, Ed.
 Intended status: Standards Track                      Sandelman Software
-Expires: 31 July 2026                                            E. Dijk
+Expires: 2 August 2026                                           E. Dijk
                                                        IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                         27 January 2026
+                                                         29 January 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 July 2026.
+   This Internet-Draft will expire on 2 August 2026.
 
 Copyright Notice
 
@@ -93,6 +93,7 @@ Table of Contents
    5.  Changes since RFC8366
      5.1.  Attempts and motivation to extend RFC8366
    6.  Updates to RFC8995
+     6.1.  Errata closed
    7.  Signature mechanisms
      7.1.  CMS Format Voucher Artifact
    8.  Voucher Artifact
@@ -495,6 +496,10 @@ Table of Contents
    connection between Pledge and Registrar.  Therefore the Pledge's
    IDevID certificate can not be extracted from the TLS connection, so
    those variations document a different channel binding process.
+
+6.1.  Errata closed
+
+   This above updates to [BRSKI] addresses errata [eid7263].
 
 7.  Signature mechanisms
 
@@ -1791,6 +1796,9 @@ Table of Contents
               iDentifier (YANG SID)", RFC 9595, DOI 10.17487/RFC9595,
               July 2024, <https://www.rfc-editor.org/rfc/rfc9595>.
 
+   [eid7263]  "Errata 7263, RFC8995", n.d.,
+              <https://www.rfc-editor.org/errata/eid7263>.
+
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
 
@@ -2338,7 +2346,7 @@ B.1.  SID Allocations for Voucher
    {
      "ietf-sid-file:sid-file": {
        "module-name": "ietf-voucher",
-       "module-revision": "2023-01-10",
+       "module-revision": "2025-12-18",
        "sid-file-version": 5,
        "sid-file-status": "unpublished",
        "dependency-revision": [
@@ -2471,7 +2479,7 @@ B.2.  SID Allocations for Voucher Request
    {
      "ietf-sid-file:sid-file": {
        "module-name": "ietf-voucher-request",
-       "module-revision": "2023-01-10",
+       "module-revision": "2025-12-18",
        "sid-file-version": 11,
        "sid-file-status": "unpublished",
        "dependency-revision": [
@@ -2481,11 +2489,7 @@ B.2.  SID Allocations for Voucher Request
          },
          {
            "module-name": "ietf-voucher",
-           "module-revision": "2023-01-10"
-         },
-         {
-           "module-name": "ietf-voucher",
-           "module-revision": "2023-01-10"
+           "module-revision": "2025-12-18"
          }
        ],
        "assignment-range": [

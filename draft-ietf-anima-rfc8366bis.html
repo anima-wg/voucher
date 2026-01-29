@@ -1061,7 +1061,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 31 July 2026</td>
+<td class="center">Expires 2 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1077,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc8366" class="eref">8366</a>, <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-27" class="published">27 January 2026</time>
+<time datetime="2026-01-29" class="published">29 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-31">31 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-02">2 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1157,7 +1157,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 31 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1208,6 +1208,11 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-updates-to-rfc8995" class="internal xref">Updates to RFC8995</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-errata-closed" class="internal xref">Errata closed</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-signature-mechanisms" class="internal xref">Signature mechanisms</a></p>
@@ -1771,6 +1776,14 @@ The difficulty with this approach is that the semantics of the definitions neede
 There is a change to the voucher-request: the idevid-issuer <span class="bcp14">MUST</span> be included in the Registrar Voucher Request (RVR).
 Like the serial-number, the idevid-issuer is to be taken from client certificate.
 In some varations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<div id="errata-closed">
+<section id="section-6.1">
+        <h3 id="name-errata-closed">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-errata-closed" class="section-name selfRef">Errata closed</a>
+        </h3>
+<p id="section-6.1-1">This above updates to <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> addresses errata <span>[<a href="#eid7263" class="cite xref">eid7263</a>]</span>.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="signature-mechanisms">
@@ -3154,6 +3167,10 @@ However, as registration is optional, the Designated Expert should not block any
         <dd>
 <span class="refAuthor">Veillette, M., Ed.</span>, <span class="refAuthor">Pelov, A., Ed.</span>, <span class="refAuthor">Petrov, I., Ed.</span>, <span class="refAuthor">Bormann, C.</span>, and <span class="refAuthor">M. Richardson</span>, <span class="refTitle">"YANG Schema Item iDentifier (YANG SID)"</span>, <span class="seriesInfo">RFC 9595</span>, <span class="seriesInfo">DOI 10.17487/RFC9595</span>, <time datetime="2024-07" class="refDate">July 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9595">https://www.rfc-editor.org/rfc/rfc9595</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="eid7263">[eid7263]</dt>
+        <dd>
+<span class="refTitle">"Errata 7263, RFC8995"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.rfc-editor.org/errata/eid7263">https://www.rfc-editor.org/errata/eid7263</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="IDEVID">[IDEVID]</dt>
         <dd>
 <span class="refAuthor">IEEE Standard</span>, <span class="refTitle">"IEEE 802.1AR Secure Device Identifier"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://1.ieee802.org/security/802-1ar/">https://1.ieee802.org/security/802-1ar/</a>&gt;</span>. </dd>
@@ -3721,7 +3738,7 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
 {
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher",
-    "module-revision": "2023-01-10",
+    "module-revision": "2025-12-18",
     "sid-file-version": 5,
     "sid-file-status": "unpublished",
     "dependency-revision": [
@@ -3862,7 +3879,7 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
 {
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher-request",
-    "module-revision": "2023-01-10",
+    "module-revision": "2025-12-18",
     "sid-file-version": 11,
     "sid-file-status": "unpublished",
     "dependency-revision": [
@@ -3872,11 +3889,7 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
       },
       {
         "module-name": "ietf-voucher",
-        "module-revision": "2023-01-10"
-      },
-      {
-        "module-name": "ietf-voucher",
-        "module-revision": "2023-01-10"
+        "module-revision": "2025-12-18"
       }
     ],
     "assignment-range": [
