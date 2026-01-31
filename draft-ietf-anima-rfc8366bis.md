@@ -4,6 +4,7 @@ stand_alone: true
 ipr: trust200902
 cat: std
 updates: 8366, 8995
+obsoletes: 8366
 consensus: 'yes'
 pi:
   toc: 'yes'
@@ -406,6 +407,8 @@ Bearer Voucher:
   against MiTM Registrars. Bearer Vouchers are therefore out of scope.
 
 # Changes since RFC8366
+
+This document obsoletes {{RFC8366}}
 
 ## Attempts and motivation to extend RFC8366 {#extendfail}
 
