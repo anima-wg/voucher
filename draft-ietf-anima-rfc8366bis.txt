@@ -4,15 +4,15 @@
 
 ANIMA Working Group                                            K. Watsen
 Internet-Draft                                           Watsen Networks
-Updates: 8366, 8995 (if approved)                     M. Richardson, Ed.
-Intended status: Standards Track                      Sandelman Software
-Expires: 2 August 2026                                           E. Dijk
-                                                       IoTconsultancy.nl
+Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
+Updates: 8366, 8995 (if approved)                     Sandelman Software
+Intended status: Standards Track                                 E. Dijk
+Expires: 4 August 2026                                 IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                         29 January 2026
+                                                         31 January 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 August 2026.
+   This Internet-Draft will expire on 4 August 2026.
 
 Copyright Notice
 
@@ -424,6 +424,8 @@ Table of Contents
       therefore out of scope.
 
 5.  Changes since RFC8366
+
+   This document obsoletes [RFC8366]
 
 5.1.  Attempts and motivation to extend RFC8366
 
