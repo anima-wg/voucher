@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8366, 8995 (if approved)                     Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 4 August 2026                                 IoTconsultancy.nl
+Expires: 7 August 2026                                 IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                         31 January 2026
+                                                         3 February 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2026.
+   This Internet-Draft will expire on 7 August 2026.
 
 Copyright Notice
 
@@ -1683,30 +1683,51 @@ Table of Contents
 
 12.1.  The IETF XML Registry
 
-   This document registers two URIs in the "IETF XML Registry"
-   [RFC3688].
+   This document updates two URIs in the "IETF XML Registry" [RFC3688].
 
-   IANA has registered the following:
+   IANA has registered the following based on [RFC8366] and [BRSKI]
+   respectively:
 
       URI:  urn:ietf:params:xml:ns:yang:ietf-voucher
       Registrant Contact:  The ANIMA WG of the IETF.
       XML:  N/A, the requested URI is an XML namespace.
 
-   This reference should be updated to point to this document.
+      URI:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
+      Registrant Contact:  The ANIMA WG of the IETF.
+      XML:  N/A, the requested URI is an XML namespace.
+
+   For both entries, the reference should be updated to point to this
+   document.
 
 12.2.  The YANG Module Names Registry
 
-   This document registers two YANG module in the "YANG Module Names"
-   registry [RFC6020].
+   This document updates two entries in the "YANG Module Names" registry
+   [RFC6020].
 
-   IANA has registered the following:
+   IANA has registered the following based on [RFC8366]:
 
       name:  ietf-voucher
       namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher
       prefix:  vch
       reference:  RFC 8366
 
-   This reference should be updated to point to this document.
+   This reference should be updated to point to this document and the
+   "File" entry should be updated to point to the new module revision in
+   Section 8.3.
+
+   IANA has registered the following based on [BRSKI]:
+
+      name:  ietf-voucher-request
+      namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
+      prefix:  vch
+      reference:  RFC 8995
+
+   This reference should also be updated to point to this document and
+   the "File" entry should be updated to point to the new module
+   revision in Section 9.2.  Additionally, the "prefix" field should be
+   updated as follows:
+
+      prefix:  vcr
 
 12.3.  The Media Types Registry
 
