@@ -121,6 +121,8 @@ Table of Contents
      12.3.  The Media Types Registry
      12.4.  The SMI Security for S/MIME CMS Content Type Registry
      12.5.  The Voucher Extensions Registry
+     12.6.  The IETF YANG-SID Ranges Registry
+     12.7.  The IETF YANG-SID Modules Registry
    13. References
      13.1.  Normative References
      13.2.  Informative References
@@ -1782,6 +1784,30 @@ Table of Contents
    merging.  However, as registration is optional, the Designated Expert
    should not block any registrations.
 
+12.6.  The IETF YANG-SID Ranges Registry
+
+   IANA is requested to register the following entries in the IETF YANG-
+   SID Ranges registry:
+
+        +=============+======+======================+============+
+        | Entry Point | Size | Module Name          | Reference  |
+        +=============+======+======================+============+
+        |     2450    |  50  | ietf-voucher         | [This RFC] |
+        +-------------+------+----------------------+------------+
+        |     2500    |  50  | ietf-voucher-request | [This RFC] |
+        +-------------+------+----------------------+------------+
+
+                      Table 3: Registered SID ranges
+
+12.7.  The IETF YANG-SID Modules Registry
+
+   IANA is requested to register the following YANG modules in the IETF
+   YANG-SID Modules registry, per the [CORESID] procedure:
+
+   *  ietf-voucher defined in Section 8.3.
+
+   *  ietf-voucher-request defined in Section 9.2.
+
 13.  References
 
 13.1.  Normative References
@@ -2360,6 +2386,11 @@ A.4.  Example JWS-signed Voucher from MASA
                        Figure 1: Example JWS Voucher
 
 Appendix B.  SID Allocations
+
+   This section is to be removed before publishing as an RFC.
+
+   It is temporarily included for review purposes, following the
+   guidelines in Section 6.4.3 of [CORESID].
 
 B.1.  SID Allocations for Voucher
 
