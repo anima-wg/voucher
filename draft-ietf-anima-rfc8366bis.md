@@ -1114,11 +1114,20 @@ IANA is requested to register the following entries in the IETF YANG-SID Ranges 
 
 ## The IETF YANG-SID Modules Registry
 
-IANA is requested to register the following YANG modules in the IETF YANG-SID Modules registry, per the {{CORESID}}
-procedure:
+IANA is requested to register the following YANG module in the IETF YANG-SID Modules registry, per
+{{Section 6.5.1 of CORESID}}:
 
-* `ietf-voucher` defined in {{voucher-yang-module}}.
-* `ietf-voucher-request` defined in {{voucher-request-yang-module}}.
+* YANG module name: `ietf-voucher`
+* URI for the ".yang" file: a pointer to the file defined in {{voucher-yang-module}}
+* URI for the ".sid" file: a pointer to the file defined in {{voucher-sid-allocations}}
+* Number of SIDs: 17
+
+and also the following YANG module:
+
+* YANG module name: `ietf-voucher-request`
+* URI for the ".yang" file: a pointer to the file defined in {{voucher-request-yang-module}}
+* URI for the ".sid" file: a pointer to the file defined in {{voucher-request-sid-allocations}}
+* Number of SIDs: 24
 
 --- back
 
@@ -1224,14 +1233,14 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
 
 It is temporarily included for review purposes, following the guidelines in {{Section 6.4.3 of CORESID}}.
 
-## SID Allocations for Voucher
+## SID Allocations for Voucher {#voucher-sid-allocations}
 
 ~~~~ json
 {::include-fold ietf-voucher@2025-12-18.sid}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2025-12-18.sid"}
 
-## SID Allocations for Voucher Request
+## SID Allocations for Voucher Request {#voucher-request-sid-allocations}
 
 ~~~~ json
 {::include-fold ietf-voucher-request@2025-12-18.sid}
