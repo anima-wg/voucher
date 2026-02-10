@@ -1747,14 +1747,15 @@ Table of Contents
       Interoperability considerations: The format is designed to be
       broadly interoperable.
 
-      Published specification: :THISDOCUMENT
+      Published specification:  THISDOCUMENT
 
       Applications that use this media type:  ANIMA, 6tisch, and NETCONF
          zero-touch imprinting systems.
 
-      Fragment identifier considerations:  none Additional information:
+      Fragment identifier considerations:  none
 
-         Deprecated alias names for this type: none
+      Additional information:  Deprecated alias names for this type:
+         none
 
          Magic number(s): None
 
