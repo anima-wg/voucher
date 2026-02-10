@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8366, 8995 (if approved)                     Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 7 August 2026                                 IoTconsultancy.nl
+Expires: 14 August 2026                                IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                         3 February 2026
+                                                        10 February 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2026.
+   This Internet-Draft will expire on 14 August 2026.
 
 Copyright Notice
 
@@ -1735,6 +1735,46 @@ Table of Contents
 
    IANA has registered the media type: application/voucher-cms+json, and
    this registration should be updated to point to this document.
+
+      Type name:  application
+      Subtype name:  voucher-cms+json
+      Required parameters:  none
+      Optional parameters:  none
+      Encoding considerations:  CMS-signed JSON vouchers are ASN.1/DER
+         encoded.
+      Security considerations:  See Section 11
+
+      Interoperability considerations: The format is designed to be
+      broadly interoperable.
+
+      Published specification:  THISDOCUMENT
+
+      Applications that use this media type:  ANIMA, 6tisch, and NETCONF
+         zero-touch imprinting systems.
+
+      Fragment identifier considerations:  none
+
+      Additional information:  Deprecated alias names for this type:
+         none
+
+         Magic number(s): None
+
+         File extension(s): .vcj
+
+         Macintosh file type code(s): none
+
+      Person and email address to contact for further information:  IETF
+         ANIMA WG
+
+      Intended usage:  LIMITED
+
+      Restrictions on usage:  NONE
+
+      Author:  ANIMA WG
+
+      Change controller:  IETF
+
+      Provisional registration? (standards tree only):  NO
 
 12.4.  The SMI Security for S/MIME CMS Content Type Registry
 
