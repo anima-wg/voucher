@@ -1841,12 +1841,30 @@ Table of Contents
 
 12.7.  The IETF YANG-SID Modules Registry
 
-   IANA is requested to register the following YANG modules in the IETF
-   YANG-SID Modules registry, per the [CORESID] procedure:
+   IANA is requested to register the following YANG module in the IETF
+   YANG-SID Modules registry, per Section 6.5.1 of [CORESID]:
 
-   *  ietf-voucher defined in Section 8.3.
+   *  YANG module name: ietf-voucher
 
-   *  ietf-voucher-request defined in Section 9.2.
+   *  URI for the ".yang" file: a pointer to the file defined in
+      Section 8.3
+
+   *  URI for the ".sid" file: a pointer to the file defined in
+      Appendix B.1
+
+   *  Number of SIDs: 17
+
+   and also the following YANG module:
+
+   *  YANG module name: ietf-voucher-request
+
+   *  URI for the ".yang" file: a pointer to the file defined in
+      Section 9.2
+
+   *  URI for the ".sid" file: a pointer to the file defined in
+      Appendix B.2
+
+   *  Number of SIDs: 24
 
 13.  References
 
