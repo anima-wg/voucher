@@ -999,6 +999,61 @@ Additionally, the "prefix" field should be updated as follows:
 
 IANA has registered the media type: `application/voucher-cms+json`, and this registration should be updated to point to this document.
 
+> {:compact}
+>   Type name:
+>   : application
+>
+>   Subtype name:
+>   : voucher-cms+json
+>
+>   Required parameters:
+>   : none
+>
+>   Optional parameters:
+>   : none
+>
+>   Encoding considerations:
+>   : CMS-signed JSON vouchers are ASN.1/DER  encoded.
+>
+>   Security considerations:
+>   : See {{sec-con}}
+>
+>   Interoperability considerations:  The format is designed to be
+>      broadly interoperable.
+>
+>   Published specification:
+>   :THISDOCUMENT
+>
+>   Applications that use this media type:
+>   : ANIMA, 6tisch, and NETCONF zero-touch imprinting systems.
+>
+>   Fragment identifier considerations:
+>   : none
+>   Additional information:
+>   :  Deprecated alias names for this type:  none
+>   :  Magic number(s):  None
+>   :  File extension(s):  .vcj
+>   : Macintosh file type code(s):  none
+>
+>
+>   Person and email address to contact for further information:
+>   : IETF ANIMA WG
+>
+>   Intended usage:
+>   : LIMITED
+>
+>   Restrictions on usage:
+>   : NONE
+>
+>   Author:
+>   : ANIMA WG
+>
+>   Change controller:
+>   : IETF
+>
+>   Provisional registration? (standards tree only):
+>   : NO
+
 ## The SMI Security for S/MIME CMS Content Type Registry {#iana-contenttype}
 
 IANA has registered the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
