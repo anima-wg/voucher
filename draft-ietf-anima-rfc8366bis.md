@@ -1022,17 +1022,18 @@ IANA has registered the media type: `application/voucher-cms+json`, and this reg
 >      broadly interoperable.
 >
 >   Published specification:
->   :THISDOCUMENT
+>   : THISDOCUMENT
 >
 >   Applications that use this media type:
 >   : ANIMA, 6tisch, and NETCONF zero-touch imprinting systems.
 >
 >   Fragment identifier considerations:
 >   : none
+>
 >   Additional information:
->   :  Deprecated alias names for this type:  none
->   :  Magic number(s):  None
->   :  File extension(s):  .vcj
+>   : Deprecated alias names for this type:  none
+>   : Magic number(s):  None
+>   : File extension(s):  .vcj
 >   : Macintosh file type code(s):  none
 >
 >
