@@ -106,6 +106,13 @@ module ietf-voucher-request {
         description "Any assertion included in registrar voucher
                      requests SHOULD be ignored by the MASA.";
       }
+
+      refine "idevid-issuer" {
+        description "The idevid-issuer field MUST be included in
+                     a Registrar Voucher Request (RVR) (unless
+                     specified otherwise) per Section 6.1 of
+                     RFC XXXX.";
+      }
     }
 
     leaf prior-signed-voucher-request {
