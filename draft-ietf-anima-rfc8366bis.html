@@ -178,7 +178,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -186,7 +186,8 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -1061,7 +1062,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 14 August 2026</td>
+<td class="center">Expires 28 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1081,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc8366" class="eref">8366</a>, <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-10" class="published">10 February 2026</time>
+<time datetime="2026-02-24" class="published">24 February 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-14">14 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-28">28 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1160,7 +1161,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1213,7 +1214,16 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-updates-to-rfc8995" class="internal xref">Updates to RFC8995</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-errata-closed" class="internal xref">Errata closed</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-updates-to-the-use-of-idevi" class="internal xref">Updates to the use of <code>idevid-issuer</code></a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-clarifications-on-the-use-o" class="internal xref">Clarifications on the use of <code>idevid-issuer</code></a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-clarifications-on-the-forma" class="internal xref">Clarifications on the format of <code>idevid-issuer</code></a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-errata-closed" class="internal xref">Errata closed</a></p>
 </li>
             </ul>
 </li>
@@ -1747,7 +1757,7 @@ against MiTM Registrars. Bearer Vouchers are therefore out of scope.<a href="#se
       <h2 id="name-changes-since-rfc8366">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-changes-since-rfc8366" class="section-name selfRef">Changes since RFC8366</a>
       </h2>
-<p id="section-5-1">This document obsoletes <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span><a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">This document obsoletes <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="extendfail">
 <section id="section-5.1">
         <h3 id="name-attempts-and-motivation-to-">
@@ -1770,7 +1780,7 @@ However, <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> needs to extend
 The result was invalid YANG, with multiple definitions of the core Attributes from the <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> Voucher Artifact.
 After some discussion, it was determined that the <em>augment</em> mechanism did not work for this use case,
 nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> "yang-data" extension was replaced with the <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span> "structure" extension.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
-<p id="section-5.1-8">After significant discussion the decision was made to simply roll all of the needed extensions  into this document.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+<p id="section-5.1-8">After significant discussion the decision was made to simply roll all of the needed extensions into this document.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1780,18 +1790,65 @@ nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8
       <h2 id="name-updates-to-rfc8995">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-updates-to-rfc8995" class="section-name selfRef">Updates to RFC8995</a>
       </h2>
-<p id="section-6-1">This document therefore represents a merge of YANG definitions from <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, the Voucher Request from <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>, and extensions to each of these from <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>.
-The difficulty with this approach is that the semantics of the definitions needed for the other documents is not included in this document, but rather in the respective other documents.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">The voucher-request definition that was in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> sections 3.2 (tree diagram) and 3.4  (YANG module) is now included in this document.
-There is a change to the voucher-request: the idevid-issuer <span class="bcp14">MUST</span> be included in the Registrar Voucher Request (RVR).
-Like the serial-number, the idevid-issuer is to be taken from client certificate.
-In some varations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate can not be extracted from the TLS connection, so those variations document a different channel binding process.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<div id="errata-closed">
+<p id="section-6-1">This document represents a merge of YANG definitions of the Voucher from <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, the Voucher Request from <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>, and extensions to each of these from <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>.
+The difficulty with this approach is that the semantics of the definitions needed for the other documents are not included in this document, but rather in the respective other documents.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="updates-idevid-issuer">
 <section id="section-6.1">
-        <h3 id="name-errata-closed">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-errata-closed" class="section-name selfRef">Errata closed</a>
+        <h3 id="name-updates-to-the-use-of-idevi">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-updates-to-the-use-of-idevi" class="section-name selfRef">Updates to the use of <code>idevid-issuer</code></a>
         </h3>
-<p id="section-6.1-1">This above updates to <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> addresses errata <span>[<a href="#eid7263" class="cite xref">eid7263</a>]</span>.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-1">The <code>voucher-request</code> module definition that was in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> Sections 3.2 (tree diagram) and 3.4 (YANG module) is now included in this document.
+There is a change to it: the '<code>idevid-issuer</code>' Attribute <span class="bcp14">MUST</span> be included in a Registrar Voucher Request (RVR).
+Like the '<code>serial-number</code>' value in the RVR, the '<code>idevid-issuer</code>' value in the RVR is to be taken from the Pledge's (IDevID) client certificate.
+In some variations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="clarifications-on-the-use-of-idevid-issuer">
+<section id="section-6.2">
+        <h3 id="name-clarifications-on-the-use-o">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-clarifications-on-the-use-o" class="section-name selfRef">Clarifications on the use of <code>idevid-issuer</code></a>
+        </h3>
+<p id="section-6.2-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> and <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> define the '<code>idevid-issuer</code>' attribute for the '<code>voucher</code>' and '<code>voucher-request</code>' modules (respectively), but they summarily explain when to use it, and why it is used.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">The '<code>idevid-issuer</code>' Attribute is provided so that the serial number to which the issued Voucher pertains can be relative to the entity that issued the Pledge's IDevID.
+In most cases there is a one to one relationship between the trust anchor that signs Vouchers (and is trusted by the Pledge), and the Certification Authority that signs the IDevID.
+In that case, the '<code>serial-number</code>' in the Voucher Data must refer to the same device as the serial number that is in the IDevID certificate (in the '<code>serialNumber</code>' element of type '<code>X520SerialNumber</code>' per <span><a href="https://rfc-editor.org/rfc/rfc8995#section-2.3.1" class="relref">Section 2.3.1</a> of [<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>).<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<p id="section-6.2-3">However, there are situations where the one to one relationship may be broken.
+This occurs whenever a manufacturer has a common MASA, but different products (on different assembly lines) are produced with identical serial numbers.
+A system of serial numbers which is just a simple counter is a good example of this.
+A system of serial numbers where there is some prefix relating the product type does not fit into this, even if the lower digits are a counter.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<p id="section-6.2-4">Another situation occurs when multiple manufacturers share a common MASA.
+In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<p id="section-6.2-5">It is not possible for the Pledge or the Registrar to know which situation applies.
+And because one the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+This is realized by the '<code>idevid-issuer</code>' Attribute.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
+<p id="section-6.2-6">It is clarified next, whether or not to include the '<code>idevid-issuer</code>' in the PVR, in the RVR and in the Voucher.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<p id="section-6.2-7">Analysis of the situation shows that the Pledge never needs to include '<code>idevid-issuer</code>' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
+The Pledge therefore has no need to repeat this.<a href="#section-6.2-7" class="pilcrow">¶</a></p>
+<p id="section-6.2-8">For the RVR, <a href="#updates-idevid-issuer" class="auto internal xref">Section 6.1</a> now normatively requires that the '<code>idevid-issuer</code>' Attribute must be included.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+<p id="section-6.2-9">For the Voucher, <a href="#voucher-yang-module" class="auto internal xref">Section 8.3</a> normatively requires ("must") that the '<code>idevid-issuer</code>' Attribute must be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
+If this rule does not apply, the MASA <span class="bcp14">SHOULD NOT</span> include the '<code>idevid-issuer</code>' Attribute in order to achieve a smaller Voucher size.<a href="#section-6.2-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="clarifications-on-the-format-of-idevid-issuer">
+<section id="section-6.3">
+        <h3 id="name-clarifications-on-the-forma">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-clarifications-on-the-forma" class="section-name selfRef">Clarifications on the format of <code>idevid-issuer</code></a>
+        </h3>
+<p id="section-6.3-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> and <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> were not fully clear on the required binary format of the '<code>idevid-issuer</code>' Attribute.
+This gave rise to incompatible implementations.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-2">This section clarifies the format of the '<code>idevid-issuer</code>' Attribute, which contains the full Authority Key Identifier from an IDevID certificate.
+The entire Authority Key Identifier object from the certificate i.e. the '<code>extnValue</code>' OCTET STRING is to be included, comprising the ASN.1 DER encoding of the '<code>AuthorityKeyIdentifier</code>' structure as defined in <span><a href="https://rfc-editor.org/rfc/rfc5280#section-4.2.1.1" class="relref">Section 4.2.1.1</a> of [<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>.
+This includes the ASN.1 DER encoding of the SEQUENCE as well as the OCTET STRING element (tagged 0) that is named '<code>keyIdentifier</code>' with type '<code>KeyIdentifier</code>'.<a href="#section-6.3-2" class="pilcrow">¶</a></p>
+<p id="section-6.3-3">Note that per <span>[<a href="#IDEVID" class="cite xref">IDEVID</a>]</span>, only the first optional element named '<code>keyIdentifier</code>' is expected to be found in an IDevID certificate, not the '<code>authorityCertIssuer</code>' or the '<code>authorityCertSerialNumber</code>'.
+However, because of the above requirement to include the full '<code>extnValue</code>' OCTET STRING, even if the non-expected elements would be present, they would be included in the '<code>idevid-issuer</code>' value in a Voucher Request or Voucher.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="errata-closed">
+<section id="section-6.4">
+        <h3 id="name-errata-closed">
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-errata-closed" class="section-name selfRef">Errata closed</a>
+        </h3>
+<p id="section-6.4-1">This above updates to <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> addresses errata <span>[<a href="#eid7263" class="cite xref">eid7263</a>]</span>.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1963,7 +2020,7 @@ using the '<code>verified</code>' assertion type, which should satisfy all Pledg
 </pre><a href="#section-8.2-5" class="pilcrow">¶</a>
 </div>
 <p id="section-8.2-6">The final two examples illustrate a Voucher that includes an (example) extension per <a href="#voucher-ext" class="auto internal xref">Section 8.5</a>.
-The hypothetical YANG module name of the extension is "<code>example-my-extension</code>".
+The hypothetical YANG module name of the extension is '<code>example-my-extension</code>'.
 First, a JSON serialization is shown.<a href="#section-8.2-6" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-8.2-7">
 <pre>
@@ -2640,6 +2697,13 @@ module ietf-voucher-request {
         description
           "Any assertion included in registrar voucher
            requests SHOULD be ignored by the MASA.";
+      }
+      refine "idevid-issuer" {
+        description
+          "The idevid-issuer field MUST be included in
+           a Registrar Voucher Request (RVR) (unless
+           specified otherwise) per Section 6.1 of
+           RFC XXXX.";
       }
     }
     leaf prior-signed-voucher-request {
