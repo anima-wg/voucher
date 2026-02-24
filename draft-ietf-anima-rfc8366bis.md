@@ -714,9 +714,7 @@ Any such changes will be recorded as errata on this document.
 {{RFC9254}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
 The below SID values are assigned to the '`ietf-voucher`' YANG module elements and are considered normative.
 
-The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
-In the XPath, the ellipsis (`...`) notation is used to abbreviate the structure path '`/ietf-voucher:voucher`'
-to let each entry fit on one line.
+The right column shows the schema-node path expression for the YANG data node to which the SID value is assigned.
 
 ~~~~
 {::include-fold ietf-voucher-sid.txt}
@@ -817,9 +815,7 @@ The '`ietf-voucher-request`' YANG module is derived from the '`ietf-voucher`' mo
 {{RFC9254}} explains how to serialize YANG into CBOR, and for this a series of SID values are required.
 The below SID values are assigned to the '`ietf-voucher-request`' YANG module elements and are considered normative.
 
-The right column shows the XPath expression for the YANG data node to which the SID value is assigned.
-In the XPath, the ellipsis (`...`) notation is used to abbreviate the structure path '`/ietf-voucher-request:voucher`'
-to let each entry fit on one line.
+The right column shows the schema-node path expression for the YANG data node to which the SID value is assigned.
 
 ~~~~
 {::include-fold ietf-voucher-request-sid.txt}
