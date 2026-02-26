@@ -450,6 +450,14 @@ There is a change to it: the '`idevid-issuer`' Attribute MUST be included in a R
 Like the '`serial-number`' value in the RVR, the '`idevid-issuer`' value in the RVR is to be taken from the Pledge's (IDevID) client certificate.
 In some variations of BRSKI, such as {{PRM}}, there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.
 
+A Registrar MUST apply the following rules for the value of the '`idevid-issuer`' Attribute in the given order:
+
+1. If the Authority Key Identifier (AKI) field is present in the Pledge's (IDevID) client certificate, the Registrar
+   copies the full data element as specified in {{idevid-issuer-format}}.
+2. Otherwise, the Registrar generates the full data element in the format specified in {{idevid-issuer-format}}, using the
+   SHA-1 hash of the public key of the Pledge's IDevID client certificate.
+   This is defined as method 1 in {{Section 4.2.1.2 of RFC5280}}.
+
 ## Clarifications on the use of `idevid-issuer`
 
 {{RFC8366}} and {{BRSKI}} define the '`idevid-issuer`' attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they summarily explain when to use it, and why it is used.
@@ -480,7 +488,7 @@ For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevi
 For the Voucher, {{voucher-yang-module}} normatively requires ("must") that the '`idevid-issuer`' Attribute must be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
 If this rule does not apply, the MASA SHOULD NOT include the '`idevid-issuer`' Attribute in order to achieve a smaller Voucher size.
 
-## Clarifications on the format of `idevid-issuer`
+## Clarifications on the format of `idevid-issuer` {#idevid-issuer-format}
 
 {{RFC8366}} and {{BRSKI}} were not fully clear on the required binary format of the '`idevid-issuer`' Attribute.
 This gave rise to incompatible implementations.
