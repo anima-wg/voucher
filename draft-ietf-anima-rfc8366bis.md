@@ -712,7 +712,7 @@ The presented SID values are believed to be correct, but future reprocessing of 
 Any such changes will be recorded as errata on this document.
 
 ~~~~ yang
-{::include-fold yang/ietf-voucher-latest.yang}
+{::include yang/ietf-voucher-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher@2025-12-18.yang"}
 
@@ -813,7 +813,7 @@ Each node in the diagram is fully described by the YANG module in
 The '`ietf-voucher-request`' YANG module is derived from the '`ietf-voucher`' module.
 
 ~~~~ yang
-{::include-fold yang/ietf-voucher-request-latest.yang}
+{::include yang/ietf-voucher-request-latest.yang}
 ~~~~
 {: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2025-12-18.yang"}
 
