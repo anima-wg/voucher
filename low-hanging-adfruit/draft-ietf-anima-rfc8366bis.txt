@@ -912,7 +912,7 @@ Table of Contents
          "RFC 8366: Voucher Profile for Bootstrapping Protocols";
      }
 
-     grouping voucher-artifact-grouping {
+     grouping voucher-artifact {
        description
          "Grouping to allow reuse/extensions in future work.";
        leaf created-on {
@@ -1157,7 +1157,7 @@ Table of Contents
 
      // Top-level statement
      sx:structure voucher {
-       uses voucher-artifact-grouping;
+       uses voucher-artifact;
      }
    }
    <CODE ENDS>
@@ -1424,10 +1424,10 @@ Table of Contents
           (BRSKI)";
      }
 
-     grouping voucher-request-grouping {
+     grouping voucher-request {
        description
          "Grouping to allow reuse/extensions in future work.";
-       uses vch:voucher-artifact-grouping {
+       uses vch:voucher-artifact {
          refine "last-renewal-date" {
            description
              "A last-renewal-date field
@@ -1591,7 +1591,7 @@ Table of Contents
 
      // Top-level statement: called "voucher" to match RFC8995
      sx:structure voucher {
-       uses voucher-request-grouping;
+       uses voucher-request;
      }
    }
    <CODE ENDS>
