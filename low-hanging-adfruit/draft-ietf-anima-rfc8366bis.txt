@@ -843,15 +843,17 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-inet-types {
        prefix ietf;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-yang-structure-ext {
        prefix sx;
+       reference
+         "RFC 8791: YANG Data Structure Extensions";
      }
 
      organization
@@ -876,7 +878,7 @@ Table of Contents
         pledge may establish a secure connection to the owner's
         network infrastructure.
 
-        Copyright (c) 2023 IETF Trust and the persons identified as
+        Copyright (c) 2023-2026 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -1023,7 +1025,7 @@ Table of Contents
          description
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in ITU-T X.690.
+            encoding, as defined in [ITU-T.X690.2015].
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
@@ -1351,6 +1353,8 @@ Table of Contents
 
      import ietf-yang-structure-ext {
        prefix sx;
+       reference
+         "RFC 8791: YANG Data Structure Extensions";
      }
      import ietf-voucher {
        prefix vch;
@@ -1387,7 +1391,7 @@ Table of Contents
         during a voucher request procedure and subsequent
         Voucher creation.
 
-        Copyright (c) 2023 IETF Trust and the persons identified as
+        Copyright (c) 2023-2026 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -1481,7 +1485,7 @@ Table of Contents
            "An X.509 v3 certificate structure as specified by
             RFC 5280, Section 4 encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in [ITU.X690.1994].
+            in [ITU.X690.2015].
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
