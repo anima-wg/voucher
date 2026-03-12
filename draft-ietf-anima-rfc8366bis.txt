@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8366, 8995 (if approved)                     Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 30 August 2026                                IoTconsultancy.nl
+Expires: 13 September 2026                             IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                        26 February 2026
+                                                           12 March 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2026.
+   This Internet-Draft will expire on 13 September 2026.
 
 Copyright Notice
 
@@ -835,8 +835,6 @@ Table of Contents
    document.
 
    <CODE BEGINS> file "ietf-voucher@2025-12-18.yang"
-   =============== NOTE: '\' line wrapping per RFC 8792 ================
-
    module ietf-voucher {
      yang-version 1.1;
      namespace "urn:ietf:params:xml:ns:yang:ietf-voucher";
@@ -1009,10 +1007,8 @@ Table of Contents
             certificate.  In the voucher, it is optional
             as some manufacturers know that all serial-numbers
             are unique within the scope of a MASA.
-            In the voucher request, whether it is mandatory or \
-                                                        optional depends
-            upon the which protocol is used, such as RFC8995 and \
-                                                             variations.
+            In the voucher request, whether it is mandatory or optional depends
+            upon the which protocol is used, such as RFC8995 and variations.
             When processing a voucher, a pledge MUST ensure that its
             IDevID Authority Key Identifier matches this value.  If no
             match occurs, then the pledge MUST NOT process this
@@ -1986,9 +1982,9 @@ Table of Contents
    [cBRSKI]   Richardson, M., Van der Stok, P., Kampanakis, P., and E.
               Dijk, "Constrained Bootstrapping Remote Secure Key
               Infrastructure (cBRSKI)", Work in Progress, Internet-
-              Draft, draft-ietf-anima-constrained-voucher-29, 18 October
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              anima-constrained-voucher-29>.
+              Draft, draft-ietf-anima-constrained-voucher-30, 27
+              February 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-anima-constrained-voucher-30>.
 
    [CLOUD]    Friel, O., Shekh-Yusef, R., and M. Richardson,
               "Bootstrapping Remote Secure Key Infrastructure (BRSKI)
@@ -2110,9 +2106,9 @@ Table of Contents
               Selander, G., Mattsson, J. P., Vučinić, M., Fedrecheski,
               G., and M. Richardson, "Lightweight Authorization using
               Ephemeral Diffie-Hellman Over COSE (ELA)", Work in
-              Progress, Internet-Draft, draft-ietf-lake-authz-06, 20
-              October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-lake-authz-06>.
+              Progress, Internet-Draft, draft-ietf-lake-authz-07, 2
+              March 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-lake-authz-07>.
 
    [I-D.vangeest-lamps-cms-euf-cma-signeddata]
               Van Geest, D. and F. Strenzke, "Best Practices for CMS
