@@ -31,8 +31,6 @@ module ietf-voucher-request {
                <mailto:kent+ietf@watsen.net>
      Author:   Michael Richardson
                <mailto:mcr+ietf@sandelman.ca>
-     Author:   Max Pritikin
-               <mailto:pritikin@cisco.com>
      Author:   Toerless Eckert
                <mailto:tte@cs.fau.de>
      Author:   Qiufang Ma

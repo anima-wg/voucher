@@ -26,8 +26,6 @@ module ietf-voucher {
               <mailto:kent+ietf@watsen.net>
     Author:   Michael Richardson
               <mailto:mcr+ietf@sandelman.ca>
-    Author:   Max Pritikin
-              <mailto:pritikin@cisco.com>
     Author:   Toerless Eckert
               <mailto:tte@cs.fau.de>
     Author:   Qiufang Ma
@@ -176,7 +174,7 @@ module ietf-voucher {
            certificate.  In the voucher, it is optional
            as some manufacturers know that all serial-numbers
            are unique within the scope of a MASA.
-        In the voucher request, whether it is mandatory or optional depends 
+        In the voucher request, whether it is mandatory or optional depends
         upon the which protocol is used, such as RFC8995 and variations.
            When processing a voucher, a pledge MUST ensure that its
            IDevID Authority Key Identifier matches this value.  If no
