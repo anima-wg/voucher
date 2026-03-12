@@ -5,16 +5,17 @@ module ietf-voucher {
 
   import ietf-yang-types {
     prefix yang;
-    reference "RFC 6991: Common YANG Data Types";
+    reference "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-inet-types {
     prefix ietf;
-    reference "RFC 6991: Common YANG Data Types";
+    reference "RFC 9911: Common YANG Data Types";
   }
 
   import ietf-yang-structure-ext {
     prefix sx;
+    reference "RFC 8791: YANG Data Structure Extensions";
   }
 
   organization
@@ -40,7 +41,7 @@ module ietf-voucher {
      pledge may establish a secure connection to the owner's
      network infrastructure.
 
-     Copyright (c) 2023 IETF Trust and the persons identified as
+     Copyright (c) 2023-2026 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -192,7 +193,7 @@ module ietf-voucher {
           description
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in ITU-T X.690.
+            encoding, as defined in [ITU-T.X690.2015].
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
