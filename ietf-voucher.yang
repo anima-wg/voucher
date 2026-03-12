@@ -77,7 +77,7 @@ module ietf-voucher {
       "RFC 8366: Voucher Profile for Bootstrapping Protocols";
   }
 
-  grouping voucher-artifact-grouping {
+  grouping voucher-artifact {
     description
       "Grouping to allow reuse/extensions in future work.";
 
@@ -329,7 +329,7 @@ module ietf-voucher {
 
   // Top-level statement
   sx:structure voucher {
-    uses voucher-artifact-grouping;
+    uses voucher-artifact;
   }
 
 }

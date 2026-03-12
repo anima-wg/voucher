@@ -83,11 +83,11 @@ module ietf-voucher-request {
        (BRSKI)";
   }
 
-  grouping voucher-request-grouping {
+  grouping voucher-request {
     description
       "Grouping to allow reuse/extensions in future work.";
 
-    uses vch:voucher-artifact-grouping {
+    uses vch:voucher-artifact {
       refine "last-renewal-date" {
         description "A last-renewal-date field
                      is not valid in a voucher request, and
@@ -257,7 +257,7 @@ module ietf-voucher-request {
 
   // Top-level statement: called "voucher" to match RFC8995
   sx:structure voucher {
-    uses voucher-request-grouping;
+    uses voucher-request;
   }
 
 }
