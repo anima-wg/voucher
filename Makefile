@@ -32,12 +32,12 @@ endif
 # subdirectory so that pyang won't see the template files in the CWD.
 # maybe a different extension is in order.
 
-draft-ietf-anima-rfc8366bis.xml:: yang/ietf-voucher@${YANGDATE}.yang \
+draft-ietf-anima-rfc8366bis.xml: yang/ietf-voucher@${YANGDATE}.yang \
 	yang/ietf-voucher-tree-latest.txt \
 	yang/ietf-voucher-request@${YANGDATE}.yang \
 	yang/ietf-voucher-request-tree-latest.txt ${CWTSIDLIST1} ${CWTSIDLIST2} ${EXAMPLES}
 
-yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
+yang/ietf-voucher-latest.yang yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	# make sure we are running a new enough pyang
 	${PYANG} --help | grep sid-finalize
 	which ${PYANG}
@@ -45,7 +45,7 @@ yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
-yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang
+yang/ietf-voucher-request-latest.yang yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang
 	mkdir -p yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
