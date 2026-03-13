@@ -1177,6 +1177,11 @@ and also the following YANG module:
 * URI for the ".sid" file: a pointer to the file defined in {{voucher-request-sid-allocations}}
 * Number of SIDs: 24
 
+# YANG references
+
+RFC-editor, please remove.
+This section just lists references present in YANG modules which otherwise do not get included in the references, like {{!RFC7250}}.
+
 --- back
 
 # Examples
@@ -1308,3 +1313,5 @@ by last name):
 {{{Thomas Werner}}}.
 
 {{{Max Pritikin}}} and {{{Kent Watsen}}} were instrumental in creating the original {{RFC8366}}.
+
+
