@@ -125,9 +125,10 @@ Table of Contents
      12.5.  The Voucher Extensions Registry
      12.6.  The IETF YANG-SID Ranges Registry
      12.7.  The IETF YANG-SID Modules Registry
-   13. References
-     13.1.  Normative References
-     13.2.  Informative References
+   13. YANG references
+   14. References
+     14.1.  Normative References
+     14.2.  Informative References
    Appendix A.  Examples
      A.1.  Key pairs associated with examples
      A.2.  Example CMS-signed Voucher Request
@@ -1954,9 +1955,15 @@ Table of Contents
 
    *  Number of SIDs: 24
 
-13.  References
+13.  YANG references
 
-13.1.  Normative References
+   RFC-editor, please remove.  This section just lists references
+   present in YANG modules which otherwise do not get included in the
+   references, like [RFC7250].
+
+14.  References
+
+14.1.  Normative References
 
    [CBOR]     Internet Standard 94,
               <https://www.rfc-editor.org/info/std94>.
@@ -2036,6 +2043,12 @@ Table of Contents
               Points", BCP 100, RFC 7120, DOI 10.17487/RFC7120, January
               2014, <https://www.rfc-editor.org/rfc/rfc7120>.
 
+   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
+              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
+              Transport Layer Security (TLS) and Datagram Transport
+              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
+              June 2014, <https://www.rfc-editor.org/rfc/rfc7250>.
+
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
@@ -2074,7 +2087,7 @@ Table of Contents
               DOI 10.17487/RFC8572, April 2019,
               <https://www.rfc-editor.org/rfc/rfc8572>.
 
-13.2.  Informative References
+14.2.  Informative References
 
    [COSE]     Internet Standard 96,
               <https://www.rfc-editor.org/info/std96>.
