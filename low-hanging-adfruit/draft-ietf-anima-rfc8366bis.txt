@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 13 September 2026                             IoTconsultancy.nl
+Expires: 14 September 2026                             IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           12 March 2026
+                                                           13 March 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -35,8 +35,7 @@ Abstract
    This document obsoletes RFC8366: it includes a number of desired
    extensions into the YANG module.  The Voucher Request YANG module
    defined in RFC8995 is also updated and now included in this document,
-   as well as other YANG extensions needed for variants of BRSKI/
-   RFC8995.
+   as well as other YANG extensions needed for variants of RFC8995.
 
 About This Document
 
@@ -68,7 +67,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2026.
+   This Internet-Draft will expire on 14 September 2026.
 
 Copyright Notice
 
@@ -176,8 +175,8 @@ Table of Contents
 
    [RFC8366] originally defined the Voucher as the only Voucher
    Artifact, leaving the Voucher Request that is used in BRSKI to be
-   defined in [BRSKI].  This document includes both Voucher and Voucher
-   Request obsoleting [RFC8366], and updating [BRSKI].
+   defined in [RFC8995].  This document includes both Voucher and
+   Voucher Request obsoleting [RFC8366], and updating [RFC8995].
 
    YANG is not easily extended except by updating the YANG module
    definition.  Since [RFC8366] was written, the common pattern is to
@@ -201,7 +200,7 @@ Table of Contents
    see Section 10.1.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
-   document include: [ZERO-TOUCH], [SECUREJOIN], [BRSKI] and [cBRSKI].
+   document include: [ZERO-TOUCH], [SECUREJOIN], [RFC8995] and [cBRSKI].
 
 2.  Terminology
 
@@ -434,22 +433,22 @@ Table of Contents
 
 5.1.  Attempts and motivation to extend RFC8366
 
-   [RFC8366] was published in 2018 during the development of [BRSKI],
+   [RFC8366] was published in 2018 during the development of [RFC8995],
    [ZERO-TOUCH] and other work-in-progress efforts.  Since then the
    industry has matured significantly, and the in-the-field activity
    which this document supports has become known as _Onboarding_ rather
    than _Bootstrapping_.
 
-   The focus of [BRSKI] was Onboarding of ISP and Enterprise owned wired
-   routing and switching equipment, with IoT devices being a less
+   The focus of [RFC8995] was Onboarding of ISP and Enterprise owned
+   wired routing and switching equipment, with IoT devices being a less
    important aspect.  [ZERO-TOUCH] has focused upon Onboarding of CPE
    equipment like cable modems and other larger IoT devices, again with
    smaller IoT devices being of lesser importance.
 
-   Since [BRSKI] was published there is now a mature effort to do
+   Since [RFC8995] was published there is now a mature effort to do
    application-level Onboarding of constrained IoT devices defined by
    the Thread Group and the Fairhair Alliance (now OCF) [fairhair].  The
-   [cBRSKI] document has defined a version of [BRSKI] that is usable
+   [cBRSKI] document has defined a version of [RFC8995] that is usable
    over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS,
    while [I-D.ietf-lake-authz] provides for using CoAP and EDHOC on even
    more constrained devices with very constrained networks.
@@ -469,7 +468,7 @@ Table of Contents
    When the process to define [cBRSKI] and [PRM] was started, there was
    a belief that the appropriate process was to use the [RFC7950]
    _augment_ mechanism to further extend both the Voucher Request
-   [BRSKI] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
+   [RFC8995] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
    extend an enumerated type with additional values and _augment_ can
    not do this, so that was initially the impetus for this document.
 
@@ -488,7 +487,7 @@ Table of Contents
 6.  Updates to RFC8995
 
    This document represents a merge of YANG definitions of the Voucher
-   from [RFC8366], the Voucher Request from [BRSKI], and extensions to
+   from [RFC8366], the Voucher Request from [RFC8995], and extensions to
    each of these from [cBRSKI], [CLOUD] and [PRM].  The difficulty with
    this approach is that the semantics of the definitions needed for the
    other documents are not included in this document, but rather in the
@@ -496,7 +495,7 @@ Table of Contents
 
 6.1.  Updates to the use of idevid-issuer
 
-   The voucher-request module definition that was in [BRSKI] Sections
+   The voucher-request module definition that was in [RFC8995] Sections
    3.2 (tree diagram) and 3.4 (YANG module) is now included in this
    document.  There is a change to it: the 'idevid-issuer' Attribute
    MUST be included in a Registrar Voucher Request (RVR).  Like the
@@ -522,7 +521,7 @@ Table of Contents
 
 6.2.  Clarifications on the use of idevid-issuer
 
-   [RFC8366] and [BRSKI] define the 'idevid-issuer' attribute for the
+   [RFC8366] and [RFC8995] define the 'idevid-issuer' attribute for the
    'voucher' and 'voucher-request' modules (respectively), but they
    summarily explain when to use it, and why it is used.
 
@@ -534,7 +533,7 @@ Table of Contents
    the IDevID.  In that case, the 'serial-number' in the Voucher Data
    must refer to the same device as the serial number that is in the
    IDevID certificate (in the 'serialNumber' element of type
-   'X520SerialNumber' per Section 2.3.1 of [BRSKI]).
+   'X520SerialNumber' per Section 2.3.1 of [RFC8995]).
 
    However, there are situations where the one to one relationship may
    be broken.  This occurs whenever a manufacturer has a common MASA,
@@ -575,7 +574,7 @@ Table of Contents
 
 6.3.  Clarifications on the format of idevid-issuer
 
-   [RFC8366] and [BRSKI] were not fully clear on the required binary
+   [RFC8366] and [RFC8995] were not fully clear on the required binary
    format of the 'idevid-issuer' Attribute.  This gave rise to
    incompatible implementations.
 
@@ -599,7 +598,7 @@ Table of Contents
 
 6.4.  Errata closed
 
-   The above updates to [BRSKI] addresses errata [eid7263].
+   The above updates to [RFC8995] addresses errata [eid7263].
 
 7.  Signature mechanisms
 
@@ -646,7 +645,7 @@ Table of Contents
    Note that Section 5.1 of [RFC5652] includes a discussion about how to
    validate a CMS object, which is really a PKCS7 object (cmsVersion=1).
    Intermediate systems (such as the Bootstrapping Remote Secure Key
-   Infrastructures [BRSKI] Registrar) that might need to evaluate the
+   Infrastructures [RFC8995] Registrar) that might need to evaluate the
    Voucher in flight MUST be prepared for such an older format.  No
    signaling of the format version is necessary, as the manufacturer
    knows the capabilities of the Pledge and will use an appropriate
@@ -1293,15 +1292,14 @@ Table of Contents
    Instead, a manufacturer MAY use the 'manufacturer-private' Attribute
    to put any content they wish.  In CBOR serialization, if a plain CBOR
    map would be used, it would be subject to delta encoding: so use of
-   this Attribute requires that the contents are bstr-encoded [CBOR]
-   [RFC8949], Section 3.1 (Major type 2).  In JSON serialization, delta
-   encoding does not get in the way, and the manufacturer MAY use any
-   encoding that is convenient for them, but base64URL encoding
-   [RFC4648], Section 5 is RECOMMENDED.
+   this Attribute requires that the contents are bstr-encoded (Major
+   type 2).  In JSON serialization, delta encoding does not get in the
+   way, and the manufacturer MAY use any encoding that is convenient for
+   them, but base64URL encoding [RFC4648], Section 5 is RECOMMENDED.
 
 9.  Voucher Request Artifact
 
-   [BRSKI], Section 3 defined a "voucher-request" Artifact as an
+   [RFC8995], Section 3 defined a "voucher-request" Artifact as an
    augmented Artifact from the "voucher" Artifact originally defined in
    [RFC8366].  That definition has been moved to this document, and
    translated from the "yang-data" extension [RFC8040] to the
@@ -1782,7 +1780,7 @@ Table of Contents
 
    This document updates two URIs in the "IETF XML Registry" [RFC3688].
 
-   IANA has registered the following based on [RFC8366] and [BRSKI]
+   IANA has registered the following based on [RFC8366] and [RFC8995]
    respectively:
 
       URI:  urn:ietf:params:xml:ns:yang:ietf-voucher
@@ -1812,7 +1810,7 @@ Table of Contents
    "File" entry should be updated to point to the new module revision in
    Section 8.3.
 
-   IANA has registered the following based on [BRSKI]:
+   IANA has registered the following based on [RFC8995]:
 
       name:  ietf-voucher-request
       namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
@@ -1965,11 +1963,6 @@ Table of Contents
 
 13.1.  Normative References
 
-   [BRSKI]    Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
-              and K. Watsen, "Bootstrapping Remote Secure Key
-              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
-              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
-
    [CBOR]     Internet Standard 94,
               <https://www.rfc-editor.org/info/std94>.
               At the time of writing, this STD comprises the following:
@@ -2068,6 +2061,11 @@ Table of Contents
    [RFC8791]  Bierman, A., Björklund, M., and K. Watsen, "YANG Data
               Structure Extensions", RFC 8791, DOI 10.17487/RFC8791,
               June 2020, <https://www.rfc-editor.org/rfc/rfc8791>.
+
+   [RFC8995]  Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
+              and K. Watsen, "Bootstrapping Remote Secure Key
+              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
+              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
 
    [RFC9254]  Veillette, M., Ed., Petrov, I., Ed., Pelov, A., Bormann,
               C., and M. Richardson, "Encoding of Data Modeled with YANG
