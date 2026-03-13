@@ -959,7 +959,8 @@ of {{RFC5652}}), though details for how to do this are outside
 the scope of this document.
 
 The use of YANG to define data structures, via the "sx:structure"
-extension {{RFC8791}}, is relatively new and distinct from the traditional use of
+extension {{RFC8791}}, is relatively new and distinct from the conventional
+use of
 YANG to define an API accessed by network management protocols such as
 NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, this
 security considerations section does not follow the template described
