@@ -34,7 +34,7 @@ author:
   email:
   - mcr+ietf@sandelman.ca
   - https://orcid.org/0000-0002-0773-8388
-  uri: http://www.sandelman.ca/
+  uri: https://www.sandelman.ca/
 - ins: E. Dijk
   name: Esko Dijk
   org: IoTconsultancy.nl
@@ -120,11 +120,11 @@ informative:
     - name: Ross Anderson
     date: 1999
   imprinting:
-    target: https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=1314466188
+    target: "https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=1337280821"
     title: 'Wikipedia article: Imprinting (psychology)'
     author:
     - org: Wikipedia
-    date: 2025-10-01
+    date: 2026-03-12
   fairhair:
     target: "https://openconnectivity.org/developer/specifications/fairhair/"
     title: 'Fairhair Specification'
@@ -427,7 +427,7 @@ The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.
 
 Both {{cBRSKI}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher. The new Attributes are required to carry the additional data and describe the extended semantics.
-In addition {{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
+In addition, {{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
 
 When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{RFC8995}} and Voucher {{RFC8366}} artifacts.
 However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
@@ -449,7 +449,7 @@ The difficulty with this approach is that the semantics of the definitions neede
 The `voucher-request` module definition that was in {{RFC8995}} Sections 3.2 (tree diagram) and 3.4 (YANG module) is now included in this document.
 There is a change to it: the '`idevid-issuer`' Attribute MUST be included in a Registrar Voucher Request (RVR).
 Like the '`serial-number`' value in the RVR, the '`idevid-issuer`' value in the RVR is to be taken from the Pledge's (IDevID) client certificate.
-In some variations of BRSKI, such as {{PRM}}, there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.
+In some variations of BRSKI, such as {{PRM}}, there is no direct TLS connection between Pledge and Registrar.  Therefore, the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.
 
 A Registrar MUST apply the following rules for the value of the '`idevid-issuer`' Attribute in the given order:
 
@@ -790,7 +790,8 @@ Note that {{RFC9254}} does not strictly require use of SIDs: instead of a SID va
 be used. But this would significantly increase the size of the Voucher Data.
 
 Instead, a manufacturer MAY use the '`manufacturer-private`' Attribute to put any content they wish.
-In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded (Major type 2).
+In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
+{{RFC8949@CBOR, Section 3.1}} (Major type 2).
 In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.
 
 

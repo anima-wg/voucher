@@ -68,7 +68,7 @@ module ietf-voucher {
     description
       "Updates and additions described by RFC XXXX";
     reference
-      "RFC XXXX A Voucher Profile for Bootstrapping Protocols";
+      "RFC XXXX: A Voucher Profile for Bootstrapping Protocols";
   }
 
   revision 2018-05-09 {
