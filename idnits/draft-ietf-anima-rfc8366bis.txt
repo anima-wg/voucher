@@ -2128,8 +2128,8 @@ Table of Contents
 
    [imprinting]
               Wikipedia, "Wikipedia article: Imprinting (psychology)",
-              12 March 2026,
-              <https://en.wikipedia.org/w/index.php?title=Imprinting>.
+              12 March 2026, <https://en.wikipedia.org/w/
+              index.php?title=Imprinting_(psychology)&oldid=1337280821>.
 
    [JWS]      Jones, M., Bradley, J., and N. Sakimura, "JSON Web
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
