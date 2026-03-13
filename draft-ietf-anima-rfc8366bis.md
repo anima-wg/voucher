@@ -790,7 +790,8 @@ Note that {{RFC9254}} does not strictly require use of SIDs: instead of a SID va
 be used. But this would significantly increase the size of the Voucher Data.
 
 Instead, a manufacturer MAY use the '`manufacturer-private`' Attribute to put any content they wish.
-In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded (Major type 2).
+In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
+{{RFC8949@CBOR, Section 3.1}} (Major type 2).
 In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.
 
 
