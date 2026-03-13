@@ -211,8 +211,9 @@ Attribute:
 
 Bootstrapping:
 : The process where a Pledge obtains cryptographic key material to identify
-   and trust future interactions within a specific Domain network. Based on imprinted
-   key material provided during the manufacturing process (see: Imprint).
+   and trust future interactions within a specific Domain network.
+   Bootstrapping is based on imprinted key material provided during the
+   manufacturing process (see: Imprint).
    This term was used in {{RFC8366}}, but has been supplanted by the term Onboarding.
 
 Domain:
