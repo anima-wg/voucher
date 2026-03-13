@@ -120,7 +120,7 @@ informative:
     - name: Ross Anderson
     date: 1999
   imprinting:
-    target: "https://en.wikipedia.org/w/index.php?title=Imprinting"
+    target: "https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=1337280821"
     title: 'Wikipedia article: Imprinting (psychology)'
     author:
     - org: Wikipedia
