@@ -1283,17 +1283,17 @@ It is temporarily included for review purposes, following the guidelines in {{Se
 
 ## SID Allocations for Voucher {#voucher-sid-allocations}
 
-~~~~ json
+~~~~ yang-sid+json
 {::include-fold ietf-voucher@2025-12-18.sid}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2025-12-18.sid"}
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher@2025-12-18.sid" check="json"}
 
 ## SID Allocations for Voucher Request {#voucher-request-sid-allocations}
 
-~~~~ json
+~~~~ yang-sid+json
 {::include-fold ietf-voucher-request@2025-12-18.sid}
 ~~~~
-{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2025-12-18.sid"}
+{: sourcecode-markers="true" sourcecode-name="ietf-voucher-request@2025-12-18.sid" check="json"}
 
 # Acknowledgements
 {: numbered="no"}
