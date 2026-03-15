@@ -5,14 +5,14 @@
 ANIMA Working Group                                            K. Watsen
 Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
-Updates: 8366, 8995 (if approved)                     Sandelman Software
+Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 15 September 2026                             IoTconsultancy.nl
+Expires: 16 September 2026                             IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           14 March 2026
+                                                           15 March 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -32,11 +32,10 @@ Abstract
    manufacturer (i.e., the Manufacturer Authorized Signing Authority
    (MASA)).
 
-   This document updates RFC8366: it includes a number of desired
+   This document obsoletes RFC8366: it includes a number of desired
    extensions into the YANG module.  The Voucher Request YANG module
    defined in RFC8995 is also updated and now included in this document,
-   as well as other YANG extensions needed for variants of BRSKI/
-   RFC8995.
+   as well as other YANG extensions needed for variants of RFC8995.
 
 About This Document
 
@@ -68,7 +67,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 September 2026.
+   This Internet-Draft will expire on 16 September 2026.
 
 Copyright Notice
 
@@ -126,9 +125,10 @@ Table of Contents
      12.5.  The Voucher Extensions Registry
      12.6.  The IETF YANG-SID Ranges Registry
      12.7.  The IETF YANG-SID Modules Registry
-   13. References
-     13.1.  Normative References
-     13.2.  Informative References
+   13. YANG references
+   14. References
+     14.1.  Normative References
+     14.2.  Informative References
    Appendix A.  Examples
      A.1.  Key pairs associated with examples
      A.2.  Example CMS-signed Voucher Request
@@ -176,8 +176,8 @@ Table of Contents
 
    [RFC8366] originally defined the Voucher as the only Voucher
    Artifact, leaving the Voucher Request that is used in BRSKI to be
-   defined in [BRSKI].  This document includes both Voucher and Voucher
-   Request, and therefore updates [BRSKI].
+   defined in [RFC8995].  This document includes both Voucher and
+   Voucher Request obsoleting [RFC8366], and updating [RFC8995].
 
    YANG is not easily extended except by updating the YANG module
    definition.  Since [RFC8366] was written, the common pattern is to
@@ -201,7 +201,7 @@ Table of Contents
    see Section 10.1.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
-   document include: [ZERO-TOUCH], [SECUREJOIN], [BRSKI] and [cBRSKI].
+   document include: [ZERO-TOUCH], [SECUREJOIN], [RFC8995] and [cBRSKI].
 
 2.  Terminology
 
@@ -219,9 +219,10 @@ Table of Contents
 
    Bootstrapping:  The process where a Pledge obtains cryptographic key
       material to identify and trust future interactions within a
-      specific Domain network.  Based on imprinted key material provided
-      during the manufacturing process (see: Imprint).  This term was
-      used in [RFC8366], but has been supplanted by the term Onboarding.
+      specific Domain network.  Bootstrapping is based on imprinted key
+      material provided during the manufacturing process (see: Imprint).
+      This term was used in [RFC8366], but has been supplanted by the
+      term Onboarding.
 
    Domain:  The set of entities or infrastructure under common
       administrative control.  The goal of the Onboarding protocol is to
@@ -434,22 +435,22 @@ Table of Contents
 
 5.1.  Attempts and motivation to extend RFC8366
 
-   [RFC8366] was published in 2018 during the development of [BRSKI],
+   [RFC8366] was published in 2018 during the development of [RFC8995],
    [ZERO-TOUCH] and other work-in-progress efforts.  Since then the
    industry has matured significantly, and the in-the-field activity
    which this document supports has become known as _Onboarding_ rather
    than _Bootstrapping_.
 
-   The focus of [BRSKI] was Onboarding of ISP and Enterprise owned wired
-   routing and switching equipment, with IoT devices being a less
+   The focus of [RFC8995] was Onboarding of ISP and Enterprise owned
+   wired routing and switching equipment, with IoT devices being a less
    important aspect.  [ZERO-TOUCH] has focused upon Onboarding of CPE
    equipment like cable modems and other larger IoT devices, again with
    smaller IoT devices being of lesser importance.
 
-   Since [BRSKI] was published there is now a mature effort to do
+   Since [RFC8995] was published there is now a mature effort to do
    application-level Onboarding of constrained IoT devices defined by
    the Thread Group and the Fairhair Alliance (now OCF) [fairhair].  The
-   [cBRSKI] document has defined a version of [BRSKI] that is usable
+   [cBRSKI] document has defined a version of [RFC8995] that is usable
    over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS,
    while [I-D.ietf-lake-authz] provides for using CoAP and EDHOC on even
    more constrained devices with very constrained networks.
@@ -469,7 +470,7 @@ Table of Contents
    When the process to define [cBRSKI] and [PRM] was started, there was
    a belief that the appropriate process was to use the [RFC7950]
    _augment_ mechanism to further extend both the Voucher Request
-   [BRSKI] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
+   [RFC8995] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
    extend an enumerated type with additional values and _augment_ can
    not do this, so that was initially the impetus for this document.
 
@@ -488,7 +489,7 @@ Table of Contents
 6.  Updates to RFC8995
 
    This document represents a merge of YANG definitions of the Voucher
-   from [RFC8366], the Voucher Request from [BRSKI], and extensions to
+   from [RFC8366], the Voucher Request from [RFC8995], and extensions to
    each of these from [cBRSKI], [CLOUD] and [PRM].  The difficulty with
    this approach is that the semantics of the definitions needed for the
    other documents are not included in this document, but rather in the
@@ -496,7 +497,7 @@ Table of Contents
 
 6.1.  Updates to the use of idevid-issuer
 
-   The voucher-request module definition that was in [BRSKI] Sections
+   The voucher-request module definition that was in [RFC8995] Sections
    3.2 (tree diagram) and 3.4 (YANG module) is now included in this
    document.  There is a change to it: the 'idevid-issuer' Attribute
    MUST be included in a Registrar Voucher Request (RVR).  Like the
@@ -522,7 +523,7 @@ Table of Contents
 
 6.2.  Clarifications on the use of idevid-issuer
 
-   [RFC8366] and [BRSKI] define the 'idevid-issuer' attribute for the
+   [RFC8366] and [RFC8995] define the 'idevid-issuer' attribute for the
    'voucher' and 'voucher-request' modules (respectively), but they
    summarily explain when to use it, and why it is used.
 
@@ -534,7 +535,7 @@ Table of Contents
    the IDevID.  In that case, the 'serial-number' in the Voucher Data
    must refer to the same device as the serial number that is in the
    IDevID certificate (in the 'serialNumber' element of type
-   'X520SerialNumber' per Section 2.3.1 of [BRSKI]).
+   'X520SerialNumber' per Section 2.3.1 of [RFC8995]).
 
    However, there are situations where the one to one relationship may
    be broken.  This occurs whenever a manufacturer has a common MASA,
@@ -575,7 +576,7 @@ Table of Contents
 
 6.3.  Clarifications on the format of idevid-issuer
 
-   [RFC8366] and [BRSKI] were not fully clear on the required binary
+   [RFC8366] and [RFC8995] were not fully clear on the required binary
    format of the 'idevid-issuer' Attribute.  This gave rise to
    incompatible implementations.
 
@@ -599,7 +600,7 @@ Table of Contents
 
 6.4.  Errata closed
 
-   This above updates to [BRSKI] addresses errata [eid7263].
+   The above updates to [RFC8995] addresses errata [eid7263].
 
 7.  Signature mechanisms
 
@@ -646,7 +647,7 @@ Table of Contents
    Note that Section 5.1 of [RFC5652] includes a discussion about how to
    validate a CMS object, which is really a PKCS7 object (cmsVersion=1).
    Intermediate systems (such as the Bootstrapping Remote Secure Key
-   Infrastructures [BRSKI] Registrar) that might need to evaluate the
+   Infrastructures [RFC8995] Registrar) that might need to evaluate the
    Voucher in flight MUST be prepared for such an older format.  No
    signaling of the format version is necessary, as the manufacturer
    knows the capabilities of the Pledge and will use an appropriate
@@ -843,15 +844,17 @@ Table of Contents
      import ietf-yang-types {
        prefix yang;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-inet-types {
        prefix ietf;
        reference
-         "RFC 6991: Common YANG Data Types";
+         "RFC 9911: Common YANG Data Types";
      }
      import ietf-yang-structure-ext {
        prefix sx;
+       reference
+         "RFC 8791: YANG Data Structure Extensions";
      }
 
      organization
@@ -863,8 +866,6 @@ Table of Contents
                   <mailto:kent+ietf@watsen.net>
         Author:   Michael Richardson
                   <mailto:mcr+ietf@sandelman.ca>
-        Author:   Max Pritikin
-                  <mailto:pritikin@cisco.com>
         Author:   Toerless Eckert
                   <mailto:tte@cs.fau.de>
         Author:   Qiufang Ma
@@ -878,7 +879,7 @@ Table of Contents
         pledge may establish a secure connection to the owner's
         network infrastructure.
 
-        Copyright (c) 2023 IETF Trust and the persons identified as
+        Copyright (c) 2023-2026 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -914,7 +915,7 @@ Table of Contents
          "RFC 8366: Voucher Profile for Bootstrapping Protocols";
      }
 
-     grouping voucher-artifact-grouping {
+     grouping voucher-artifact {
        description
          "Grouping to allow reuse/extensions in future work.";
        leaf created-on {
@@ -1025,7 +1026,7 @@ Table of Contents
          description
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in ITU-T X.690.
+            encoding, as defined in [ITU-T.X690.2015].
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
@@ -1052,12 +1053,7 @@ Table of Contents
             the voucher. The pinned-domain-pubk
             is the Raw Public Key of the registrar.
             This field is encoded as a Subject Public Key Info block
-            as specified in RFC7250, in section 3.
-            The ECDSA algorithm MUST be supported.
-            The EdDSA algorithm as specified in
-            draft-ietf-tls-rfc4492bis-17 SHOULD be supported.
-            Support for the DSA algorithm is not recommended.
-            Support for the RSA algorithm is a MAY.";
+            as specified in RFC7250, in section 3.";
        }
        leaf pinned-domain-pubk-sha256 {
          type binary;
@@ -1159,7 +1155,7 @@ Table of Contents
 
      // Top-level statement
      sx:structure voucher {
-       uses voucher-artifact-grouping;
+       uses voucher-artifact;
      }
    }
    <CODE ENDS>
@@ -1293,15 +1289,14 @@ Table of Contents
    Instead, a manufacturer MAY use the 'manufacturer-private' Attribute
    to put any content they wish.  In CBOR serialization, if a plain CBOR
    map would be used, it would be subject to delta encoding: so use of
-   this Attribute requires that the contents are bstr-encoded [CBOR]
-   [RFC8949], Section 3.1 (Major type 2).  In JSON serialization, delta
-   encoding does not get in the way, and the manufacturer MAY use any
-   encoding that is convenient for them, but base64URL encoding
-   [RFC4648], Section 5 is RECOMMENDED.
+   this Attribute requires that the contents are bstr-encoded (Major
+   type 2).  In JSON serialization, delta encoding does not get in the
+   way, and the manufacturer MAY use any encoding that is convenient for
+   them, but base64URL encoding [RFC4648], Section 5 is RECOMMENDED.
 
 9.  Voucher Request Artifact
 
-   [BRSKI], Section 3 defined a "voucher-request" Artifact as an
+   [RFC8995], Section 3 defined a "voucher-request" Artifact as an
    augmented Artifact from the "voucher" Artifact originally defined in
    [RFC8366].  That definition has been moved to this document, and
    translated from the "yang-data" extension [RFC8040] to the
@@ -1353,6 +1348,8 @@ Table of Contents
 
      import ietf-yang-structure-ext {
        prefix sx;
+       reference
+         "RFC 8791: YANG Data Structure Extensions";
      }
      import ietf-voucher {
        prefix vch;
@@ -1376,8 +1373,6 @@ Table of Contents
                   <mailto:kent+ietf@watsen.net>
         Author:   Michael Richardson
                   <mailto:mcr+ietf@sandelman.ca>
-        Author:   Max Pritikin
-                  <mailto:pritikin@cisco.com>
         Author:   Toerless Eckert
                   <mailto:tte@cs.fau.de>
         Author:   Qiufang Ma
@@ -1391,7 +1386,7 @@ Table of Contents
         during a voucher request procedure and subsequent
         Voucher creation.
 
-        Copyright (c) 2023 IETF Trust and the persons identified as
+        Copyright (c) 2023-2026 IETF Trust and the persons identified as
         authors of the code.  All rights reserved.
 
         Redistribution and use in source and binary forms, with or
@@ -1428,10 +1423,10 @@ Table of Contents
           (BRSKI)";
      }
 
-     grouping voucher-request-grouping {
+     grouping voucher-request {
        description
          "Grouping to allow reuse/extensions in future work.";
-       uses vch:voucher-artifact-grouping {
+       uses vch:voucher-artifact {
          refine "last-renewal-date" {
            description
              "A last-renewal-date field
@@ -1485,7 +1480,7 @@ Table of Contents
            "An X.509 v3 certificate structure as specified by
             RFC 5280, Section 4 encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in [ITU.X690.1994].
+            in [ITU.X690.2015].
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
@@ -1595,7 +1590,7 @@ Table of Contents
 
      // Top-level statement: called "voucher" to match RFC8995
      sx:structure voucher {
-       uses voucher-request-grouping;
+       uses voucher-request;
      }
    }
    <CODE ENDS>
@@ -1770,7 +1765,7 @@ Table of Contents
 
    The use of YANG to define data structures, via the "sx:structure"
    extension [RFC8791], is relatively new and distinct from the
-   traditional use of YANG to define an API accessed by network
+   conventional use of YANG to define an API accessed by network
    management protocols such as NETCONF [RFC6241] and RESTCONF
    [RFC8040].  For this reason, this security considerations section
    does not follow the template described by Section 3.7 of
@@ -1782,7 +1777,7 @@ Table of Contents
 
    This document updates two URIs in the "IETF XML Registry" [RFC3688].
 
-   IANA has registered the following based on [RFC8366] and [BRSKI]
+   IANA has registered the following based on [RFC8366] and [RFC8995]
    respectively:
 
       URI:  urn:ietf:params:xml:ns:yang:ietf-voucher
@@ -1812,7 +1807,7 @@ Table of Contents
    "File" entry should be updated to point to the new module revision in
    Section 8.3.
 
-   IANA has registered the following based on [BRSKI]:
+   IANA has registered the following based on [RFC8995]:
 
       name:  ietf-voucher-request
       namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
@@ -1961,14 +1956,15 @@ Table of Contents
 
    *  Number of SIDs: 24
 
-13.  References
+13.  YANG references
 
-13.1.  Normative References
+   RFC-editor, please remove.  This section just lists references
+   present in YANG modules which otherwise do not get included in the
+   references, like [RFC7250].
 
-   [BRSKI]    Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
-              and K. Watsen, "Bootstrapping Remote Secure Key
-              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
-              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
+14.  References
+
+14.1.  Normative References
 
    [CBOR]     Internet Standard 94,
               <https://www.rfc-editor.org/info/std94>.
@@ -2048,6 +2044,12 @@ Table of Contents
               Points", BCP 100, RFC 7120, DOI 10.17487/RFC7120, January
               2014, <https://www.rfc-editor.org/rfc/rfc7120>.
 
+   [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
+              Weiler, S., and T. Kivinen, "Using Raw Public Keys in
+              Transport Layer Security (TLS) and Datagram Transport
+              Layer Security (DTLS)", RFC 7250, DOI 10.17487/RFC7250,
+              June 2014, <https://www.rfc-editor.org/rfc/rfc7250>.
+
    [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
@@ -2069,6 +2071,11 @@ Table of Contents
               Structure Extensions", RFC 8791, DOI 10.17487/RFC8791,
               June 2020, <https://www.rfc-editor.org/rfc/rfc8791>.
 
+   [RFC8995]  Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
+              and K. Watsen, "Bootstrapping Remote Secure Key
+              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
+              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
+
    [RFC9254]  Veillette, M., Ed., Petrov, I., Ed., Pelov, A., Bormann,
               C., and M. Richardson, "Encoding of Data Modeled with YANG
               in the Concise Binary Object Representation (CBOR)",
@@ -2081,7 +2088,7 @@ Table of Contents
               DOI 10.17487/RFC8572, April 2019,
               <https://www.rfc-editor.org/rfc/rfc8572>.
 
-13.2.  Informative References
+14.2.  Informative References
 
    [COSE]     Internet Standard 96,
               <https://www.rfc-editor.org/info/std96>.
