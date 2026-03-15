@@ -1777,7 +1777,7 @@ The <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> document has d
 <p id="section-5.1-4"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span> has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <p id="section-5.1-5">Both <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> require extensions to the Voucher Request and the resulting Voucher. The new Attributes are required to carry the additional data and describe the extended semantics.
-In addition <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> uses the serialization mechanism described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> to produce significantly more compact artifacts.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+In addition, <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> uses the serialization mechanism described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> to produce significantly more compact artifacts.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
 <p id="section-5.1-6">When the process to define <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> was started, there was a belief that the appropriate process was to use the <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> <em>augment</em> mechanism to further extend both the Voucher Request <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and Voucher <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> artifacts.
 However, <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> needs to extend an enumerated type with additional values and <em>augment</em> can not do this, so that was initially the impetus for this document.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
 <p id="section-5.1-7">An attempt was then made to determine what would happen if one wanted to have a constrained version of the <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> Voucher Artifact.
@@ -1804,7 +1804,7 @@ The difficulty with this approach is that the semantics of the definitions neede
 <p id="section-6.1-1">The <code>voucher-request</code> module definition that was in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> Sections 3.2 (tree diagram) and 3.4 (YANG module) is now included in this document.
 There is a change to it: the '<code>idevid-issuer</code>' Attribute <span class="bcp14">MUST</span> be included in a Registrar Voucher Request (RVR).
 Like the '<code>serial-number</code>' value in the RVR, the '<code>idevid-issuer</code>' value in the RVR is to be taken from the Pledge's (IDevID) client certificate.
-In some variations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, there is no direct TLS connection between Pledge and Registrar.  Therefore the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+In some variations of BRSKI, such as <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, there is no direct TLS connection between Pledge and Registrar.  Therefore, the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1-2">A Registrar <span class="bcp14">MUST</span> apply the following rules for the value of the '<code>idevid-issuer</code>' Attribute in the given order:<a href="#section-6.1-2" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-6.1-3">
 <li id="section-6.1-3.1">
@@ -2167,7 +2167,7 @@ module ietf-voucher {
     description
       "Updates and additions described by RFC XXXX";
     reference
-      "RFC XXXX A Voucher Profile for Bootstrapping Protocols";
+      "RFC XXXX: A Voucher Profile for Bootstrapping Protocols";
   }
   revision 2018-05-09 {
     description
@@ -2538,7 +2538,8 @@ While they can use the Voucher extensions mechanism defined in <a href="#voucher
 Note that <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> does not strictly require use of SIDs: instead of a SID value, the full string name can always
 be used. But this would significantly increase the size of the Voucher Data.<a href="#section-8.6-1" class="pilcrow">¶</a></p>
 <p id="section-8.6-2">Instead, a manufacturer <span class="bcp14">MAY</span> use the '<code>manufacturer-private</code>' Attribute to put any content they wish.
-In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded (Major type 2).
+In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
+Section <a href="https://rfc-editor.org/rfc/rfc8949#section-3.1" class="relref">3.1</a> of RFC 8949 <span>[<a href="#CBOR" class="cite xref">CBOR</a>]</span> (Major type 2).
 In JSON serialization, delta encoding does not get in the way, and the manufacturer <span class="bcp14">MAY</span> use any encoding that is convenient for them, but base64URL encoding <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>], <a href="https://rfc-editor.org/rfc/rfc4648#section-5" class="relref">Section 5</a></span> is <span class="bcp14">RECOMMENDED</span>.<a href="#section-8.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3603,7 +3604,7 @@ This section just lists references present in YANG modules which otherwise do no
 <dd class="break"></dd>
 <dt id="imprinting">[imprinting]</dt>
         <dd>
-<span class="refAuthor">Wikipedia</span>, <span class="refTitle">"Wikipedia article: Imprinting (psychology)"</span>, <time datetime="2025-10-01" class="refDate">1 October 2025</time>, <span>&lt;<a href="https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1314466188">https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1314466188</a>&gt;</span>. </dd>
+<span class="refAuthor">Wikipedia</span>, <span class="refTitle">"Wikipedia article: Imprinting (psychology)"</span>, <time datetime="2026-03-12" class="refDate">12 March 2026</time>, <span>&lt;<a href="https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1337280821">https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1337280821</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JWS">[JWS]</dt>
         <dd>
@@ -4429,7 +4430,7 @@ by last name):
 </div>
 <div class="url">
 <span>URI:</span>
-<a href="http://www.sandelman.ca/" class="url">http://www.sandelman.ca/</a>
+<a href="https://www.sandelman.ca/" class="url">https://www.sandelman.ca/</a>
 </div>
 </address>
 <address class="vcard">

@@ -463,7 +463,7 @@ Table of Contents
 
    Both [cBRSKI] and [PRM] require extensions to the Voucher Request and
    the resulting Voucher.  The new Attributes are required to carry the
-   additional data and describe the extended semantics.  In addition
+   additional data and describe the extended semantics.  In addition,
    [cBRSKI] uses the serialization mechanism described in [RFC9254] to
    produce significantly more compact artifacts.
 
@@ -504,7 +504,7 @@ Table of Contents
    'serial-number' value in the RVR, the 'idevid-issuer' value in the
    RVR is to be taken from the Pledge's (IDevID) client certificate.  In
    some variations of BRSKI, such as [PRM], there is no direct TLS
-   connection between Pledge and Registrar.  Therefore the Pledge's
+   connection between Pledge and Registrar.  Therefore, the Pledge's
    IDevID certificate cannot be extracted from the TLS connection, so
    those variations define a different channel binding process and may
    deviate from the above requirement.
@@ -906,7 +906,7 @@ Table of Contents
        description
          "Updates and additions described by RFC XXXX";
        reference
-         "RFC XXXX A Voucher Profile for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Profile for Bootstrapping Protocols";
      }
      revision 2018-05-09 {
        description
@@ -1289,10 +1289,11 @@ Table of Contents
    Instead, a manufacturer MAY use the 'manufacturer-private' Attribute
    to put any content they wish.  In CBOR serialization, if a plain CBOR
    map would be used, it would be subject to delta encoding: so use of
-   this Attribute requires that the contents are bstr-encoded (Major
-   type 2).  In JSON serialization, delta encoding does not get in the
-   way, and the manufacturer MAY use any encoding that is convenient for
-   them, but base64URL encoding [RFC4648], Section 5 is RECOMMENDED.
+   this Attribute requires that the contents are bstr-encoded
+   Section 3.1 of RFC 8949 [CBOR] (Major type 2).  In JSON
+   serialization, delta encoding does not get in the way, and the
+   manufacturer MAY use any encoding that is convenient for them, but
+   base64URL encoding [RFC4648], Section 5 is RECOMMENDED.
 
 9.  Voucher Request Artifact
 
@@ -2126,9 +2127,9 @@ Table of Contents
               lamps-cms-euf-cma-signeddata-02>.
 
    [imprinting]
-              Wikipedia, "Wikipedia article: Imprinting (psychology)", 1
-              October 2025, <https://en.wikipedia.org/w/
-              index.php?title=Imprinting_(psychology)&oldid=1314466188>.
+              Wikipedia, "Wikipedia article: Imprinting (psychology)",
+              12 March 2026, <https://en.wikipedia.org/w/
+              index.php?title=Imprinting_(psychology)&oldid=1337280821>.
 
    [JWS]      Jones, M., Bradley, J., and N. Sakimura, "JSON Web
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
@@ -2883,7 +2884,7 @@ Authors' Addresses
    Michael C. Richardson (editor)
    Sandelman Software
    Email: mcr+ietf@sandelman.ca, https://orcid.org/0000-0002-0773-8388
-   URI:   http://www.sandelman.ca/
+   URI:   https://www.sandelman.ca/
 
 
    Esko Dijk
