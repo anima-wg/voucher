@@ -1315,6 +1315,11 @@ by last name):
 {{{Sheng Jiang}}},
 {{{Thomas Werner}}}.
 
+This document received directorate reviews from {{{Tim Wicinkski}}},
+{{{Kathleen Moriarty}}}, {{{Xufeng Liu}}}, {{{Russ Housley}}},
+{{{Henk Birkholz}}}, {{{Daniel Franke}}}, and {{{Carl Moberg}}}.
+It was shepherded by {{{Toesless Eckert}}}.
+
 {{{Max Pritikin}}} and {{{Kent Watsen}}} were instrumental in creating the original {{RFC8366}}.
 
 
