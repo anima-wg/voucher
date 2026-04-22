@@ -135,7 +135,7 @@ informative:
 --- abstract
 
 
-This document defines a strategy to securely assign a Pledge to an Owner
+This document defines a strategy to securely assign a candidate device (Pledge) to an  Owner
 using an artifact signed, directly or indirectly, by the Pledge's manufacturer.
 This artifact is known as a "Voucher".
 
@@ -751,7 +751,7 @@ CBOR Integer  | Assertion Type
 An unstated assumption in {{RFC8366}} was that Vouchers could be extended in proprietary ways by manufacturers.
 This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG model.
 
-The JSON serialization of Vouchers implicitly accomodates the above, since the Voucher is just a map (or dictionary).
+The JSON serialization of Vouchers implicitly accommodates the above, since the Voucher is just a map (or dictionary).
 Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's DNS domain name.
 
 In CBOR serialization {{RFC9254}}, the situation is not so easy when SID keys are used.
