@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 17 September 2026                             IoTconsultancy.nl
+Expires: 24 October 2026                               IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           16 March 2026
+                                                           22 April 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -20,9 +20,10 @@ Expires: 17 September 2026                             IoTconsultancy.nl
 
 Abstract
 
-   This document defines a strategy to securely assign a Pledge to an
-   Owner using an artifact signed, directly or indirectly, by the
-   Pledge's manufacturer.  This artifact is known as a "Voucher".
+   This document defines a strategy to securely assign a candidate
+   device (Pledge) to an Owner using an artifact signed, directly or
+   indirectly, by the Pledge's manufacturer.  This artifact is known as
+   a "Voucher".
 
    This document defines an artifact format as a YANG-defined JSON or
    CBOR document that has been signed using a variety of cryptographic
@@ -67,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2026.
+   This Internet-Draft will expire on 24 October 2026.
 
 Copyright Notice
 
@@ -1009,7 +1010,7 @@ Table of Contents
             as some manufacturers know that all serial-numbers
             are unique within the scope of a MASA.
             In the voucher request, whether it is mandatory or optional depends
-            upon the which protocol is used, such as RFC8995 and variations.
+            upon which protocol is used, such as RFC8995 and variations.
             When processing a voucher, a pledge MUST ensure that its
             IDevID Authority Key Identifier matches this value.  If no
             match occurs, then the pledge MUST NOT process this
@@ -1228,7 +1229,7 @@ Table of Contents
    perfectly fine, even though it would violate the strict definition of
    the YANG model.
 
-   The JSON serialization of Vouchers implicitly accomodates the above,
+   The JSON serialization of Vouchers implicitly accommodates the above,
    since the Voucher is just a map (or dictionary).  Map keys are just
    strings, and creating unique strings is easy to do by including the
    manufacturer's DNS domain name.
@@ -2212,13 +2213,13 @@ Table of Contents
 
    [Stajano99theresurrecting]
               Stajano, F. and R. Anderson, "The Resurrecting Duckling:
-              Security Issues for Ad-Hoc Wireless Networks", 1999, <http
-              s://www.cl.cam.ac.uk/research/dtg/www/files/publications/
+              Security Issues for Ad-Hoc Wireless Networks", 1999,
+              <https://www.cl.cam.ac.uk/research/dtg/www/files/publications/
               public/files/tr.1999.2.pdf>.
 
    [YANG-GUIDE]
               Bierman, A., "Guidelines for Authors and Reviewers of
-              Documents Containing YANG Data Models", BCP 216, RFC 8407,
+              Documents Containing YANG Data Models", RFC 8407,
               DOI 10.17487/RFC8407, October 2018,
               <https://www.rfc-editor.org/rfc/rfc8407>.
 
@@ -2870,6 +2871,10 @@ Acknowledgements
    discussions on list and in the halls (ordered by last name): William
    Atwood, Michael H. Behringer, Steffen Fries, Sheng Jiang, Thomas
    Werner.
+
+   This document received directorate reviews from Tim Wicinkski,
+   Kathleen Moriarty, Xufeng Liu, Russ Housley, Henk Birkholz, Daniel
+   Franke, and Carl Moberg.  It was shepherded by Toesless Eckert.
 
    Max Pritikin and Kent Watsen were instrumental in creating the
    original [RFC8366].

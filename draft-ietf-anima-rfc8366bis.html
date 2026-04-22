@@ -11,7 +11,7 @@
 <meta content="Toerless Eckert" name="author">
 <meta content="Qiufang Ma" name="author">
 <meta content="
-       This document defines a strategy to securely assign a Pledge to an Owner
+       This document defines a strategy to securely assign a candidate device (Pledge) to an  Owner
 using an artifact signed, directly or indirectly, by the Pledge's manufacturer.
 This artifact is known as a &quot;Voucher&quot;. 
        This document defines an artifact format as a YANG-defined JSON or CBOR document
@@ -22,22 +22,22 @@ Authority (MASA)).
        This document obsoletes RFC8366: it includes a number of desired extensions into the YANG module.
 The Voucher Request YANG module defined in RFC8995 is also updated and now included in this document, as well as other YANG extensions needed for variants of RFC8995. 
     " name="description">
-<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="voucher" name="keyword">
 <meta content="draft-ietf-anima-rfc8366bis-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.31.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.5.1
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.3.0
+    wcwidth 0.6.0
 -->
 <link href="draft-ietf-anima-rfc8366bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1058,11 +1058,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Voucher Artifact</td>
-<td class="right">March 2026</td>
+<td class="right">April 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 17 September 2026</td>
+<td class="center">Expires 24 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1081,12 +1081,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-03-16" class="published">16 March 2026</time>
+<time datetime="2026-04-22" class="published">22 April 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-09-17">17 September 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-24">24 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1116,7 +1116,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">A Voucher Artifact for Bootstrapping Protocols</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines a strategy to securely assign a Pledge to an Owner
+<p id="section-abstract-1">This document defines a strategy to securely assign a candidate device (Pledge) to an  Owner
 using an artifact signed, directly or indirectly, by the Pledge's manufacturer.
 This artifact is known as a "Voucher".<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">This document defines an artifact format as a YANG-defined JSON or CBOR document
@@ -1161,7 +1161,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 17 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2270,7 +2270,7 @@ module ietf-voucher {
          as some manufacturers know that all serial-numbers
          are unique within the scope of a MASA.
          In the voucher request, whether it is mandatory or optional depends
-         upon the which protocol is used, such as RFC8995 and variations.
+         upon which protocol is used, such as RFC8995 and variations.
          When processing a voucher, a pledge MUST ensure that its
          IDevID Authority Key Identifier matches this value.  If no
          match occurs, then the pledge MUST NOT process this
@@ -2502,7 +2502,7 @@ No IANA registry is provided or necessary because the YANG module (and this docu
         </h3>
 <p id="section-8.5-1">An unstated assumption in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was that Vouchers could be extended in proprietary ways by manufacturers.
 This allows for manufacturers to communicate new things from the MASA to the Pledge, and since both are under control of the same entity, it seemed perfectly fine, even though it would violate the strict definition of the YANG model.<a href="#section-8.5-1" class="pilcrow">¶</a></p>
-<p id="section-8.5-2">The JSON serialization of Vouchers implicitly accomodates the above, since the Voucher is just a map (or dictionary).
+<p id="section-8.5-2">The JSON serialization of Vouchers implicitly accommodates the above, since the Voucher is just a map (or dictionary).
 Map keys are just strings, and creating unique strings is easy to do by including the manufacturer's DNS domain name.<a href="#section-8.5-2" class="pilcrow">¶</a></p>
 <p id="section-8.5-3">In CBOR serialization <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>, the situation is not so easy when SID keys are used.
 An extension might need to use "Private range" <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> SID values, or acquire SID values for their own use.<a href="#section-8.5-3" class="pilcrow">¶</a></p>
@@ -3680,7 +3680,7 @@ This section just lists references present in YANG modules which otherwise do no
 <dd class="break"></dd>
 <dt id="YANG-GUIDE">[YANG-GUIDE]</dt>
       <dd>
-<span class="refAuthor">Bierman, A.</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="seriesInfo">BCP 216</span>, <span class="seriesInfo">RFC 8407</span>, <span class="seriesInfo">DOI 10.17487/RFC8407</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8407">https://www.rfc-editor.org/rfc/rfc8407</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span>, <span class="refTitle">"Guidelines for Authors and Reviewers of Documents Containing YANG Data Models"</span>, <span class="seriesInfo">RFC 8407</span>, <span class="seriesInfo">DOI 10.17487/RFC8407</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8407">https://www.rfc-editor.org/rfc/rfc8407</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4405,7 +4405,11 @@ by last name):
 <span class="contact-name">Steffen Fries</span>,
 <span class="contact-name">Sheng Jiang</span>,
 <span class="contact-name">Thomas Werner</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
-<p id="appendix-C-2"><span class="contact-name">Max Pritikin</span> and <span class="contact-name">Kent Watsen</span> were instrumental in creating the original <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-2">This document received directorate reviews from <span class="contact-name">Tim Wicinkski</span>,
+<span class="contact-name">Kathleen Moriarty</span>, <span class="contact-name">Xufeng Liu</span>, <span class="contact-name">Russ Housley</span>,
+<span class="contact-name">Henk Birkholz</span>, <span class="contact-name">Daniel Franke</span>, and <span class="contact-name">Carl Moberg</span>.
+It was shepherded by <span class="contact-name">Toesless Eckert</span>.<a href="#appendix-C-2" class="pilcrow">¶</a></p>
+<p id="appendix-C-3"><span class="contact-name">Max Pritikin</span> and <span class="contact-name">Kent Watsen</span> were instrumental in creating the original <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#appendix-C-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
