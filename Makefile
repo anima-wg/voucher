@@ -11,7 +11,7 @@ LIBDIR := lib
 # add this path because your local install might be newer.
 YANGMODULESPATH=${HOME}/.local/share/yang/modules
 PYANG?=pyang
-PYANGPATH=--path=yang --path=${YANGMODULESPATH}
+PYANGPATH=--path=. --path=${PWD}/yang --path=${YANGMODULESPATH}
 include $(LIBDIR)/main.mk
 
 $(LIBDIR)/main.mk:
@@ -43,10 +43,12 @@ yang/ietf-voucher-latest.yang yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.y
 	which ${PYANG}
 	mkdir -p yang
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
+	(cd yang && ln -s -f ietf-voucher@${YANGDATE}.yang ietf-voucher-latest.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
-yang/ietf-voucher-request-latest.yang yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang
+yang/ietf-voucher-request-latest.yang yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang yang/ietf-voucher-latest.yang
 	mkdir -p yang
+	echo	pyangpath: ${PYANGPATH}
 	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
 
