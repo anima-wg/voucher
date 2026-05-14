@@ -183,10 +183,10 @@ This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, 
 YANG is not easily extended except by updating the YANG module definition.
 Since {{RFC8366}} was written, the common pattern is to publish YANG modules as two documents: one with only the YANG module, and the other one with usage, motivation and further explanation.
 This allows the YANG module to be updated without replacing all of the context.
-This document does not follow that pattern, but future documents may update only the YANG module.
+This document does not follow that pattern, so future documents may update only the YANG module.
 
 This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
-This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer private extensions.
+This includes both a new IETF standard mechanism for extensions modeled after the mechanism presented in {{?RFC8520}}, as well as a facility for manufacturer private extensions.
 
 The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
@@ -1319,6 +1319,6 @@ This document received directorate reviews from {{{Tim Wicinkski}}},
 {{{Thomas Fossati}}}, and {{{Michal Vaško}}}.
 It was shepherded by {{{Sheng Jiang}}}.
 
-{{{Max Pritikin}}} and {{{Kent Watsen}}} were instrumental in creating the original {{RFC8366}}.
+{{{Max Pritikin}}} was instrumental in creating the original {{RFC8366}}.
 
 
