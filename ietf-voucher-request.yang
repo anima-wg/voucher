@@ -161,13 +161,7 @@ module ietf-voucher-request {
          the voucher-request.
          The proximity-registrar-pubk is the
          Raw Public Key of the Registrar. This field is encoded
-         as specified in RFC7250, section 3.
-         The ECDSA algorithm MUST be supported.
-         The EdDSA algorithm as specified in
-         draft-ietf-tls-rfc4492bis-17 SHOULD be supported.
-         Support for the DSA algorithm is not recommended.
-         Support for the RSA algorithm is a MAY, but due to
-         size is discouraged.";
+         as specified in RFC7250, section 3.";
     }
 
     leaf proximity-registrar-pubk-sha256 {
