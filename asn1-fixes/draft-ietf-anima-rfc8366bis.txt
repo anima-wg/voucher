@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 26 December 2026                              IoTconsultancy.nl
+Expires: 27 December 2026                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                            24 June 2026
+                                                            25 June 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2026.
+   This Internet-Draft will expire on 27 December 2026.
 
 Copyright Notice
 
@@ -620,7 +620,7 @@ Table of Contents
 7.1.  CMS Format Voucher Artifact
 
    An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher
-   Data is allocated in Section 12.4.  This OID ia placed in the
+   Data is allocated in Section 12.4.  This OID is placed in the
    'eContentType' field in the EncapsulatedContentInfo:
 
    ``` id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2) us(840)
