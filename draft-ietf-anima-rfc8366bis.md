@@ -520,7 +520,7 @@ The CMS signing mechanism first defined in {{RFC8366}} continues to be defined h
 
 An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher Data
 is allocated in {{iana-contenttype}}.
-This OID ia placed in the 'eContentType' field in the EncapsulatedContentInfo:
+This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:
 
 ```
       id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
