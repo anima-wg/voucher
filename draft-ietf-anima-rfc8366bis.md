@@ -602,7 +602,7 @@ The old (1024-bit) DSA algorithm is not supported.
 
 When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
-When RSA is supported, sizes of at least 2048 bits SHOULD be supported, with support for sizes up to 4096 bits as RECOMMENDED.
+When RSA is supported by an implementation, it SHOULD support key lengths between 2048 and 4096 bits, and MAY support longer keys.
 
 Of the above, EcDSA SHOULD be supported by all implementations, until some quantum-safe variant is standardized.
 
