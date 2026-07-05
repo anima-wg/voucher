@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 30 December 2026                              IoTconsultancy.nl
+Expires: 6 January 2027                                IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                            28 June 2026
+                                                             5 July 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 December 2026.
+   This Internet-Draft will expire on 6 January 2027.
 
 Copyright Notice
 
@@ -705,19 +705,18 @@ Table of Contents
    extension.
 
    In the constrained versions of the voucher and voucher-request (as
-   used by [cBRSKI]), the fields pinned-domain-pubk (proximity-
+   used by [cBRSKI]), the attributes pinned-domain-pubk (proximity-
    registrar-pubk for requests) and pinned-domain-pubk-sha256
-   (proximity-registrar-pubk-sha256 for requests) can be used to pin the
-   raw public key, or just the SHA256 hash of the raw public key.  The
-   public keys are to be encoded according to [RFC7250], Section 3 for
-   RSA and EcDSA keys, noting that [RFC8032] extends this to include an
-   OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
+   (proximity-registrar-pubk-sha256 for requests) are involved in the
+   process of pinning a raw public key.  The public keys are to be
+   encoded according to [RFC7250], Section 3 for RSA and EcDSA keys,
+   noting that [RFC8032] extends this to include an OID for EdDSA.  The
+   old (1024-bit) DSA algorithm is not supported.
 
    When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
    supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
    be supported.  When RSA is supported by an implementation, it SHOULD
-   support key lengths between 2048 and 4096 bits, and MAY support
-   longer keys.
+   support key lengths between 2048 and 4096 bits.
 
    Of the above, EcDSA SHOULD be supported by all implementations, until
    some quantum-safe variant is standardized.
