@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 24 October 2026                               IoTconsultancy.nl
+Expires: 6 January 2027                                IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           22 April 2026
+                                                             5 July 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 October 2026.
+   This Internet-Draft will expire on 6 January 2027.
 
 Copyright Notice
 
@@ -703,6 +703,28 @@ Table of Contents
    For Vouchers stored/transferred via methods like a USB storage device
    (USB key), the Voucher format is usually signaled by a filename
    extension.
+
+   In the constrained versions of the voucher and voucher-request (as
+   used by [cBRSKI]), the fields pinned-domain-pubk (proximity-
+   registrar-pubk for requests) and pinned-domain-pubk-sha256
+   (proximity-registrar-pubk-sha256 for requests) can be used to pin the
+   raw public key, or just the SHA256 hash of the raw public key.  The
+   public keys are to be encoded according to [RFC7250], Section 3 for
+   RSA and EcDSA keys, noting that [RFC8032] extends this to include an
+   OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
+
+   When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
+   supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
+   be supported.  When RSA is supported, sizes of at least 2048 bits
+   SHOULD be supported, with support for sizes up to 4096 bits as
+   RECOMMENDED.
+
+   Of the above, EcDSA SHOULD be supported by all implementations, until
+   some quantum-safe variant is standardized.
+
+   Should SHA256 need to be replaced, then a new YANG module will be
+   published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
+   proximity-registrar-pubk-sha256.
 
 8.1.  Tree Diagram
 
@@ -1499,13 +1521,7 @@ Table of Contents
             the voucher-request.
             The proximity-registrar-pubk is the
             Raw Public Key of the Registrar. This field is encoded
-            as specified in RFC7250, section 3.
-            The ECDSA algorithm MUST be supported.
-            The EdDSA algorithm as specified in
-            draft-ietf-tls-rfc4492bis-17 SHOULD be supported.
-            Support for the DSA algorithm is not recommended.
-            Support for the RSA algorithm is a MAY, but due to
-            size is discouraged.";
+            as specified in RFC7250, section 3.";
        }
        leaf proximity-registrar-pubk-sha256 {
          type binary;
@@ -1980,9 +1996,9 @@ Table of Contents
    [cBRSKI]   Richardson, M., Van der Stok, P., Kampanakis, P., and E.
               Dijk, "Constrained Bootstrapping Remote Secure Key
               Infrastructure (cBRSKI)", Work in Progress, Internet-
-              Draft, draft-ietf-anima-constrained-voucher-30, 27
-              February 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-anima-constrained-voucher-30>.
+              Draft, draft-ietf-anima-constrained-voucher-31, 8 June
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              anima-constrained-voucher-31>.
 
    [CLOUD]    Friel, O., Shekh-Yusef, R., and M. Richardson,
               "Bootstrapping Remote Secure Key Infrastructure (BRSKI)
@@ -2059,6 +2075,11 @@ Table of Contents
    [RFC7951]  Lhotka, L., "JSON Encoding of Data Modeled with YANG",
               RFC 7951, DOI 10.17487/RFC7951, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7951>.
+
+   [RFC8032]  Josefsson, S. and I. Liusvaara, "Edwards-Curve Digital
+              Signature Algorithm (EdDSA)", RFC 8032,
+              DOI 10.17487/RFC8032, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8032>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
