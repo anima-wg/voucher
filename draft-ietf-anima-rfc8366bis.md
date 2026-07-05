@@ -1128,7 +1128,7 @@ IANA is asked to create a registry of Voucher extensions as follows:
 >   : Voucher Extensions Registry
 >
 >   Registry policy:
->   : First Come First Served
+>   : Expert Review
 >
 >   Reference:
 >   : an optional document
@@ -1153,11 +1153,13 @@ For vendor proprietary extensions, the string SHOULD be made unique by putting t
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
 
-Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
-There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
-For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
-The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging.
-However, as registration is optional, the Designated Expert should not block any registrations.
+Designated Experts should review for standards track documents for clarity, but the choices are tied to WG and IESG processes:
+
+* There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
+
+* For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
+The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
+However, as registration is optional, the Designated Expert should not block any vendor registrations.
 
 ## The IETF YANG-SID Ranges Registry
 
