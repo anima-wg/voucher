@@ -3332,7 +3332,7 @@ This registration should be updated to point to this document.<a href="#section-
               <dd class="break"></dd>
 <dt id="section-12.5-2.1.1.3">Registry policy:</dt>
               <dd style="margin-left: 1.5em" id="section-12.5-2.1.1.4">
-                <p id="section-12.5-2.1.1.4.1">First Come First Served<a href="#section-12.5-2.1.1.4.1" class="pilcrow">¶</a></p>
+                <p id="section-12.5-2.1.1.4.1">Expert Review<a href="#section-12.5-2.1.1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 <dt id="section-12.5-2.1.1.5">Reference:</dt>
@@ -3363,11 +3363,17 @@ IANA does not need to separately allocate a SID value for this column.<a href="#
 They do not contain dots.
 For vendor proprietary extensions, the string <span class="bcp14">SHOULD</span> be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) <span>[<a href="#RFC3696" class="cite xref">RFC3696</a>]</span>, such as "fuubar.example.com"<a href="#section-12.5-5" class="pilcrow">¶</a></p>
 <p id="section-12.5-6">Vendor proprietary extensions do not need to be registered with IANA, but vendors <span class="bcp14">MAY</span> do so.<a href="#section-12.5-6" class="pilcrow">¶</a></p>
-<p id="section-12.5-7">Designated Experts should review for standards track documents for clarity, but the process is essentially tied to WG and IESG process:
-There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
-For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
-The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging.
-However, as registration is optional, the Designated Expert should not block any registrations.<a href="#section-12.5-7" class="pilcrow">¶</a></p>
+<p id="section-12.5-7">Designated Experts should review for standards track documents for clarity, but the choices are tied to WG and IESG processes:<a href="#section-12.5-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-12.5-8.1">
+            <p id="section-12.5-8.1.1">There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).<a href="#section-12.5-8.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-12.5-8.2">
+            <p id="section-12.5-8.2.1">For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
+The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
+However, as registration is optional, the Designated Expert should not block any vendor registrations.<a href="#section-12.5-8.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
 </section>
 </div>
 <div id="the-ietf-yang-sid-ranges-registry">
