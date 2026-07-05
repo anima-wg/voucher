@@ -518,11 +518,20 @@ The CMS signing mechanism first defined in {{RFC8366}} continues to be defined h
 
 ## CMS Format Voucher Artifact {#cms-voucher}
 
-The IETF evolution of PKCS#7 is CMS {{RFC5652}}.
-A CMS-signed Voucher, the default type, contains a ContentInfo
-structure with the Voucher Data.
-An OID for JSON-encoded Voucher Data is allocated in {{iana-contenttype}}, and
-it is to be placed in the '`eContentType`' field in the ContentInfo.
+An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher Data
+is allocated in {{iana-contenttype}}.
+This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:
+
+```
+      id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+           us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
+
+      id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
+
+      id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
+```
+
+The use of PKCS#7 (cmsVersion=1) is deprecated by this document.
 
 The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
@@ -547,8 +556,7 @@ PKCS7 object (cmsVersion=1).  Intermediate systems (such as the
 Bootstrapping Remote Secure Key Infrastructures {{RFC8995}} Registrar)
 that might need to evaluate the Voucher in flight MUST be prepared for
 such an older format.
-No signaling of the format version is necessary, as the manufacturer knows the capabilities
-of the Pledge and will use an appropriate format Voucher for each
+No signaling of the format version is necessary, as the manufacturer knows the capabilities of the Pledge and will use an appropriate format Voucher for each
 Pledge.
 
 The CMS structure SHOULD also contain all of the certificates
@@ -988,7 +996,7 @@ by Section 3.7 of {{YANG-GUIDE}}.
 
 This document updates two URIs in the "IETF XML Registry" {{RFC3688}}.
 
-IANA has registered the following based on {{RFC8366}} and {{RFC8995}} respectively:
+IANA is requested to register the following, updating the registration to point to this document:
 
 > {:compact}
 >    URI:
@@ -1010,14 +1018,9 @@ IANA has registered the following based on {{RFC8366}} and {{RFC8995}} respectiv
 >    XML:
 >    : N/A, the requested URI is an XML namespace.
 
-For both entries, the reference should be updated to point to this document.
-
 ## The YANG Module Names Registry
 
-This document updates two entries in the "YANG Module Names"
-registry {{RFC6020}}.
-
-IANA has registered the following based on {{RFC8366}}:
+IANA is requested to register the following YANG module in the "YANG Module Names" registry [RFC6020] [RFC9890] within the "YANG Parameters" registry group.
 
 > {:compact}
 >   name:
@@ -1035,8 +1038,6 @@ IANA has registered the following based on {{RFC8366}}:
 This reference should be updated to point to this document and the "File" entry should be updated to point to the
 new module revision in {{voucher-yang-module}}.
 
-IANA has registered the following based on {{RFC8995}}:
-
 > {:compact}
 >   name:
 >   : ietf-voucher-request
@@ -1045,23 +1046,17 @@ IANA has registered the following based on {{RFC8995}}:
 >   : urn:ietf:params:xml:ns:yang:ietf-voucher-request
 >
 >   prefix:
->   : vch
+>   : vcr
 >
 >   reference:
 >   : RFC 8995
 
-This reference should also be updated to point to this document and the "File" entry should be updated to point to the
-new module revision in {{voucher-request-yang-module}}.
-Additionally, the "prefix" field should be updated as follows:
-
-> {:compact}
->   prefix:
->   : vcr
->
+This reference should be updated to point to this document and the "File" entry should be updated to point to the new module revision in {{voucher-request-yang-module}}.
+Please note the change to the "prefix" field.
 
 ## The Media Types Registry {#vcj}
 
-IANA has registered the media type: `application/voucher-cms+json`, and this registration should be updated to point to this document.
+IANA is requested to register the media type: `application/voucher-cms+json`, and this registration should be updated to point to this document.
 
 > {:compact}
 >   Type name:
@@ -1121,7 +1116,7 @@ IANA has registered the media type: `application/voucher-cms+json`, and this reg
 
 ## The SMI Security for S/MIME CMS Content Type Registry {#iana-contenttype}
 
-IANA has registered the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
+IANA is requested to register the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
 This registration should be updated to point to this document.
 
 ## The Voucher Extensions Registry {#voucher-ext-reg}
