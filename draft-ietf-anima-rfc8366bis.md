@@ -604,13 +604,13 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-In the constrained versions of the voucher and voucher-request (as used by {{cBRSKI}}), the fields `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) can be used to pin the raw public key, or just the SHA256 hash of the raw public key.
+In the constrained versions of the voucher and voucher-request (as used by {{cBRSKI}}), the attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key.
 The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
 When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
-When RSA is supported, sizes of at least 2048 bits SHOULD be supported, with support for sizes up to 4096 bits as RECOMMENDED.
+When RSA is supported by an implementation, it SHOULD support key lengths between 2048 and 4096 bits.
 
 Of the above, EcDSA SHOULD be supported by all implementations, until some quantum-safe variant is standardized.
 
