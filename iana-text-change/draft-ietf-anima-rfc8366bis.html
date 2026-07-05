@@ -38,7 +38,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.1
+    wcwidth 0.8.2
 -->
 <link href="draft-ietf-anima-rfc8366bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1057,11 +1057,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Voucher Artifact</td>
-<td class="right">June 2026</td>
+<td class="right">July 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 26 December 2026</td>
+<td class="center">Expires 6 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1080,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-24" class="published">24 June 2026</time>
+<time datetime="2026-07-05" class="published">5 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-26">26 December 2026</time></dd>
+<dd class="expires"><time datetime="2027-01-06">6 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1160,7 +1160,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1883,46 +1883,54 @@ However, as the SID <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</sp
         <h3 id="name-cms-format-voucher-artifact">
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-cms-format-voucher-artifact" class="section-name selfRef">CMS Format Voucher Artifact</a>
         </h3>
-<p id="section-7.1-1">The IETF evolution of PKCS#7 is CMS <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>.
-A CMS-signed Voucher, the default type, contains a ContentInfo
-structure with the Voucher Data.
-An OID for JSON-encoded Voucher Data is allocated in <a href="#iana-contenttype" class="auto internal xref">Section 12.4</a>, and
-it is to be placed in the '<code>eContentType</code>' field in the ContentInfo.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<p id="section-7.1-2">The signing structure is a CMS SignedData structure, as specified by
+<p id="section-7.1-1">An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher Data
+is allocated in <a href="#iana-contenttype" class="auto internal xref">Section 12.4</a>.
+This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">```
+      id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+           us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7.1-3">
+<pre>
+  id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
+
+  id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 } ```
+</pre><a href="#section-7.1-3" class="pilcrow">¶</a>
+</div>
+<p id="section-7.1-4">The use of PKCS#7 (cmsVersion=1) is deprecated by this document.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5">The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690.2015" class="cite xref">ITU-T.X690.2015</a>]</span>.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
-<p id="section-7.1-3"><span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
+Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690.2015" class="cite xref">ITU-T.X690.2015</a>]</span>.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6"><span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
 This mitigates attacks on CMS as described in <span>[<a href="#I-D.vangeest-lamps-cms-euf-cma-signeddata" class="cite xref">I-D.vangeest-lamps-cms-euf-cma-signeddata</a>]</span>.
-Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> are present.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
-<p id="section-7.1-4">To facilitate interoperability, <a href="#vcj" class="auto internal xref">Section 12.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
-<p id="section-7.1-5">The CMS structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
+Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> are present.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+<p id="section-7.1-7">To facilitate interoperability, <a href="#vcj" class="auto internal xref">Section 12.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-7.1-7" class="pilcrow">¶</a></p>
+<p id="section-7.1-8">The CMS structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
 described in Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, containing the
 signature generated over the content using a private key
 trusted by the recipient.
 Normally, the recipient is the Pledge and the signer is the MASA.
-In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).<a href="#section-7.1-5" class="pilcrow">¶</a></p>
-<p id="section-7.1-6">Note that Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a
+In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).<a href="#section-7.1-8" class="pilcrow">¶</a></p>
+<p id="section-7.1-9">Note that Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a
 discussion about how to validate a CMS object, which is really a
 PKCS7 object (cmsVersion=1).  Intermediate systems (such as the
 Bootstrapping Remote Secure Key Infrastructures <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> Registrar)
 that might need to evaluate the Voucher in flight <span class="bcp14">MUST</span> be prepared for
 such an older format.
-No signaling of the format version is necessary, as the manufacturer knows the capabilities
-of the Pledge and will use an appropriate format Voucher for each
-Pledge.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
-<p id="section-7.1-7">The CMS structure <span class="bcp14">SHOULD</span> also contain all of the certificates
+No signaling of the format version is necessary, as the manufacturer knows the capabilities of the Pledge and will use an appropriate format Voucher for each
+Pledge.<a href="#section-7.1-9" class="pilcrow">¶</a></p>
+<p id="section-7.1-10">The CMS structure <span class="bcp14">SHOULD</span> also contain all of the certificates
 leading up to and including the signer's trust anchor certificate
 known to the recipient.  The inclusion of the trust anchor is
 unusual in many applications, but third parties cannot accurately
-audit the transaction without it.<a href="#section-7.1-7" class="pilcrow">¶</a></p>
-<p id="section-7.1-8">The CMS structure <span class="bcp14">MAY</span> also contain revocation objects for any
+audit the transaction without it.<a href="#section-7.1-10" class="pilcrow">¶</a></p>
+<p id="section-7.1-11">The CMS structure <span class="bcp14">MAY</span> also contain revocation objects for any
 intermediate certificate authorities (CAs) between the
 Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
 online checks and is unlikely to have a trusted clock source.
 As described below, the use of short-lived Vouchers and/or a
-Pledge-provided nonce provides a freshness guarantee.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
+Pledge-provided nonce provides a freshness guarantee.<a href="#section-7.1-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
