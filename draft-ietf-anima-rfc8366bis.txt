@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 6 January 2027                                IoTconsultancy.nl
+Expires: 19 January 2027                               IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                             5 July 2026
+                                                            18 July 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2027.
+   This Internet-Draft will expire on 19 January 2027.
 
 Copyright Notice
 
@@ -1281,7 +1281,7 @@ Table of Contents
    voucher' YANG module.  Items within that list are either strings (in
    JSON serialization), or integers (in CBOR serialization using SIDs);
    both are always defined in the entries of the Voucher Extensions
-   Registry (see Section 12.5).
+   registry (see Section 12.5).
 
    Extensions are full YANG modules, which are subject to the SID
    allocation process described in [RFC9254].  When an extension is
@@ -1823,18 +1823,12 @@ Table of Contents
       prefix:  vch
       reference:  RFC 8366
 
-   This reference should be updated to point to this document and the
-   "File" entry should be updated to point to the new module revision in
-   Section 8.3.
-
       name:  ietf-voucher-request
       namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
       prefix:  vcr
       reference:  RFC 8995
 
-   This reference should be updated to point to this document and the
-   "File" entry should be updated to point to the new module revision in
-   Section 9.2.  Please note the change to the "prefix" field.
+   (Please note the change to the "prefix" field)
 
 12.3.  The Media Types Registry
 
@@ -1890,10 +1884,13 @@ Table of Contents
 
 12.5.  The Voucher Extensions Registry
 
-   IANA is asked to create a registry of Voucher extensions as follows:
+   IANA is asked to create a registry of Voucher extensions within the
+   _Bootstrapping Remote Secure Key Infrastructures (BRSKI) Parameters_
+   as follows.
 
-      Registry name:  Voucher Extensions Registry
-      Registry policy:  Expert Review
+   The name is: Voucher Extensions, and the Registration Policy is
+   Expert Review.
+
       Reference:  an optional document
       Extension name:  UTF-8-encoded string, not to exceed 40
          characters.
@@ -1901,8 +1898,6 @@ Table of Contents
          extension per Section 8.5.
 
    Each extension MUST follow the rules specified in this specification.
-   As is usual, the IANA issues early allocations in accordance with
-   [RFC7120].
 
    Note that the SID module value is allocated as part of a [CORESID]
    process.  This may be from a SID range managed by IANA, or from any
@@ -1911,10 +1906,11 @@ Table of Contents
    column.
 
    Extension name strings for standards track documents are single
-   words, given by the YANG Module Name.  They do not contain dots.  For
-   vendor proprietary extensions, the string SHOULD be made unique by
-   putting the extension name in the form a fully-qualified domain name
-   (FQDN) [RFC3696], such as "fuubar.example.com"
+   words, given by the YANG Module Name.  They do not contain dots.
+
+   For vendor proprietary extensions, the string SHOULD be made unique
+   by putting the extension name in the form a fully-qualified domain
+   name (FQDN) [RFC3696], such as "fuubar.example.com"
 
    Vendor proprietary extensions do not need to be registered with IANA,
    but vendors MAY do so.
@@ -1928,11 +1924,12 @@ Table of Contents
 
    *  For non-standards track extensions, the Designated Expert should
       review whatever document is provided, if any.  The stability of
-      the reference may be of concern.  The Designated Expert should
-      determine if the work overlaps with existing efforts; and if so
-      suggest merging/coordinating.  However, as registration is
-      optional, the Designated Expert should not block any vendor
-      registrations.
+      the reference may be of concern.
+
+   The Designated Expert should determine if the work overlaps with
+   existing efforts; and if so suggest merging/coordinating.  However,
+   as registration is optional, the Designated Expert should not block
+   any vendor registrations.
 
 12.6.  The IETF YANG-SID Ranges Registry
 
@@ -2060,10 +2057,6 @@ Table of Contents
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/rfc/rfc6020>.
 
-   [RFC7120]  Cotton, M., "Early IANA Allocation of Standards Track Code
-              Points", BCP 100, RFC 7120, DOI 10.17487/RFC7120, January
-              2014, <https://www.rfc-editor.org/rfc/rfc7120>.
-
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
               Transport Layer Security (TLS) and Datagram Transport
@@ -2138,9 +2131,9 @@ Table of Contents
               Selander, G., Mattsson, J. P., Vučinić, M., Fedrecheski,
               G., and M. Richardson, "Lightweight Authorization using
               Ephemeral Diffie-Hellman Over COSE (ELA)", Work in
-              Progress, Internet-Draft, draft-ietf-lake-authz-07, 2
-              March 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-lake-authz-07>.
+              Progress, Internet-Draft, draft-ietf-lake-authz-08, 6 July
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              lake-authz-08>.
 
    [I-D.vangeest-lamps-cms-euf-cma-signeddata]
               Van Geest, D. and F. Strenzke, "Best Practices for CMS
