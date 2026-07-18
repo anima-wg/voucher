@@ -787,7 +787,7 @@ In JSON serialization, these extensions each require a unique name, and therefor
 The name MUST be the same as the YANG extension module name.
 The '`extensions`' list Attribute allows for new standard extensions to be defined without changes to the '`ietf-voucher`' YANG module.
 Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs);
-both are always defined in the entries of the Voucher Extensions Registry (see {{voucher-ext-reg}}).
+both are always defined in the entries of the Voucher Extensions registry (see {{voucher-ext-reg}}).
 
 Extensions are full YANG modules, which are subject to the SID allocation process described in {{RFC9254}}.
 When an extension is serialized, the extension is placed in a sub-map in the value of a new key/value pair in the '`voucher`' container element.
@@ -1035,8 +1035,7 @@ IANA is requested to register the following YANG module in the "YANG Module Name
 >   reference:
 >   : RFC 8366
 
-This reference should be updated to point to this document and the "File" entry should be updated to point to the
-new module revision in {{voucher-yang-module}}.
+
 
 > {:compact}
 >   name:
@@ -1051,8 +1050,7 @@ new module revision in {{voucher-yang-module}}.
 >   reference:
 >   : RFC 8995
 
-This reference should be updated to point to this document and the "File" entry should be updated to point to the new module revision in {{voucher-request-yang-module}}.
-Please note the change to the "prefix" field.
+(Please note the change to the "prefix" field)
 
 ## The Media Types Registry {#vcj}
 
@@ -1121,15 +1119,11 @@ This registration should be updated to point to this document.
 
 ## The Voucher Extensions Registry {#voucher-ext-reg}
 
-IANA is asked to create a registry of Voucher extensions as follows:
+IANA is asked to create a registry of Voucher extensions within the _Bootstrapping Remote Secure Key Infrastructures (BRSKI) Parameters_ as follows.
+
+The name is: Voucher Extensions, and the Registration Policy is Expert Review.
 
 > {:compact}
->   Registry name:
->   : Voucher Extensions Registry
->
->   Registry policy:
->   : Expert Review
->
 >   Reference:
 >   : an optional document
 >
@@ -1140,15 +1134,14 @@ IANA is asked to create a registry of Voucher extensions as follows:
 >   : the YANG module SID value that defines the extension per {{voucher-ext}}.
 
 Each extension MUST follow the rules specified in this specification.
-As is usual, the IANA issues early allocations in accordance with {{!RFC7120}}.
 
 Note that the SID module value is allocated as part of a {{CORESID}} process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
 Future work may allow for PEN based allocations.
 IANA does not need to separately allocate a SID value for this column.
 
-Extension name strings for standards track documents are single words, given by the YANG Module Name.
-They do not contain dots.
+Extension name strings for standards track documents are single words, given by the YANG Module Name.   They do not contain dots.
+
 For vendor proprietary extensions, the string SHOULD be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
@@ -1158,7 +1151,9 @@ Designated Experts should review for standards track documents for clarity, but 
 * There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
 
 * For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
-The stability of the reference may be of concern.  The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
+The stability of the reference may be of concern.
+
+The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
 However, as registration is optional, the Designated Expert should not block any vendor registrations.
 
 ## The IETF YANG-SID Ranges Registry
