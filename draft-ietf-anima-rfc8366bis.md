@@ -517,20 +517,27 @@ The above updates to {{RFC8995}} addresses errata {{eid7263}}.
 
 # Signature mechanisms
 
-Three signature systems have been defined for Vouchers Artifacts.
+Three signature systems have been defined for Voucher Artifacts.
 
-{{cBRSKI}} defines a mechanism that uses COSE {{COSE}}, with the Voucher Data encoded using {{RFC9254}}.
-However, as the SID {{RFC9254}} allocation process requires up-to-date YANG, the SID values for this mechanism are presented in this document.
+{{cBRSKI}} defines a mechanism that uses COSE {{COSE}}, with the Voucher Data encoded using YANG-CBOR {{RFC9254}}.
+However, as the SID {{RFC9254}} allocation process requires up-to-date YANG, the SID values for this mechanism
+are presented in this document.
 
 {{jBRSKI}} defines a mechanism that uses JSON {{RFC8259}} and {{JWS}}.
 
-The CMS signing mechanism first defined in {{RFC8366}} continues to be defined here.
+The CMS signing mechanism first defined in {{RFC8366}} continues to be defined in this document.
 
 ## CMS Format Voucher Artifact {#cms-voucher}
 
+The CMS data structure consists of the `ContentInfo` defined in {{Section 3 of RFC5652}}, which contains a single
+`SignedData` structure. The `SignedData` structure is specified by
+Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
+Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690}}.
+
+The `SignedData` structure contains a single `EncapsulatedContentInfo` structure, defined in {{Section 5.2 of RFC5652}}.
 An object identifier (OID) {{ITU-T.X680}} for JSON-encoded Voucher Data
 is allocated in {{iana-contenttype}}.
-This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:
+This OID is placed in the `'eContentType'` field in the `EncapsulatedContentInfo`, with the OID defined as follows:
 
 ~~~~
 id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
@@ -541,33 +548,29 @@ id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
 id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
 ~~~~
 
-The use of PKCS#7 (cmsVersion=1) is deprecated by this document.
+The use of PKCS#7 (`CMSVersion`=1) in the `SignedData` structure is deprecated by this document.
 
-The signing structure is a CMS SignedData structure, as specified by
-Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690}}.
-
-{{RFC5652}} mandates that `SignedAttributes` MUST be present when the content type is not '`id-data`'.
+{{Section 9.1 of RFC5652}} mandates that `SignedAttributes` MUST be present when the content type is not '`id-data`'.
 This mitigates attacks on CMS as described in {{?I-D.vangeest-lamps-cms-euf-cma-signeddata}}.
-Decoders MUST verify that `SignedAttributes` are present.
+Decoders MUST verify that `SignedAttributes` is present.
 
-To facilitate interoperability, {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
+To facilitate interoperability, per {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
 
-The CMS structure MUST contain a '`signerInfo`' structure, as
-described in Section 5.1 of {{RFC5652}}, containing the
+The CMS `SignedData` structure MUST contain a '`signerInfo`' structure, as
+described in {{Section 5.1 of RFC5652}}, containing the
 signature generated over the content using a private key
 trusted by the recipient.
-Normally, the recipient is the Pledge and the signer is the MASA.
+In a Voucher, the recipient is the Pledge and the signer is the MASA.
 In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).
 
-Note that Section 5.1 of {{RFC5652}} includes a
-discussion about how to validate a CMS object, which is really a
-PKCS7 object (cmsVersion=1).  Intermediate systems (such as the
+Note that {{Section 5.1 of RFC5652}} includes a discussion about how to validate a CMS object.
+This object may have a particular CMSVersion (see {{Section 10.2.5 of RFC5652}}).
+Intermediate systems (such as the
 Bootstrapping Remote Secure Key Infrastructures {{RFC8995}} Registrar)
-that might need to evaluate the Voucher in flight MUST be prepared for
-such an older format.
-No signaling of the format version is necessary, as the manufacturer knows the capabilities of the Pledge and will use an appropriate format Voucher for each
-Pledge.
+that might need to evaluate the object in flight MUST be prepared for
+any version of this format.
+No signaling of the format version (CMSVersion) is necessary, as the manufacturer knows the capabilities of the Pledge
+and will use an appropriate format Voucher for each Pledge.
 
 The CMS structure SHOULD also contain all of the certificates
 leading up to and including the signer's trust anchor certificate
