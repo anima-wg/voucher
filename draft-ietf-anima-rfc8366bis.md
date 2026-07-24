@@ -65,6 +65,7 @@ normative:
   RFC5280:
   RFC5652:
   RFC6020:
+  RFC9890:
   RFC7950:
   RFC8259:
   RFC9254:
@@ -72,14 +73,23 @@ normative:
   CORESID: RFC9595
   cBRSKI: I-D.ietf-anima-constrained-voucher
   jBRSKI: I-D.ietf-anima-jws-voucher
-  ITU-T.X690.2015:
+  ITU-T.X680:
+    target: https://www.itu.int/rec/T-REC-X.680/
+    title: 'Information Technology - Abstract Syntax Notation One (ASN.1):
+      Specification of basic notation'
+    author:
+    - org: International Telecommunication Union
+    date: 2021-02
+    seriesinfo:
+      ITU-T Recommendation X.680,: ISO/IEC 8824-1
+  ITU-T.X690:
     target: https://www.itu.int/rec/T-REC-X.690/
     title: 'Information Technology - ASN.1 encoding rules: Specification of Basic
       Encoding Rules (BER), Canonical Encoding Rules (CER) and Distinguished Encoding
       Rules (DER)'
     author:
     - org: International Telecommunication Union
-    date: 2015-08
+    date: 2021-02
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
   ZERO-TOUCH: RFC8572
@@ -518,24 +528,24 @@ The CMS signing mechanism first defined in {{RFC8366}} continues to be defined h
 
 ## CMS Format Voucher Artifact {#cms-voucher}
 
-An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher Data
+An object identifier (OID) {{ITU-T.X680}} for JSON-encoded Voucher Data
 is allocated in {{iana-contenttype}}.
 This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:
 
-```
-      id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
-           us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
+~~~~
+id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+             us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
 
-      id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
+id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
 
-      id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
-```
+id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
+~~~~
 
 The use of PKCS#7 (cmsVersion=1) is deprecated by this document.
 
 The signing structure is a CMS SignedData structure, as specified by
 Section 5.1 of {{RFC5652}}, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690.2015}}.
+Rules (DER), as specified in ITU-T X.690 {{ITU-T.X690}}.
 
 {{RFC5652}} mandates that `SignedAttributes` MUST be present when the content type is not '`id-data`'.
 This mitigates attacks on CMS as described in {{?I-D.vangeest-lamps-cms-euf-cma-signeddata}}.
@@ -1020,7 +1030,7 @@ IANA is requested to register the following, updating the registration to point 
 
 ## The YANG Module Names Registry
 
-IANA is requested to register the following YANG module in the "YANG Module Names" registry [RFC6020] [RFC9890] within the "YANG Parameters" registry group.
+IANA is requested to register the following YANG module in the "YANG Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group.
 
 > {:compact}
 >   name:
