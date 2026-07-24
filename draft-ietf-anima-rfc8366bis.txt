@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 19 January 2027                               IoTconsultancy.nl
+Expires: 25 January 2027                               IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                            18 July 2026
+                                                            24 July 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 January 2027.
+   This Internet-Draft will expire on 25 January 2027.
 
 Copyright Notice
 
@@ -619,22 +619,22 @@ Table of Contents
 
 7.1.  CMS Format Voucher Artifact
 
-   An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher
-   Data is allocated in Section 12.4.  This OID is placed in the
+   An object identifier (OID) [ITU-T.X680] for JSON-encoded Voucher Data
+   is allocated in Section 12.4.  This OID is placed in the
    'eContentType' field in the EncapsulatedContentInfo:
 
-   ``` id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2) us(840)
-   rsadsi(113549) pkcs(1) pkcs9(9) 16 }
+   id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+                us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
 
-     id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
+   id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
 
-     id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 } ```
+   id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
 
    The use of PKCS#7 (cmsVersion=1) is deprecated by this document.
 
    The signing structure is a CMS SignedData structure, as specified by
    Section 5.1 of [RFC5652], encoded using ASN.1 Distinguished Encoding
-   Rules (DER), as specified in ITU-T X.690 [ITU-T.X690.2015].
+   Rules (DER), as specified in ITU-T X.690 [ITU-T.X690].
 
    [RFC5652] mandates that SignedAttributes MUST be present when the
    content type is not 'id-data'.  This mitigates attacks on CMS as
@@ -1055,7 +1055,7 @@ Table of Contents
          description
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in [ITU-T.X690.2015].
+            encoding, as defined in [ITU-T.X690].
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
@@ -1068,7 +1068,7 @@ Table of Contents
            "RFC 5280:
             Internet X.509 Public Key Infrastructure Certificate
             and Certificate Revocation List (CRL) Profile.
-            ITU-T X.690:
+            ITU-T.X690:
             Information technology - ASN.1 encoding rules:
             Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
@@ -1510,7 +1510,7 @@ Table of Contents
            "An X.509 v3 certificate structure as specified by
             RFC 5280, Section 4 encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in [ITU.X690.2015].
+            in [ITU-T.X690].
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
@@ -1568,7 +1568,7 @@ Table of Contents
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in ITU X.690.
+            in [ITU-T.X690].
             The first certificate in the registrar TLS server
             certificate_list sequence (the end-entity TLS
             certificate; see RFC 8446) presented by the
@@ -1577,7 +1577,7 @@ Table of Contents
             This MUST be populated in a pledge's voucher-request
             when an agent-proximity assertion is requested.";
          reference
-           "ITU X.690: Information Technology - ASN.1 encoding
+           "ITU-T.X690: Information Technology - ASN.1 encoding
             rules: Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
             Encoding Rules (DER)
@@ -1593,7 +1593,7 @@ Table of Contents
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in ITU X.690.
+            in [ITU-T.X690].
             This certificate can be used by the pledge,
             the registrar, and the MASA to verify the signature
             of agent-signed-data. It is an optional component
@@ -1602,7 +1602,7 @@ Table of Contents
             voucher-request when an agent-proximity assertion
             is requested.";
          reference
-           "ITU X.690: Information Technology - ASN.1 encoding
+           "ITU-T.X690: Information Technology - ASN.1 encoding
             rules: Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
             Encoding Rules (DER)
@@ -2017,12 +2017,19 @@ Table of Contents
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
 
-   [ITU-T.X690.2015]
+   [ITU-T.X680]
+              International Telecommunication Union, "Information
+              Technology - Abstract Syntax Notation One (ASN.1):
+              Specification of basic notation", ITU-T Recommendation
+              X.680, ISO/IEC 8824-1, February 2021,
+              <https://www.itu.int/rec/T-REC-X.680/>.
+
+   [ITU-T.X690]
               International Telecommunication Union, "Information
               Technology - ASN.1 encoding rules: Specification of Basic
               Encoding Rules (BER), Canonical Encoding Rules (CER) and
               Distinguished Encoding Rules (DER)", ITU-T Recommendation
-              X.690, ISO/IEC 8825-1, August 2015,
+              X.690, ISO/IEC 8825-1, February 2021,
               <https://www.itu.int/rec/T-REC-X.690/>.
 
    [jBRSKI]   Werner, T. and M. Richardson, "JWS signed Voucher
@@ -2099,6 +2106,11 @@ Table of Contents
               in the Concise Binary Object Representation (CBOR)",
               RFC 9254, DOI 10.17487/RFC9254, July 2022,
               <https://www.rfc-editor.org/rfc/rfc9254>.
+
+   [RFC9890]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "An Update to
+              YANG Module Names Registration", RFC 9890,
+              DOI 10.17487/RFC9890, October 2025,
+              <https://www.rfc-editor.org/rfc/rfc9890>.
 
    [ZERO-TOUCH]
               Watsen, K., Farrer, I., and M. Abrahamsson, "Secure Zero
