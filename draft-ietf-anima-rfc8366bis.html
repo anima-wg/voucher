@@ -1873,20 +1873,26 @@ However, because of the above requirement to include the full '<code>extnValue</
       <h2 id="name-signature-mechanisms">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-signature-mechanisms" class="section-name selfRef">Signature mechanisms</a>
       </h2>
-<p id="section-7-1">Three signature systems have been defined for Vouchers Artifacts.<a href="#section-7-1" class="pilcrow">¶</a></p>
-<p id="section-7-2"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> defines a mechanism that uses COSE <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>, with the Voucher Data encoded using <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
-However, as the SID <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> allocation process requires up-to-date YANG, the SID values for this mechanism are presented in this document.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<p id="section-7-1">Three signature systems have been defined for Voucher Artifacts.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-2"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> defines a mechanism that uses COSE <span>[<a href="#COSE" class="cite xref">COSE</a>]</span>, with the Voucher Data encoded using YANG-CBOR <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
+However, as the SID <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> allocation process requires up-to-date YANG, the SID values for this mechanism
+are presented in this document.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3"><span>[<a href="#jBRSKI" class="cite xref">jBRSKI</a>]</span> defines a mechanism that uses JSON <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> and <span>[<a href="#JWS" class="cite xref">JWS</a>]</span>.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">The CMS signing mechanism first defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> continues to be defined here.<a href="#section-7-4" class="pilcrow">¶</a></p>
+<p id="section-7-4">The CMS signing mechanism first defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> continues to be defined in this document.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <div id="cms-voucher">
 <section id="section-7.1">
         <h3 id="name-cms-format-voucher-artifact">
 <a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-cms-format-voucher-artifact" class="section-name selfRef">CMS Format Voucher Artifact</a>
         </h3>
-<p id="section-7.1-1">An object identifier (OID) <span>[<a href="#ITU-T.X680" class="cite xref">ITU-T.X680</a>]</span> for JSON-encoded Voucher Data
+<p id="section-7.1-1">The CMS data structure consists of the <code>ContentInfo</code> defined in <span><a href="https://rfc-editor.org/rfc/rfc5652#section-3" class="relref">Section 3</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, which contains a single
+<code>SignedData</code> structure. The <code>SignedData</code> structure is specified by
+Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, encoded using ASN.1 Distinguished Encoding
+Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690" class="cite xref">ITU-T.X690</a>]</span>.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<p id="section-7.1-2">The <code>SignedData</code> structure contains a single <code>EncapsulatedContentInfo</code> structure, defined in <span><a href="https://rfc-editor.org/rfc/rfc5652#section-5.2" class="relref">Section 5.2</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>.
+An object identifier (OID) <span>[<a href="#ITU-T.X680" class="cite xref">ITU-T.X680</a>]</span> for JSON-encoded Voucher Data
 is allocated in <a href="#iana-contenttype" class="auto internal xref">Section 12.4</a>.
-This OID is placed in the 'eContentType' field in the EncapsulatedContentInfo:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-7.1-2">
+This OID is placed in the <code>'eContentType'</code> field in the <code>EncapsulatedContentInfo</code>, with the OID defined as follows:<a href="#section-7.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7.1-3">
 <pre>
 id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
              us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
@@ -1894,30 +1900,27 @@ id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
 id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
 
 id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
-</pre><a href="#section-7.1-2" class="pilcrow">¶</a>
+</pre><a href="#section-7.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-7.1-3">The use of PKCS#7 (cmsVersion=1) is deprecated by this document.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
-<p id="section-7.1-4">The signing structure is a CMS SignedData structure, as specified by
-Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, encoded using ASN.1 Distinguished Encoding
-Rules (DER), as specified in ITU-T X.690 <span>[<a href="#ITU-T.X690" class="cite xref">ITU-T.X690</a>]</span>.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
-<p id="section-7.1-5"><span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
+<p id="section-7.1-4">The use of PKCS#7 (<code>CMSVersion</code>=1) in the <code>SignedData</code> structure is deprecated by this document.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+<p id="section-7.1-5"><span><a href="https://rfc-editor.org/rfc/rfc5652#section-9.1" class="relref">Section 9.1</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> mandates that <code>SignedAttributes</code> <span class="bcp14">MUST</span> be present when the content type is not '<code>id-data</code>'.
 This mitigates attacks on CMS as described in <span>[<a href="#I-D.vangeest-lamps-cms-euf-cma-signeddata" class="cite xref">I-D.vangeest-lamps-cms-euf-cma-signeddata</a>]</span>.
-Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> are present.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
-<p id="section-7.1-6">To facilitate interoperability, <a href="#vcj" class="auto internal xref">Section 12.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
-<p id="section-7.1-7">The CMS structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
-described in Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, containing the
+Decoders <span class="bcp14">MUST</span> verify that <code>SignedAttributes</code> is present.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+<p id="section-7.1-6">To facilitate interoperability, per <a href="#vcj" class="auto internal xref">Section 12.3</a> the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.<a href="#section-7.1-6" class="pilcrow">¶</a></p>
+<p id="section-7.1-7">The CMS <code>SignedData</code> structure <span class="bcp14">MUST</span> contain a '<code>signerInfo</code>' structure, as
+described in <span><a href="https://rfc-editor.org/rfc/rfc5652#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>, containing the
 signature generated over the content using a private key
 trusted by the recipient.
-Normally, the recipient is the Pledge and the signer is the MASA.
+In a Voucher, the recipient is the Pledge and the signer is the MASA.
 In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar (in the RVR).<a href="#section-7.1-7" class="pilcrow">¶</a></p>
-<p id="section-7.1-8">Note that Section 5.1 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a
-discussion about how to validate a CMS object, which is really a
-PKCS7 object (cmsVersion=1).  Intermediate systems (such as the
+<p id="section-7.1-8">Note that <span><a href="https://rfc-editor.org/rfc/rfc5652#section-5.1" class="relref">Section 5.1</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span> includes a discussion about how to validate a CMS object.
+This object may have a particular CMSVersion (see <span><a href="https://rfc-editor.org/rfc/rfc5652#section-10.2.5" class="relref">Section 10.2.5</a> of [<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>).
+Intermediate systems (such as the
 Bootstrapping Remote Secure Key Infrastructures <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> Registrar)
-that might need to evaluate the Voucher in flight <span class="bcp14">MUST</span> be prepared for
-such an older format.
-No signaling of the format version is necessary, as the manufacturer knows the capabilities of the Pledge and will use an appropriate format Voucher for each
-Pledge.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
+that might need to evaluate the object in flight <span class="bcp14">MUST</span> be prepared for
+any version of this format.
+No signaling of the format version (CMSVersion) is necessary, as the manufacturer knows the capabilities of the Pledge
+and will use an appropriate format Voucher for each Pledge.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
 <p id="section-7.1-9">The CMS structure <span class="bcp14">SHOULD</span> also contain all of the certificates
 leading up to and including the signer's trust anchor certificate
 known to the recipient.  The inclusion of the trust anchor is
