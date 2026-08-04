@@ -1146,28 +1146,27 @@ The name is: Voucher Extensions, and the Registration Policy is Expert Review.
 >   Extension SID:
 >   : the YANG module SID value that defines the extension per {{voucher-ext}}.
 
-Each extension MUST follow the rules specified in this specification.
-
 Note that the SID module value is allocated as part of a {{CORESID}} process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
-Future work may allow for PEN based allocations.
+{{?RFC9997}} allows for PEN based allocations.
 IANA does not need to separately allocate a SID value for this column.
 
-Extension name strings for standards track documents are single words, given by the YANG Module Name.   They do not contain dots.
+Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.
 
-For vendor proprietary extensions, the string SHOULD be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
+For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
+This can be done by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
 
-Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
+Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
 
-Designated Experts should review for standards track documents for clarity, but the choices are tied to WG and IESG processes:
+Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:
 
 * There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
 
-* For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
+* For non-standards track extensions, the Designated Expert should review the provided document is provided for clarity of purpose.
 The stability of the reference may be of concern.
 
-The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
-However, as registration is optional, the Designated Expert should not block any vendor registrations.
+The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
+However, as registration is optional, the Designated Expert should not block any vendor registrations if no consolidated extension is possible.
 
 ## The IETF YANG-SID Ranges Registry
 
