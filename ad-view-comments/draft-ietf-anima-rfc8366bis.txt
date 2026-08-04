@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 6 January 2027                                IoTconsultancy.nl
+Expires: 5 February 2027                               IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                             5 July 2026
+                                                           4 August 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 January 2027.
+   This Internet-Draft will expire on 5 February 2027.
 
 Copyright Notice
 
@@ -605,61 +605,68 @@ Table of Contents
 
 7.  Signature mechanisms
 
-   Three signature systems have been defined for Vouchers Artifacts.
+   Three signature systems have been defined for Voucher Artifacts.
 
    [cBRSKI] defines a mechanism that uses COSE [COSE], with the Voucher
-   Data encoded using [RFC9254].  However, as the SID [RFC9254]
-   allocation process requires up-to-date YANG, the SID values for this
-   mechanism are presented in this document.
+   Data encoded using YANG-CBOR [RFC9254].  However, as the SID
+   [RFC9254] allocation process requires up-to-date YANG, the SID values
+   for this mechanism are presented in this document.
 
    [jBRSKI] defines a mechanism that uses JSON [RFC8259] and [JWS].
 
    The CMS signing mechanism first defined in [RFC8366] continues to be
-   defined here.
+   defined in this document.
 
 7.1.  CMS Format Voucher Artifact
 
-   An object identifier (OID) [[ITU-T.X680] for JSON-encoded Voucher
-   Data is allocated in Section 12.4.  This OID is placed in the
-   'eContentType' field in the EncapsulatedContentInfo:
+   The CMS data structure consists of the ContentInfo defined in
+   Section 3 of [RFC5652], which contains a single SignedData structure.
+   The SignedData structure is specified by Section 5.1 of [RFC5652],
+   encoded using ASN.1 Distinguished Encoding Rules (DER), as specified
+   in ITU-T X.690 [ITU-T.X690].
 
-   ``` id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2) us(840)
-   rsadsi(113549) pkcs(1) pkcs9(9) 16 }
+   The SignedData structure contains a single EncapsulatedContentInfo
+   structure, defined in Section 5.2 of [RFC5652].  An object identifier
+   (OID) [ITU-T.X680] for JSON-encoded Voucher Data is allocated in
+   Section 12.4.  This OID is placed in the 'eContentType' field in the
+   EncapsulatedContentInfo, with the OID defined as follows:
 
-     id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
+   id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+                us(840) rsadsi(113549) pkcs(1) pkcs9(9) 16 }
 
-     id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 } ```
+   id-ct OBJECT IDENTIFIER ::= { id-smime 1 }
 
-   The use of PKCS#7 (cmsVersion=1) is deprecated by this document.
+   id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
 
-   The signing structure is a CMS SignedData structure, as specified by
-   Section 5.1 of [RFC5652], encoded using ASN.1 Distinguished Encoding
-   Rules (DER), as specified in ITU-T X.690 [ITU-T.X690.2015].
+   The use of PKCS#7 (CMSVersion=1) in the SignedData structure is
+   deprecated by this document.
 
-   [RFC5652] mandates that SignedAttributes MUST be present when the
-   content type is not 'id-data'.  This mitigates attacks on CMS as
-   described in [I-D.vangeest-lamps-cms-euf-cma-signeddata].  Decoders
-   MUST verify that SignedAttributes are present.
+   Section 9.1 of [RFC5652] mandates that SignedAttributes MUST be
+   present when the content type is not 'id-data'.  This mitigates
+   attacks on CMS as described in
+   [I-D.vangeest-lamps-cms-euf-cma-signeddata].  Decoders MUST verify
+   that SignedAttributes is present.
 
-   To facilitate interoperability, Section 12.3 the media type
+   To facilitate interoperability, per Section 12.3 the media type
    "application/voucher-cms+json" and the filename extension ".vcj" were
    registered by [RFC8366].
 
-   The CMS structure MUST contain a 'signerInfo' structure, as described
-   in Section 5.1 of [RFC5652], containing the signature generated over
-   the content using a private key trusted by the recipient.  Normally,
-   the recipient is the Pledge and the signer is the MASA.  In the
-   Voucher Request, the signer is the Pledge (in the PVR), or the
-   Registrar (in the RVR).
+   The CMS SignedData structure MUST contain a 'signerInfo' structure,
+   as described in Section 5.1 of [RFC5652], containing the signature
+   generated over the content using a private key trusted by the
+   recipient.  In a Voucher, the recipient is the Pledge and the signer
+   is the MASA.  In the Voucher Request, the signer is the Pledge (in
+   the PVR), or the Registrar (in the RVR).
 
    Note that Section 5.1 of [RFC5652] includes a discussion about how to
-   validate a CMS object, which is really a PKCS7 object (cmsVersion=1).
-   Intermediate systems (such as the Bootstrapping Remote Secure Key
-   Infrastructures [RFC8995] Registrar) that might need to evaluate the
-   Voucher in flight MUST be prepared for such an older format.  No
-   signaling of the format version is necessary, as the manufacturer
-   knows the capabilities of the Pledge and will use an appropriate
-   format Voucher for each Pledge.
+   validate a CMS object.  This object may have a particular CMSVersion
+   (see Section 10.2.5 of [RFC5652]).  Intermediate systems (such as the
+   Bootstrapping Remote Secure Key Infrastructures [RFC8995] Registrar)
+   that might need to evaluate the object in flight MUST be prepared for
+   any version of this format.  No signaling of the format version
+   (CMSVersion) is necessary, as the manufacturer knows the capabilities
+   of the Pledge and will use an appropriate format Voucher for each
+   Pledge.
 
    The CMS structure SHOULD also contain all of the certificates leading
    up to and including the signer's trust anchor certificate known to
@@ -1055,7 +1062,7 @@ Table of Contents
          description
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in [ITU-T.X690.2015].
+            encoding, as defined in [ITU-T.X690].
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
@@ -1068,7 +1075,7 @@ Table of Contents
            "RFC 5280:
             Internet X.509 Public Key Infrastructure Certificate
             and Certificate Revocation List (CRL) Profile.
-            ITU-T X.690:
+            ITU-T.X690:
             Information technology - ASN.1 encoding rules:
             Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
@@ -1281,7 +1288,7 @@ Table of Contents
    voucher' YANG module.  Items within that list are either strings (in
    JSON serialization), or integers (in CBOR serialization using SIDs);
    both are always defined in the entries of the Voucher Extensions
-   Registry (see Section 12.5).
+   registry (see Section 12.5).
 
    Extensions are full YANG modules, which are subject to the SID
    allocation process described in [RFC9254].  When an extension is
@@ -1510,7 +1517,7 @@ Table of Contents
            "An X.509 v3 certificate structure as specified by
             RFC 5280, Section 4 encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in [ITU.X690.2015].
+            in [ITU-T.X690].
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
@@ -1568,7 +1575,7 @@ Table of Contents
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in ITU X.690.
+            in [ITU-T.X690].
             The first certificate in the registrar TLS server
             certificate_list sequence (the end-entity TLS
             certificate; see RFC 8446) presented by the
@@ -1577,7 +1584,7 @@ Table of Contents
             This MUST be populated in a pledge's voucher-request
             when an agent-proximity assertion is requested.";
          reference
-           "ITU X.690: Information Technology - ASN.1 encoding
+           "ITU-T.X690: Information Technology - ASN.1 encoding
             rules: Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
             Encoding Rules (DER)
@@ -1593,7 +1600,7 @@ Table of Contents
            "An X.509 v3 certificate structure, as specified by
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
-            in ITU X.690.
+            in [ITU-T.X690].
             This certificate can be used by the pledge,
             the registrar, and the MASA to verify the signature
             of agent-signed-data. It is an optional component
@@ -1602,7 +1609,7 @@ Table of Contents
             voucher-request when an agent-proximity assertion
             is requested.";
          reference
-           "ITU X.690: Information Technology - ASN.1 encoding
+           "ITU-T.X690: Information Technology - ASN.1 encoding
             rules: Specification of Basic Encoding Rules (BER),
             Canonical Encoding Rules (CER) and Distinguished
             Encoding Rules (DER)
@@ -1823,18 +1830,12 @@ Table of Contents
       prefix:  vch
       reference:  RFC 8366
 
-   This reference should be updated to point to this document and the
-   "File" entry should be updated to point to the new module revision in
-   Section 8.3.
-
       name:  ietf-voucher-request
       namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
       prefix:  vcr
       reference:  RFC 8995
 
-   This reference should be updated to point to this document and the
-   "File" entry should be updated to point to the new module revision in
-   Section 9.2.  Please note the change to the "prefix" field.
+   (Please note the change to the "prefix" field)
 
 12.3.  The Media Types Registry
 
@@ -1890,49 +1891,52 @@ Table of Contents
 
 12.5.  The Voucher Extensions Registry
 
-   IANA is asked to create a registry of Voucher extensions as follows:
+   IANA is asked to create a registry of Voucher extensions within the
+   _Bootstrapping Remote Secure Key Infrastructures (BRSKI) Parameters_
+   as follows.
 
-      Registry name:  Voucher Extensions Registry
-      Registry policy:  Expert Review
+   The name is: Voucher Extensions, and the Registration Policy is
+   Expert Review.
+
       Reference:  an optional document
       Extension name:  UTF-8-encoded string, not to exceed 40
          characters.
       Extension SID:  the YANG module SID value that defines the
          extension per Section 8.5.
 
-   Each extension MUST follow the rules specified in this specification.
-   As is usual, the IANA issues early allocations in accordance with
-   [RFC7120].
-
    Note that the SID module value is allocated as part of a [CORESID]
    process.  This may be from a SID range managed by IANA, or from any
-   other MegaRange.  Future work may allow for PEN based allocations.
-   IANA does not need to separately allocate a SID value for this
-   column.
+   other MegaRange.  [RFC9997] allows for PEN based allocations.  IANA
+   does not need to separately allocate a SID value for this column.
 
-   Extension name strings for standards track documents are single
-   words, given by the YANG Module Name.  They do not contain dots.  For
-   vendor proprietary extensions, the string SHOULD be made unique by
+   Extension name strings for IETF process (standards track,
+   experimental, IRTF) documents are single words, given by the YANG
+   Module Name: They do not contain dots.
+
+   For vendor proprietary extensions, (including ISE submissions), the
+   resulting string still needs to be unique.  This can be done by
    putting the extension name in the form a fully-qualified domain name
    (FQDN) [RFC3696], such as "fuubar.example.com"
 
    Vendor proprietary extensions do not need to be registered with IANA,
-   but vendors MAY do so.
+   but vendors are encouraged to do so.
 
-   Designated Experts should review for standards track documents for
-   clarity, but the choices are tied to WG and IESG processes:
+   Designated Experts should review the documents for clarity, but the
+   choices are tied to WG and IESG processes:
 
    *  There are no choices in the extension names (which is always the
       YANG module name), or SID value (which is from another IANA
       process).
 
    *  For non-standards track extensions, the Designated Expert should
-      review whatever document is provided, if any.  The stability of
-      the reference may be of concern.  The Designated Expert should
-      determine if the work overlaps with existing efforts; and if so
-      suggest merging/coordinating.  However, as registration is
-      optional, the Designated Expert should not block any vendor
-      registrations.
+      review the provided document is provided for clarity of purpose.
+      The stability of the reference may be of concern.
+
+   The Designated Expert should determine if the work overlaps with an
+   existing IETF WG effort, suggesting ways that the work could become
+   part of a standard.  However, as registration is optional, the
+   Designated Expert should not block any vendor registrations if no
+   consolidated extension is possible.
 
 12.6.  The IETF YANG-SID Ranges Registry
 
@@ -2020,12 +2024,19 @@ Table of Contents
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
 
-   [ITU-T.X690.2015]
+   [ITU-T.X680]
+              International Telecommunication Union, "Information
+              Technology - Abstract Syntax Notation One (ASN.1):
+              Specification of basic notation", ITU-T Recommendation
+              X.680, ISO/IEC 8824-1, February 2021,
+              <https://www.itu.int/rec/T-REC-X.680/>.
+
+   [ITU-T.X690]
               International Telecommunication Union, "Information
               Technology - ASN.1 encoding rules: Specification of Basic
               Encoding Rules (BER), Canonical Encoding Rules (CER) and
               Distinguished Encoding Rules (DER)", ITU-T Recommendation
-              X.690, ISO/IEC 8825-1, August 2015,
+              X.690, ISO/IEC 8825-1, February 2021,
               <https://www.itu.int/rec/T-REC-X.690/>.
 
    [jBRSKI]   Werner, T. and M. Richardson, "JWS signed Voucher
@@ -2059,10 +2070,6 @@ Table of Contents
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/rfc/rfc6020>.
-
-   [RFC7120]  Cotton, M., "Early IANA Allocation of Standards Track Code
-              Points", BCP 100, RFC 7120, DOI 10.17487/RFC7120, January
-              2014, <https://www.rfc-editor.org/rfc/rfc7120>.
 
    [RFC7250]  Wouters, P., Ed., Tschofenig, H., Ed., Gilmore, J.,
               Weiler, S., and T. Kivinen, "Using Raw Public Keys in
@@ -2107,6 +2114,11 @@ Table of Contents
               RFC 9254, DOI 10.17487/RFC9254, July 2022,
               <https://www.rfc-editor.org/rfc/rfc9254>.
 
+   [RFC9890]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "An Update to
+              YANG Module Names Registration", RFC 9890,
+              DOI 10.17487/RFC9890, October 2025,
+              <https://www.rfc-editor.org/rfc/rfc9890>.
+
    [ZERO-TOUCH]
               Watsen, K., Farrer, I., and M. Abrahamsson, "Secure Zero
               Touch Provisioning (SZTP)", RFC 8572,
@@ -2138,9 +2150,9 @@ Table of Contents
               Selander, G., Mattsson, J. P., Vučinić, M., Fedrecheski,
               G., and M. Richardson, "Lightweight Authorization using
               Ephemeral Diffie-Hellman Over COSE (ELA)", Work in
-              Progress, Internet-Draft, draft-ietf-lake-authz-07, 2
-              March 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-lake-authz-07>.
+              Progress, Internet-Draft, draft-ietf-lake-authz-08, 6 July
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              lake-authz-08>.
 
    [I-D.vangeest-lamps-cms-euf-cma-signeddata]
               Van Geest, D. and F. Strenzke, "Best Practices for CMS
@@ -2226,6 +2238,11 @@ Table of Contents
    [RFC9525]  Saint-Andre, P. and R. Salz, "Service Identity in TLS",
               RFC 9525, DOI 10.17487/RFC9525, November 2023,
               <https://www.rfc-editor.org/rfc/rfc9525>.
+
+   [RFC9997]  Bormann, C., "YANG-CBOR: Allocating SID Ranges for Private
+              Enterprise Number (PEN) Holders", RFC 9997,
+              DOI 10.17487/RFC9997, July 2026,
+              <https://www.rfc-editor.org/rfc/rfc9997>.
 
    [SECUREJOIN]
               Richardson, M., "6tisch Zero-Touch Secure Join protocol",
