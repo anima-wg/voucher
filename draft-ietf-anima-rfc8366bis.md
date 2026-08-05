@@ -985,11 +985,9 @@ the expiration time values in Vouchers will have no meaning.
 
 ## Protect MASA Signing Key in HSM
 
-Pursuant to the recommendation made in Section 6.1 for the MASA to be
-deployed as an online Voucher signing service, it is RECOMMENDED that
-the MASA's private key used for signing Vouchers is protected by
+As the MASA needs to be able to respond to voucher signing requests,
+it is RECOMMENDED that the MASA's private key used for signing Vouchers is protected by
 a hardware security module (HSM).
-
 
 ## Test Domain Certificate Validity When Signing
 
