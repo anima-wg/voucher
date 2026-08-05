@@ -486,7 +486,7 @@ Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.
 
 It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '`idevid-issuer`' Attribute.
 
 It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR, in the RVR and in the Voucher.
@@ -494,9 +494,9 @@ It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR
 Analysis of the situation shows that the Pledge never needs to include '`idevid-issuer`' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
 The Pledge therefore has no need to repeat this.
 
-For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevid-issuer`' Attribute must be included.
+For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevid-issuer`' Attribute be included.
 
-For the Voucher, {{voucher-yang-module}} normatively requires ("must") that the '`idevid-issuer`' Attribute must be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
+For the Voucher, as detailed in {{voucher-yang-module}}, the '`idevid-issuer`' Attribute MUST be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
 If this rule does not apply, the MASA SHOULD NOT include the '`idevid-issuer`' Attribute in order to achieve a smaller Voucher size.
 
 ## Clarifications on the format of `idevid-issuer` {#idevid-issuer-format}
@@ -974,12 +974,13 @@ security decision.
 
 This document defines a Voucher format that contains time values
 for expirations, which require an accurate clock
-in order to be processed correctly.  Vendors planning on
-issuing Vouchers with expiration values must ensure that devices
-have an accurate clock when shipped from manufacturing
+in order to be processed correctly.
+Vendors planning on
+issuing Vouchers with expiration values need to ensure that
+the devices targetted have an accurate clock when shipped from manufacturing
 facilities and take steps to prevent clock tampering.
 If it is not possible to ensure clock accuracy, then
-Vouchers with time values for expirations should not be issued.
+the expiration time values in Vouchers will have no meaning.
 
 
 ## Protect MASA Signing Key in HSM
