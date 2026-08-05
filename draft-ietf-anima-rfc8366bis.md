@@ -92,7 +92,6 @@ normative:
     date: 2021-02
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
-  SZTP: RFC8572
   RFC8995:
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
@@ -109,13 +108,14 @@ normative:
 
 informative:
   RFC3688:
-  RFC8446:
+  RFC9846:
   RFC6125:
   RFC6241:
   RFC7435:
   RFC8040:
   RFC8340:
   RFC8366:
+  SZTP: RFC8572
   RFC8792:
   RFC9525:
   COSE: STD96
@@ -1020,7 +1020,7 @@ and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.  When privacy is important,
 the CMS signed-data content type SHOULD be encrypted, either by
 conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS {{RFC8446}}) or by encapsulating the signed-data
+(e.g., TLS {{RFC9846}}) or by encapsulating the signed-data
 content type with an enveloped-data content type (Section 6
 of {{RFC5652}}), though details for how to do this are outside
 the scope of this document.
