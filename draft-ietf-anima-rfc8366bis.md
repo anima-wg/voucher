@@ -1022,16 +1022,20 @@ all of the YANG-modeled data is protected from modification.
 Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
-so much as privacy.  In particular, adversaries can glean
-information such as which devices belong to which organizations
+so much as privacy.
+
+When used with {{RFC8995}}, or {{cBRSKI}} then voucher requests and vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
+
+When used with {{PRM}}, then the contents can be exposed in the last hop,
+where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.
+
+When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
-accessed to validate the Vouchers.  When privacy is important,
-the CMS signed-data content type SHOULD be encrypted, either by
-conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS {{RFC9846}}) or by encapsulating the signed-data
-content type with an enveloped-data content type (Section 6
-of {{RFC5652}}), though details for how to do this are outside
-the scope of this document.
+accessed to validate the Vouchers.
+Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no certificates CRLs to disclose.
+
+{{SZTP}} uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
+To mitigate this, {{SZTP, Section 3.4}} specifies a way to encrypt using CMS.
 
 The use of YANG to define data structures, via the "sx:structure"
 extension {{RFC8791}}, is relatively new and distinct from the conventional
