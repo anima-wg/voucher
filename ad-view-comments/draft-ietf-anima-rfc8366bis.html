@@ -1058,7 +1058,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 5 February 2027</td>
+<td class="center">Expires 6 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1077,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-04" class="published">4 August 2026</time>
+<time datetime="2026-08-05" class="published">5 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-05">5 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-06">6 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1157,7 +1157,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 5 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1411,7 +1411,7 @@ In some Onboarding protocols, the Vouchers may include a nonce restricting them 
 indicated lifetime.
 In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
 <p id="section-1-10">Some Onboarding protocols using the Voucher Artifact defined in
-this document include: <span>[<a href="#ZERO-TOUCH" class="cite xref">ZERO-TOUCH</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
+this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1764,10 +1764,10 @@ against MiTM Registrars. Bearer Vouchers are therefore out of scope.<a href="#se
 <a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-attempts-and-motivation-to-" class="section-name selfRef">Attempts and motivation to extend RFC8366</a>
         </h3>
 <p id="section-5.1-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was published in 2018 during the development of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>,
-<span>[<a href="#ZERO-TOUCH" class="cite xref">ZERO-TOUCH</a>]</span> and other work-in-progress efforts.
+<span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as <em>Onboarding</em> rather than <em>Bootstrapping</em>.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <p id="section-5.1-2">The focus of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> was Onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
-<span>[<a href="#ZERO-TOUCH" class="cite xref">ZERO-TOUCH</a>]</span> has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
 <p id="section-5.1-3">Since <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> was published there is now a mature effort to do application-level Onboarding of constrained IoT devices defined by the Thread Group and the Fairhair Alliance (now OCF) <span>[<a href="#fairhair" class="cite xref">fairhair</a>]</span>.
 The <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> document has defined a version of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while <span>[<a href="#I-D.ietf-lake-authz" class="cite xref">I-D.ietf-lake-authz</a>]</span> provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span> has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
@@ -1961,14 +1961,36 @@ Other aspects of the Voucher, such as it being nonceless or which kind of pinned
 <p id="section-8-6">Only the format of Voucher that is expected is signaled in the form of a (MIME) media
 type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <p id="section-8-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-8-7" class="pilcrow">¶</a></p>
-<p id="section-8-8">In the constrained versions of the voucher and voucher-request (as used by <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>), the attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for requests) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for requests) are involved in the process of pinning a raw public key.
-The public keys are to be encoded according to <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span> for RSA and EcDSA keys, noting that <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> extends this to include an OID for EdDSA.
-The old (1024-bit) DSA algorithm is not supported.<a href="#section-8-8" class="pilcrow">¶</a></p>
-<p id="section-8-9">When EcDSA is supported, curves secp256r1 and secp384r1 <span class="bcp14">SHOULD</span> be supported.
+<p id="section-8-8">As explained in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-2.5" class="relref">Section 2.5</a></span>, the Pledge is a creation of the manufacturer, and thus manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritms the Pledge is doing to use, and can verify, thus there is no need (or opportunity) to negotiate the algorithm  or signature (CMS, JWS, COSE) scheme.
+Nor is there any need for a mandatory to implement (MTI) scheme, as again, by (literal) construction, the manufacturer knows what has been implemented.
+In constrained situations, the Pledge is expected to only have code space for a single algorithm and signature scheme<a href="#section-8-8" class="pilcrow">¶</a></p>
+<p id="section-8-9">A manufacturer may transition devices among different algorithms, transitioning to quantum-safe ones as they become standardized, according to their own schedule.<a href="#section-8-9" class="pilcrow">¶</a></p>
+<p id="section-8-10">The only device for which this approach is a challenge is for the Domain Registrar.
+That device must deal with all variants which are still relevant to the operation of the specific network.<a href="#section-8-10" class="pilcrow">¶</a></p>
+<p id="section-8-11">Note: this CAN include support for algorithms which may be considered no longer safe, as there may be devices (spares) in unopened boxes which have not yet been used.
+The onboarding (bootstrap) process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms.
+Both <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> provide mechanisms by which new (stronger) operational identities can be provisioned.<a href="#section-8-11" class="pilcrow">¶</a></p>
+<p id="section-8-12">When designing Pledge devices, manufacturers choose algorithms and signature formats that they need to support in their MASA.
+Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.<a href="#section-8-12" class="pilcrow">¶</a></p>
+<p id="section-8-13">While non-constrained devices could have code space for multiple algorithms or signature schemes, it makes little sense to use anything but the strongest of the algorithms present.<a href="#section-8-13" class="pilcrow">¶</a></p>
+<p id="section-8-14">Constrained devices are able to dispense with much code involved in ASN.1/PKIX processing of the voucher and voucher-request.  This is explained in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.
+The attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for requests) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for requests) are involved in the process of pinning a raw public key for such devices.<a href="#section-8-14" class="pilcrow">¶</a></p>
+<p id="section-8-15">The public keys are to be encoded according to <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span> for RSA and EcDSA keys, noting that <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> extends this to include an OID for EdDSA.
+The old (1024-bit) DSA algorithm is not supported.<a href="#section-8-15" class="pilcrow">¶</a></p>
+<p id="section-8-16">In order to partially alleviate how many variations a Registrar implementation need deal with, some RECOMMENDATIONS are as follows:<a href="#section-8-16" class="pilcrow">¶</a></p>
+<p id="section-8-17">When EcDSA is supported, curves secp256r1 and secp384r1 <span class="bcp14">SHOULD</span> be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 <span class="bcp14">SHOULD</span> be supported.
-When RSA is supported by an implementation, it <span class="bcp14">SHOULD</span> support key lengths between 2048 and 4096 bits.<a href="#section-8-9" class="pilcrow">¶</a></p>
-<p id="section-8-10">Of the above, EcDSA <span class="bcp14">SHOULD</span> be supported by all implementations, until some quantum-safe variant is standardized.<a href="#section-8-10" class="pilcrow">¶</a></p>
-<p id="section-8-11">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-11" class="pilcrow">¶</a></p>
+When RSA is supported, key lengths between 2048 and 4096 bits <span class="bcp14">SHOULD</span> be supported.
+<span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> with <span>[<a href="#I-D.ietf-lamps-cms-composite-sigs" class="cite xref">I-D.ietf-lamps-cms-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported for CMS wrapped vouchers.
+<span>[<a href="#RFC9964" class="cite xref">RFC9964</a>]</span> <span class="bcp14">SHOULD</span> be supported for COSE signed vouchers.
+<span>[<a href="#I-D.ietf-jose-pq-composite-sigs" class="cite xref">I-D.ietf-jose-pq-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported for JOSE signed vouchers.<a href="#section-8-17" class="pilcrow">¶</a></p>
+<p id="section-8-18">The decision as to when to transition to quantum-safe algorithms is a manufacturer
+decision.<a href="#section-8-18" class="pilcrow">¶</a></p>
+<p id="section-8-19">Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
+In such a situation, an automated, zero-touch solution may be impossible, but
+it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-19" class="pilcrow">¶</a></p>
+<p id="section-8-20">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-20" class="pilcrow">¶</a></p>
 <div id="voucher-tree-diagram">
 <section id="section-8.1">
         <h3 id="name-tree-diagram">
@@ -3561,7 +3583,11 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"An Update to YANG Module Names Registration"</span>, <span class="seriesInfo">RFC 9890</span>, <span class="seriesInfo">DOI 10.17487/RFC9890</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9890">https://www.rfc-editor.org/rfc/rfc9890</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="ZERO-TOUCH">[ZERO-TOUCH]</dt>
+<dt id="RFC9964">[RFC9964]</dt>
+        <dd>
+<span class="refAuthor">Prorock, M.</span> and <span class="refAuthor">O. Steele</span>, <span class="refTitle">"ML-DSA for JSON Object Signing and Encryption (JOSE) and CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 9964</span>, <span class="seriesInfo">DOI 10.17487/RFC9964</span>, <time datetime="2026-05" class="refDate">May 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9964">https://www.rfc-editor.org/rfc/rfc9964</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SZTP">[SZTP]</dt>
       <dd>
 <span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Farrer, I.</span>, and <span class="refAuthor">M. Abrahamsson</span>, <span class="refTitle">"Secure Zero Touch Provisioning (SZTP)"</span>, <span class="seriesInfo">RFC 8572</span>, <span class="seriesInfo">DOI 10.17487/RFC8572</span>, <time datetime="2019-04" class="refDate">April 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8572">https://www.rfc-editor.org/rfc/rfc8572</a>&gt;</span>. </dd>
 <dd class="break"></dd>
@@ -3588,9 +3614,21 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Open Connectivity Foundation</span>, <span class="refTitle">"Fairhair Specification"</span>, <time datetime="2019-11-01" class="refDate">1 November 2019</time>, <span>&lt;<a href="https://openconnectivity.org/developer/specifications/fairhair/">https://openconnectivity.org/developer/specifications/fairhair/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-jose-pq-composite-sigs">[I-D.ietf-jose-pq-composite-sigs]</dt>
+        <dd>
+<span class="refAuthor">Prabel, L.</span>, <span class="refAuthor">Shuzhou, S.</span>, <span class="refAuthor">Gray, J.</span>, and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"PQ/T Hybrid Composite Signatures for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-pq-composite-sigs-03</span>, <time datetime="2026-07-20" class="refDate">20 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-composite-sigs-03">https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-composite-sigs-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-lake-authz">[I-D.ietf-lake-authz]</dt>
         <dd>
 <span class="refAuthor">Selander, G.</span>, <span class="refAuthor">Mattsson, J. P.</span>, <span class="refAuthor">Vučinić, M.</span>, <span class="refAuthor">Fedrecheski, G.</span>, and <span class="refAuthor">M. Richardson</span>, <span class="refTitle">"Lightweight Authorization using Ephemeral Diffie-Hellman Over COSE (ELA)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lake-authz-08</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lake-authz-08">https://datatracker.ietf.org/doc/html/draft-ietf-lake-authz-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-lamps-cms-composite-sigs">[I-D.ietf-lamps-cms-composite-sigs]</dt>
+        <dd>
+<span class="refAuthor">Ounsworth, M.</span>, <span class="refAuthor">Gray, J.</span>, <span class="refAuthor">Klaußner, J.</span>, and <span class="refAuthor">D. Van Geest</span>, <span class="refTitle">"Composite Module-Lattice-Based Digital Signature Algorithm (ML-DSA) for use in Cryptographic Message Syntax (CMS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lamps-cms-composite-sigs-05</span>, <time datetime="2026-05-22" class="refDate">22 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lamps-cms-composite-sigs-05">https://datatracker.ietf.org/doc/html/draft-ietf-lamps-cms-composite-sigs-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-lamps-pq-composite-sigs">[I-D.ietf-lamps-pq-composite-sigs]</dt>
+        <dd>
+<span class="refAuthor">Ounsworth, M.</span>, <span class="refAuthor">Gray, J.</span>, <span class="refAuthor">Pala, M.</span>, <span class="refAuthor">Klaußner, J.</span>, and <span class="refAuthor">S. Fluhrer</span>, <span class="refTitle">"Composite Module-Lattice-Based Digital Signature Algorithm (ML-DSA) for use in X.509 Public Key Infrastructure"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lamps-pq-composite-sigs-19</span>, <time datetime="2026-04-21" class="refDate">21 April 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lamps-pq-composite-sigs-19">https://datatracker.ietf.org/doc/html/draft-ietf-lamps-pq-composite-sigs-19</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.vangeest-lamps-cms-euf-cma-signeddata">[I-D.vangeest-lamps-cms-euf-cma-signeddata]</dt>
         <dd>
