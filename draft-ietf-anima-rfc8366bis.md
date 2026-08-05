@@ -102,9 +102,6 @@ normative:
     - org: IEEE Standard
     date: 2018
   RFC8791:
-  eid7263:
-    target: "https://www.rfc-editor.org/errata/eid7263"
-    title: "Errata 7263, RFC8995"
 
 informative:
   RFC3688:
@@ -141,6 +138,9 @@ informative:
     author:
     - org: Open Connectivity Foundation
     date: 2019-11-01
+  eid7263:
+    target: "https://www.rfc-editor.org/errata/eid7263"
+    title: "Errata 7263, RFC8995"
 
 --- abstract
 
