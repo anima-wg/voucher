@@ -1845,7 +1845,7 @@ Table of Contents
    validate the Vouchers.  When privacy is important, the CMS signed-
    data content type SHOULD be encrypted, either by conveying it via a
    mutually authenticated secure transport protocol (e.g., TLS
-   [RFC8446]) or by encapsulating the signed-data content type with an
+   [RFC9846]) or by encapsulating the signed-data content type with an
    enveloped-data content type (Section 6 of [RFC5652]), though details
    for how to do this are outside the scope of this document.
 
@@ -2186,11 +2186,6 @@ Table of Contents
               Encryption (COSE)", RFC 9964, DOI 10.17487/RFC9964, May
               2026, <https://www.rfc-editor.org/rfc/rfc9964>.
 
-   [SZTP]     Watsen, K., Farrer, I., and M. Abrahamsson, "Secure Zero
-              Touch Provisioning (SZTP)", RFC 8572,
-              DOI 10.17487/RFC8572, April 2019,
-              <https://www.rfc-editor.org/rfc/rfc8572>.
-
 14.2.  Informative References
 
    [COSE]     Internet Standard 96,
@@ -2304,10 +2299,6 @@ Table of Contents
               RFC 8366, DOI 10.17487/RFC8366, May 2018,
               <https://www.rfc-editor.org/rfc/rfc8366>.
 
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/rfc/rfc8446>.
-
    [RFC8520]  Lear, E., Droms, R., and D. Romascanu, "Manufacturer Usage
               Description Specification", RFC 8520,
               DOI 10.17487/RFC8520, March 2019,
@@ -2331,6 +2322,10 @@ Table of Contents
               RFC 9525, DOI 10.17487/RFC9525, November 2023,
               <https://www.rfc-editor.org/rfc/rfc9525>.
 
+   [RFC9846]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 9846, DOI 10.17487/RFC9846, July 2026,
+              <https://www.rfc-editor.org/rfc/rfc9846>.
+
    [RFC9997]  Bormann, C., "YANG-CBOR: Allocating SID Ranges for Private
               Enterprise Number (PEN) Holders", RFC 9997,
               DOI 10.17487/RFC9997, July 2026,
@@ -2348,6 +2343,11 @@ Table of Contents
               Security Issues for Ad-Hoc Wireless Networks", 1999,
               <https://www.cl.cam.ac.uk/research/dtg/www/files/publications/
               public/files/tr.1999.2.pdf>.
+
+   [SZTP]     Watsen, K., Farrer, I., and M. Abrahamsson, "Secure Zero
+              Touch Provisioning (SZTP)", RFC 8572,
+              DOI 10.17487/RFC8572, April 2019,
+              <https://www.rfc-editor.org/rfc/rfc8572>.
 
    [YANG-GUIDE]
               Bierman, A., "Guidelines for Authors and Reviewers of

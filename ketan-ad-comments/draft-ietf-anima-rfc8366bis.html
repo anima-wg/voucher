@@ -3081,7 +3081,7 @@ and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.  When privacy is important,
 the CMS signed-data content type <span class="bcp14">SHOULD</span> be encrypted, either by
 conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>) or by encapsulating the signed-data
+(e.g., TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>) or by encapsulating the signed-data
 content type with an enveloped-data content type (Section 6
 of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>), though details for how to do this are outside
 the scope of this document.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
@@ -3589,12 +3589,8 @@ This section just lists references present in YANG modules which otherwise do no
 <span class="refAuthor">Schönwälder, J., Ed.</span>, <span class="refTitle">"Common YANG Data Types"</span>, <span class="seriesInfo">RFC 9911</span>, <span class="seriesInfo">DOI 10.17487/RFC9911</span>, <time datetime="2025-12" class="refDate">December 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9911">https://www.rfc-editor.org/rfc/rfc9911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9964">[RFC9964]</dt>
-        <dd>
-<span class="refAuthor">Prorock, M.</span> and <span class="refAuthor">O. Steele</span>, <span class="refTitle">"ML-DSA for JSON Object Signing and Encryption (JOSE) and CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 9964</span>, <span class="seriesInfo">DOI 10.17487/RFC9964</span>, <time datetime="2026-05" class="refDate">May 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9964">https://www.rfc-editor.org/rfc/rfc9964</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="SZTP">[SZTP]</dt>
       <dd>
-<span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Farrer, I.</span>, and <span class="refAuthor">M. Abrahamsson</span>, <span class="refTitle">"Secure Zero Touch Provisioning (SZTP)"</span>, <span class="seriesInfo">RFC 8572</span>, <span class="seriesInfo">DOI 10.17487/RFC8572</span>, <time datetime="2019-04" class="refDate">April 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8572">https://www.rfc-editor.org/rfc/rfc8572</a>&gt;</span>. </dd>
+<span class="refAuthor">Prorock, M.</span> and <span class="refAuthor">O. Steele</span>, <span class="refTitle">"ML-DSA for JSON Object Signing and Encryption (JOSE) and CBOR Object Signing and Encryption (COSE)"</span>, <span class="seriesInfo">RFC 9964</span>, <span class="seriesInfo">DOI 10.17487/RFC9964</span>, <time datetime="2026-05" class="refDate">May 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9964">https://www.rfc-editor.org/rfc/rfc9964</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -3683,10 +3679,6 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Pritikin, M.</span>, and <span class="refAuthor">T. Eckert</span>, <span class="refTitle">"A Voucher Artifact for Bootstrapping Protocols"</span>, <span class="seriesInfo">RFC 8366</span>, <span class="seriesInfo">DOI 10.17487/RFC8366</span>, <time datetime="2018-05" class="refDate">May 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8366">https://www.rfc-editor.org/rfc/rfc8366</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8446">[RFC8446]</dt>
-        <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8520">[RFC8520]</dt>
         <dd>
 <span class="refAuthor">Lear, E.</span>, <span class="refAuthor">Droms, R.</span>, and <span class="refAuthor">D. Romascanu</span>, <span class="refTitle">"Manufacturer Usage Description Specification"</span>, <span class="seriesInfo">RFC 8520</span>, <span class="seriesInfo">DOI 10.17487/RFC8520</span>, <time datetime="2019-03" class="refDate">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8520">https://www.rfc-editor.org/rfc/rfc8520</a>&gt;</span>. </dd>
@@ -3707,6 +3699,10 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Saint-Andre, P.</span> and <span class="refAuthor">R. Salz</span>, <span class="refTitle">"Service Identity in TLS"</span>, <span class="seriesInfo">RFC 9525</span>, <span class="seriesInfo">DOI 10.17487/RFC9525</span>, <time datetime="2023-11" class="refDate">November 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9525">https://www.rfc-editor.org/rfc/rfc9525</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9846">[RFC9846]</dt>
+        <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 9846</span>, <span class="seriesInfo">DOI 10.17487/RFC9846</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9846">https://www.rfc-editor.org/rfc/rfc9846</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9997">[RFC9997]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"YANG-CBOR: Allocating SID Ranges for Private Enterprise Number (PEN) Holders"</span>, <span class="seriesInfo">RFC 9997</span>, <span class="seriesInfo">DOI 10.17487/RFC9997</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9997">https://www.rfc-editor.org/rfc/rfc9997</a>&gt;</span>. </dd>
@@ -3718,6 +3714,10 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="Stajano99theresurrecting">[Stajano99theresurrecting]</dt>
         <dd>
 <span class="refAuthor">Stajano, F.</span> and <span class="refAuthor">R. Anderson</span>, <span class="refTitle">"The Resurrecting Duckling: Security Issues for Ad-Hoc Wireless Networks"</span>, <time datetime="1999" class="refDate">1999</time>, <span>&lt;<a href="https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf">https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SZTP">[SZTP]</dt>
+        <dd>
+<span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Farrer, I.</span>, and <span class="refAuthor">M. Abrahamsson</span>, <span class="refTitle">"Secure Zero Touch Provisioning (SZTP)"</span>, <span class="seriesInfo">RFC 8572</span>, <span class="seriesInfo">DOI 10.17487/RFC8572</span>, <time datetime="2019-04" class="refDate">April 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8572">https://www.rfc-editor.org/rfc/rfc8572</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="YANG-GUIDE">[YANG-GUIDE]</dt>
       <dd>
