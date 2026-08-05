@@ -92,7 +92,7 @@ normative:
     date: 2021-02
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
-  ZERO-TOUCH: RFC8572
+  SZTP: RFC8572
   RFC8995:
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
@@ -204,7 +204,7 @@ indicated lifetime.
 In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
 
 Some Onboarding protocols using the Voucher Artifact defined in
-this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, {{RFC8995}} and {{cBRSKI}}.
+this document include: {{SZTP}}, {{SECUREJOIN}}, {{RFC8995}} and {{cBRSKI}}.
 
 # Terminology
 
@@ -424,11 +424,11 @@ This document obsoletes {{RFC8366}}.
 ## Attempts and motivation to extend RFC8366 {#extendfail}
 
 {{RFC8366}} was published in 2018 during the development of {{RFC8995}},
-{{ZERO-TOUCH}} and other work-in-progress efforts.
+{{SZTP}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _Onboarding_ rather than _Bootstrapping_.
 
 The focus of {{RFC8995}} was Onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
-{{ZERO-TOUCH}} has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.
+{{SZTP}} has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.
 
 Since {{RFC8995}} was published there is now a mature effort to do application-level Onboarding of constrained IoT devices defined by the Thread Group and the Fairhair Alliance (now OCF) {{fairhair}}.
 The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while {{?I-D.ietf-lake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
