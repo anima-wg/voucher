@@ -551,10 +551,10 @@ Table of Contents
    certificate may not be unique across all manufacturers.
 
    It is not possible for the Pledge or the Registrar to know which
-   situation applies.  And because one the above situations may apply,
-   or may occur in the future, there needs to be a contingency to allow
-   uniquely identifying a Pledge regardless of the current or future
-   situation.  This is realized by the 'idevid-issuer' Attribute.
+   situation applies.  And because one of the above situations may
+   apply, or may occur in the future, there needs to be a contingency to
+   allow uniquely identifying a Pledge regardless of the current or
+   future situation.  This is realized by the 'idevid-issuer' Attribute.
 
    It is clarified next, whether or not to include the 'idevid-issuer'
    in the PVR, in the RVR and in the Voucher.
@@ -566,14 +566,14 @@ Table of Contents
    IDevID certificate.  The Pledge therefore has no need to repeat this.
 
    For the RVR, Section 6.1 now normatively requires that the 'idevid-
-   issuer' Attribute must be included.
+   issuer' Attribute be included.
 
-   For the Voucher, Section 8.3 normatively requires ("must") that the
-   'idevid-issuer' Attribute must be included by a MASA in case the MASA
-   issues a Voucher with a serial number that is known to be not unique
-   within the scope of all the serial numbers represented by the MASA.
-   If this rule does not apply, the MASA SHOULD NOT include the 'idevid-
-   issuer' Attribute in order to achieve a smaller Voucher size.
+   For the Voucher, as detailed in Section 8.3, the 'idevid-issuer'
+   Attribute MUST be included by a MASA in case the MASA issues a
+   Voucher with a serial number that is known to be not unique within
+   the scope of all the serial numbers represented by the MASA.  If this
+   rule does not apply, the MASA SHOULD NOT include the 'idevid-issuer'
+   Attribute in order to achieve a smaller Voucher size.
 
 6.3.  Clarifications on the format of idevid-issuer
 
@@ -997,7 +997,7 @@ Table of Contents
        description
          "Updates and additions described by RFC XXXX";
        reference
-         "RFC XXXX: A Voucher Profile for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
      }
      revision 2018-05-09 {
        description
@@ -1505,7 +1505,7 @@ Table of Contents
        description
          "Updates and additions described by RFC XXXX";
        reference
-         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Request Artifact for Bootstrapping Protocols";
      }
      revision 2021-05-20 {
        description
@@ -1803,17 +1803,17 @@ Table of Contents
    This document defines a Voucher format that contains time values for
    expirations, which require an accurate clock in order to be processed
    correctly.  Vendors planning on issuing Vouchers with expiration
-   values must ensure that devices have an accurate clock when shipped
-   from manufacturing facilities and take steps to prevent clock
-   tampering.  If it is not possible to ensure clock accuracy, then
-   Vouchers with time values for expirations should not be issued.
+   values need to ensure that the devices targetted have an accurate
+   clock when shipped from manufacturing facilities and take steps to
+   prevent clock tampering.  If it is not possible to ensure clock
+   accuracy, then the expiration time values in Vouchers will have no
+   meaning.
 
 11.2.  Protect MASA Signing Key in HSM
 
-   Pursuant to the recommendation made in Section 6.1 for the MASA to be
-   deployed as an online Voucher signing service, it is RECOMMENDED that
-   the MASA's private key used for signing Vouchers is protected by a
-   hardware security module (HSM).
+   As the MASA needs to be able to respond to voucher signing requests,
+   it is RECOMMENDED that the MASA's private key used for signing
+   Vouchers is protected by a hardware security module (HSM).
 
 11.3.  Test Domain Certificate Validity When Signing
 
@@ -1861,88 +1861,32 @@ Table of Contents
 
 12.1.  The IETF XML Registry
 
-   This document updates two URIs in the "IETF XML Registry" [RFC3688].
+   This document updates two URIs in the "IETF XML Registry" [RFC3688]:
+   urn:ietf:params:xml:ns:yang:ietf-voucher and
+   urn:ietf:params:xml:ns:yang:ietf-voucher-request:
 
-   IANA is requested to register the following, updating the
-   registration to point to this document:
-
-      URI:  urn:ietf:params:xml:ns:yang:ietf-voucher
-      Registrant Contact:  The ANIMA WG of the IETF.
-      XML:  N/A, the requested URI is an XML namespace.
-
-      URI:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
-      Registrant Contact:  The ANIMA WG of the IETF.
-      XML:  N/A, the requested URI is an XML namespace.
+   IANA is requested to update this registration to point to THIS
+   DOCUMENT.
 
 12.2.  The YANG Module Names Registry
 
-   IANA is requested to register the following YANG module in the "YANG
-   Module Names" registry [RFC6020] [RFC9890] within the "YANG
-   Parameters" registry group.
-
-      name:  ietf-voucher
-      namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher
-      prefix:  vch
-      reference:  RFC 8366
-
-      name:  ietf-voucher-request
-      namespace:  urn:ietf:params:xml:ns:yang:ietf-voucher-request
-      prefix:  vcr
-      reference:  RFC 8995
-
-   (Please note the change to the "prefix" field)
+   IANA is requested to update the ietf-voucher and ietf-voucher-request
+   registrations in the "YANG Module Names" registry [RFC6020] [RFC9890]
+   within the "YANG Parameters" registry group to point to this
+   document.  For the ietf-voucher-request entry, the prefix should be
+   updated to "vcr".
 
 12.3.  The Media Types Registry
 
-   IANA is requested to register the media type: application/voucher-
-   cms+json, and this registration should be updated to point to this
-   document.
-
-      Type name:  application
-      Subtype name:  voucher-cms+json
-      Required parameters:  none
-      Optional parameters:  none
-      Encoding considerations:  CMS-signed JSON vouchers are ASN.1/DER
-         encoded.
-      Security considerations:  See Section 11
-
-      Interoperability considerations: The format is designed to be
-      broadly interoperable.
-
-      Published specification:  THISDOCUMENT
-
-      Applications that use this media type:  ANIMA, 6tisch, and NETCONF
-         zero-touch imprinting systems.
-
-      Fragment identifier considerations:  none
-
-      Additional information:  Deprecated alias names for this type:
-         none
-
-         Magic number(s): None
-
-         File extension(s): .vcj
-
-         Macintosh file type code(s): none
-
-      Person and email address to contact for further information:  IETF
-         ANIMA WG
-
-      Intended usage:  LIMITED
-
-      Restrictions on usage:  NONE
-
-      Author:  ANIMA WG
-
-      Change controller:  IETF
-
-      Provisional registration? (standards tree only):  NO
+   IANA is requested to update the registration of media type:
+   application/voucher-cms+json to change the Published Specification to
+   THIS-DOCUMENT.
 
 12.4.  The SMI Security for S/MIME CMS Content Type Registry
 
-   IANA is requested to register the OID 1.2.840.113549.1.9.16.1.40,
-   'id-ct-animaJSONVoucher'.  This registration should be updated to
-   point to this document.
+   IANA is requested to update the registration for the OID
+   1.2.840.113549.1.9.16.1.40, 'id-ct-animaJSONVoucher'.  This
+   registration should be updated to point to this document.
 
 12.5.  The Voucher Extensions Registry
 
@@ -2076,9 +2020,6 @@ Table of Contents
               iDentifier (YANG SID)", RFC 9595, DOI 10.17487/RFC9595,
               July 2024, <https://www.rfc-editor.org/rfc/rfc9595>.
 
-   [eid7263]  "Errata 7263, RFC8995", n.d.,
-              <https://www.rfc-editor.org/errata/eid7263>.
-
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
 
@@ -2201,6 +2142,9 @@ Table of Contents
               Countersignatures", STD 96, RFC 9338,
               DOI 10.17487/RFC9338, December 2022,
               <https://www.rfc-editor.org/info/rfc9338>.
+
+   [eid7263]  "Errata 7263, RFC8995", n.d.,
+              <https://www.rfc-editor.org/errata/eid7263>.
 
    [fairhair] Open Connectivity Foundation, "Fairhair Specification", 1
               November 2019,
