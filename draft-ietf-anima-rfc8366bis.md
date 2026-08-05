@@ -647,9 +647,12 @@ In order to partially alleviate how many variations a Registrar implementation n
 When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
 When RSA is supported, key lengths between 2048 and 4096 bits SHOULD be supported.
-{{?I-D.ietf-lamps-pq-composite-sigs}} with {{?I-D.ietf-lamps-cms-composite-sigs}} SHOULD be supported for CMS wrapped vouchers.
-{{!RFC9964}} SHOULD be supported for COSE signed vouchers.
-{{?I-D.ietf-jose-pq-composite-sigs}} SHOULD be supported for JOSE signed vouchers.
+
+ML-DSA {{!RFC9964}} SHOULD be supported for COSE and JOSE signed vouchers,
+with {{!RFC9881}} used for CMS format voucher artifacts.
+
+Neither of these are hybrid algorithms and may not be suitable for use by a certification authority creating IDevID certificates.
+For that use, {{?I-D.ietf-lamps-pq-composite-sigs}} SHOULD be supported.
 
 The decision as to when to transition to quantum-safe algorithms is a manufacturer
 decision.
