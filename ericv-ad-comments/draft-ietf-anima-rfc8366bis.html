@@ -2971,12 +2971,14 @@ need for additional protocols and code paths to distribute and process the
 revocations.<a href="#section-10.1-2" class="pilcrow">¶</a></p>
 <p id="section-10.1-3">Addressing the shortcomings of revocations, this document recommends
 instead the use of lightweight renewals of short-lived non-revocable
-Vouchers.  That is, rather than issue a long-lived Voucher, where the
+Vouchers.
+That is, rather than issue a long-lived Voucher, where the
 '<code>expires-on</code>' Attribute is set to some distant date, the expectation
 is for the MASA to instead issue a short-lived Voucher, where the
 '<code>expires-on</code>' Attribute is set to a relatively near date, along with a promise
 (reflected in the '<code>last-renewal-date</code>' Attribute) to reissue the Voucher again
-when needed.  Importantly, while issuing the initial Voucher may incur
+when needed.
+Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
 Pledge actually belong to you?"), reissuing the Voucher should be a
 lightweight process, as it ostensibly only updates the Voucher's
@@ -2986,13 +2988,22 @@ only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder (<span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>) is
 not reachable.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
-<p id="section-10.1-4">While this document recommends issuing short-lived Vouchers, the
+<p id="section-10.1-4">In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, so a validity period of less than an hour will be suitable.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.1-5">For the <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> variant however, the voucher may transported by foot (literally),
+and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
+For such a situation, a validity period of seven days would be appropriate.
+Alternatively, a lightweight renewal <span class="bcp14">MUST</span> be done at the beginning of the next work day with a default validity of less than one work day ("8 hours") may be more workable.
+The <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> case introduces the Registrar-Agent, and it would be the responsability of that tool to manage this renewal.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
+<p id="section-10.1-6">In the previous two cases if the Pledge is known to not have a reliable clock, then the validity calculation will not occur: freshness in the voucher is accomplished through the use of a nonce.<a href="#section-10.1-6" class="pilcrow">¶</a></p>
+<p id="section-10.1-7">For <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> uses, vouchers that are conveyed via storage, or stored in DNS, will need to have significantly longer validities, on the order of weeks to months.
+They might be sent by email, or even courier, not received and processed until someone returns from vacation.<a href="#section-10.1-7" class="pilcrow">¶</a></p>
+<p id="section-10.1-8">So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
-Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
-<p id="section-10.1-5">Note that a Voucher may be signed by a chain of intermediate CAs
+Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-8" class="pilcrow">¶</a></p>
+<p id="section-10.1-9">Note that a Voucher may be signed by a chain of intermediate CAs
 leading up to the trust anchor CA known by the Pledge.  Even
 though the Voucher itself is not revocable, it is still revoked,
-per se, if one of the intermediate CA certificates is revoked.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
+per se, if one of the intermediate CA certificates is revoked.<a href="#section-10.1-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-per-pledge">
