@@ -660,6 +660,10 @@ it may still be possible to use mechanisms such as suggested in {{RFC8995, Secti
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
+In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize
+the `proximity` entry which it used in its voucher-request artifact, ignoring the others.
+
+If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
@@ -864,6 +868,11 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 
 {{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
+
+In the event that more than one of `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert` are present in a voucher request, then the Registrar and MASA SHALL consider them in the order presented here.
+
+The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
+However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.
 
 ## Tree Diagram {#voucher-request-tree-diagram}
 
