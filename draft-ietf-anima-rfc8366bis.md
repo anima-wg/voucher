@@ -910,12 +910,14 @@ revocations.
 
 Addressing the shortcomings of revocations, this document recommends
 instead the use of lightweight renewals of short-lived non-revocable
-Vouchers.  That is, rather than issue a long-lived Voucher, where the
+Vouchers.
+That is, rather than issue a long-lived Voucher, where the
 '`expires-on`' Attribute is set to some distant date, the expectation
 is for the MASA to instead issue a short-lived Voucher, where the
 '`expires-on`' Attribute is set to a relatively near date, along with a promise
 (reflected in the '`last-renewal-date`' Attribute) to reissue the Voucher again
-when needed.  Importantly, while issuing the initial Voucher may incur
+when needed.
+Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
 Pledge actually belong to you?"), reissuing the Voucher should be a
 lightweight process, as it ostensibly only updates the Voucher's
@@ -926,7 +928,20 @@ it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
 not reachable.
 
-While this document recommends issuing short-lived Vouchers, the
+In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, so a validity period of less than an hour will be suitable.
+
+For the {{PRM}} variant however, the voucher may transported by foot (literally),
+and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
+For such a situation, a validity period of seven days would be appropriate.
+Alternatively, a lightweight renewal MUST be done at the beginning of the next work day with a default validity of less than one work day ("8 hours") may be more workable.
+The {{PRM}} case introduces the Registrar-Agent, and it would be the responsability of that tool to manage this renewal.
+
+In the previous two cases if the Pledge is known to not have a reliable clock, then the validity calculation will not occur: freshness in the voucher is accomplished through the use of a nonce.
+
+For {{SZTP}} uses, vouchers that are conveyed via storage, or stored in DNS, will need to have significantly longer validities, on the order of weeks to months.
+They might be sent by email, or even courier, not received and processed until someone returns from vacation.
+
+So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
 Vouchers, if required; however, no revocation method is described.
 
