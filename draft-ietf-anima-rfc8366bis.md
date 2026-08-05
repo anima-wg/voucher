@@ -1233,6 +1233,8 @@ and also the following YANG module:
 RFC-editor, please remove.
 This section just lists references present in YANG modules which otherwise do not get included in the references, like {{!RFC7250}}.
 
+Also {{!RFC9911}}, Common YANG Data Types, and {{RFC8791}} is SX:Structure.
+
 --- back
 
 # Examples
