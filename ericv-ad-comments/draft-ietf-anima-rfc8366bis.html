@@ -1981,19 +1981,20 @@ The old (1024-bit) DSA algorithm is not supported.<a href="#section-8-15" class=
 <p id="section-8-16">In order to partially alleviate how many variations a Registrar implementation need deal with, some RECOMMENDATIONS are as follows:<a href="#section-8-16" class="pilcrow">¶</a></p>
 <p id="section-8-17">When EcDSA is supported, curves secp256r1 and secp384r1 <span class="bcp14">SHOULD</span> be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 <span class="bcp14">SHOULD</span> be supported.
-When RSA is supported, key lengths between 2048 and 4096 bits <span class="bcp14">SHOULD</span> be supported.
-<span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> with <span>[<a href="#I-D.ietf-lamps-cms-composite-sigs" class="cite xref">I-D.ietf-lamps-cms-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported for CMS wrapped vouchers.
-<span>[<a href="#RFC9964" class="cite xref">RFC9964</a>]</span> <span class="bcp14">SHOULD</span> be supported for COSE signed vouchers.
-<span>[<a href="#I-D.ietf-jose-pq-composite-sigs" class="cite xref">I-D.ietf-jose-pq-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported for JOSE signed vouchers.<a href="#section-8-17" class="pilcrow">¶</a></p>
-<p id="section-8-18">The decision as to when to transition to quantum-safe algorithms is a manufacturer
-decision.<a href="#section-8-18" class="pilcrow">¶</a></p>
-<p id="section-8-19">Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
+When RSA is supported, key lengths between 2048 and 4096 bits <span class="bcp14">SHOULD</span> be supported.<a href="#section-8-17" class="pilcrow">¶</a></p>
+<p id="section-8-18">ML-DSA <span>[<a href="#RFC9964" class="cite xref">RFC9964</a>]</span> <span class="bcp14">SHOULD</span> be supported for COSE and JOSE signed vouchers,
+with <span>[<a href="#RFC9881" class="cite xref">RFC9881</a>]</span> used for CMS format voucher artifacts.
+Neither of these are hybrid algorithms and may not be suitable for use by a certification authority creating IDevID certificates.
+For that use, <span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> with <span>[<a href="#I-D.ietf-lamps-cms-composite-sigs" class="cite xref">I-D.ietf-lamps-cms-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported.<a href="#section-8-18" class="pilcrow">¶</a></p>
+<p id="section-8-19">The decision as to when to transition to quantum-safe algorithms is a manufacturer
+decision.<a href="#section-8-19" class="pilcrow">¶</a></p>
+<p id="section-8-20">Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
 In such a situation, an automated, zero-touch solution may be impossible, but
-it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-19" class="pilcrow">¶</a></p>
-<p id="section-8-20">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-20" class="pilcrow">¶</a></p>
-<p id="section-8-21">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize
-the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-21" class="pilcrow">¶</a></p>
-<p id="section-8-22">If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-22" class="pilcrow">¶</a></p>
+it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-20" class="pilcrow">¶</a></p>
+<p id="section-8-21">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-21" class="pilcrow">¶</a></p>
+<p id="section-8-22">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize
+the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-22" class="pilcrow">¶</a></p>
+<p id="section-8-23">If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-23" class="pilcrow">¶</a></p>
 <div id="voucher-tree-diagram">
 <section id="section-8.1">
         <h3 id="name-tree-diagram">
@@ -3396,6 +3397,10 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Veillette, M., Ed.</span>, <span class="refAuthor">Petrov, I., Ed.</span>, <span class="refAuthor">Pelov, A.</span>, <span class="refAuthor">Bormann, C.</span>, and <span class="refAuthor">M. Richardson</span>, <span class="refTitle">"Encoding of Data Modeled with YANG in the Concise Binary Object Representation (CBOR)"</span>, <span class="seriesInfo">RFC 9254</span>, <span class="seriesInfo">DOI 10.17487/RFC9254</span>, <time datetime="2022-07" class="refDate">July 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9254">https://www.rfc-editor.org/rfc/rfc9254</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC9881">[RFC9881]</dt>
+        <dd>
+<span class="refAuthor">Massimo, J.</span>, <span class="refAuthor">Kampanakis, P.</span>, <span class="refAuthor">Turner, S.</span>, and <span class="refAuthor">B. E. Westerbaan</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure -- Algorithm Identifiers for the Module-Lattice-Based Digital Signature Algorithm (ML-DSA)"</span>, <span class="seriesInfo">RFC 9881</span>, <span class="seriesInfo">DOI 10.17487/RFC9881</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9881">https://www.rfc-editor.org/rfc/rfc9881</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC9890">[RFC9890]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"An Update to YANG Module Names Registration"</span>, <span class="seriesInfo">RFC 9890</span>, <span class="seriesInfo">DOI 10.17487/RFC9890</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9890">https://www.rfc-editor.org/rfc/rfc9890</a>&gt;</span>. </dd>
@@ -3434,10 +3439,6 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="fairhair">[fairhair]</dt>
         <dd>
 <span class="refAuthor">Open Connectivity Foundation</span>, <span class="refTitle">"Fairhair Specification"</span>, <time datetime="2019-11-01" class="refDate">1 November 2019</time>, <span>&lt;<a href="https://openconnectivity.org/developer/specifications/fairhair/">https://openconnectivity.org/developer/specifications/fairhair/</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-jose-pq-composite-sigs">[I-D.ietf-jose-pq-composite-sigs]</dt>
-        <dd>
-<span class="refAuthor">Prabel, L.</span>, <span class="refAuthor">Shuzhou, S.</span>, <span class="refAuthor">Gray, J.</span>, and <span class="refAuthor">T. Reddy.K</span>, <span class="refTitle">"PQ/T Hybrid Composite Signatures for JOSE and COSE"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-jose-pq-composite-sigs-03</span>, <time datetime="2026-07-20" class="refDate">20 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-composite-sigs-03">https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-composite-sigs-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-lake-authz">[I-D.ietf-lake-authz]</dt>
         <dd>

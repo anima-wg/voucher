@@ -775,11 +775,14 @@ Table of Contents
    When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
    supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
    be supported.  When RSA is supported, key lengths between 2048 and
-   4096 bits SHOULD be supported.  [I-D.ietf-lamps-pq-composite-sigs]
-   with [I-D.ietf-lamps-cms-composite-sigs] SHOULD be supported for CMS
-   wrapped vouchers.  [RFC9964] SHOULD be supported for COSE signed
-   vouchers.  [I-D.ietf-jose-pq-composite-sigs] SHOULD be supported for
-   JOSE signed vouchers.
+   4096 bits SHOULD be supported.
+
+   ML-DSA [RFC9964] SHOULD be supported for COSE and JOSE signed
+   vouchers, with [RFC9881] used for CMS format voucher artifacts.
+   Neither of these are hybrid algorithms and may not be suitable for
+   use by a certification authority creating IDevID certificates.  For
+   that use, [I-D.ietf-lamps-pq-composite-sigs] with
+   [I-D.ietf-lamps-cms-composite-sigs] SHOULD be supported.
 
    The decision as to when to transition to quantum-safe algorithms is a
    manufacturer decision.
@@ -2165,6 +2168,13 @@ Table of Contents
               RFC 9254, DOI 10.17487/RFC9254, July 2022,
               <https://www.rfc-editor.org/rfc/rfc9254>.
 
+   [RFC9881]  Massimo, J., Kampanakis, P., Turner, S., and B. E.
+              Westerbaan, "Internet X.509 Public Key Infrastructure --
+              Algorithm Identifiers for the Module-Lattice-Based Digital
+              Signature Algorithm (ML-DSA)", RFC 9881,
+              DOI 10.17487/RFC9881, October 2025,
+              <https://www.rfc-editor.org/rfc/rfc9881>.
+
    [RFC9890]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "An Update to
               YANG Module Names Registration", RFC 9890,
               DOI 10.17487/RFC9890, October 2025,
@@ -2202,14 +2212,6 @@ Table of Contents
               November 2019,
               <https://openconnectivity.org/developer/specifications/
               fairhair/>.
-
-   [I-D.ietf-jose-pq-composite-sigs]
-              Prabel, L., Shuzhou, S., Gray, J., and T. Reddy.K, "PQ/T
-              Hybrid Composite Signatures for JOSE and COSE", Work in
-              Progress, Internet-Draft, draft-ietf-jose-pq-composite-
-              sigs-03, 20 July 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-
-              composite-sigs-03>.
 
    [I-D.ietf-lake-authz]
               Selander, G., Mattsson, J. P., Vučinić, M., Fedrecheski,
