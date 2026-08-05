@@ -1017,127 +1017,24 @@ by Section 3.7 of {{YANG-GUIDE}}.
 
 ## The IETF XML Registry
 
-This document updates two URIs in the "IETF XML Registry" {{RFC3688}}.
+This document updates two URIs in the "IETF XML Registry" {{RFC3688}}: `urn:ietf:params:xml:ns:yang:ietf-voucher` and
+`urn:ietf:params:xml:ns:yang:ietf-voucher-request`:
 
-IANA is requested to register the following, updating the registration to point to this document:
-
-> {:compact}
->    URI:
->    : urn:ietf:params:xml:ns:yang:ietf-voucher
->
->    Registrant Contact:
->    : The ANIMA WG of the IETF.
->
->    XML:
->    : N/A, the requested URI is an XML namespace.
-
-> {:compact}
->    URI:
->    : urn:ietf:params:xml:ns:yang:ietf-voucher-request
->
->    Registrant Contact:
->    : The ANIMA WG of the IETF.
->
->    XML:
->    : N/A, the requested URI is an XML namespace.
+IANA is requested to update this registration to point to THIS DOCUMENT.
 
 ## The YANG Module Names Registry
 
-IANA is requested to register the following YANG module in the "YANG Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group.
-
-> {:compact}
->   name:
->   : ietf-voucher
->
->   namespace:
->   : urn:ietf:params:xml:ns:yang:ietf-voucher
->
->   prefix:
->   : vch
->
->   reference:
->   : RFC 8366
-
-
-
-> {:compact}
->   name:
->   : ietf-voucher-request
->
->   namespace:
->   : urn:ietf:params:xml:ns:yang:ietf-voucher-request
->
->   prefix:
->   : vcr
->
->   reference:
->   : RFC 8995
-
-(Please note the change to the "prefix" field)
+IANA is requested to update the `ietf-voucher` and `ietf-voucher-request` registrations
+in the "YANG  Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group to point to this document.
+For the `ietf-voucher-request` entry, the prefix should be updated to "vcr".
 
 ## The Media Types Registry {#vcj}
 
-IANA is requested to register the media type: `application/voucher-cms+json`, and this registration should be updated to point to this document.
-
-> {:compact}
->   Type name:
->   : application
->
->   Subtype name:
->   : voucher-cms+json
->
->   Required parameters:
->   : none
->
->   Optional parameters:
->   : none
->
->   Encoding considerations:
->   : CMS-signed JSON vouchers are ASN.1/DER  encoded.
->
->   Security considerations:
->   : See {{sec-con}}
->
->   Interoperability considerations:  The format is designed to be
->      broadly interoperable.
->
->   Published specification:
->   : THISDOCUMENT
->
->   Applications that use this media type:
->   : ANIMA, 6tisch, and NETCONF zero-touch imprinting systems.
->
->   Fragment identifier considerations:
->   : none
->
->   Additional information:
->   : Deprecated alias names for this type:  none
->   : Magic number(s):  None
->   : File extension(s):  .vcj
->   : Macintosh file type code(s):  none
->
->
->   Person and email address to contact for further information:
->   : IETF ANIMA WG
->
->   Intended usage:
->   : LIMITED
->
->   Restrictions on usage:
->   : NONE
->
->   Author:
->   : ANIMA WG
->
->   Change controller:
->   : IETF
->
->   Provisional registration? (standards tree only):
->   : NO
+IANA is requested to update the registration of media type: `application/voucher-cms+json` to change the Published Specification to THIS-DOCUMENT.
 
 ## The SMI Security for S/MIME CMS Content Type Registry {#iana-contenttype}
 
-IANA is requested to register the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
+IANA is requested to update the registration for the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
 This registration should be updated to point to this document.
 
 ## The Voucher Extensions Registry {#voucher-ext-reg}
