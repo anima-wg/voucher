@@ -1983,18 +1983,18 @@ The old (1024-bit) DSA algorithm is not supported.<a href="#section-8-15" class=
 When EdDSA is supported, curves Ed25519 and Ed448 <span class="bcp14">SHOULD</span> be supported.
 When RSA is supported, key lengths between 2048 and 4096 bits <span class="bcp14">SHOULD</span> be supported.<a href="#section-8-17" class="pilcrow">¶</a></p>
 <p id="section-8-18">ML-DSA <span>[<a href="#RFC9964" class="cite xref">RFC9964</a>]</span> <span class="bcp14">SHOULD</span> be supported for COSE and JOSE signed vouchers,
-with <span>[<a href="#RFC9881" class="cite xref">RFC9881</a>]</span> used for CMS format voucher artifacts.
-Neither of these are hybrid algorithms and may not be suitable for use by a certification authority creating IDevID certificates.
-For that use, <span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> with <span>[<a href="#I-D.ietf-lamps-cms-composite-sigs" class="cite xref">I-D.ietf-lamps-cms-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported.<a href="#section-8-18" class="pilcrow">¶</a></p>
-<p id="section-8-19">The decision as to when to transition to quantum-safe algorithms is a manufacturer
-decision.<a href="#section-8-19" class="pilcrow">¶</a></p>
-<p id="section-8-20">Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
+with <span>[<a href="#RFC9881" class="cite xref">RFC9881</a>]</span> used for CMS format voucher artifacts.<a href="#section-8-18" class="pilcrow">¶</a></p>
+<p id="section-8-19">Neither of these are hybrid algorithms and may not be suitable for use by a certification authority creating IDevID certificates.
+For that use, <span>[<a href="#I-D.ietf-lamps-pq-composite-sigs" class="cite xref">I-D.ietf-lamps-pq-composite-sigs</a>]</span> <span class="bcp14">SHOULD</span> be supported.<a href="#section-8-19" class="pilcrow">¶</a></p>
+<p id="section-8-20">The decision as to when to transition to quantum-safe algorithms is a manufacturer
+decision.<a href="#section-8-20" class="pilcrow">¶</a></p>
+<p id="section-8-21">Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
 In such a situation, an automated, zero-touch solution may be impossible, but
-it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-20" class="pilcrow">¶</a></p>
-<p id="section-8-21">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-21" class="pilcrow">¶</a></p>
-<p id="section-8-22">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize
-the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-22" class="pilcrow">¶</a></p>
-<p id="section-8-23">If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-23" class="pilcrow">¶</a></p>
+it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-21" class="pilcrow">¶</a></p>
+<p id="section-8-22">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-22" class="pilcrow">¶</a></p>
+<p id="section-8-23">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize
+the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-23" class="pilcrow">¶</a></p>
+<p id="section-8-24">If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-24" class="pilcrow">¶</a></p>
 <div id="voucher-tree-diagram">
 <section id="section-8.1">
         <h3 id="name-tree-diagram">
@@ -3443,10 +3443,6 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="I-D.ietf-lake-authz">[I-D.ietf-lake-authz]</dt>
         <dd>
 <span class="refAuthor">Selander, G.</span>, <span class="refAuthor">Mattsson, J. P.</span>, <span class="refAuthor">Vučinić, M.</span>, <span class="refAuthor">Fedrecheski, G.</span>, and <span class="refAuthor">M. Richardson</span>, <span class="refTitle">"Lightweight Authorization using Ephemeral Diffie-Hellman Over COSE (ELA)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lake-authz-08</span>, <time datetime="2026-07-06" class="refDate">6 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lake-authz-08">https://datatracker.ietf.org/doc/html/draft-ietf-lake-authz-08</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.ietf-lamps-cms-composite-sigs">[I-D.ietf-lamps-cms-composite-sigs]</dt>
-        <dd>
-<span class="refAuthor">Ounsworth, M.</span>, <span class="refAuthor">Gray, J.</span>, <span class="refAuthor">Klaußner, J.</span>, and <span class="refAuthor">D. Van Geest</span>, <span class="refTitle">"Composite Module-Lattice-Based Digital Signature Algorithm (ML-DSA) for use in Cryptographic Message Syntax (CMS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lamps-cms-composite-sigs-05</span>, <time datetime="2026-05-22" class="refDate">22 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lamps-cms-composite-sigs-05">https://datatracker.ietf.org/doc/html/draft-ietf-lamps-cms-composite-sigs-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-lamps-pq-composite-sigs">[I-D.ietf-lamps-pq-composite-sigs]</dt>
         <dd>
