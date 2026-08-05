@@ -73,7 +73,7 @@ module ietf-voucher-request {
     description
      "Updates and additions described by RFC XXXX";
     reference
-     "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+     "RFC XXXX: A Voucher Request Artifact for Bootstrapping Protocols";
   }
 
   revision 2021-05-20 {
