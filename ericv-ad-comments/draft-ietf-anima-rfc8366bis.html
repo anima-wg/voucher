@@ -3081,23 +3081,23 @@ all of the YANG-modeled data is protected from modification.<a href="#section-11
 <p id="section-11.4-2">Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
-so much as privacy.  In particular, adversaries can glean
-information such as which devices belong to which organizations
+so much as privacy.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
+<p id="section-11.4-3">When used with <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, or <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> then voucher requests and vouchers are conveyed using TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, so there is no exposure.<a href="#section-11.4-3" class="pilcrow">¶</a></p>
+<p id="section-11.4-4">When used with <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, then the contents can be exposed in the last hop,
+where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.<a href="#section-11.4-4" class="pilcrow">¶</a></p>
+<p id="section-11.4-5">When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
-accessed to validate the Vouchers.  When privacy is important,
-the CMS signed-data content type <span class="bcp14">SHOULD</span> be encrypted, either by
-conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>) or by encapsulating the signed-data
-content type with an enveloped-data content type (Section 6
-of <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>), though details for how to do this are outside
-the scope of this document.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
-<p id="section-11.4-3">The use of YANG to define data structures, via the "sx:structure"
+accessed to validate the Vouchers.
+Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no certificates CRLs to disclose.<a href="#section-11.4-5" class="pilcrow">¶</a></p>
+<p id="section-11.4-6"><span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
+To mitigate this, <span>[<a href="#SZTP" class="cite xref">SZTP</a>], <a href="https://rfc-editor.org/rfc/rfc8572#section-3.4" class="relref">Section 3.4</a></span> specifies a way to encrypt using CMS.<a href="#section-11.4-6" class="pilcrow">¶</a></p>
+<p id="section-11.4-7">The use of YANG to define data structures, via the "sx:structure"
 extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>, is relatively new and distinct from the conventional
 use of
 YANG to define an API accessed by network management protocols such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. For this reason, this
 security considerations section does not follow the template described
-by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.4-3" class="pilcrow">¶</a></p>
+by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.4-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
