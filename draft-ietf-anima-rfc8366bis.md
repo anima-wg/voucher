@@ -663,7 +663,8 @@ it may still be possible to use mechanisms such as suggested in {{RFC8995, Secti
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
-In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize
+Creators of the Aritfacts (Pledge, Registrar for Voucher-Request, MASA for Voucher) MUST NOT include more than one of the pinned- or proxmity- leaves.
+However, in the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher or voucher-request, then the reader SHALL prioritize
 the `proximity` entry which it used in its voucher-request artifact, ignoring the others.
 
 If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
