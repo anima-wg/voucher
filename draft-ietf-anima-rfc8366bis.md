@@ -928,7 +928,7 @@ it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
 not reachable.
 
-In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, so a validity period of less than an hour will be suitable.
+In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, a voucher validity period of less than an hour will be suitable.
 
 For the {{PRM}} variant however, the voucher may transported by foot (literally),
 and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
@@ -1028,7 +1028,7 @@ where HTTP is used, due the lack of any way to validate the certificate needed t
 When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.
-Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no certificates CRLs to disclose.
+Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no CRLs to disclose.
 
 {{SZTP}} uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
 To mitigate this, {{SZTP, Section 3.4}} specifies a way to encrypt using CMS.
