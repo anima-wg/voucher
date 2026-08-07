@@ -628,6 +628,9 @@ If the voucher is nonce-less (and thus not the result of a voucher-request), the
 
 ## Algorithm Choices for Voucher Requests and Vouchers
 
+When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
+Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.
+
 As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
 Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher), and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 
@@ -645,6 +648,8 @@ A certain class of constrained devices minimizes the code size of the code for A
 
 The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
+
+Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
