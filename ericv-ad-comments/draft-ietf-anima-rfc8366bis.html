@@ -1992,7 +1992,8 @@ decision.<a href="#section-8-20" class="pilcrow">¶</a></p>
 In such a situation, an automated, zero-touch onboarding solution may be impossible, but
 it may still be possible to use mechanisms such as suggested in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-7.2" class="relref">Section 7.2</a></span> to onboard a device.<a href="#section-8-21" class="pilcrow">¶</a></p>
 <p id="section-8-22">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-22" class="pilcrow">¶</a></p>
-<p id="section-8-23">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize
+<p id="section-8-23">Creators of the Aritfacts (Pledge, Registrar for Voucher-Request, MASA for Voucher) <span class="bcp14">MUST NOT</span> include more than one of the pinned- or proxmity- leaves.
+However, in the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher or voucher-request, then the reader <span class="bcp14">SHALL</span> prioritize
 the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-23" class="pilcrow">¶</a></p>
 <p id="section-8-24">If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-24" class="pilcrow">¶</a></p>
 <div id="voucher-tree-diagram">
