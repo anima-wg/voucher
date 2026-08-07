@@ -1175,7 +1175,7 @@ Designated Experts should review the documents for clarity, but the choices are 
 
 * There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
 
-* For non-standards track extensions, the Designated Expert should review the provided document is provided for clarity of purpose.
+* For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
 The stability of the reference may be of concern.
 
 The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
