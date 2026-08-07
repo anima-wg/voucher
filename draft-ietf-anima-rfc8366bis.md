@@ -1040,7 +1040,7 @@ by Section 3.7 of {{YANG-GUIDE}}.
 This document updates two URIs in the "IETF XML Registry" {{RFC3688}}: `urn:ietf:params:xml:ns:yang:ietf-voucher` and
 `urn:ietf:params:xml:ns:yang:ietf-voucher-request`:
 
-IANA is requested to update this registration to point to THIS DOCUMENT.
+IANA is requested to update this registration to point to THIS-DOCUMENT.
 
 ## The YANG Module Names Registry
 
@@ -1101,9 +1101,9 @@ IANA is requested to register the following entries in the IETF YANG-SID Ranges 
 
 | Entry Point | Size  | Module Name          | Reference    |
 |:-----------:|:-----:|:---------------------|:-------------|
-| 2450        |  50   | ietf-voucher         | \[This RFC\] |
+| 2450        |  50   | ietf-voucher         | \[This-Document\] |
 |--
-| 2500        |  50   | ietf-voucher-request | \[This RFC\] |
+| 2500        |  50   | ietf-voucher-request | \[This-Document\] |
 |--
 {: #ietf-yang-sid-ranges-table title='Registered SID ranges'}
 
