@@ -617,21 +617,21 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
-Specifically, the manufacturer knows what signature algoritms the Pledge is doing to use, and can verify, thus there is no need (or opportunity) to negotiate the algorithm  or signature (CMS, JWS, COSE) scheme.
+As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritm the Pledge is going to use, and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 Nor is there any need for a mandatory to implement (MTI) scheme, as again, by (literal) construction, the manufacturer knows what has been implemented.
-In constrained situations, the Pledge is expected to only have code space for a single algorithm and signature scheme
+In constrained-device situations, the Pledge is expected to only have code space for a single algorithm and signature scheme.
 
 A manufacturer may transition devices among different algorithms, transitioning to quantum-safe ones as they become standardized, according to their own schedule.
 
 The only device for which this approach is a challenge is for the Domain Registrar.
-That device must deal with all variants which are still relevant to the operation of the specific network.
+That device must deal with all algorithms which are still relevant to the operation of the specific network.
 
 Note: this CAN include support for algorithms which may be considered no longer safe, as there may be devices (spares) in unopened boxes which have not yet been used.
 The onboarding (bootstrap) process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms.
 Both {{RFC8995}} and {{SZTP}} provide mechanisms by which new (stronger) operational identities can be provisioned.
 
-When designing Pledge devices, manufacturers choose algorithms and signature formats that they need to support in their MASA.
+When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
 Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.
 
 While non-constrained devices could have code space for multiple algorithms or signature schemes, it makes little sense to use anything but the strongest of the algorithms present.
@@ -655,7 +655,7 @@ The decision as to when to transition to quantum-safe algorithms is a manufactur
 decision.
 
 Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
-In such a situation, an automated, zero-touch solution may be impossible, but
+In such a situation, an automated, zero-touch onboarding solution may be impossible, but
 it may still be possible to use mechanisms such as suggested in {{RFC8995, Section 7.2}} to onboard a device.
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
@@ -1193,7 +1193,7 @@ Designated Experts should review the documents for clarity, but the choices are 
 
 * There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
 
-* For non-standards track extensions, the Designated Expert should review the provided document is provided for clarity of purpose.
+* For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
 The stability of the reference may be of concern.
 
 The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
