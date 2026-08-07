@@ -3001,7 +3001,7 @@ only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder (<span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>) is
 not reachable.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
-<p id="section-10.1-4">In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, so a validity period of less than an hour will be suitable.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.1-4">In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, a voucher validity period of less than an hour will be suitable.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
 <p id="section-10.1-5">For the <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> variant however, the voucher may transported by foot (literally),
 and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
 For such a situation, a validity period of seven days would be appropriate.
@@ -3112,7 +3112,7 @@ where HTTP is used, due the lack of any way to validate the certificate needed t
 <p id="section-11.4-5">When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.
-Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no certificates CRLs to disclose.<a href="#section-11.4-5" class="pilcrow">¶</a></p>
+Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no CRLs to disclose.<a href="#section-11.4-5" class="pilcrow">¶</a></p>
 <p id="section-11.4-6"><span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
 To mitigate this, <span>[<a href="#SZTP" class="cite xref">SZTP</a>], <a href="https://rfc-editor.org/rfc/rfc8572#section-3.4" class="relref">Section 3.4</a></span> specifies a way to encrypt using CMS.<a href="#section-11.4-6" class="pilcrow">¶</a></p>
 <p id="section-11.4-7">The use of YANG to define data structures, via the "sx:structure"
