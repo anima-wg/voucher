@@ -2601,8 +2601,6 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 <p id="section-9-1"><span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-3" class="relref">Section 3</a></span> defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.
 That definition has been moved to this document, and translated from the "yang-data" extension <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> to the "sx:structure" extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
 <p id="section-9-2">In the event that more than one of <code>proximity-domain-pubk-sha256</code>, <code>proximity-domain-pubk</code> or <code>proximity-domain-cert</code> are present in a voucher request, then the Registrar and MASA <span class="bcp14">SHALL</span> consider them in the order presented here.<a href="#section-9-2" class="pilcrow">¶</a></p>
-<p id="section-9-3">The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
-However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.<a href="#section-9-3" class="pilcrow">¶</a></p>
 <div id="voucher-request-tree-diagram">
 <section id="section-9.1">
         <h3 id="name-tree-diagram-2">
