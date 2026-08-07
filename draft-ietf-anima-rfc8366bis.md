@@ -931,7 +931,7 @@ In online deployments using BRSKI or a variant, where the voucher will be delive
 For the {{PRM}} variant however, the voucher may transported by foot (literally),
 and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
 For such a situation, a validity period of seven days would be appropriate.
-Alternatively, a lightweight renewal MUST be done at the beginning of the next work day with a default validity of less than one work day ("8 hours") may be more workable.
+Instead of allowing the voucher to remain valid through a longer break, a lightweight renewal MUST be done at the beginning of the next work day with a default validity of less than one work day ("8 hours"). 
 The {{PRM}} case introduces the Registrar-Agent, and it would be the responsability of that tool to manage this renewal.
 
 In the previous two cases if the Pledge is known to not have a reliable clock, then the validity calculation will not occur: freshness in the voucher is accomplished through the use of a nonce.
