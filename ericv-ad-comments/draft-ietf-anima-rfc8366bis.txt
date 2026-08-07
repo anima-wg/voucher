@@ -1799,28 +1799,8 @@ Table of Contents
    skip the revocation status check because, for instance, the OCSP
    Responder ([RFC5280]) is not reachable.
 
-   In online deployments using BRSKI or a variant, where the voucher
-   will be delivered online to the Pledge, a voucher validity period of
-   less than an hour will be suitable.
-
-   For the [PRM] variant however, the voucher may transported by foot
-   (literally), and a voucher created just before the end of the day,
-   before a long weekend, might not be conveyed until four or five days
-   later.  For such a situation, a validity period of seven days would
-   be appropriate.  Alternatively, a lightweight renewal MUST be done at
-   the beginning of the next work day with a default validity of less
-   than one work day ("8 hours") may be more workable.  The [PRM] case
-   introduces the Registrar-Agent, and it would be the responsability of
-   that tool to manage this renewal.
-
-   In the previous two cases if the Pledge is known to not have a
-   reliable clock, then the validity calculation will not occur:
-   freshness in the voucher is accomplished through the use of a nonce.
-
-   For [SZTP] uses, vouchers that are conveyed via storage, or stored in
-   DNS, will need to have significantly longer validities, on the order
-   of weeks to months.  They might be sent by email, or even courier,
-   not received and processed until someone returns from vacation.
+   The exact details of how is "short-lived" is up to the different
+   onboarding mechanisms.
 
    So, while this document recommends issuing short-lived Vouchers, the
    Voucher Artifact does not restrict the ability to create long-lived
@@ -1931,7 +1911,7 @@ Table of Contents
    urn:ietf:params:xml:ns:yang:ietf-voucher and
    urn:ietf:params:xml:ns:yang:ietf-voucher-request:
 
-   IANA is requested to update this registration to point to THIS
+   IANA is requested to update this registration to point to THIS-
    DOCUMENT.
 
 12.2.  The YANG Module Names Registry
@@ -2008,15 +1988,15 @@ Table of Contents
    IANA is requested to register the following entries in the IETF YANG-
    SID Ranges registry:
 
-        +=============+======+======================+============+
-        | Entry Point | Size | Module Name          | Reference  |
-        +=============+======+======================+============+
-        |     2450    |  50  | ietf-voucher         | [This RFC] |
-        +-------------+------+----------------------+------------+
-        |     2500    |  50  | ietf-voucher-request | [This RFC] |
-        +-------------+------+----------------------+------------+
+      +=============+======+======================+=================+
+      | Entry Point | Size | Module Name          | Reference       |
+      +=============+======+======================+=================+
+      |     2450    |  50  | ietf-voucher         | [This-Document] |
+      +-------------+------+----------------------+-----------------+
+      |     2500    |  50  | ietf-voucher-request | [This-Document] |
+      +-------------+------+----------------------+-----------------+
 
-                      Table 3: Registered SID ranges
+                       Table 3: Registered SID ranges
 
 12.7.  The IETF YANG-SID Modules Registry
 
