@@ -719,24 +719,25 @@ Table of Contents
    extension.
 
    As explained in [RFC8995], Section 2.5, the Pledge is a creation of
-   the manufacturer, and thus manufacturer (in the form of the
+   the manufacturer, and thus the manufacturer (in the form of the
    Manufacturer Authorized Signing Authority (MASA)) has knowledge of
    the capabilities of the Pledge.  Specifically, the manufacturer knows
-   what signature algoritms the Pledge is doing to use, and can verify,
-   thus there is no need (or opportunity) to negotiate the algorithm or
-   signature (CMS, JWS, COSE) scheme.  Nor is there any need for a
-   mandatory to implement (MTI) scheme, as again, by (literal)
-   construction, the manufacturer knows what has been implemented.  In
-   constrained situations, the Pledge is expected to only have code
-   space for a single algorithm and signature scheme
+   what signature algoritm the Pledge is going to use, and can verify
+   this, thus there is no need (or opportunity) to negotiate the
+   algorithm or signature (CMS, JWS, COSE) scheme.  Nor is there any
+   need for a mandatory to implement (MTI) scheme, as again, by
+   (literal) construction, the manufacturer knows what has been
+   implemented.  In constrained-device situations, the Pledge is
+   expected to only have code space for a single algorithm and signature
+   scheme.
 
    A manufacturer may transition devices among different algorithms,
    transitioning to quantum-safe ones as they become standardized,
    according to their own schedule.
 
    The only device for which this approach is a challenge is for the
-   Domain Registrar.  That device must deal with all variants which are
-   still relevant to the operation of the specific network.
+   Domain Registrar.  That device must deal with all algorithms which
+   are still relevant to the operation of the specific network.
 
    Note: this CAN include support for algorithms which may be considered
    no longer safe, as there may be devices (spares) in unopened boxes
@@ -748,9 +749,9 @@ Table of Contents
    identities can be provisioned.
 
    When designing Pledge devices, manufacturers choose algorithms and
-   signature formats that they need to support in their MASA.  Should a
-   manufacturer decide to stop supporting some algorithm, they will
-   likely need to recall any inventory that exists in warehouses or
+   signature formats - which they also need to support in their MASA.
+   Should a manufacturer decide to stop supporting some algorithm, they
+   will likely need to recall any inventory that exists in warehouses or
    within the supply chain in order to replace the firmware and update
    the IDevID certificates present.
 
@@ -786,9 +787,9 @@ Table of Contents
 
    Choices outside of these RECOMMENDATIONS likely will result in Pledge
    devices being unable to onboard on some networks.  In such a
-   situation, an automated, zero-touch solution may be impossible, but
-   it may still be possible to use mechanisms such as suggested in
-   [RFC8995], Section 7.2 to onboard a device.
+   situation, an automated, zero-touch onboarding solution may be
+   impossible, but it may still be possible to use mechanisms such as
+   suggested in [RFC8995], Section 7.2 to onboard a device.
 
    Should SHA256 need to be replaced, then a new YANG module will be
    published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
@@ -1877,7 +1878,7 @@ Table of Contents
    urn:ietf:params:xml:ns:yang:ietf-voucher and
    urn:ietf:params:xml:ns:yang:ietf-voucher-request:
 
-   IANA is requested to update this registration to point to THIS
+   IANA is requested to update this registration to point to THIS-
    DOCUMENT.
 
 12.2.  The YANG Module Names Registry
@@ -1940,8 +1941,8 @@ Table of Contents
       process).
 
    *  For non-standards track extensions, the Designated Expert should
-      review the provided document is provided for clarity of purpose.
-      The stability of the reference may be of concern.
+      review the provided document for clarity of purpose.  The
+      stability of the reference may be of concern.
 
    The Designated Expert should determine if the work overlaps with an
    existing IETF WG effort, suggesting ways that the work could become
@@ -1954,15 +1955,15 @@ Table of Contents
    IANA is requested to register the following entries in the IETF YANG-
    SID Ranges registry:
 
-        +=============+======+======================+============+
-        | Entry Point | Size | Module Name          | Reference  |
-        +=============+======+======================+============+
-        |     2450    |  50  | ietf-voucher         | [This RFC] |
-        +-------------+------+----------------------+------------+
-        |     2500    |  50  | ietf-voucher-request | [This RFC] |
-        +-------------+------+----------------------+------------+
+      +=============+======+======================+=================+
+      | Entry Point | Size | Module Name          | Reference       |
+      +=============+======+======================+=================+
+      |     2450    |  50  | ietf-voucher         | [This-Document] |
+      +-------------+------+----------------------+-----------------+
+      |     2500    |  50  | ietf-voucher-request | [This-Document] |
+      +-------------+------+----------------------+-----------------+
 
-                      Table 3: Registered SID ranges
+                       Table 3: Registered SID ranges
 
 12.7.  The IETF YANG-SID Modules Registry
 
