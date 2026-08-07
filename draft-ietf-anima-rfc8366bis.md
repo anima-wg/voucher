@@ -949,18 +949,7 @@ it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
 not reachable.
 
-In online deployments using BRSKI or a variant, where the voucher will be delivered online to the Pledge, a voucher validity period of less than an hour will be suitable.
-
-For the {{PRM}} variant however, the voucher may transported by foot (literally),
-and a voucher created just before the end of the day, before a long weekend, might not be conveyed until four or five days later.
-For such a situation, a validity period of seven days would be appropriate.
-Instead of allowing the voucher to remain valid through a longer break, a lightweight renewal MUST be done at the beginning of the next work day with a default validity of less than one work day ("8 hours"). 
-The {{PRM}} case introduces the Registrar-Agent, and it would be the responsability of that tool to manage this renewal.
-
-In the previous two cases if the Pledge is known to not have a reliable clock, then the validity calculation will not occur: freshness in the voucher is accomplished through the use of a nonce.
-
-For {{SZTP}} uses, vouchers that are conveyed via storage, or stored in DNS, will need to have significantly longer validities, on the order of weeks to months.
-They might be sent by email, or even courier, not received and processed until someone returns from vacation.
+The exact details of how is "short-lived" is up to the different onboarding mechanisms.
 
 So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
