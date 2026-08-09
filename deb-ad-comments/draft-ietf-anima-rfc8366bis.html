@@ -1305,6 +1305,9 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4">
                 <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-yang-module-security-consid" class="internal xref">YANG Module Security Considerations</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.5">
+                <p id="section-toc.1-1.11.2.5.1"><a href="#section-11.5" class="auto internal xref">11.5</a>.  <a href="#name-planning-for-a-transition-t" class="internal xref">Planning for a transition to Quantum-Ready algorithms</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
@@ -3158,6 +3161,12 @@ the expiration time values in Vouchers will have no meaning.<a href="#section-11
 <p id="section-11.2-1">As the MASA needs to be able to respond to voucher signing requests,
 it is <span class="bcp14">RECOMMENDED</span> that the MASA's private key used for signing Vouchers is protected by
 a hardware security module (HSM).<a href="#section-11.2-1" class="pilcrow">¶</a></p>
+<p id="section-11.2-2">There are many ways to organize the PKI that is used to sign vouchers.
+<span>[<a href="#I-D.ietf-anima-masa-considerations" class="cite xref">I-D.ietf-anima-masa-considerations</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-masa-considerations-03#section-2" class="relref">Section 2</a></span> describes a number of different scenarios.
+In some of them, there are long-term keys kept offline, implementing a certification authority.
+This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
+<p id="section-11.2-3">The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
+The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="test-domain-certificate-validity-when-signing">
@@ -3206,6 +3215,97 @@ YANG to define an API accessed by network management protocols such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. For this reason, this
 security considerations section does not follow the template described
 by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.4-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="planning-for-a-transition-to-quantum-ready-algorithms">
+<section id="section-11.5">
+        <h3 id="name-planning-for-a-transition-t">
+<a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-planning-for-a-transition-t" class="section-name selfRef">Planning for a transition to Quantum-Ready algorithms</a>
+        </h3>
+<p id="section-11.5-1">As explained in <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> there is significant concern that current public key schemes like RSA and ECC will be compromised with a few years of publication of this document.<a href="#section-11.5-1" class="pilcrow">¶</a></p>
+<p id="section-11.5-2">Section <a href="#voucher" class="auto internal xref">Section 8</a> provides a list of recommendations to manufacturers.
+It includes both a set of algorithms common today, but believed to be vulnerable to a quantum-enhanced adversary, as as well algorithms which are believed to be quantum-safe.<a href="#section-11.5-2" class="pilcrow">¶</a></p>
+<p id="section-11.5-3">The Voucher and Voucher Request artifacts are often relatively short-lived objects used for Onboarding.  Once used, an adversary would need to return to the device to an onboarding state before a forged entry would be useful.<a href="#section-11.5-3" class="pilcrow">¶</a></p>
+<p id="section-11.5-4">Where the significant risk comes from is in all the related infrastructure required.
+An attack could be made upon any of the steps.  This includes:<a href="#section-11.5-4" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-11.5-5">
+<li id="section-11.5-5.1">
+            <p id="section-11.5-5.1.1">the PKI used create and sign IDevID<a href="#section-11.5-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.2">
+            <p id="section-11.5-5.2.1">the PKI used by the MASA to sign Vouchers<a href="#section-11.5-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.3">
+            <p id="section-11.5-5.3.1">the algorithm used by the Pledge to sign Voucher Requests (the public key algorithm within the IDevID), and which is used for client-side certificate authentication in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span><a href="#section-11.5-5.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.4">
+            <p id="section-11.5-5.4.1">the PKI used by Registrar operator to authenticate the TLS end-point for the Registrar within <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span><a href="#section-11.5-5.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.5">
+            <p id="section-11.5-5.5.1">the PKI used by Registrar operator to provision operational certificates (LDevID) to the device<a href="#section-11.5-5.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.6">
+            <p id="section-11.5-5.6.1">the algorithms used in the operational certificates to authenticate the device for operational purposes<a href="#section-11.5-5.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.7">
+            <p id="section-11.5-5.7.1">the key agreement protocols used by the TLS instances, or for creation of the ACP <span>[<a href="#RFC8994" class="cite xref">RFC8994</a>]</span><a href="#section-11.5-5.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-11.5-5.8">
+            <p id="section-11.5-5.8.1">the PKI used by the manufacturer to authenticate firmware updates.<a href="#section-11.5-5.8.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-11.5-6">Issue 3 (above) is a concern for <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, issue 5 is about the ability of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> to use <span>[<a href="#EST" class="cite xref">EST</a>]</span> to provision quantum-safe algorithms.
+For issue 6: the key agreement protocols within TLS and IPsec/IKE are the subject of documents such as <span>[<a href="#RFC9954" class="cite xref">RFC9954</a>]</span>, <span>[<a href="#I-D.ietf-tls-mlkem" class="cite xref">I-D.ietf-tls-mlkem</a>]</span>, <span>[<a href="#I-D.ietf-ipsecme-ikev2-pqc-auth" class="cite xref">I-D.ietf-ipsecme-ikev2-pqc-auth</a>]</span>, and <span>[<a href="#I-D.ietf-ipsecme-ikev2-mlkem" class="cite xref">I-D.ietf-ipsecme-ikev2-mlkem</a>]</span>.<a href="#section-11.5-6" class="pilcrow">¶</a></p>
+<p id="section-11.5-7">Issue 7, is the domain of <span>[<a href="#I-D.ietf-suit-mti" class="cite xref">I-D.ietf-suit-mti</a>]</span> which suggests the inclusion of the HSS-LMS for signing of firmware updates.<a href="#section-11.5-7" class="pilcrow">¶</a></p>
+<p id="section-11.5-8">The transition of operational aspects (LDevID, IPsec) to quantum-safe algorithms requires that equipement firmware contain support for the new algorithms.
+Once that support is present, there are significant, but manageable, issues for the operator managing the transition.  New firmware, new (hybrid) certificates issued via <span>[<a href="#EST" class="cite xref">EST</a>]</span> following an orderly renewal process, along with in-protocol mechanisms
+being developed for TLS and IPsec/IKE to allow for an incremental transition.
+All the above things are not in scope for this document.<a href="#section-11.5-8" class="pilcrow">¶</a></p>
+<p id="section-11.5-9">The manufacturer of a device controls what firmware goes into it and when.
+To first order, the manufacturer may switch to quantum-safe methods as soon as:<a href="#section-11.5-9" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-11.5-10.1">
+            <p id="section-11.5-10.1.1">it has updated its MASA to verify voucher requests with the new algorithm, and sign vouchers with the new algorithm<a href="#section-11.5-10.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-10.2">
+            <p id="section-11.5-10.2.1">it has switched its IDevID PKI to use a quantum-safe trust anchor, updating its qfactory device ID provisioning mechanism to use the new algorithm<a href="#section-11.5-10.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-10.3">
+            <p id="section-11.5-10.3.1">it has a quantum-safe TLS certificate for it's MASA internet visible end-point<a href="#section-11.5-10.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-10.4">
+            <p id="section-11.5-10.4.1">it has suitable firmware in the Pledge device that can use the new algorithms<a href="#section-11.5-10.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-11.5-11">A manufacturer can essentially treat all new devices produced as being part of a new product line.
+That could include putting in a different MASA URL into the IDevID.
+That allows for all quantum-safe operations to be done on a new platform removing any risk to any installed based.<a href="#section-11.5-11" class="pilcrow">¶</a></p>
+<p id="section-11.5-12">The limiting factor for doing this is that the operator's Registrar must be ready to support the new algorithms.<a href="#section-11.5-12" class="pilcrow">¶</a></p>
+<p id="section-11.5-13">This includes:<a href="#section-11.5-13" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-11.5-14.1">
+            <p id="section-11.5-14.1.1">answering provisional-TLS <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> requests with a quantum-safe certificate<a href="#section-11.5-14.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-14.2">
+            <p id="section-11.5-14.2.1">accepting quantum-safe client-certificates from new devices<a href="#section-11.5-14.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-14.3">
+            <p id="section-11.5-14.3.1">verification of the Pledge Voucher Request (PVR)<a href="#section-11.5-14.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-14.4">
+            <p id="section-11.5-14.4.1">connecting to the MASA using quantum-safe mutual TLS<a href="#section-11.5-14.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-11.5-14.5">
+            <p id="section-11.5-14.5.1">validating/auditing the resulting voucher<a href="#section-11.5-14.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-11.5-15">Of these steps, only the voucher operations involves Registrar application code,
+the rest of this is "just" TLS upgrades necessary for quantum-safe operation.<a href="#section-11.5-15" class="pilcrow">¶</a></p>
+<p id="section-11.5-16">It may be possible for manufacturers to provision IDevID using both traditional and quantum-safe versions.
+In that case, the Pledge can look at the certificate presented by the Registrar, and if it is not quantum-safe, then it can use traditional algorithms.
+For enterprise and ISP level equipment used in an <span>[<a href="#RFC8994" class="cite xref">RFC8994</a>]</span> ACP there are no code space reasons to prevent this.
+For IoT use cases, there may be code space, but also network capacity issues with the quantum-safe methods.
+This is an evolving problem in the IoT space.<a href="#section-11.5-16" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3532,9 +3632,25 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refTitle">"Errata 7263, RFC8995"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.rfc-editor.org/errata/eid7263">https://www.rfc-editor.org/errata/eid7263</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="EST">[EST]</dt>
+        <dd>
+<span class="refAuthor">Pritikin, M., Ed.</span>, <span class="refAuthor">Yee, P., Ed.</span>, and <span class="refAuthor">D. Harkins, Ed.</span>, <span class="refTitle">"Enrollment over Secure Transport"</span>, <span class="seriesInfo">RFC 7030</span>, <span class="seriesInfo">DOI 10.17487/RFC7030</span>, <time datetime="2013-10" class="refDate">October 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7030">https://www.rfc-editor.org/rfc/rfc7030</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="fairhair">[fairhair]</dt>
         <dd>
 <span class="refAuthor">Open Connectivity Foundation</span>, <span class="refTitle">"Fairhair Specification"</span>, <time datetime="2019-11-01" class="refDate">1 November 2019</time>, <span>&lt;<a href="https://openconnectivity.org/developer/specifications/fairhair/">https://openconnectivity.org/developer/specifications/fairhair/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-anima-masa-considerations">[I-D.ietf-anima-masa-considerations]</dt>
+        <dd>
+<span class="refAuthor">Richardson, M.</span> and <span class="refAuthor">T. Werner</span>, <span class="refTitle">"Operational Considerations for Voucher infrastructure for BRSKI MASA"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-anima-masa-considerations-03</span>, <time datetime="2026-08-09" class="refDate">9 August 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-masa-considerations-03">https://datatracker.ietf.org/doc/html/draft-ietf-anima-masa-considerations-03</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ipsecme-ikev2-mlkem">[I-D.ietf-ipsecme-ikev2-mlkem]</dt>
+        <dd>
+<span class="refAuthor">Kampanakis, P.</span>, <span class="refTitle">"Post-quantum Key Exchange with ML-KEM in the Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-mlkem-09</span>, <time datetime="2026-07-05" class="refDate">5 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-mlkem-09</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ipsecme-ikev2-pqc-auth">[I-D.ietf-ipsecme-ikev2-pqc-auth]</dt>
+        <dd>
+<span class="refAuthor">Reddy.K, T.</span>, <span class="refAuthor">Smyslov, V.</span>, and <span class="refAuthor">S. Fluhrer</span>, <span class="refTitle">"Signature Authentication in the Internet Key Exchange Version 2 (IKEv2) using PQC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ipsecme-ikev2-pqc-auth-11</span>, <time datetime="2026-08-05" class="refDate">5 August 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-pqc-auth-11">https://datatracker.ietf.org/doc/html/draft-ietf-ipsecme-ikev2-pqc-auth-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-lake-authz">[I-D.ietf-lake-authz]</dt>
         <dd>
@@ -3543,6 +3659,14 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="I-D.ietf-lamps-pq-composite-sigs">[I-D.ietf-lamps-pq-composite-sigs]</dt>
         <dd>
 <span class="refAuthor">Ounsworth, M.</span>, <span class="refAuthor">Gray, J.</span>, <span class="refAuthor">Pala, M.</span>, <span class="refAuthor">Klaußner, J.</span>, and <span class="refAuthor">S. Fluhrer</span>, <span class="refTitle">"Composite Module-Lattice-Based Digital Signature Algorithm (ML-DSA) for use in X.509 Public Key Infrastructure"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-lamps-pq-composite-sigs-19</span>, <time datetime="2026-04-21" class="refDate">21 April 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-lamps-pq-composite-sigs-19">https://datatracker.ietf.org/doc/html/draft-ietf-lamps-pq-composite-sigs-19</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-suit-mti">[I-D.ietf-suit-mti]</dt>
+        <dd>
+<span class="refAuthor">Moran, B.</span>, <span class="refAuthor">Rønningstad, O.</span>, and <span class="refAuthor">A. Tsukamoto</span>, <span class="refTitle">"Cryptographic Algorithms for Internet of Things (IoT) Devices"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-suit-mti-23</span>, <time datetime="2025-07-22" class="refDate">22 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-suit-mti-23">https://datatracker.ietf.org/doc/html/draft-ietf-suit-mti-23</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-tls-mlkem">[I-D.ietf-tls-mlkem]</dt>
+        <dd>
+<span class="refAuthor">Connolly, D.</span>, <span class="refTitle">"ML-KEM Post-Quantum Key Agreement for TLS 1.3"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-tls-mlkem-09</span>, <time datetime="2026-07-20" class="refDate">20 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-tls-mlkem-09">https://datatracker.ietf.org/doc/html/draft-ietf-tls-mlkem-09</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.vangeest-lamps-cms-euf-cma-signeddata">[I-D.vangeest-lamps-cms-euf-cma-signeddata]</dt>
         <dd>
@@ -3627,6 +3751,14 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC9910">[RFC9910]</dt>
         <dd>
 <span class="refAuthor">Harrison, T.</span> and <span class="refAuthor">J. Singh</span>, <span class="refTitle">"Registration Data Access Protocol (RDAP) Regional Internet Registry (RIR) Search"</span>, <span class="seriesInfo">RFC 9910</span>, <span class="seriesInfo">DOI 10.17487/RFC9910</span>, <time datetime="2026-01" class="refDate">January 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9910">https://www.rfc-editor.org/rfc/rfc9910</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9954">[RFC9954]</dt>
+        <dd>
+<span class="refAuthor">Stebila, D.</span>, <span class="refAuthor">Fluhrer, S.</span>, and <span class="refAuthor">S. Gueron</span>, <span class="refTitle">"Hybrid Key Exchange in TLS 1.3"</span>, <span class="seriesInfo">RFC 9954</span>, <span class="seriesInfo">DOI 10.17487/RFC9954</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9954">https://www.rfc-editor.org/rfc/rfc9954</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9958">[RFC9958]</dt>
+        <dd>
+<span class="refAuthor">Banerjee, A.</span>, <span class="refAuthor">Reddy.K, T.</span>, <span class="refAuthor">Schoinianakis, D.</span>, <span class="refAuthor">Hollebeek, T.</span>, and <span class="refAuthor">M. Ounsworth</span>, <span class="refTitle">"Post-Quantum Cryptography for Engineers"</span>, <span class="seriesInfo">RFC 9958</span>, <span class="seriesInfo">DOI 10.17487/RFC9958</span>, <time datetime="2026-06" class="refDate">June 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9958">https://www.rfc-editor.org/rfc/rfc9958</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9997">[RFC9997]</dt>
         <dd>
