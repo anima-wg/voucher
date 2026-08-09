@@ -236,8 +236,8 @@ Domain:
   This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
 
 Join Registrar (and Coordinator):
-: A representative of the Domain that is configured, perhaps
-  autonomically, to decide whether a new device is allowed to join the
+: A representative of the Domain that is configured
+  to decide whether a new device is allowed to join the
   Domain. The administrator of the Domain interfaces with a Join
   Registrar (and Coordinator) to control this process.
   Typically, a Join Registrar is "inside" its Domain. For simplicity,
