@@ -1001,6 +1001,11 @@ heavyweight verification checks ("Are you who you say you are?" "Does the
 Pledge actually belong to you?"), reissuing the Voucher should be a
 lightweight process, as it ostensibly only updates the Voucher's
 validity period.
+
+The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the `prior-signed-voucher-request`
+attribute.
+The Registrar signs the new request.
+
 With this approach, there is
 only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
