@@ -298,7 +298,7 @@ TOFU (Trust on First Use):
   This is also known as the "resurrecting duckling" model {{Stajano99theresurrecting}}.
 
 Voucher:
-: A Voucher Artifact, not a Voucher Request, that is a signed statement
+: A Voucher Artifact that is a signed statement
   from the MASA service that indicates to a Pledge
   the cryptographic identity of the Domain it should trust.
   When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.
