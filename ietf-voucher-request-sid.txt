@@ -23,4 +23,4 @@ SID  Assigned to
 2520 data   /ietf-voucher-request:voucher/additional-configuration-url
 2521 data   /ietf-voucher-request:voucher/est-domain
 2522 data   /ietf-voucher-request:voucher/extensions
-2523 data   /ietf-voucher-request:voucher/manufacturer-private
+2523 data   /ietf-voucher-request:voucher/manufacturer-proprietary
