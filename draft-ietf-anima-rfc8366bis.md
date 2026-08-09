@@ -861,7 +861,7 @@ The {{?RFC8520}} mechanism uses more bytes, but is also not easily translatable 
 
 As the Voucher Request YANG module is created by YANG augment of the Voucher YANG module, any extension defined for the Voucher is also valid for a Voucher Request.
 
-## Manufacturer Private Extensions
+## Manufacturer Proprietary Extensions
 
 A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
 While they can use the Voucher extensions mechanism defined in {{voucher-ext}}, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.

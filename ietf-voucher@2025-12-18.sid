@@ -108,7 +108,7 @@
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/manufacturer-private",
+        "identifier": "/ietf-voucher:voucher/manufacturer-proprietary",
         "status": "unstable",
         "sid": "2465"
       },

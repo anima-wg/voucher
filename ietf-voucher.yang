@@ -109,7 +109,7 @@ module ietf-voucher {
            ones are not.";
       }
 
-      leaf manufacturer-private {
+      leaf manufacturer-proprietary {
         type binary;
         description
           "In CBOR serialization, this is a CBOR bstr containing any
