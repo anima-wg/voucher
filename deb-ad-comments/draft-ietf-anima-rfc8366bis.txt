@@ -180,6 +180,18 @@ Table of Contents
    is accomplished by assigning an Owner to the Pledge, enabling it to
    authenticate the network that it is connected to.
 
+   The lifetimes of Vouchers may vary.  In some Onboarding protocols,
+   the Vouchers may include a nonce restricting them to a single use,
+   whereas the Vouchers in other Onboarding protocols may have an
+   indicated lifetime.  When longer validity periods are important, this
+   document recommends using short lifetimes with programmatic renewal,
+   see Section 10.1.  How short the lifetimes can be depends upon the
+   means of conveyance of the voucher, so the exact times is specified
+   in the onboarding protocol itself.
+
+   Some Onboarding protocols using the Voucher Artifact defined in this
+   document include: [SZTP], [SECUREJOIN], [RFC8995] and [cBRSKI].
+
 1.1.  Extensions Needed
 
    [RFC8366] originally defined the Voucher as the only Voucher
@@ -204,18 +216,6 @@ Table of Contents
    a new IETF standard mechanism for extensions modeled after the
    mechanism present in [RFC8520], as well as a facility for
    manufacturer proprietary extensions.
-
-   The lifetimes of Vouchers may vary.  In some Onboarding protocols,
-   the Vouchers may include a nonce restricting them to a single use,
-   whereas the Vouchers in other Onboarding protocols may have an
-   indicated lifetime.  In order to support long lifetimes, this
-   document recommends using short lifetimes with programmatic renewal,
-   see Section 10.1.  How short the lifetimes can be depends upon the
-   means of conveyance of the voucher, so the exact times is specified
-   in the onboarding protocol itself.
-
-   Some Onboarding protocols using the Voucher Artifact defined in this
-   document include: [SZTP], [SECUREJOIN], [RFC8995] and [cBRSKI].
 
 2.  Terminology
 

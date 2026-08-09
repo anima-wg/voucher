@@ -1405,6 +1405,13 @@ The collection of all these devices, with the same trust anchor is collectively 
 (This is not related to the domain name system, but rather the term is of mathematical origin)<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
 This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The lifetimes of Vouchers may vary.
+In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
+indicated lifetime.
+When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.
+How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Some Onboarding protocols using the Voucher Artifact defined in
+this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <div id="extensions-needed">
 <section id="section-1.1">
         <h3 id="name-extensions-needed">
@@ -1418,13 +1425,6 @@ At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivia
 The process is further explained in <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
 <p id="section-1.1-4">This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
 This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span>, as well as a facility for manufacturer proprietary extensions.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
-<p id="section-1.1-5">The lifetimes of Vouchers may vary.
-In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
-indicated lifetime.
-In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.
-How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
-<p id="section-1.1-6">Some Onboarding protocols using the Voucher Artifact defined in
-this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
