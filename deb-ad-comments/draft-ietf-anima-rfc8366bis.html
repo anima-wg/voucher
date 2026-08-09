@@ -3098,20 +3098,23 @@ Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
 Pledge actually belong to you?"), reissuing the Voucher should be a
 lightweight process, as it ostensibly only updates the Voucher's
-validity period.
-With this approach, there is
+validity period.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+<p id="section-10.1-4">The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the <code>prior-signed-voucher-request</code>
+attribute.
+The Registrar signs the new request.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
+<p id="section-10.1-5">With this approach, there is
 only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder (<span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span>) is
-not reachable.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
-<p id="section-10.1-4">The exact details of how is "short-lived" is up to the different onboarding mechanisms.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
-<p id="section-10.1-5">So, while this document recommends issuing short-lived Vouchers, the
+not reachable.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
+<p id="section-10.1-6">The exact details of how is "short-lived" is up to the different onboarding mechanisms.<a href="#section-10.1-6" class="pilcrow">¶</a></p>
+<p id="section-10.1-7">So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
-Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
-<p id="section-10.1-6">Note that a Voucher may be signed by a chain of intermediate CAs
+Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-7" class="pilcrow">¶</a></p>
+<p id="section-10.1-8">Note that a Voucher may be signed by a chain of intermediate CAs
 leading up to the trust anchor CA known by the Pledge.  Even
 though the Voucher itself is not revocable, it is still revoked,
-per se, if one of the intermediate CA certificates is revoked.<a href="#section-10.1-6" class="pilcrow">¶</a></p>
+per se, if one of the intermediate CA certificates is revoked.<a href="#section-10.1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-per-pledge">
