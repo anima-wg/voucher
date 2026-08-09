@@ -978,8 +978,9 @@ In cases when there is a time delay, there is a need for the Pledge
 to ensure that the assertions made when the Voucher was created are
 still valid.
 
-A revocation artifact is generally used to verify the continued validity
-of an assertion such as a PKIX certificate {{RFC5280}}, web token, or Voucher.  With
+A revocation artifact (such as an OCSP {{?RFC6960}} staple {{?RFC9910}}, or CRL {{RFC5280}}) is generally used to verify the continued validity
+of an assertion such as a PKIX certificate {{RFC5280}}, web token, or Voucher.
+With
 this approach, a potentially long-lived assertion is paired with a reasonably
 fresh revocation status check to ensure that the assertion is still valid.
 However, this approach increases solution complexity, as it introduces the
