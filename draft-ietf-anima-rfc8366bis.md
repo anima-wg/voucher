@@ -696,12 +696,12 @@ While non-constrained devices could have code space for multiple algorithms or s
 Constrained devices are able to dispense with much code involved in ASN.1/PKIX processing of the voucher and voucher-request.  This is explained in {{cBRSKI}}.
 The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key for such devices.
 
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
+The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
 In order to partially alleviate how many variations a Registrar implementation need deal with, these are recommendations for implementers of Registrar:
 
-When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
+When ECDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
 When RSA is supported, key lengths between 2048 and 4096 bits SHOULD be supported.
 
