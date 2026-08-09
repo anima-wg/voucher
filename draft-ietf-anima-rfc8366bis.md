@@ -17,7 +17,7 @@ pi:
   comments: 'yes'
   inline: 'yes'
   rfcedstyle: 'yes'
-title: A Voucher Artifact for Bootstrapping Protocols
+title: A Voucher Artifact for Onboarding Protocols
 abbrev: Voucher Artifact
 area: Operations
 wg: ANIMA Working Group
@@ -174,6 +174,10 @@ It may also be serialized to CBOR {{CBOR}}.
 It is encoded using the rules defined in {{!RFC7951}} or {{RFC9254}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
+When {{RFC8366}} was first published the industry had not yet concluded on a term to describe this process.
+A number of terms were used, and the term used by the previous document was "bootstrapping", but the industry has preferred the term "onboarding", and this
+document uses that term.
+
 The primary purpose of a Voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
 The trust anchor may be in the form of a certificate (the '`pinned-domain-cert`' Attribute), a hash of a certificate, or it can be a raw public key (in constrained use cases).
@@ -228,10 +232,7 @@ Attribute:
   one of the YANG models as defined in this document.
 
 Bootstrapping:
-: The process where a Pledge obtains cryptographic key material to identify
-   and trust future interactions within a specific Domain network.
-   Bootstrapping is based on imprinted key material provided during the
-   manufacturing process (see: Imprint).
+: See Imprint and Onboarding.
    This term was used in {{RFC8366}}, but has been supplanted by the term Onboarding.
 
 Domain:
