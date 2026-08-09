@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 8 February 2027                               IoTconsultancy.nl
+Expires: 10 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           7 August 2026
+                                                           9 August 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 February 2027.
+   This Internet-Draft will expire on 10 February 2027.
 
 Copyright Notice
 
@@ -771,7 +771,8 @@ Table of Contents
    an OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
 
    In order to partially alleviate how many variations a Registrar
-   implementation need deal with, some RECOMMENDATIONS are as follows:
+   implementation need deal with, these are recommendations for
+   implementers of Registrar:
 
    When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
    supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
@@ -788,11 +789,12 @@ Table of Contents
    The decision as to when to transition to quantum-safe algorithms is a
    manufacturer decision.
 
-   Choices outside of these RECOMMENDATIONS likely will result in Pledge
-   devices being unable to onboard on some networks.  In such a
-   situation, an automated, zero-touch onboarding solution may be
-   impossible, but it may still be possible to use mechanisms such as
-   suggested in [RFC8995], Section 7.2 to onboard a device.
+   Other choices are possible, but likely will result in Pledge devices
+   being unable to onboard on networks until the Registrar involved
+   implements those choices.  In such a situation, an automated, zero-
+   touch onboarding solution may be impossible, but it may still be
+   possible to use mechanisms such as suggested in [RFC8995],
+   Section 7.2 to onboard a device.
 
    Should SHA256 need to be replaced, then a new YANG module will be
    published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
@@ -1960,8 +1962,9 @@ Table of Contents
 
    For vendor proprietary extensions, (including ISE submissions), the
    resulting string still needs to be unique.  This can be done by
-   putting the extension name in the form a fully-qualified domain name
-   (FQDN) [RFC3696], such as "fuubar.example.com"
+   making the YANG module unique, basing it on a fully-qualified domain
+   name (FQDN) [RFC3696], such as "fuubar.example.com-mud-thing" rather
+   than "fuubar-mud-thing"
 
    Vendor proprietary extensions do not need to be registered with IANA,
    but vendors are encouraged to do so.
@@ -1969,9 +1972,9 @@ Table of Contents
    Designated Experts should review the documents for clarity, but the
    choices are tied to WG and IESG processes:
 
-   *  There are no choices in the extension names (which is always the
-      YANG module name), or SID value (which is from another IANA
-      process).
+   *  There are no choices in the extension names (for standards track
+      extensions) which is always the YANG module name), or SID value
+      (which is from another IANA process).
 
    *  For non-standards track extensions, the Designated Expert should
       review the provided document for clarity of purpose.  The
