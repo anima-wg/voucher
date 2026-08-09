@@ -1188,12 +1188,17 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-extensions-needed" class="internal xref">Extensions Needed</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-requirements-language" class="internal xref">Requirements Language</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-requirements-language" class="internal xref">Requirements Language</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-survey-of-voucher-types" class="internal xref">Survey of Voucher Types</a></p>
@@ -1250,7 +1255,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
                 <p id="section-toc.1-1.8.2.5.1"><a href="#section-8.5" class="auto internal xref">8.5</a>.  <a href="#name-voucher-extensions" class="internal xref">Voucher Extensions</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
-                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-manufacturer-private-extens" class="internal xref">Manufacturer Private Extensions</a></p>
+                <p id="section-toc.1-1.8.2.6.1"><a href="#section-8.6" class="auto internal xref">8.6</a>.  <a href="#name-manufacturer-proprietary-ex" class="internal xref">Manufacturer Proprietary Extensions</a></p>
 </li>
             </ul>
 </li>
@@ -1400,20 +1405,28 @@ The collection of all these devices, with the same trust anchor is collectively 
 (This is not related to the domain name system, but rather the term is of mathematical origin)<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
 This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.
-This document includes both Voucher and Voucher Request obsoleting <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and updating <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">YANG is not easily extended except by updating the YANG module definition.
-Since <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was written, the common pattern is to publish YANG modules as two documents: one with only the YANG module, and the other one with usage, motivation and further explanation.
-This allows the YANG module to be updated without replacing all of the context.
-This document does not follow that pattern, but future documents may update only the YANG module.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
-This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span>, as well as a facility for manufacturer private extensions.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">The lifetimes of Vouchers may vary.
+<div id="extensions-needed">
+<section id="section-1.1">
+        <h3 id="name-extensions-needed">
+<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-extensions-needed" class="section-name selfRef">Extensions Needed</a>
+        </h3>
+<p id="section-1.1-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.
+This document includes both Voucher and Voucher Request obsoleting <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and updating <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+<p id="section-1.1-2">A number of variations of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> have been developed since the publication of <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and these variations require new attributes be added to the Voucher and Voucher Requrest.
+At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
+<p id="section-1.1-3">However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
+The process is further explained in <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
+<p id="section-1.1-4">This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
+This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span>, as well as a facility for manufacturer proprietary extensions.<a href="#section-1.1-4" class="pilcrow">¶</a></p>
+<p id="section-1.1-5">The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
-In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">Some Onboarding protocols using the Voucher Artifact defined in
-this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-10" class="pilcrow">¶</a></p>
+In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.
+How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1.1-5" class="pilcrow">¶</a></p>
+<p id="section-1.1-6">Some Onboarding protocols using the Voucher Artifact defined in
+this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1.1-6" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="terminology">
@@ -2017,7 +2030,7 @@ module: ietf-voucher
   structure voucher:
     +-- created-on?                      yang:date-and-time
     +-- extensions*                      union
-    +-- manufacturer-private?            binary
+    +-- manufacturer-proprietary?        binary
     +-- assertion?                       enumeration
     +-- serial-number                    string
     +-- idevid-issuer?                   binary
@@ -2248,7 +2261,7 @@ module ietf-voucher {
          extensions are described in an RFC, while vendor proprietary
          ones are not.";
     }
-    leaf manufacturer-private {
+    leaf manufacturer-proprietary {
       type binary;
       description
         "In CBOR serialization, this is a CBOR bstr containing any
@@ -2501,7 +2514,7 @@ SID  Assigned to
 2462 data   /ietf-voucher:voucher/serial-number
 2463 data   /ietf-voucher:voucher/additional-configuration-url
 2464 data   /ietf-voucher:voucher/est-domain
-2465 data   /ietf-voucher:voucher/manufacturer-private
+2465 data   /ietf-voucher:voucher/manufacturer-proprietary
 2466 data   /ietf-voucher:voucher/extensions
 </pre><a href="#section-8.4-3" class="pilcrow">¶</a>
 </div>
@@ -2578,10 +2591,10 @@ The <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> mechanism us
 <p id="section-8.5-8">As the Voucher Request YANG module is created by YANG augment of the Voucher YANG module, any extension defined for the Voucher is also valid for a Voucher Request.<a href="#section-8.5-8" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="manufacturer-private-extensions">
+<div id="manufacturer-proprietary-extensions">
 <section id="section-8.6">
-        <h3 id="name-manufacturer-private-extens">
-<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-manufacturer-private-extens" class="section-name selfRef">Manufacturer Private Extensions</a>
+        <h3 id="name-manufacturer-proprietary-ex">
+<a href="#section-8.6" class="section-number selfRef">8.6. </a><a href="#name-manufacturer-proprietary-ex" class="section-name selfRef">Manufacturer Proprietary Extensions</a>
         </h3>
 <p id="section-8.6-1">A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
 While they can use the Voucher extensions mechanism defined in <a href="#voucher-ext" class="auto internal xref">Section 8.5</a>, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.
@@ -2619,7 +2632,7 @@ module: ietf-voucher-request
   structure voucher:
     +-- created-on?                                yang:date-and-time
     +-- extensions*                                union
-    +-- manufacturer-private?                      binary
+    +-- manufacturer-proprietary?                  binary
     +-- assertion?                                 enumeration
     +-- serial-number                              string
     +-- idevid-issuer?                             binary
@@ -2951,7 +2964,7 @@ SID  Assigned to
                                                                   url
 2521 data   /ietf-voucher-request:voucher/est-domain
 2522 data   /ietf-voucher-request:voucher/extensions
-2523 data   /ietf-voucher-request:voucher/manufacturer-private
+2523 data   /ietf-voucher-request:voucher/manufacturer-proprietary
 </pre><a href="#section-9.3-3" class="pilcrow">¶</a>
 </div>
 <p id="section-9.3-4">The '<code>assertion</code>' Attribute is an enumerated type, and has values as defined in <a href="#assertion-enums" class="auto internal xref">Table 2</a>.<a href="#section-9.3-4" class="pilcrow">¶</a></p>
@@ -4057,7 +4070,8 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
       },
       {
         "namespace": "data",
-        "identifier": "/ietf-voucher:voucher/manufacturer-private",
+        "identifier": "/ietf-voucher:voucher/manufacturer-\
+                                                        proprietary",
         "status": "unstable",
         "sid": "2465"
       },
@@ -4089,9 +4103,17 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
   "ietf-sid-file:sid-file": {
     "module-name": "ietf-voucher-request",
     "module-revision": "2025-12-18",
-    "sid-file-version": 11,
+    "sid-file-version": 12,
     "sid-file-status": "unpublished",
     "dependency-revision": [
+      {
+        "module-name": "ietf-yang-structure-ext",
+        "module-revision": "2020-06-17"
+      },
+      {
+        "module-name": "ietf-voucher",
+        "module-revision": "2025-12-18"
+      },
       {
         "module-name": "ietf-yang-structure-ext",
         "module-revision": "2020-06-17"
@@ -4249,7 +4271,7 @@ AESNRL3n6M_F8dGQHm1fu66x83cK9E5cPtEdag"
       {
         "namespace": "data",
         "identifier": "/ietf-voucher-request:voucher/manufacturer-\
-                                                            private",
+                                                        proprietary",
         "status": "unstable",
         "sid": "2523"
       }

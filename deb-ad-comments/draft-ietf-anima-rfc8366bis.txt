@@ -87,6 +87,7 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Extensions Needed
    2.  Terminology
    3.  Requirements Language
    4.  Survey of Voucher Types
@@ -105,7 +106,7 @@ Table of Contents
      8.3.  YANG Module
      8.4.  ietf-voucher SID values
      8.5.  Voucher Extensions
-     8.6.  Manufacturer Private Extensions
+     8.6.  Manufacturer Proprietary Extensions
    9.  Voucher Request Artifact
      9.1.  Tree Diagram
      9.2.  "ietf-voucher-request" Module
@@ -179,31 +180,39 @@ Table of Contents
    is accomplished by assigning an Owner to the Pledge, enabling it to
    authenticate the network that it is connected to.
 
+1.1.  Extensions Needed
+
    [RFC8366] originally defined the Voucher as the only Voucher
    Artifact, leaving the Voucher Request that is used in BRSKI to be
    defined in [RFC8995].  This document includes both Voucher and
    Voucher Request obsoleting [RFC8366], and updating [RFC8995].
 
-   YANG is not easily extended except by updating the YANG module
-   definition.  Since [RFC8366] was written, the common pattern is to
-   publish YANG modules as two documents: one with only the YANG module,
-   and the other one with usage, motivation and further explanation.
-   This allows the YANG module to be updated without replacing all of
-   the context.  This document does not follow that pattern, but future
-   documents may update only the YANG module.
+   A number of variations of [RFC8995] have been developed since the
+   publication of [RFC8366], and these variations require new attributes
+   be added to the Voucher and Voucher Requrest.  At the low-level, JSON
+   (or CBOR) mechanical level, this was thought to be trivial as the
+   artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
+
+   However, the use of YANG for the information model does not make it
+   as trivial as was thought.  In the end, YANG is not easily extended
+   except by updating the YANG module definition, and that is the major
+   reason for the publication of this document.  The process is further
+   explained in Section 5.1.
 
    This document introduces a mechanism to support future extensions
    without requiring the YANG module to be revised.  This includes both
    a new IETF standard mechanism for extensions modeled after the
    mechanism present in [RFC8520], as well as a facility for
-   manufacturer private extensions.
+   manufacturer proprietary extensions.
 
    The lifetimes of Vouchers may vary.  In some Onboarding protocols,
    the Vouchers may include a nonce restricting them to a single use,
    whereas the Vouchers in other Onboarding protocols may have an
    indicated lifetime.  In order to support long lifetimes, this
    document recommends using short lifetimes with programmatic renewal,
-   see Section 10.1.
+   see Section 10.1.  How short the lifetimes can be depends upon the
+   means of conveyance of the voucher, so the exact times is specified
+   in the onboarding protocol itself.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
    document include: [SZTP], [SECUREJOIN], [RFC8995] and [cBRSKI].
@@ -829,7 +838,7 @@ Table of Contents
      structure voucher:
        +-- created-on?                      yang:date-and-time
        +-- extensions*                      union
-       +-- manufacturer-private?            binary
+       +-- manufacturer-proprietary?        binary
        +-- assertion?                       enumeration
        +-- serial-number                    string
        +-- idevid-issuer?                   binary
@@ -1056,7 +1065,7 @@ Table of Contents
             extensions are described in an RFC, while vendor proprietary
             ones are not.";
        }
-       leaf manufacturer-private {
+       leaf manufacturer-proprietary {
          type binary;
          description
            "In CBOR serialization, this is a CBOR bstr containing any
@@ -1306,7 +1315,7 @@ Table of Contents
    2462 data   /ietf-voucher:voucher/serial-number
    2463 data   /ietf-voucher:voucher/additional-configuration-url
    2464 data   /ietf-voucher:voucher/est-domain
-   2465 data   /ietf-voucher:voucher/manufacturer-private
+   2465 data   /ietf-voucher:voucher/manufacturer-proprietary
    2466 data   /ietf-voucher:voucher/extensions
 
    The 'assertion' Attribute is an enumerated type in [RFC8366], but no
@@ -1394,7 +1403,7 @@ Table of Contents
    Voucher YANG module, any extension defined for the Voucher is also
    valid for a Voucher Request.
 
-8.6.  Manufacturer Private Extensions
+8.6.  Manufacturer Proprietary Extensions
 
    A manufacturer might need to communicate content in the Voucher (or
    in the Voucher Request), which are never subject to standardization.
@@ -1439,7 +1448,7 @@ Table of Contents
      structure voucher:
        +-- created-on?                                yang:date-and-time
        +-- extensions*                                union
-       +-- manufacturer-private?                      binary
+       +-- manufacturer-proprietary?                  binary
        +-- assertion?                                 enumeration
        +-- serial-number                              string
        +-- idevid-issuer?                             binary
@@ -1762,7 +1771,7 @@ Table of Contents
                                                                      url
    2521 data   /ietf-voucher-request:voucher/est-domain
    2522 data   /ietf-voucher-request:voucher/extensions
-   2523 data   /ietf-voucher-request:voucher/manufacturer-private
+   2523 data   /ietf-voucher-request:voucher/manufacturer-proprietary
 
    The 'assertion' Attribute is an enumerated type, and has values as
    defined in Table 2.
@@ -2801,7 +2810,8 @@ B.1.  SID Allocations for Voucher
          },
          {
            "namespace": "data",
-           "identifier": "/ietf-voucher:voucher/manufacturer-private",
+           "identifier": "/ietf-voucher:voucher/manufacturer-\
+                                                           proprietary",
            "status": "unstable",
            "sid": "2465"
          },
@@ -2825,9 +2835,17 @@ B.2.  SID Allocations for Voucher Request
      "ietf-sid-file:sid-file": {
        "module-name": "ietf-voucher-request",
        "module-revision": "2025-12-18",
-       "sid-file-version": 11,
+       "sid-file-version": 12,
        "sid-file-status": "unpublished",
        "dependency-revision": [
+         {
+           "module-name": "ietf-yang-structure-ext",
+           "module-revision": "2020-06-17"
+         },
+         {
+           "module-name": "ietf-voucher",
+           "module-revision": "2025-12-18"
+         },
          {
            "module-name": "ietf-yang-structure-ext",
            "module-revision": "2020-06-17"
@@ -2985,7 +3003,7 @@ B.2.  SID Allocations for Voucher Request
          {
            "namespace": "data",
            "identifier": "/ietf-voucher-request:voucher/manufacturer-\
-                                                               private",
+                                                           proprietary",
            "status": "unstable",
            "sid": "2523"
          }
