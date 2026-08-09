@@ -117,6 +117,7 @@ informative:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
+  EST: RFC7030
   YANG-GUIDE: RFC8407
   Stajano99theresurrecting:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
@@ -1050,7 +1051,7 @@ it is RECOMMENDED that the MASA's private key used for signing Vouchers is prote
 a hardware security module (HSM).
 
 There are many ways to organize the PKI that is used to sign vouchers.
-{{I-D.ietf-anima-masa-considerations, Section 2}} describes a number of different scenarios.
+{{?I-D.ietf-anima-masa-considerations, Section 2}} describes a number of different scenarios.
 In some of them, there are long-term keys kept offline, implementing a certification authority.
 This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.
 
@@ -1103,6 +1104,84 @@ YANG to define an API accessed by network management protocols such as
 NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, this
 security considerations section does not follow the template described
 by Section 3.7 of {{YANG-GUIDE}}.
+
+## Planning for a transition to Quantum-Ready algorithms
+
+As explained in {{?RFC9958}} there is significant concern that current public key schemes like RSA and ECC will be compromised with a few years of publication of this document.
+
+Section {{voucher}} provides a list of recommendations to manufacturers.
+It includes both a set of algorithms common today, but believed to be vulnerable to a quantum-enhanced adversary, as as well algorithms which are believed to be quantum-safe.
+
+The Voucher and Voucher Request artifacts are often relatively short-lived objects used for Onboarding.  Once used, an adversary would need to return to the device to an onboarding state before a forged entry would be useful.
+
+Where the significant risk comes from is in all the related infrastructure required.
+An attack could be made upon any of the steps.  This includes:
+
+1. the PKI used create and sign IDevID
+
+2. the PKI used by the MASA to sign Vouchers
+
+3. the algorithm used by the Pledge to sign Voucher Requests (the public key algorithm within the IDevID), and which is used for client-side certificate authentication in {{RFC8995}}
+
+3. the PKI used by Registrar operator to authenticate the TLS end-point for the Registrar within {{RFC8995}}
+
+4. the PKI used by Registrar operator to provision operational certificates (LDevID) to the device
+
+5. the algorithms used in the operational certificates to authenticate the device for operational purposes
+
+6. the key agreement protocols used by the TLS instances, or for creation of the ACP {{RFC8994}}
+
+7. the PKI used by the manufacturer to authenticate firmware updates.
+
+Issue 3 (above) is a concern for {{RFC8995}}, issue 5 is about the ability of {{RFC8995}} to use {{EST}} to provision quantum-safe algorithms.
+For issue 6: the key agreement protocols within TLS and IPsec/IKE are the subject of documents such as {{?RFC9954}}, {{?I-D.ietf-tls-mlkem}}, {{?I-D.ietf-ipsecme-ikev2-pqc-auth}}, and {{?I-D.ietf-ipsecme-ikev2-mlkem}}.
+
+Issue 7, is the domain of {{?I-D.ietf-suit-mti}} which suggests the inclusion of the HSS-LMS for signing of firmware updates.
+
+The transition of operational aspects (LDevID, IPsec) to quantum-safe algorithms requires that equipement firmware contain support for the new algorithms.
+Once that support is present, there are significant, but manageable, issues for the operator managing the transition.  New firmware, new (hybrid) certificates issued via {{EST}} following an orderly renewal process, along with in-protocol mechanisms
+being developed for TLS and IPsec/IKE to allow for an incremental transition.
+All the above things are not in scope for this document.
+
+The manufacturer of a device controls what firmware goes into it and when.
+To first order, the manufacturer may switch to quantum-safe methods as soon as:
+
+* it has updated its MASA to verify voucher requests with the new algorithm, and sign vouchers with the new algorithm
+
+* it has switched its IDevID PKI to use a quantum-safe trust anchor, updating its qfactory device ID provisioning mechanism to use the new algorithm
+
+* it has a quantum-safe TLS certificate for it's MASA internet visible end-point
+
+* it has suitable firmware in the Pledge device that can use the new algorithms
+
+A manufacturer can essentially treat all new devices produced as being part of a new product line.
+That could include putting in a different MASA URL into the IDevID.
+That allows for all quantum-safe operations to be done on a new platform removing any risk to any installed based.
+
+The limiting factor for doing this is that the operator's Registrar must be ready to support the new algorithms.
+
+This includes:
+
+* answering provisional-TLS {{RFC8995}} requests with a quantum-safe certificate
+
+* accepting quantum-safe client-certificates from new devices
+
+* verification of the Pledge Voucher Request (PVR)
+
+* connecting to the MASA using quantum-safe mutual TLS
+
+* validating/auditing the resulting voucher
+
+Of these steps, only the voucher operations involves Registrar application code,
+the rest of this is "just" TLS upgrades necessary for quantum-safe operation.
+
+It may be possible for manufacturers to provision IDevID using both traditional and quantum-safe versions.
+In that case, the Pledge can look at the certificate presented by the Registrar, and if it is not quantum-safe, then it can use traditional algorithms.
+For enterprise and ISP level equipment used in an {{RFC8994}} ACP there are no code space reasons to prevent this.
+For IoT use cases, there may be code space, but also network capacity issues with the quantum-safe methods.
+This is an evolving problem in the IoT space.
+
+
 
 
 # IANA Considerations {#iana-considerations}
