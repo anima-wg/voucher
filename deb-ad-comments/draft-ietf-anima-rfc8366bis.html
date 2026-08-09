@@ -1460,7 +1460,7 @@ one of the YANG models as defined in this document.<a href="#section-2-2.4.1" cl
         <dd class="break"></dd>
 <dt id="section-2-2.5">Bootstrapping:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.6">
-          <p id="section-2-2.6.1">See Imprint and Onboarding.
+          <p id="section-2-2.6.1">See Onboarding.
  This term was used in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, but has been supplanted by the term Onboarding.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1473,108 +1473,94 @@ join a Domain and obtain domain-specific security credentials.
 This term is not related to "DNS domain" <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span> although a Domain might be associated to a specific DNS domain.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.9">Imprint:</dt>
+<dt id="section-2-2.9">Join Registrar (and Coordinator):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.10">
-          <p id="section-2-2.10.1">The process where a device obtains the cryptographic key material to
-identify and trust future interactions generally as part of the manufacturing.
-This term is taken from Konrad Lorenz's work in biology with new ducklings:
-"during a critical period, the duckling would assume that anything
-that looks like a mother duck is in fact their mother"
-<span>[<a href="#Stajano99theresurrecting" class="cite xref">Stajano99theresurrecting</a>]</span>. An equivalent for a device is to
-obtain the fingerprint of the manufacturer's root certification authority (root CA)
-certificate. A device that Imprints on an attacker suffers a similar
-fate to a duckling that imprints on a hungry wolf. Imprinting is a
-term from psychology and ethology, as described in <span>[<a href="#imprinting" class="cite xref">imprinting</a>]</span>.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.11">Join Registrar (and Coordinator):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.12">
-          <p id="section-2-2.12.1">A representative of the Domain that is configured, perhaps
-autonomically, to decide whether a new device is allowed to join the
+          <p id="section-2-2.10.1">A representative of the Domain that is configured
+to decide whether a new device is allowed to join the
 Domain. The administrator of the Domain interfaces with a Join
 Registrar (and Coordinator) to control this process.
 Typically, a Join Registrar is "inside" its Domain. For simplicity,
-this document often refers to this as just "Registrar".<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+this document often refers to this as just "Registrar".<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.13">MASA (Manufacturer Authorized Signing Authority):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.14">
-          <p id="section-2-2.14.1">The entity that, for the purpose of this document, issues and signs the
+<dt id="section-2-2.11">MASA (Manufacturer Authorized Signing Authority):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.12">
+          <p id="section-2-2.12.1">The entity that, for the purpose of this document, issues and signs the
 Vouchers for a manufacturer's Pledges and keeps logs of Pledge ownership.
 In some Onboarding protocols, the MASA may have an Internet
 presence and be integral to the Onboarding process, whereas in
 other protocols the MASA may be an offline service that has no
-active role in the Onboarding process.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+active role in the Onboarding process.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.15">Malicious Registrar:</dt>
+<dt id="section-2-2.13">Malicious Registrar:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.14">
+          <p id="section-2-2.14.1">An on-path active attacker that presents itself as a legitimate Registrar.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.15">Onboarding:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.16">
-          <p id="section-2-2.16.1">An on-path active attacker that presents itself as a legitimate Registrar.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.17">Onboarding:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.18">
-          <p id="section-2-2.18.1">Onboarding describes the process to provide necessary operational data to a Pledge
+          <p id="section-2-2.16.1">Onboarding describes the process to provide necessary operational data to a Pledge
 and to complete the process of bringing the Pledge into an operational state.
 This data may include configuration data, but specifically deals with application-specific cryptographic
 key material (application-specific security credentials).
-Since <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, this term has replaced the term Bootstrapping.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+Since <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, this term has replaced the term Bootstrapping.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.19">Owner:</dt>
+<dt id="section-2-2.17">Owner:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.18">
+          <p id="section-2-2.18.1">The entity that controls the private key of the trust anchor conveyed by the Voucher.
+Typically, the Owner is indicated by the '<code>pinned-domain-cert</code>' Attribute.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.19">Pledge:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.20">
-          <p id="section-2-2.20.1">The entity that controls the private key of the trust anchor conveyed by the Voucher.
-Typically, the Owner is indicated by the '<code>pinned-domain-cert</code>' Attribute.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.21">Pledge:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.22">
-          <p id="section-2-2.22.1">The prospective component/device attempting to find and securely join a Domain.
+          <p id="section-2-2.20.1">The prospective component/device attempting to find and securely join a Domain.
 When shipped or in factory reset mode, it only trusts authorized representatives of the
-manufacturer.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+manufacturer.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.23">Registrar:</dt>
+<dt id="section-2-2.21">Registrar:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.22">
+          <p id="section-2-2.22.1">See Join Registrar. This term is not related to the term DNS Registrar <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span>.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.23">TOFU (Trust on First Use):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">See Join Registrar. This term is not related to the term DNS Registrar <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span>.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.25">TOFU (Trust on First Use):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.26">
-          <p id="section-2-2.26.1">When a Pledge makes no security decisions but rather simply
+          <p id="section-2-2.24.1">When a Pledge makes no security decisions but rather simply
 trusts the first Domain entity it is contacted by.
 Used similarly to <span>[<a href="#RFC7435" class="cite xref">RFC7435</a>]</span>.
-This is also known as the "resurrecting duckling" model <span>[<a href="#Stajano99theresurrecting" class="cite xref">Stajano99theresurrecting</a>]</span>.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+This is also known as the "resurrecting duckling" model <span>[<a href="#Stajano99theresurrecting" class="cite xref">Stajano99theresurrecting</a>]</span>.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.27">Voucher:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.28">
-          <p id="section-2-2.28.1">A Voucher Artifact that is a signed statement
+<dt id="section-2-2.25">Voucher:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.26">
+          <p id="section-2-2.26.1">A Voucher Artifact that is a signed statement
 from the MASA service that indicates to a Pledge
 the cryptographic identity of the Domain it should trust.
-When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.<a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
+When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.29">Voucher Data:</dt>
+<dt id="section-2-2.27">Voucher Data:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.28">
+          <p id="section-2-2.28.1">The raw (serialized) representation of the YANG data elements of a Voucher (Request) without any enclosing signature.
+Current serialization formats include JSON and CBOR.<a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.29">Voucher Request:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.30">
-          <p id="section-2-2.30.1">The raw (serialized) representation of the YANG data elements of a Voucher (Request) without any enclosing signature.
-Current serialization formats include JSON and CBOR.<a href="#section-2-2.30.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.30.1">A signed artifact sent from the Pledge to the Registrar, or from the Registrar to the MASA, for Voucher acquisition.
+When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.<a href="#section-2-2.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.31">Voucher Request:</dt>
+<dt id="section-2-2.31">Pledge Voucher Request (PVR):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.32">
-          <p id="section-2-2.32.1">A signed artifact sent from the Pledge to the Registrar, or from the Registrar to the MASA, for Voucher acquisition.
-When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.<a href="#section-2-2.32.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.32.1">A signed artifact sent from the Pledge to the Registrar. It is a specific form of Voucher Request.<a href="#section-2-2.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.33">Pledge Voucher Request (PVR):</dt>
+<dt id="section-2-2.33">Registrar Voucher Request (RVR):</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.34">
-          <p id="section-2-2.34.1">A signed artifact sent from the Pledge to the Registrar. It is a specific form of Voucher Request.<a href="#section-2-2.34.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.35">Registrar Voucher Request (RVR):</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.36">
-          <p id="section-2-2.36.1">A signed artifact sent from the Registrar to the MASA. It is a specific form of Voucher Request.<a href="#section-2-2.36.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.34.1">A signed artifact sent from the Registrar to the MASA. It is a specific form of Voucher Request.<a href="#section-2-2.34.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -3561,10 +3547,6 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="I-D.vangeest-lamps-cms-euf-cma-signeddata">[I-D.vangeest-lamps-cms-euf-cma-signeddata]</dt>
         <dd>
 <span class="refAuthor">Van Geest, D.</span> and <span class="refAuthor">F. Strenzke</span>, <span class="refTitle">"Best Practices for CMS SignedData with Regards to Signed Attributes"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-vangeest-lamps-cms-euf-cma-signeddata-02</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-vangeest-lamps-cms-euf-cma-signeddata-02">https://datatracker.ietf.org/doc/html/draft-vangeest-lamps-cms-euf-cma-signeddata-02</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="imprinting">[imprinting]</dt>
-        <dd>
-<span class="refAuthor">Wikipedia</span>, <span class="refTitle">"Wikipedia article: Imprinting (psychology)"</span>, <time datetime="2026-03-12" class="refDate">12 March 2026</time>, <span>&lt;<a href="https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1337280821">https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&amp;oldid=1337280821</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="JWS">[JWS]</dt>
         <dd>

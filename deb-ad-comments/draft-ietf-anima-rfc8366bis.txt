@@ -239,8 +239,8 @@ Table of Contents
       Data.  The element's name and data type are defined by one of the
       YANG models as defined in this document.
 
-   Bootstrapping:  See Imprint and Onboarding.  This term was used in
-      [RFC8366], but has been supplanted by the term Onboarding.
+   Bootstrapping:  See Onboarding.  This term was used in [RFC8366], but
+      has been supplanted by the term Onboarding.
 
    Domain:  The set of entities or infrastructure under common
       administrative control.  The goal of the Onboarding protocol is to
@@ -249,25 +249,13 @@ Table of Contents
       [RFC9499] although a Domain might be associated to a specific DNS
       domain.
 
-   Imprint:  The process where a device obtains the cryptographic key
-      material to identify and trust future interactions generally as
-      part of the manufacturing.  This term is taken from Konrad
-      Lorenz's work in biology with new ducklings: "during a critical
-      period, the duckling would assume that anything that looks like a
-      mother duck is in fact their mother" [Stajano99theresurrecting].
-      An equivalent for a device is to obtain the fingerprint of the
-      manufacturer's root certification authority (root CA) certificate.
-      A device that Imprints on an attacker suffers a similar fate to a
-      duckling that imprints on a hungry wolf.  Imprinting is a term
-      from psychology and ethology, as described in [imprinting].
-
    Join Registrar (and Coordinator):  A representative of the Domain
-      that is configured, perhaps autonomically, to decide whether a new
-      device is allowed to join the Domain.  The administrator of the
-      Domain interfaces with a Join Registrar (and Coordinator) to
-      control this process.  Typically, a Join Registrar is "inside" its
-      Domain.  For simplicity, this document often refers to this as
-      just "Registrar".
+      that is configured to decide whether a new device is allowed to
+      join the Domain.  The administrator of the Domain interfaces with
+      a Join Registrar (and Coordinator) to control this process.
+      Typically, a Join Registrar is "inside" its Domain.  For
+      simplicity, this document often refers to this as just
+      "Registrar".
 
    MASA (Manufacturer Authorized Signing Authority):  The entity that,
       for the purpose of this document, issues and signs the Vouchers
@@ -2287,11 +2275,6 @@ Table of Contents
               cma-signeddata-02, 20 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-vangeest-
               lamps-cms-euf-cma-signeddata-02>.
-
-   [imprinting]
-              Wikipedia, "Wikipedia article: Imprinting (psychology)",
-              12 March 2026, <https://en.wikipedia.org/w/
-              index.php?title=Imprinting_(psychology)&oldid=1337280821>.
 
    [JWS]      Jones, M., Bradley, J., and N. Sakimura, "JSON Web
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
