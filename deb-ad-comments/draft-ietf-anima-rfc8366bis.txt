@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 8 February 2027                               IoTconsultancy.nl
+Expires: 10 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           7 August 2026
+                                                           9 August 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 February 2027.
+   This Internet-Draft will expire on 10 February 2027.
 
 Copyright Notice
 
@@ -164,11 +164,15 @@ Table of Contents
    This trust anchor represents the authority of the Owner of a network.
    Communicating this trust anchor securely to the Pledge is the job of
    the Voucher Artifact.  The act of communicating this trust anchor is
-   known as pinning the trust anchor, as the Pledge can then use the
-   resulting anchor to authenticate other actors who are part of the
-   network.  The collection of all these actors is collectively known as
-   the Domain.  (This is not related to the domain name system, but
-   rather the term is of mathematical origin)
+   known as pinning the trust anchor.  [RFC8994] explains how this
+   anchor is used to form an overlay management Autononomic Control
+   Plane (ACP) network, using authenticated IPsec (or other) tunnels.
+   IoT devices can now do mutually authenticated (D)TLS or EDHOC
+   connections, although authorization is best left to mechanisms such
+   as [RFC9200].  The collection of all these devices, with the same
+   trust anchor is collectively known as the Domain.  (This is not
+   related to the domain name system, but rather the term is of
+   mathematical origin)
 
    A Voucher may be useful in several contexts, but the driving
    motivation herein is to support secure Onboarding mechanisms.  This
@@ -771,7 +775,8 @@ Table of Contents
    an OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
 
    In order to partially alleviate how many variations a Registrar
-   implementation need deal with, some RECOMMENDATIONS are as follows:
+   implementation need deal with, these are recommendations for
+   implementers of Registrar:
 
    When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
    supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
@@ -779,7 +784,7 @@ Table of Contents
    4096 bits SHOULD be supported.
 
    ML-DSA [RFC9964] SHOULD be supported for COSE and JOSE signed
-   vouchers, with [RFC9882] used for CMS format voucher artifacts.
+   vouchers, with [RFC9881] used for CMS format voucher artifacts.
 
    Neither of these are hybrid algorithms and may not be suitable for
    use by a certification authority creating IDevID certificates.  For
@@ -788,11 +793,12 @@ Table of Contents
    The decision as to when to transition to quantum-safe algorithms is a
    manufacturer decision.
 
-   Choices outside of these RECOMMENDATIONS likely will result in Pledge
-   devices being unable to onboard on some networks.  In such a
-   situation, an automated, zero-touch onboarding solution may be
-   impossible, but it may still be possible to use mechanisms such as
-   suggested in [RFC8995], Section 7.2 to onboard a device.
+   Other choices are possible, but likely will result in Pledge devices
+   being unable to onboard on networks until the Registrar involved
+   implements those choices.  In such a situation, an automated, zero-
+   touch onboarding solution may be impossible, but it may still be
+   possible to use mechanisms such as suggested in [RFC8995],
+   Section 7.2 to onboard a device.
 
    Should SHA256 need to be replaced, then a new YANG module will be
    published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
@@ -1799,29 +1805,8 @@ Table of Contents
    skip the revocation status check because, for instance, the OCSP
    Responder ([RFC5280]) is not reachable.
 
-   In online deployments using BRSKI or a variant, where the voucher
-   will be delivered online to the Pledge, a voucher validity period of
-   less than an hour will be suitable.
-
-   For the [PRM] variant however, the voucher may transported by foot
-   (literally), and a voucher created just before the end of the day,
-   before a long weekend, might not be conveyed until four or five days
-   later.  For such a situation, a validity period of seven days would
-   be appropriate.  Instead of allowing the voucher to remain valid
-   through a longer break, a lightweight renewal MUST be done at the
-   beginning of the next work day with a default validity of less than
-   one work day ("8 hours").  The [PRM] case introduces the Registrar-
-   Agent, and it would be the responsability of that tool to manage this
-   renewal.
-
-   In the previous two cases if the Pledge is known to not have a
-   reliable clock, then the validity calculation will not occur:
-   freshness in the voucher is accomplished through the use of a nonce.
-
-   For [SZTP] uses, vouchers that are conveyed via storage, or stored in
-   DNS, will need to have significantly longer validities, on the order
-   of weeks to months.  They might be sent by email, or even courier,
-   not received and processed until someone returns from vacation.
+   The exact details of how is "short-lived" is up to the different
+   onboarding mechanisms.
 
    So, while this document recommends issuing short-lived Vouchers, the
    Voucher Artifact does not restrict the ability to create long-lived
@@ -1981,8 +1966,9 @@ Table of Contents
 
    For vendor proprietary extensions, (including ISE submissions), the
    resulting string still needs to be unique.  This can be done by
-   putting the extension name in the form a fully-qualified domain name
-   (FQDN) [RFC3696], such as "fuubar.example.com"
+   making the YANG module unique, basing it on a fully-qualified domain
+   name (FQDN) [RFC3696], such as "fuubar.example.com-mud-thing" rather
+   than "fuubar-mud-thing"
 
    Vendor proprietary extensions do not need to be registered with IANA,
    but vendors are encouraged to do so.
@@ -1990,9 +1976,9 @@ Table of Contents
    Designated Experts should review the documents for clarity, but the
    choices are tied to WG and IESG processes:
 
-   *  There are no choices in the extension names (which is always the
-      YANG module name), or SID value (which is from another IANA
-      process).
+   *  There are no choices in the extension names (for standards track
+      extensions) which is always the YANG module name), or SID value
+      (which is from another IANA process).
 
    *  For non-standards track extensions, the Designated Expert should
       review the provided document for clarity of purpose.  The
@@ -2179,10 +2165,12 @@ Table of Contents
               RFC 9254, DOI 10.17487/RFC9254, July 2022,
               <https://www.rfc-editor.org/rfc/rfc9254>.
 
-   [RFC9882]  Salter, B., Raine, A., and D. Van Geest, "Use of the ML-
-              DSA Signature Algorithm in the Cryptographic Message
-              Syntax (CMS)", RFC 9882, DOI 10.17487/RFC9882, October
-              2025, <https://www.rfc-editor.org/rfc/rfc9882>.
+   [RFC9881]  Massimo, J., Kampanakis, P., Turner, S., and B. E.
+              Westerbaan, "Internet X.509 Public Key Infrastructure --
+              Algorithm Identifiers for the Module-Lattice-Based Digital
+              Signature Algorithm (ML-DSA)", RFC 9881,
+              DOI 10.17487/RFC9881, October 2025,
+              <https://www.rfc-editor.org/rfc/rfc9881>.
 
    [RFC9890]  Bierman, A., Boucadair, M., Ed., and Q. Wu, "An Update to
               YANG Module Names Registration", RFC 9890,
@@ -2307,10 +2295,21 @@ Table of Contents
               RFCs", RFC 8792, DOI 10.17487/RFC8792, June 2020,
               <https://www.rfc-editor.org/rfc/rfc8792>.
 
+   [RFC8994]  Eckert, T., Ed., Behringer, M., Ed., and S. Bjarnason, "An
+              Autonomic Control Plane (ACP)", RFC 8994,
+              DOI 10.17487/RFC8994, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc8994>.
+
    [RFC9110]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "HTTP Semantics", STD 97, RFC 9110,
               DOI 10.17487/RFC9110, June 2022,
               <https://www.rfc-editor.org/rfc/rfc9110>.
+
+   [RFC9200]  Seitz, L., Selander, G., Wahlstroem, E., Erdtman, S., and
+              H. Tschofenig, "Authentication and Authorization for
+              Constrained Environments Using the OAuth 2.0 Framework
+              (ACE-OAuth)", RFC 9200, DOI 10.17487/RFC9200, August 2022,
+              <https://www.rfc-editor.org/rfc/rfc9200>.
 
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
