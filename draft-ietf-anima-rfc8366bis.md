@@ -125,12 +125,6 @@ informative:
     - name: Frank Stajano
     - name: Ross Anderson
     date: 1999
-  imprinting:
-    target: "https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=1337280821"
-    title: 'Wikipedia article: Imprinting (psychology)'
-    author:
-    - org: Wikipedia
-    date: 2026-03-12
   fairhair:
     target: "https://openconnectivity.org/developer/specifications/fairhair/"
     title: 'Fairhair Specification'
@@ -231,7 +225,7 @@ Attribute:
   one of the YANG models as defined in this document.
 
 Bootstrapping:
-: See Imprint and Onboarding.
+: See Onboarding.
    This term was used in {{RFC8366}}, but has been supplanted by the term Onboarding.
 
 Domain:
@@ -240,18 +234,6 @@ Domain:
   The goal of the Onboarding protocol is to enable a Pledge to
   join a Domain and obtain domain-specific security credentials.
   This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
-
-Imprint:
-: The process where a device obtains the cryptographic key material to
-  identify and trust future interactions generally as part of the manufacturing.
-  This term is taken from Konrad Lorenz's work in biology with new ducklings:
-  "during a critical period, the duckling would assume that anything
-  that looks like a mother duck is in fact their mother"
-  {{Stajano99theresurrecting}}. An equivalent for a device is to
-  obtain the fingerprint of the manufacturer's root certification authority (root CA)
-  certificate. A device that Imprints on an attacker suffers a similar
-  fate to a duckling that imprints on a hungry wolf. Imprinting is a
-  term from psychology and ethology, as described in {{imprinting}}.
 
 Join Registrar (and Coordinator):
 : A representative of the Domain that is configured, perhaps
