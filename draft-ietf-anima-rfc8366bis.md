@@ -1034,6 +1034,14 @@ As the MASA needs to be able to respond to voucher signing requests,
 it is RECOMMENDED that the MASA's private key used for signing Vouchers is protected by
 a hardware security module (HSM).
 
+There are many ways to organize the PKI that is used to sign vouchers.
+{{I-D.ietf-anima-masa-considerations, Section 2}} describes a number of different scenarios.
+In some of them, there are long-term keys kept offline, implementing a certification authority.
+This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.
+
+The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
+The trust anchor configured into the Pledge is the long-term offline anchor.
+
 ## Test Domain Certificate Validity When Signing
 
 If a Domain certificate is compromised, then any outstanding
