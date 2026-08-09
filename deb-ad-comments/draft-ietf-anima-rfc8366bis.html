@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>A Voucher Artifact for Bootstrapping Protocols</title>
+<title>A Voucher Artifact for Onboarding Protocols</title>
 <meta content="Kent Watsen" name="author">
 <meta content="Michael C. Richardson" name="author">
 <meta content="Esko Dijk" name="author">
@@ -1109,7 +1109,7 @@ svg {
 </dd>
 </dl>
 </div>
-<h1 id="title">A Voucher Artifact for Bootstrapping Protocols</h1>
+<h1 id="title">A Voucher Artifact for Onboarding Protocols</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document defines a strategy to securely assign a candidate device (Pledge) to an  Owner
@@ -1208,6 +1208,12 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
                 <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-attempts-and-motivation-to-" class="internal xref">Attempts and motivation to extend RFC8366</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-challenges-with-revisions-t" class="internal xref">Challenges with revisions to YANG</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-detailed-changes-since-rfc8" class="internal xref">Detailed changes since RFC8366</a></p>
 </li>
             </ul>
 </li>
@@ -1393,25 +1399,28 @@ conforms with a data model described by YANG <span>[<a href="#RFC7950" class="ci
 It may also be serialized to CBOR <span>[<a href="#CBOR" class="cite xref">CBOR</a>]</span>.
 It is encoded using the rules defined in <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span> or <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>, and
 is signed using (by default) a CMS structure <span>[<a href="#RFC5652" class="cite xref">RFC5652</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">The primary purpose of a Voucher is to securely convey a trust anchor
+<p id="section-1-3">When <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was first published the industry had not yet concluded on a term to describe this process.
+A number of terms were used, and the term used by the previous document was "bootstrapping", but the industry has preferred the term "onboarding", and this
+document uses that term.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The primary purpose of a Voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
-The trust anchor may be in the form of a certificate (the '<code>pinned-domain-cert</code>' Attribute), a hash of a certificate, or it can be a raw public key (in constrained use cases).<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">This trust anchor represents the authority of the Owner of a network.
+The trust anchor may be in the form of a certificate (the '<code>pinned-domain-cert</code>' Attribute), a hash of a certificate, or it can be a raw public key (in constrained use cases).<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">This trust anchor represents the authority of the Owner of a network.
 Communicating this trust anchor securely to the Pledge is the job of the Voucher Artifact.
 The act of communicating this trust anchor is known as pinning the trust anchor.
 <span>[<a href="#RFC8994" class="cite xref">RFC8994</a>]</span> explains how this anchor is used to form an overlay management Autononomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
 IoT devices can now do mutually authenticated (D)TLS or EDHOC connections, although authorization is best left to mechanisms such as <span>[<a href="#RFC9200" class="cite xref">RFC9200</a>]</span>.
 The collection of all these devices, with the same trust anchor is collectively known as the Domain.
-(This is not related to the domain name system, but rather the term is of mathematical origin)<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
-This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">The lifetimes of Vouchers may vary.
+(This is not related to the domain name system, but rather the term is of mathematical origin)<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
+This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
 When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.
-How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">Some Onboarding protocols using the Voucher Artifact defined in
-this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#SECUREJOIN" class="cite xref">SECUREJOIN</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-7" class="pilcrow">¶</a></p>
+How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">Some Onboarding protocols using the Voucher Artifact defined in
+this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <div id="extensions-needed">
 <section id="section-1.1">
         <h3 id="name-extensions-needed">
@@ -1451,10 +1460,7 @@ one of the YANG models as defined in this document.<a href="#section-2-2.4.1" cl
         <dd class="break"></dd>
 <dt id="section-2-2.5">Bootstrapping:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.6">
-          <p id="section-2-2.6.1">The process where a Pledge obtains cryptographic key material to identify
- and trust future interactions within a specific Domain network.
- Bootstrapping is based on imprinted key material provided during the
- manufacturing process (see: Imprint).
+          <p id="section-2-2.6.1">See Imprint and Onboarding.
  This term was used in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, but has been supplanted by the term Onboarding.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1787,15 +1793,97 @@ Since then the industry has matured significantly, and the in-the-field activity
 The <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> document has defined a version of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while <span>[<a href="#I-D.ietf-lake-authz" class="cite xref">I-D.ietf-lake-authz</a>]</span> provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.1-4"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span> has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
-<p id="section-5.1-5">Both <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> require extensions to the Voucher Request and the resulting Voucher. The new Attributes are required to carry the additional data and describe the extended semantics.
-In addition, <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> uses the serialization mechanism described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> to produce significantly more compact artifacts.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
-<p id="section-5.1-6">When the process to define <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> was started, there was a belief that the appropriate process was to use the <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> <em>augment</em> mechanism to further extend both the Voucher Request <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and Voucher <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> artifacts.
-However, <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> needs to extend an enumerated type with additional values and <em>augment</em> can not do this, so that was initially the impetus for this document.<a href="#section-5.1-6" class="pilcrow">¶</a></p>
-<p id="section-5.1-7">An attempt was then made to determine what would happen if one wanted to have a constrained version of the <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> Voucher Artifact.
+<p id="section-5.1-5"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> uses the serialization mechanism described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span> to produce significantly more compact artifacts.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="challenges-with-revisions-to-yang">
+<section id="section-5.2">
+        <h3 id="name-challenges-with-revisions-t">
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-challenges-with-revisions-t" class="section-name selfRef">Challenges with revisions to YANG</a>
+        </h3>
+<p id="section-5.2-1">When the process to define <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> was started, there was a belief that the appropriate process was to use the <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span> <em>augment</em> mechanism to further extend both the Voucher Request <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and Voucher <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> artifacts.
+However, <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> needs to extend an enumerated type with additional values and <em>augment</em> can not do this, so that was initially the impetus for this document.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">An attempt was then made to determine what would happen if one wanted to have a constrained version of the <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> Voucher Artifact.
 The result was invalid YANG, with multiple definitions of the core Attributes from the <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> Voucher Artifact.
 After some discussion, it was determined that the <em>augment</em> mechanism did not work for this use case,
-nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> "yang-data" extension was replaced with the <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span> "structure" extension.<a href="#section-5.1-7" class="pilcrow">¶</a></p>
-<p id="section-5.1-8">After significant discussion the decision was made to simply roll all of the needed extensions into this document.<a href="#section-5.1-8" class="pilcrow">¶</a></p>
+nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> "yang-data" extension was replaced with the <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span> "structure" extension.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">After significant discussion the decision was made to simply roll all of the needed extensions into this document.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="detailed-changes-since-rfc8366">
+<section id="section-5.3">
+        <h3 id="name-detailed-changes-since-rfc8">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-detailed-changes-since-rfc8" class="section-name selfRef">Detailed changes since RFC8366</a>
+        </h3>
+<p id="section-5.3-1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> require extensions to the Voucher Request and the resulting Voucher.
+New attributes are required to carry the additional data and describe the extended semantics.
+The following attributes are new and the document to which they support is noted:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-2">To the Voucher Request:<a href="#section-5.3-2" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.3-3">
+          <dt id="section-5.3-3.1">assertion(agent-proximity):</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-3.2">
+            <p id="section-5.3-3.2.1"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span><a href="#section-5.3-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-3.3">pinned-domain-pubk:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-3.4">
+            <p id="section-5.3-3.4.1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span><a href="#section-5.3-3.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-3.5">pinned-domain-pubk-sha256:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-3.6">
+            <p id="section-5.3-3.6.1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span><a href="#section-5.3-3.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-3.7">proximity-registrary-pubk:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-3.8">
+            <p id="section-5.3-3.8.1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span><a href="#section-5.3-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-3.9">proximity-registrar-pubk-sha256:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-3.10">
+            <p id="section-5.3-3.10.1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span><a href="#section-5.3-3.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-5.3-4">To the Voucher:<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-5.3-5">
+          <dt id="section-5.3-5.1">additional-configuration-url:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.2">
+            <p id="section-5.3-5.2.1"><span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span><a href="#section-5.3-5.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.3">agent-signed-data:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.4">
+            <p id="section-5.3-5.4.1"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span><a href="#section-5.3-5.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.5">agent-provided-proximity-registrar-cert:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.6">
+            <p id="section-5.3-5.6.1"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span><a href="#section-5.3-5.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.7">agent-sign-cert:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.8">
+            <p id="section-5.3-5.8.1"><span>[<a href="#PRM" class="cite xref">PRM</a>]</span><a href="#section-5.3-5.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.9">est-domain:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.10">
+            <p id="section-5.3-5.10.1"><span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span><a href="#section-5.3-5.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.11">extensions:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.12">
+            <p id="section-5.3-5.12.1">Added to aid in future extensions<a href="#section-5.3-5.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-5.3-5.13">manufacturer-proprietary:</dt>
+          <dd style="margin-left: 1.5em" id="section-5.3-5.14">
+            <p id="section-5.3-5.14.1">Added to allow for controlled experiments and custom extensions<a href="#section-5.3-5.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
 </section>
 </div>
 </section>
@@ -3549,10 +3637,6 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC9997">[RFC9997]</dt>
         <dd>
 <span class="refAuthor">Bormann, C.</span>, <span class="refTitle">"YANG-CBOR: Allocating SID Ranges for Private Enterprise Number (PEN) Holders"</span>, <span class="seriesInfo">RFC 9997</span>, <span class="seriesInfo">DOI 10.17487/RFC9997</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9997">https://www.rfc-editor.org/rfc/rfc9997</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="SECUREJOIN">[SECUREJOIN]</dt>
-        <dd>
-<span class="refAuthor">Richardson, M.</span>, <span class="refTitle">"6tisch Zero-Touch Secure Join protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-6tisch-dtsecurity-zerotouch-join-04</span>, <time datetime="2019-07-08" class="refDate">8 July 2019</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-6tisch-dtsecurity-zerotouch-join-04">https://datatracker.ietf.org/doc/html/draft-ietf-6tisch-dtsecurity-zerotouch-join-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="Stajano99theresurrecting">[Stajano99theresurrecting]</dt>
         <dd>

@@ -15,7 +15,7 @@ Expires: 10 February 2027                              IoTconsultancy.nl
                                                            9 August 2026
 
 
-             A Voucher Artifact for Bootstrapping Protocols
+              A Voucher Artifact for Onboarding Protocols
                    draft-ietf-anima-rfc8366bis-latest
 
 Abstract
@@ -93,6 +93,8 @@ Table of Contents
    4.  Survey of Voucher Types
    5.  Changes since RFC8366
      5.1.  Attempts and motivation to extend RFC8366
+     5.2.  Challenges with revisions to YANG
+     5.3.  Detailed changes since RFC8366
    6.  Updates to RFC8995
      6.1.  Updates to the use of idevid-issuer
      6.2.  Clarifications on the use of idevid-issuer
@@ -156,6 +158,12 @@ Table of Contents
    or [RFC9254], and is signed using (by default) a CMS structure
    [RFC5652].
 
+   When [RFC8366] was first published the industry had not yet concluded
+   on a term to describe this process.  A number of terms were used, and
+   the term used by the previous document was "bootstrapping", but the
+   industry has preferred the term "onboarding", and this document uses
+   that term.
+
    The primary purpose of a Voucher is to securely convey a trust anchor
    that a Pledge can use to authenticate subsequent interactions.  The
    trust anchor may be in the form of a certificate (the 'pinned-domain-
@@ -190,7 +198,7 @@ Table of Contents
    in the onboarding protocol itself.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
-   document include: [SZTP], [SECUREJOIN], [RFC8995] and [cBRSKI].
+   document include: [SZTP], [RFC8995] and [cBRSKI].
 
 1.1.  Extensions Needed
 
@@ -231,12 +239,8 @@ Table of Contents
       Data.  The element's name and data type are defined by one of the
       YANG models as defined in this document.
 
-   Bootstrapping:  The process where a Pledge obtains cryptographic key
-      material to identify and trust future interactions within a
-      specific Domain network.  Bootstrapping is based on imprinted key
-      material provided during the manufacturing process (see: Imprint).
-      This term was used in [RFC8366], but has been supplanted by the
-      term Onboarding.
+   Bootstrapping:  See Imprint and Onboarding.  This term was used in
+      [RFC8366], but has been supplanted by the term Onboarding.
 
    Domain:  The set of entities or infrastructure under common
       administrative control.  The goal of the Onboarding protocol is to
@@ -475,11 +479,10 @@ Table of Contents
    to collect and transfer signed artifacts via physical travel from one
    network to another.
 
-   Both [cBRSKI] and [PRM] require extensions to the Voucher Request and
-   the resulting Voucher.  The new Attributes are required to carry the
-   additional data and describe the extended semantics.  In addition,
    [cBRSKI] uses the serialization mechanism described in [RFC9254] to
    produce significantly more compact artifacts.
+
+5.2.  Challenges with revisions to YANG
 
    When the process to define [cBRSKI] and [PRM] was started, there was
    a belief that the appropriate process was to use the [RFC7950]
@@ -499,6 +502,42 @@ Table of Contents
 
    After significant discussion the decision was made to simply roll all
    of the needed extensions into this document.
+
+5.3.  Detailed changes since RFC8366
+
+   [cBRSKI], [CLOUD] and [PRM] require extensions to the Voucher Request
+   and the resulting Voucher.  New attributes are required to carry the
+   additional data and describe the extended semantics.  The following
+   attributes are new and the document to which they support is noted:
+
+   To the Voucher Request:
+
+   assertion(agent-proximity):  [PRM]
+
+   pinned-domain-pubk:  [cBRSKI]
+
+   pinned-domain-pubk-sha256:  [cBRSKI]
+
+   proximity-registrary-pubk:  [cBRSKI]
+
+   proximity-registrar-pubk-sha256:  [cBRSKI]
+
+   To the Voucher:
+
+   additional-configuration-url:  [CLOUD]
+
+   agent-signed-data:  [PRM]
+
+   agent-provided-proximity-registrar-cert:  [PRM]
+
+   agent-sign-cert:  [PRM]
+
+   est-domain:  [CLOUD]
+
+   extensions:  Added to aid in future extensions
+
+   manufacturer-proprietary:  Added to allow for controlled experiments
+      and custom extensions
 
 6.  Updates to RFC8995
 
@@ -2336,13 +2375,6 @@ Table of Contents
               Enterprise Number (PEN) Holders", RFC 9997,
               DOI 10.17487/RFC9997, July 2026,
               <https://www.rfc-editor.org/rfc/rfc9997>.
-
-   [SECUREJOIN]
-              Richardson, M., "6tisch Zero-Touch Secure Join protocol",
-              Work in Progress, Internet-Draft, draft-ietf-6tisch-
-              dtsecurity-zerotouch-join-04, 8 July 2019,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-6tisch-
-              dtsecurity-zerotouch-join-04>.
 
    [Stajano99theresurrecting]
               Stajano, F. and R. Anderson, "The Resurrecting Duckling:
