@@ -703,7 +703,7 @@ The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the tar
 
 A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX {{RFC5280}} processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.
 
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
+The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
 ## Tree Diagram {#voucher-tree-diagram}
