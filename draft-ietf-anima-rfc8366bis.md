@@ -619,7 +619,7 @@ For Vouchers stored/transferred via methods like a USB storage device (USB key),
 
 The onboarding process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms for its operational phase.
 
-In the constrained versions of the voucher and voucher-request (as used by {{cBRSKI}}), the attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key.
+The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key for such devices.
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
@@ -1167,13 +1167,13 @@ IANA does not need to separately allocate a SID value for this column.
 Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.
 
 For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
-This can be done by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
+This can be done by making the YANG module unique, basing it on a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
 
 Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:
 
-* There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
+* There are no choices in the extension names (for standards track extensions) which is always the YANG module name), or SID value (which is from another IANA process).
 
 * For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
 The stability of the reference may be of concern.
