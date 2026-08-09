@@ -117,6 +117,7 @@ informative:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
+  EST: RFC7030
   YANG-GUIDE: RFC8407
   Stajano99theresurrecting:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
@@ -678,12 +679,6 @@ to support, and whatever choices they make, they need to also support in their M
 Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present in the recalled devices.
 
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
-{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
-{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum safe (PQ) {{?RFC9958}} algorithms for ANI work.
-
-{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specifies mandatory to implement algorithms for IoT use cases.
-
-A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX {{RFC5280}} processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.
 
 The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
@@ -1085,6 +1080,43 @@ YANG to define an API accessed by network management protocols such as
 NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, this
 security considerations section does not follow the template described
 by Section 3.7 of {{YANG-GUIDE}}.
+
+## Algorithm Agility for Voucher Artifacts
+
+As explained in {{?RFC9958}} there is significant concern that current public key schemes like RSA and ECC will be compromised with a few years of publication of this document.
+
+A key part of managing a transition to quantum-safe algorithms involves the ability of a protocol to transition from one algorithm to another.
+This is often referred to as Algorithm Agility.
+
+Public key operations are present in a number of places in an onboarding protocols.
+The {{RFC8995}} process includes the use of a TLS connection from Pledge to Registrar, and the subsequent use of {{EST}} to deploy operational certificates (LDevID) to the devices.
+These operational certificates are then used in an ANI situation as described by {{RFC8994}} to construct an overlay.
+In other applicabilities, the operational certificates are used in machine to machine communications.
+For a fully quantum-safe deployment, all of those mechanisms will need to be updated as well.
+
+{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
+{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum safe (PQ) {{?RFC9958}} algorithms for ANI work: a full transition requires changes to multiple components, including TLS, IPsec and PKI mechanisms.
+
+{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specifies mandatory to implement algorithms for IoT use cases.
+
+A certain class of constrained devices needs to minimize the code size,
+and thus prefers to eliminate the code for ASN.1 processing.
+This is where the raw public key methods are important.
+Current mechanisms pin raw public keys using SHA256 hashes of the key, and that mechanism is agile to any key algorithm.
+
+Voucher Requests are signed by the manyfacturer provisioned IDevID key.
+In theory, manufacturers may use any algorithm that they wish, as long as their
+MASA is able to verify the voucher request.
+In practice, {{RFC8995}} Registrars expect to be able to verify the voucher request against an IDevID certificate connected to a manufacturer provided trust anchor.
+This validation is important in order to verify that the device is a legitimate device, and is not a counterfeit device.
+
+During the onboarding process, a Voucher is produced.
+It is signed by a manufacturer maintained credential, the trust anchor leading to that credential having been provisioned into the Pledge device at manufacturing time.
+This voucher contains a pin of the Registrar's credential, and in a number of scenarios, the manufacturer is expected to be able to verify that key matches
+the credential that they believe that they sold the device to.
+(see {{RFC8995, Section 5.4.1}} and {{RFC8995, Section 7.4.2}})
+
+Within all of this the critical path towards quantum-safety is the Registry support for a manufacturer private PKI for the IDevID.
 
 
 # IANA Considerations {#iana-considerations}
