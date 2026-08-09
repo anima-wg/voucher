@@ -649,8 +649,6 @@ A certain class of constrained devices minimizes the code size of the code for A
 The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
-Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
-
 ## Tree Diagram {#voucher-tree-diagram}
 
 The following tree diagram illustrates a high-level view of a Voucher
