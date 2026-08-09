@@ -117,7 +117,6 @@ informative:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
-  SECUREJOIN: I-D.ietf-6tisch-dtsecurity-zerotouch-join
   YANG-GUIDE: RFC8407
   Stajano99theresurrecting:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
@@ -200,7 +199,7 @@ When longer validity periods are important, this document recommends using short
 How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
-this document include: {{SZTP}}, {{SECUREJOIN}}, {{RFC8995}} and {{cBRSKI}}.
+this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
 
 
 
@@ -445,8 +444,9 @@ The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over
 {{PRM}} has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.
 
-Both {{cBRSKI}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher. The new Attributes are required to carry the additional data and describe the extended semantics.
-In addition, {{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
+{{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
+
+## Challenges with revisions to YANG
 
 When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{RFC8995}} and Voucher {{RFC8366}} artifacts.
 However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
@@ -457,6 +457,54 @@ After some discussion, it was determined that the _augment_ mechanism did not wo
 nor did it work better when the {{RFC8040}} "yang-data" extension was replaced with the {{RFC8791}} "structure" extension.
 
 After significant discussion the decision was made to simply roll all of the needed extensions into this document.
+
+
+## Detailed changes since RFC8366
+
+{{cBRSKI}}, {{CLOUD}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher.
+New attributes are required to carry the additional data and describe the extended semantics.
+The following attributes are new and the document to which they support is noted:
+
+To the Voucher Request:
+
+assertion(agent-proximity):
+: {{PRM}}
+
+pinned-domain-pubk:
+: {{cBRSKI}}
+
+pinned-domain-pubk-sha256:
+: {{cBRSKI}}
+
+proximity-registrary-pubk:
+: {{cBRSKI}}
+
+proximity-registrar-pubk-sha256:
+: {{cBRSKI}}
+
+To the Voucher:
+
+additional-configuration-url:
+: {{CLOUD}}
+
+agent-signed-data:
+: {{PRM}}
+
+agent-provided-proximity-registrar-cert:
+: {{PRM}}
+
+agent-sign-cert:
+: {{PRM}}
+
+est-domain:
+: {{CLOUD}}
+
+extensions:
+: Added to aid in future extensions
+
+manufacturer-proprietary:
+: Added to allow for controlled experiments and custom extensions
+
 
 # Updates to RFC8995
 
