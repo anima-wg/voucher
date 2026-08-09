@@ -180,8 +180,10 @@ The trust anchor may be in the form of a certificate (the '`pinned-domain-cert`'
 
 This trust anchor represents the authority of the Owner of a network.
 Communicating this trust anchor securely to the Pledge is the job of the Voucher Artifact.
-The act of communicating this trust anchor is known as pinning the trust anchor, as the Pledge can then use the resulting anchor to authenticate other actors who are part of the network.
-The collection of all these actors is collectively known as the Domain.
+The act of communicating this trust anchor is known as pinning the trust anchor.
+{{?RFC8994}} explains how this anchor is used to form an overlay management Autononomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
+IoT devices can now do mutually authenticated (D)TLS or EDHOC connections, although authorization is best left to mechanisms such as {{?RFC9200}}.
+The collection of all these devices, with the same trust anchor is collectively known as the Domain.
 (This is not related to the domain name system, but rather the term is of mathematical origin)
 
 A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
