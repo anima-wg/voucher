@@ -189,21 +189,25 @@ The collection of all these devices, with the same trust anchor is collectively 
 A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
 This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.
 
+## Extensions Needed
+
 {{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
 This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
 
-YANG is not easily extended except by updating the YANG module definition.
-Since {{RFC8366}} was written, the common pattern is to publish YANG modules as two documents: one with only the YANG module, and the other one with usage, motivation and further explanation.
-This allows the YANG module to be updated without replacing all of the context.
-This document does not follow that pattern, but future documents may update only the YANG module.
+A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new attributes be added to the Voucher and Voucher Requrest.
+At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
+
+However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
+The process is further explained in {{extendfail}}.
 
 This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
-This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer private extensions.
+This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer proprietary extensions.
 
 The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
 In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
+How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
 this document include: {{SZTP}}, {{SECUREJOIN}}, {{RFC8995}} and {{cBRSKI}}.
