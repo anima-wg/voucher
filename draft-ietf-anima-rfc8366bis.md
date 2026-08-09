@@ -642,7 +642,7 @@ The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) an
 The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
-In order to partially alleviate how many variations a Registrar implementation need deal with, some RECOMMENDATIONS are as follows:
+In order to partially alleviate how many variations a Registrar implementation need deal with, these are recommendations for implementers of Registrar:
 
 When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
 When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
@@ -654,7 +654,7 @@ When RSA is supported, key lengths between 2048 and 4096 bits SHOULD be supporte
 The decision as to when to transition to quantum-safe algorithms is a manufacturer
 decision.
 
-Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
+Other choices are possible, but likely will result in Pledge devices being unable to onboard on networks until the Registrar involved implements those choices.
 In such a situation, an automated, zero-touch onboarding solution may be impossible, but
 it may still be possible to use mechanisms such as suggested in {{RFC8995, Section 7.2}} to onboard a device.
 
@@ -1185,13 +1185,13 @@ IANA does not need to separately allocate a SID value for this column.
 Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.
 
 For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
-This can be done by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
+This can be done by making the YANG module unique, basing it on a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
 
 Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:
 
-* There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
+* There are no choices in the extension names (for standards track extensions) which is always the YANG module name), or SID value (which is from another IANA process).
 
 * For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
 The stability of the reference may be of concern.
