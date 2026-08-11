@@ -617,9 +617,7 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-The onboarding process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms for its operational phase.
-
-The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key for such devices.
+The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
