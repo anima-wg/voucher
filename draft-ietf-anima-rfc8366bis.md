@@ -617,49 +617,31 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
-Specifically, the manufacturer knows what signature algoritms the Pledge is doing to use, and can verify, thus there is no need (or opportunity) to negotiate the algorithm  or signature (CMS, JWS, COSE) scheme.
-Nor is there any need for a mandatory to implement (MTI) scheme, as again, by (literal) construction, the manufacturer knows what has been implemented.
-In constrained situations, the Pledge is expected to only have code space for a single algorithm and signature scheme
+The onboarding process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms for its operational phase.
 
-A manufacturer may transition devices among different algorithms, transitioning to quantum-safe ones as they become standardized, according to their own schedule.
-
-The only device for which this approach is a challenge is for the Domain Registrar.
-That device must deal with all variants which are still relevant to the operation of the specific network.
-
-Note: this CAN include support for algorithms which may be considered no longer safe, as there may be devices (spares) in unopened boxes which have not yet been used.
-The onboarding (bootstrap) process is a short-duration process, and it will often be the case that once onboarded, the device will be upgraded to newer firmware, with support for better/smaller/safer algorithms.
-Both {{RFC8995}} and {{SZTP}} provide mechanisms by which new (stronger) operational identities can be provisioned.
-
-When designing Pledge devices, manufacturers choose algorithms and signature formats that they need to support in their MASA.
-Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.
-
-While non-constrained devices could have code space for multiple algorithms or signature schemes, it makes little sense to use anything but the strongest of the algorithms present.
-
-Constrained devices are able to dispense with much code involved in ASN.1/PKIX processing of the voucher and voucher-request.  This is explained in {{cBRSKI}}.
-The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key for such devices.
-
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
-The old (1024-bit) DSA algorithm is not supported.
-
-In order to partially alleviate how many variations a Registrar implementation need deal with, some RECOMMENDATIONS are as follows:
-
-When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
-When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
-When RSA is supported, key lengths between 2048 and 4096 bits SHOULD be supported.
-{{?I-D.ietf-lamps-pq-composite-sigs}} with {{?I-D.ietf-lamps-cms-composite-sigs}} SHOULD be supported for CMS wrapped vouchers.
-{{!RFC9964}} SHOULD be supported for COSE signed vouchers.
-{{?I-D.ietf-jose-pq-composite-sigs}} SHOULD be supported for JOSE signed vouchers.
-
-The decision as to when to transition to quantum-safe algorithms is a manufacturer
-decision.
-
-Choices outside of these RECOMMENDATIONS likely will result in Pledge devices being unable to onboard on some networks.
-In such a situation, an automated, zero-touch solution may be impossible, but
-it may still be possible to use mechanisms such as suggested in {{RFC8995, Section 7.2}} to onboard a device.
+In the constrained versions of the voucher and voucher-request (as used by {{cBRSKI}}), the attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key.
 
 Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
 
+## Algorithm Choices for Voucher Requests and Vouchers
+
+As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher), and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
+
+When designing Pledge devices, manufacturers therefor have to choose algorithms and signature formats
+to support, and whatever choices they make, they need to also support in their MASA.
+Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present in the recalled devices.
+
+The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
+{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
+{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum safe (PQ) {{?RFC9958}} algorithms for ANI work.
+
+{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specifies mandatory to implement algorithms for IoT use cases.
+
+A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX {{RFC5280}} processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.
+
+The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
+The old (1024-bit) DSA algorithm is not supported.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
