@@ -1134,7 +1134,8 @@ An attack could be made upon any of the steps.  This includes:
 7. the PKI used by the manufacturer to authenticate firmware updates.
 
 Issue 3 (above) is a concern for {{RFC8995}}, issue 5 is about the ability of {{RFC8995}} to use {{EST}} to provision quantum-safe algorithms.
-For issue 6: the key agreement protocols within TLS and IPsec/IKE are the subject of documents such as {{?RFC9954}}, {{?I-D.ietf-tls-mlkem}}, {{?I-D.ietf-ipsecme-ikev2-pqc-auth}}, and {{?I-D.ietf-ipsecme-ikev2-mlkem}}.
+
+For issue 6: the key agreement protocols within TLS and IPsec/IKE are the subject of documents such as {{?RFC9954}}, {{?RFC10024}}, {{?I-D.ietf-tls-mlkem}}, {{?I-D.ietf-ipsecme-ikev2-pqc-auth}}, and {{?I-D.ietf-ipsecme-ikev2-mlkem}}.
 
 Issue 7, is the domain of {{?I-D.ietf-suit-mti}} which suggests the inclusion of the HSS-LMS for signing of firmware updates.
 
