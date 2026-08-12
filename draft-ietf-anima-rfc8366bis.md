@@ -17,7 +17,7 @@ pi:
   comments: 'yes'
   inline: 'yes'
   rfcedstyle: 'yes'
-title: A Voucher Artifact for Bootstrapping Protocols
+title: A Voucher Artifact for Onboarding Protocols
 abbrev: Voucher Artifact
 area: Operations
 wg: ANIMA Working Group
@@ -92,7 +92,6 @@ normative:
     date: 2021-02
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
-  ZERO-TOUCH: RFC8572
   RFC8995:
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
@@ -103,24 +102,21 @@ normative:
     - org: IEEE Standard
     date: 2018
   RFC8791:
-  eid7263:
-    target: "https://www.rfc-editor.org/errata/eid7263"
-    title: "Errata 7263, RFC8995"
 
 informative:
   RFC3688:
-  RFC8446:
+  RFC9846:
   RFC6125:
   RFC6241:
   RFC7435:
   RFC8040:
   RFC8340:
   RFC8366:
+  SZTP: RFC8572
   RFC8792:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
-  SECUREJOIN: I-D.ietf-6tisch-dtsecurity-zerotouch-join
   YANG-GUIDE: RFC8407
   Stajano99theresurrecting:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
@@ -129,18 +125,15 @@ informative:
     - name: Frank Stajano
     - name: Ross Anderson
     date: 1999
-  imprinting:
-    target: "https://en.wikipedia.org/w/index.php?title=Imprinting_(psychology)&oldid=1337280821"
-    title: 'Wikipedia article: Imprinting (psychology)'
-    author:
-    - org: Wikipedia
-    date: 2026-03-12
   fairhair:
     target: "https://openconnectivity.org/developer/specifications/fairhair/"
     title: 'Fairhair Specification'
     author:
     - org: Open Connectivity Foundation
     date: 2019-11-01
+  eid7263:
+    target: "https://www.rfc-editor.org/errata/eid7263"
+    title: "Errata 7263, RFC8995"
 
 --- abstract
 
@@ -174,37 +167,49 @@ It may also be serialized to CBOR {{CBOR}}.
 It is encoded using the rules defined in {{!RFC7951}} or {{RFC9254}}, and
 is signed using (by default) a CMS structure {{RFC5652}}.
 
+When {{RFC8366}} was first published the industry had not yet concluded on a term to describe this process.
+A number of terms were used, and the term used by the previous document was "bootstrapping", but the industry has preferred the term "onboarding", and this
+document uses that term.
+
 The primary purpose of a Voucher is to securely convey a trust anchor
 that a Pledge can use to authenticate subsequent interactions.
 The trust anchor may be in the form of a certificate (the '`pinned-domain-cert`' Attribute), a hash of a certificate, or it can be a raw public key (in constrained use cases).
 
 This trust anchor represents the authority of the Owner of a network.
 Communicating this trust anchor securely to the Pledge is the job of the Voucher Artifact.
-The act of communicating this trust anchor is known as pinning the trust anchor, as the Pledge can then use the resulting anchor to authenticate other actors who are part of the network.
-The collection of all these actors is collectively known as the Domain.
+The act of communicating this trust anchor is known as pinning the trust anchor.
+{{?RFC8994}} explains how this anchor is used to form an overlay management Autononomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
+IoT devices can now do mutually authenticated (D)TLS or EDHOC connections, although authorization is best left to mechanisms such as {{?RFC9200}}.
+The collection of all these devices, with the same trust anchor is collectively known as the Domain.
 (This is not related to the domain name system, but rather the term is of mathematical origin)
 
 A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
 This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.
 
-{{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
-This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
-
-YANG is not easily extended except by updating the YANG module definition.
-Since {{RFC8366}} was written, the common pattern is to publish YANG modules as two documents: one with only the YANG module, and the other one with usage, motivation and further explanation.
-This allows the YANG module to be updated without replacing all of the context.
-This document does not follow that pattern, but future documents may update only the YANG module.
-
-This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
-This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer private extensions.
-
 The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
-In order to support long lifetimes, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
+When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
+How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
-this document include: {{ZERO-TOUCH}}, {{SECUREJOIN}}, {{RFC8995}} and {{cBRSKI}}.
+this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
+
+
+
+## Extensions Needed
+
+{{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
+This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
+
+A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new attributes be added to the Voucher and Voucher Requrest.
+At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
+
+However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
+The process is further explained in {{extendfail}}.
+
+This document introduces a mechanism to support future extensions without requiring the YANG module to be revised.
+This includes both a new IETF standard mechanism for extensions modeled after the mechanism present in {{?RFC8520}}, as well as a facility for manufacturer proprietary extensions.
 
 # Terminology
 
@@ -220,10 +225,7 @@ Attribute:
   one of the YANG models as defined in this document.
 
 Bootstrapping:
-: The process where a Pledge obtains cryptographic key material to identify
-   and trust future interactions within a specific Domain network.
-   Bootstrapping is based on imprinted key material provided during the
-   manufacturing process (see: Imprint).
+: See Onboarding.
    This term was used in {{RFC8366}}, but has been supplanted by the term Onboarding.
 
 Domain:
@@ -233,21 +235,9 @@ Domain:
   join a Domain and obtain domain-specific security credentials.
   This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
 
-Imprint:
-: The process where a device obtains the cryptographic key material to
-  identify and trust future interactions generally as part of the manufacturing.
-  This term is taken from Konrad Lorenz's work in biology with new ducklings:
-  "during a critical period, the duckling would assume that anything
-  that looks like a mother duck is in fact their mother"
-  {{Stajano99theresurrecting}}. An equivalent for a device is to
-  obtain the fingerprint of the manufacturer's root certification authority (root CA)
-  certificate. A device that Imprints on an attacker suffers a similar
-  fate to a duckling that imprints on a hungry wolf. Imprinting is a
-  term from psychology and ethology, as described in {{imprinting}}.
-
 Join Registrar (and Coordinator):
-: A representative of the Domain that is configured, perhaps
-  autonomically, to decide whether a new device is allowed to join the
+: A representative of the Domain that is configured
+  to decide whether a new device is allowed to join the
   Domain. The administrator of the Domain interfaces with a Join
   Registrar (and Coordinator) to control this process.
   Typically, a Join Registrar is "inside" its Domain. For simplicity,
@@ -290,7 +280,7 @@ TOFU (Trust on First Use):
   This is also known as the "resurrecting duckling" model {{Stajano99theresurrecting}}.
 
 Voucher:
-: A Voucher Artifact, not a Voucher Request, that is a signed statement
+: A Voucher Artifact that is a signed statement
   from the MASA service that indicates to a Pledge
   the cryptographic identity of the Domain it should trust.
   When clarity is needed, it may be preceded by the type of the signature, such as CMS, JWS or COSE.
@@ -424,11 +414,11 @@ This document obsoletes {{RFC8366}}.
 ## Attempts and motivation to extend RFC8366 {#extendfail}
 
 {{RFC8366}} was published in 2018 during the development of {{RFC8995}},
-{{ZERO-TOUCH}} and other work-in-progress efforts.
+{{SZTP}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _Onboarding_ rather than _Bootstrapping_.
 
 The focus of {{RFC8995}} was Onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
-{{ZERO-TOUCH}} has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.
+{{SZTP}} has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.
 
 Since {{RFC8995}} was published there is now a mature effort to do application-level Onboarding of constrained IoT devices defined by the Thread Group and the Fairhair Alliance (now OCF) {{fairhair}}.
 The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while {{?I-D.ietf-lake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
@@ -436,8 +426,9 @@ The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over
 {{PRM}} has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.
 
-Both {{cBRSKI}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher. The new Attributes are required to carry the additional data and describe the extended semantics.
-In addition, {{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
+{{cBRSKI}} uses the serialization mechanism described in {{RFC9254}} to produce significantly more compact artifacts.
+
+## Challenges with revisions to YANG
 
 When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{RFC8995}} and Voucher {{RFC8366}} artifacts.
 However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
@@ -448,6 +439,54 @@ After some discussion, it was determined that the _augment_ mechanism did not wo
 nor did it work better when the {{RFC8040}} "yang-data" extension was replaced with the {{RFC8791}} "structure" extension.
 
 After significant discussion the decision was made to simply roll all of the needed extensions into this document.
+
+
+## Detailed changes since RFC8366
+
+{{cBRSKI}}, {{CLOUD}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher.
+New attributes are required to carry the additional data and describe the extended semantics.
+The following attributes are new and the document to which they support is noted:
+
+To the Voucher Request:
+
+assertion(agent-proximity):
+: {{PRM}}
+
+pinned-domain-pubk:
+: {{cBRSKI}}
+
+pinned-domain-pubk-sha256:
+: {{cBRSKI}}
+
+proximity-registrary-pubk:
+: {{cBRSKI}}
+
+proximity-registrar-pubk-sha256:
+: {{cBRSKI}}
+
+To the Voucher:
+
+additional-configuration-url:
+: {{CLOUD}}
+
+agent-signed-data:
+: {{PRM}}
+
+agent-provided-proximity-registrar-cert:
+: {{PRM}}
+
+agent-sign-cert:
+: {{PRM}}
+
+est-domain:
+: {{CLOUD}}
+
+extensions:
+: Added to aid in future extensions
+
+manufacturer-proprietary:
+: Added to allow for controlled experiments and custom extensions
+
 
 # Updates to RFC8995
 
@@ -486,7 +525,7 @@ Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.
 
 It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '`idevid-issuer`' Attribute.
 
 It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR, in the RVR and in the Voucher.
@@ -494,9 +533,9 @@ It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR
 Analysis of the situation shows that the Pledge never needs to include '`idevid-issuer`' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
 The Pledge therefore has no need to repeat this.
 
-For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevid-issuer`' Attribute must be included.
+For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevid-issuer`' Attribute be included.
 
-For the Voucher, {{voucher-yang-module}} normatively requires ("must") that the '`idevid-issuer`' Attribute must be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
+For the Voucher, as detailed in {{voucher-yang-module}}, the '`idevid-issuer`' Attribute MUST be included by a MASA in case the MASA issues a Voucher with a serial number that is known to be not unique within the scope of all the serial numbers represented by the MASA.
 If this rule does not apply, the MASA SHOULD NOT include the '`idevid-issuer`' Attribute in order to achieve a smaller Voucher size.
 
 ## Clarifications on the format of `idevid-issuer` {#idevid-issuer-format}
@@ -617,18 +656,37 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-In the constrained versions of the voucher and voucher-request (as used by {{cBRSKI}}), the attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for requests) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for requests) are involved in the process of pinning a raw public key.
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and EcDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
+The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
+
+Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting
+`pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
+
+In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize the `proximity` entry which it used in its voucher-request artifact, ignoring the others.
+
+If the voucher is nonce-less (and thus not the result of a voucher-request), then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
+
+## Algorithm Choices for Voucher Requests and Vouchers
+
+When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
+Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.
+
+As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher), and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
+
+When designing Pledge devices, manufacturers therefor have to choose algorithms and signature formats
+to support, and whatever choices they make, they need to also support in their MASA.
+Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present in the recalled devices.
+
+The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
+{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
+{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum safe (PQ) {{?RFC9958}} algorithms for ANI work.
+
+{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specifies mandatory to implement algorithms for IoT use cases.
+
+A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX {{RFC5280}} processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.
+
+The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
-
-When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be supported.
-When EdDSA is supported, curves Ed25519 and Ed448 SHOULD be supported.
-When RSA is supported by an implementation, it SHOULD support key lengths between 2048 and 4096 bits.
-
-Of the above, EcDSA SHOULD be supported by all implementations, until some quantum-safe variant is standardized.
-
-Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
-
 
 ## Tree Diagram {#voucher-tree-diagram}
 
@@ -816,7 +874,7 @@ The {{?RFC8520}} mechanism uses more bytes, but is also not easily translatable 
 
 As the Voucher Request YANG module is created by YANG augment of the Voucher YANG module, any extension defined for the Voucher is also valid for a Voucher Request.
 
-## Manufacturer Private Extensions
+## Manufacturer Proprietary Extensions
 
 A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
 While they can use the Voucher extensions mechanism defined in {{voucher-ext}}, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.
@@ -833,6 +891,14 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 
 {{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
+
+In the event that more than one of `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert` are present in a voucher request, then the Registrar and MASA SHALL consider them in the order presented here.
+
+<<<<<<< HEAD
+=======
+The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
+However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.
+>>>>>>> e40163a (feat: provide instructions for situation where more than one pinned- or proximity- are present)
 
 ## Tree Diagram {#voucher-request-tree-diagram}
 
@@ -879,8 +945,9 @@ In cases when there is a time delay, there is a need for the Pledge
 to ensure that the assertions made when the Voucher was created are
 still valid.
 
-A revocation artifact is generally used to verify the continued validity
-of an assertion such as a PKIX certificate {{RFC5280}}, web token, or Voucher.  With
+A revocation artifact (such as an OCSP {{?RFC6960}} staple {{?RFC9910}}, or CRL {{RFC5280}}) is generally used to verify the continued validity
+of an assertion such as a PKIX certificate {{RFC5280}}, web token, or Voucher.
+With
 this approach, a potentially long-lived assertion is paired with a reasonably
 fresh revocation status check to ensure that the assertion is still valid.
 However, this approach increases solution complexity, as it introduces the
@@ -889,23 +956,32 @@ revocations.
 
 Addressing the shortcomings of revocations, this document recommends
 instead the use of lightweight renewals of short-lived non-revocable
-Vouchers.  That is, rather than issue a long-lived Voucher, where the
+Vouchers.
+That is, rather than issue a long-lived Voucher, where the
 '`expires-on`' Attribute is set to some distant date, the expectation
 is for the MASA to instead issue a short-lived Voucher, where the
 '`expires-on`' Attribute is set to a relatively near date, along with a promise
 (reflected in the '`last-renewal-date`' Attribute) to reissue the Voucher again
-when needed.  Importantly, while issuing the initial Voucher may incur
+when needed.
+Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
 Pledge actually belong to you?"), reissuing the Voucher should be a
 lightweight process, as it ostensibly only updates the Voucher's
 validity period.
+
+The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the `prior-signed-voucher-request`
+attribute.
+The Registrar signs the new request.
+
 With this approach, there is
 only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
 not reachable.
 
-While this document recommends issuing short-lived Vouchers, the
+The exact details of how is "short-lived" is up to the different onboarding mechanisms.
+
+So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
 Vouchers, if required; however, no revocation method is described.
 
@@ -943,21 +1019,28 @@ security decision.
 
 This document defines a Voucher format that contains time values
 for expirations, which require an accurate clock
-in order to be processed correctly.  Vendors planning on
-issuing Vouchers with expiration values must ensure that devices
-have an accurate clock when shipped from manufacturing
+in order to be processed correctly.
+Vendors planning on
+issuing Vouchers with expiration values need to ensure that
+the devices targetted have an accurate clock when shipped from manufacturing
 facilities and take steps to prevent clock tampering.
 If it is not possible to ensure clock accuracy, then
-Vouchers with time values for expirations should not be issued.
+the expiration time values in Vouchers will have no meaning.
 
 
 ## Protect MASA Signing Key in HSM
 
-Pursuant to the recommendation made in Section 6.1 for the MASA to be
-deployed as an online Voucher signing service, it is RECOMMENDED that
-the MASA's private key used for signing Vouchers is protected by
+As the MASA needs to be able to respond to voucher signing requests,
+it is RECOMMENDED that the MASA's private key used for signing Vouchers is protected by
 a hardware security module (HSM).
 
+There are many ways to organize the PKI that is used to sign vouchers.
+{{I-D.ietf-anima-masa-considerations, Section 2}} describes a number of different scenarios.
+In some of them, there are long-term keys kept offline, implementing a certification authority.
+This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.
+
+The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
+The trust anchor configured into the Pledge is the long-term offline anchor.
 
 ## Test Domain Certificate Validity When Signing
 
@@ -983,16 +1066,20 @@ all of the YANG-modeled data is protected from modification.
 Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
-so much as privacy.  In particular, adversaries can glean
-information such as which devices belong to which organizations
+so much as privacy.
+
+When used with {{RFC8995}}, or {{cBRSKI}} then voucher requests and vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
+
+When used with {{PRM}}, then the contents can be exposed in the last hop,
+where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.
+
+When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
-accessed to validate the Vouchers.  When privacy is important,
-the CMS signed-data content type SHOULD be encrypted, either by
-conveying it via a mutually authenticated secure transport protocol
-(e.g., TLS {{RFC8446}}) or by encapsulating the signed-data
-content type with an enveloped-data content type (Section 6
-of {{RFC5652}}), though details for how to do this are outside
-the scope of this document.
+accessed to validate the Vouchers.
+Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no CRLs to disclose.
+
+{{SZTP}} uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
+To mitigate this, {{SZTP, Section 3.4}} specifies a way to encrypt using CMS.
 
 The use of YANG to define data structures, via the "sx:structure"
 extension {{RFC8791}}, is relatively new and distinct from the conventional
@@ -1007,127 +1094,24 @@ by Section 3.7 of {{YANG-GUIDE}}.
 
 ## The IETF XML Registry
 
-This document updates two URIs in the "IETF XML Registry" {{RFC3688}}.
+This document updates two URIs in the "IETF XML Registry" {{RFC3688}}: `urn:ietf:params:xml:ns:yang:ietf-voucher` and
+`urn:ietf:params:xml:ns:yang:ietf-voucher-request`:
 
-IANA is requested to register the following, updating the registration to point to this document:
-
-> {:compact}
->    URI:
->    : urn:ietf:params:xml:ns:yang:ietf-voucher
->
->    Registrant Contact:
->    : The ANIMA WG of the IETF.
->
->    XML:
->    : N/A, the requested URI is an XML namespace.
-
-> {:compact}
->    URI:
->    : urn:ietf:params:xml:ns:yang:ietf-voucher-request
->
->    Registrant Contact:
->    : The ANIMA WG of the IETF.
->
->    XML:
->    : N/A, the requested URI is an XML namespace.
+IANA is requested to update this registration to point to THIS-DOCUMENT.
 
 ## The YANG Module Names Registry
 
-IANA is requested to register the following YANG module in the "YANG Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group.
-
-> {:compact}
->   name:
->   : ietf-voucher
->
->   namespace:
->   : urn:ietf:params:xml:ns:yang:ietf-voucher
->
->   prefix:
->   : vch
->
->   reference:
->   : RFC 8366
-
-
-
-> {:compact}
->   name:
->   : ietf-voucher-request
->
->   namespace:
->   : urn:ietf:params:xml:ns:yang:ietf-voucher-request
->
->   prefix:
->   : vcr
->
->   reference:
->   : RFC 8995
-
-(Please note the change to the "prefix" field)
+IANA is requested to update the `ietf-voucher` and `ietf-voucher-request` registrations
+in the "YANG  Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group to point to this document.
+For the `ietf-voucher-request` entry, the prefix should be updated to "vcr".
 
 ## The Media Types Registry {#vcj}
 
-IANA is requested to register the media type: `application/voucher-cms+json`, and this registration should be updated to point to this document.
-
-> {:compact}
->   Type name:
->   : application
->
->   Subtype name:
->   : voucher-cms+json
->
->   Required parameters:
->   : none
->
->   Optional parameters:
->   : none
->
->   Encoding considerations:
->   : CMS-signed JSON vouchers are ASN.1/DER  encoded.
->
->   Security considerations:
->   : See {{sec-con}}
->
->   Interoperability considerations:  The format is designed to be
->      broadly interoperable.
->
->   Published specification:
->   : THISDOCUMENT
->
->   Applications that use this media type:
->   : ANIMA, 6tisch, and NETCONF zero-touch imprinting systems.
->
->   Fragment identifier considerations:
->   : none
->
->   Additional information:
->   : Deprecated alias names for this type:  none
->   : Magic number(s):  None
->   : File extension(s):  .vcj
->   : Macintosh file type code(s):  none
->
->
->   Person and email address to contact for further information:
->   : IETF ANIMA WG
->
->   Intended usage:
->   : LIMITED
->
->   Restrictions on usage:
->   : NONE
->
->   Author:
->   : ANIMA WG
->
->   Change controller:
->   : IETF
->
->   Provisional registration? (standards tree only):
->   : NO
+IANA is requested to update the registration of media type: `application/voucher-cms+json` to change the Published Specification to THIS-DOCUMENT.
 
 ## The SMI Security for S/MIME CMS Content Type Registry {#iana-contenttype}
 
-IANA is requested to register the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
+IANA is requested to update the registration for the OID 1.2.840.113549.1.9.16.1.40, '`id-ct-animaJSONVoucher`'.
 This registration should be updated to point to this document.
 
 ## The Voucher Extensions Registry {#voucher-ext-reg}
@@ -1146,28 +1130,27 @@ The name is: Voucher Extensions, and the Registration Policy is Expert Review.
 >   Extension SID:
 >   : the YANG module SID value that defines the extension per {{voucher-ext}}.
 
-Each extension MUST follow the rules specified in this specification.
-
 Note that the SID module value is allocated as part of a {{CORESID}} process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
-Future work may allow for PEN based allocations.
+{{?RFC9997}} allows for PEN based allocations.
 IANA does not need to separately allocate a SID value for this column.
 
-Extension name strings for standards track documents are single words, given by the YANG Module Name.   They do not contain dots.
+Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.
 
-For vendor proprietary extensions, the string SHOULD be made unique by putting the extension name in the form a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com"
+For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
+This can be done by making the YANG module unique, basing it on a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
 
-Vendor proprietary extensions do not need to be registered with IANA, but vendors MAY do so.
+Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
 
-Designated Experts should review for standards track documents for clarity, but the choices are tied to WG and IESG processes:
+Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:
 
-* There are no choices in the extension names (which is always the YANG module name), or SID value (which is from another IANA process).
+* There are no choices in the extension names (for standards track extensions) which is always the YANG module name), or SID value (which is from another IANA process).
 
-* For non-standards track extensions, the Designated Expert should review whatever document is provided, if any.
+* For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
 The stability of the reference may be of concern.
 
-The Designated Expert should determine if the work overlaps with existing efforts; and if so suggest merging/coordinating.
-However, as registration is optional, the Designated Expert should not block any vendor registrations.
+The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
+However, as registration is optional, the Designated Expert should not block any vendor registrations if no consolidated extension is possible.
 
 ## The IETF YANG-SID Ranges Registry
 
@@ -1175,9 +1158,9 @@ IANA is requested to register the following entries in the IETF YANG-SID Ranges 
 
 | Entry Point | Size  | Module Name          | Reference    |
 |:-----------:|:-----:|:---------------------|:-------------|
-| 2450        |  50   | ietf-voucher         | \[This RFC\] |
+| 2450        |  50   | ietf-voucher         | \[This-Document\] |
 |--
-| 2500        |  50   | ietf-voucher-request | \[This RFC\] |
+| 2500        |  50   | ietf-voucher-request | \[This-Document\] |
 |--
 {: #ietf-yang-sid-ranges-table title='Registered SID ranges'}
 
@@ -1202,6 +1185,8 @@ and also the following YANG module:
 
 RFC-editor, please remove.
 This section just lists references present in YANG modules which otherwise do not get included in the references, like {{!RFC7250}}.
+
+Also {{!RFC9911}}, Common YANG Data Types.
 
 --- back
 
