@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 10 February 2027                              IoTconsultancy.nl
+Expires: 13 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                           9 August 2026
+                                                          12 August 2026
 
 
              A Voucher Artifact for Bootstrapping Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 February 2027.
+   This Internet-Draft will expire on 13 February 2027.
 
 Copyright Notice
 
@@ -100,12 +100,13 @@ Table of Contents
    7.  Signature mechanisms
      7.1.  CMS Format Voucher Artifact
    8.  Voucher Artifact
-     8.1.  Tree Diagram
-     8.2.  Examples
-     8.3.  YANG Module
-     8.4.  ietf-voucher SID values
-     8.5.  Voucher Extensions
-     8.6.  Manufacturer Private Extensions
+     8.1.  Algorithm Choices for Voucher Requests and Vouchers
+     8.2.  Tree Diagram
+     8.3.  Examples
+     8.4.  YANG Module
+     8.5.  ietf-voucher SID values
+     8.6.  Voucher Extensions
+     8.7.  Manufacturer Private Extensions
    9.  Voucher Request Artifact
      9.1.  Tree Diagram
      9.2.  "ietf-voucher-request" Module
@@ -568,7 +569,7 @@ Table of Contents
    For the RVR, Section 6.1 now normatively requires that the 'idevid-
    issuer' Attribute be included.
 
-   For the Voucher, as detailed in Section 8.3, the 'idevid-issuer'
+   For the Voucher, as detailed in Section 8.4, the 'idevid-issuer'
    Attribute MUST be included by a MASA in case the MASA issues a
    Voucher with a serial number that is known to be not unique within
    the scope of all the serial numbers represented by the MASA.  If this
@@ -691,7 +692,7 @@ Table of Contents
 
    This document defines a Voucher Artifact that is a CMS-signed
    encoding of the JSON-encoded Voucher Data as defined by the YANG
-   module Section 8.3.  Also, this document defines Voucher Data that is
+   module Section 8.4.  Also, this document defines Voucher Data that is
    CBOR-encoded based on the same YANG model.  The CBOR-encoded (signed)
    Voucher based on this CBOR Voucher Data is defined in [cBRSKI].
 
@@ -718,91 +719,58 @@ Table of Contents
    (USB key), the Voucher format is usually signaled by a filename
    extension.
 
-   As explained in [RFC8995], Section 2.5, the Pledge is a creation of
-   the manufacturer, and thus the manufacturer (in the form of the
-   Manufacturer Authorized Signing Authority (MASA)) has knowledge of
-   the capabilities of the Pledge.  Specifically, the manufacturer knows
-   what signature algoritm the Pledge is going to use, and can verify
-   this, thus there is no need (or opportunity) to negotiate the
-   algorithm or signature (CMS, JWS, COSE) scheme.  Nor is there any
-   need for a mandatory to implement (MTI) scheme, as again, by
-   (literal) construction, the manufacturer knows what has been
-   implemented.  In constrained-device situations, the Pledge is
-   expected to only have code space for a single algorithm and signature
-   scheme.
-
-   A manufacturer may transition devices among different algorithms,
-   transitioning to quantum-safe ones as they become standardized,
-   according to their own schedule.
-
-   The only device for which this approach is a challenge is for the
-   Domain Registrar.  That device must deal with all algorithms which
-   are still relevant to the operation of the specific network.
-
-   Note: this CAN include support for algorithms which may be considered
-   no longer safe, as there may be devices (spares) in unopened boxes
-   which have not yet been used.  The onboarding (bootstrap) process is
-   a short-duration process, and it will often be the case that once
-   onboarded, the device will be upgraded to newer firmware, with
-   support for better/smaller/safer algorithms.  Both [RFC8995] and
-   [SZTP] provide mechanisms by which new (stronger) operational
-   identities can be provisioned.
-
-   When designing Pledge devices, manufacturers choose algorithms and
-   signature formats - which they also need to support in their MASA.
-   Should a manufacturer decide to stop supporting some algorithm, they
-   will likely need to recall any inventory that exists in warehouses or
-   within the supply chain in order to replace the firmware and update
-   the IDevID certificates present.
-
-   While non-constrained devices could have code space for multiple
-   algorithms or signature schemes, it makes little sense to use
-   anything but the strongest of the algorithms present.
-
-   Constrained devices are able to dispense with much code involved in
-   ASN.1/PKIX processing of the voucher and voucher-request.  This is
-   explained in [cBRSKI].  The attributes pinned-domain-pubk (proximity-
-   registrar-pubk for requests) and pinned-domain-pubk-sha256
-   (proximity-registrar-pubk-sha256 for requests) are involved in the
-   process of pinning a raw public key for such devices.
-
-   The public keys are to be encoded according to [RFC7250], Section 3
-   for RSA and EcDSA keys, noting that [RFC8032] extends this to include
-   an OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
-
-   In order to partially alleviate how many variations a Registrar
-   implementation need deal with, these are recommendations for
-   implementers of Registrar:
-
-   When EcDSA is supported, curves secp256r1 and secp384r1 SHOULD be
-   supported.  When EdDSA is supported, curves Ed25519 and Ed448 SHOULD
-   be supported.  When RSA is supported, key lengths between 2048 and
-   4096 bits SHOULD be supported.  [I-D.ietf-lamps-pq-composite-sigs]
-   with [I-D.ietf-lamps-cms-composite-sigs] SHOULD be supported for CMS
-   wrapped vouchers.  [RFC9964] SHOULD be supported for COSE signed
-   vouchers.  [I-D.ietf-jose-pq-composite-sigs] SHOULD be supported for
-   JOSE signed vouchers.
-
-   The decision as to when to transition to quantum-safe algorithms is a
-   manufacturer decision.
-
-   Other choices are possible, but likely will result in Pledge devices
-   being unable to onboard on networks until the Registrar involved
-   implements those choices.  In such a situation, an automated, zero-
-   touch onboarding solution may be impossible, but it may still be
-   possible to use mechanisms such as suggested in [RFC8995],
-   Section 7.2 to onboard a device.
+   The attributes pinned-domain-pubk (proximity-registrar-pubk for a
+   PVR) and pinned-domain-pubk-sha256 (proximity-registrar-pubk-sha256
+   for a PVR) are involved in the process of pinning/identifying a raw
+   public key, instead of a certificate, for such devices.
 
    Should SHA256 need to be replaced, then a new YANG module will be
    published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
    proximity-registrar-pubk-sha256.
 
-8.1.  Tree Diagram
+8.1.  Algorithm Choices for Voucher Requests and Vouchers
+
+   As explained in [RFC8995], Section 2.5, the Pledge is a creation of
+   the manufacturer, and thus the manufacturer (in the form of the
+   Manufacturer Authorized Signing Authority (MASA)) has knowledge of
+   the capabilities of the Pledge.  Specifically, the manufacturer knows
+   what signature algoritm the Pledge is going to use (to sign a PVR or
+   to validate a Voucher), and can verify this, thus there is no need
+   (or opportunity) to negotiate the algorithm or signature (CMS, JWS,
+   COSE) scheme.
+
+   When designing Pledge devices, manufacturers therefor have to choose
+   algorithms and signature formats to support, and whatever choices
+   they make, they need to also support in their MASA.  Should a
+   manufacturer decide to stop supporting some algorithm, they will
+   likely need to recall any inventory that exists in warehouses or
+   within the supply chain in order to replace the firmware and update
+   the IDevID certificates present in the recalled devices.
+
+   The exact choice of format (CMS, JWS or CBOR) and algorithm depends
+   upon the target operational community for the Voucher.  [RFC8994],
+   Section 6.2 specifies mandatory to implement algorithms for current
+   ANI uses.  [I-D.richardson-anima-quantum-safe-4ani] is future work
+   for quantum safe (PQ) [RFC9958] algorithms for ANI work.
+
+   [cBRSKI] and [I-D.ietf-uta-tls13-iot-profile] specifies mandatory to
+   implement algorithms for IoT use cases.
+
+   A certain class of constrained devices minimizes the code size of the
+   code for ASN.1 processing, PKIX [RFC5280] processing and Voucher/PVR
+   processing, while another class of constrained devices can minimize
+   just the sizes of Voucher and PVR.
+
+   The public keys are to be encoded according to [RFC7250], Section 3
+   for RSA and EcDSA keys, noting that [RFC8032] extends this to include
+   an OID for EdDSA.  The old (1024-bit) DSA algorithm is not supported.
+
+8.2.  Tree Diagram
 
    The following tree diagram illustrates a high-level view of a Voucher
    document.  The notation used in this diagram is described in
    [RFC8340].  Each node in the diagram is fully described by the YANG
-   module in Section 8.3.  Please review the YANG module for a detailed
+   module in Section 8.4.  Please review the YANG module for a detailed
    description of the Voucher format.
 
    module: ietf-voucher
@@ -824,7 +792,7 @@ Table of Contents
        +-- est-domain?                      ietf:uri
        +-- additional-configuration-url?    ietf:uri
 
-8.2.  Examples
+8.3.  Examples
 
    This section provides Voucher Data examples for illustration
    purposes.  These examples conform to the JSON encoding rules defined
@@ -866,7 +834,7 @@ Table of Contents
    }
 
    The final two examples illustrate a Voucher that includes an
-   (example) extension per Section 8.5.  The hypothetical YANG module
+   (example) extension per Section 8.6.  The hypothetical YANG module
    name of the extension is 'example-my-extension'.  First, a JSON
    serialization is shown.
 
@@ -910,7 +878,7 @@ Table of Contents
    and signed with [JWS]. [cBRSKI], Section 9 contains examples of
    Vouchers encoded in CBOR, and signed with [COSE].
 
-8.3.  YANG Module
+8.4.  YANG Module
 
    During development of this merged YANG module, advice was given to
    better organize mutually exclusive Attributes such as 'pinned-domain-
@@ -921,7 +889,7 @@ Table of Contents
    notions as to how this should work.  As the simplest way forward, the
    choice mechanisms that were introduced have been commented out in the
    YANG, allowing the SID values to be generated correctly.  As a
-   result, the SID values presented in Section 8.4 and Section 9.3 are
+   result, the SID values presented in Section 8.5 and Section 9.3 are
    to be considered normative, rather than relying exclusively on the
    ".sid" file [CORESID] generated from the YANG modules.  The presented
    SID values are believed to be correct, but future reprocessing of the
@@ -1260,7 +1228,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-8.4.  ietf-voucher SID values
+8.5.  ietf-voucher SID values
 
    [RFC9254] explains how to serialize YANG into CBOR, and for this a
    series of SID values are required.  The below SID values are assigned
@@ -1319,7 +1287,7 @@ Table of Contents
                         'assertion' Attribute enum
                                   value
 
-8.5.  Voucher Extensions
+8.6.  Voucher Extensions
 
    An unstated assumption in [RFC8366] was that Vouchers could be
    extended in proprietary ways by manufacturers.  This allows for
@@ -1363,7 +1331,7 @@ Table of Contents
    corresponding key is the SID which is allocated as the YANG extension
    module SID.  This will typically require the absolute SID value
    Tag(47) to be applied to this key (see Section 4.2.1 of [RFC9254] or
-   the final example in Section 8.2).
+   the final example in Section 8.3).
 
    Note that this differs from the mechanism described in [RFC8520]:
    there, a sub-map is not used.  Instead, keys are created by combining
@@ -1375,12 +1343,12 @@ Table of Contents
    Voucher YANG module, any extension defined for the Voucher is also
    valid for a Voucher Request.
 
-8.6.  Manufacturer Private Extensions
+8.7.  Manufacturer Private Extensions
 
    A manufacturer might need to communicate content in the Voucher (or
    in the Voucher Request), which are never subject to standardization.
    While they can use the Voucher extensions mechanism defined in
-   Section 8.5, it does require allocation of a SID value in order to do
+   Section 8.6, it does require allocation of a SID value in order to do
    minimal-sized encoding in case of CBOR Voucher Data.  Note that
    [RFC9254] does not strictly require use of SIDs: instead of a SID
    value, the full string name can always be used.  But this would
@@ -1916,7 +1884,7 @@ Table of Contents
       Extension name:  UTF-8-encoded string, not to exceed 40
          characters.
       Extension SID:  the YANG module SID value that defines the
-         extension per Section 8.5.
+         extension per Section 8.6.
 
    Note that the SID module value is allocated as part of a [CORESID]
    process.  This may be from a SID range managed by IANA, or from any
@@ -1976,7 +1944,7 @@ Table of Contents
    *  YANG module name: ietf-voucher
 
    *  URI for the ".yang" file: a pointer to the file defined in
-      Section 8.3
+      Section 8.4
 
    *  URI for the ".sid" file: a pointer to the file defined in
       Appendix B.1
@@ -2034,6 +2002,14 @@ Table of Contents
               Bormann, C., and M. Richardson, "YANG Schema Item
               iDentifier (YANG SID)", RFC 9595, DOI 10.17487/RFC9595,
               July 2024, <https://www.rfc-editor.org/rfc/rfc9595>.
+
+   [I-D.ietf-uta-tls13-iot-profile]
+              Tschofenig, H., Fossati, T., Richardson, M., and D.
+              Migault, "TLS/DTLS 1.3 Profiles for the Internet of
+              Things", Work in Progress, Internet-Draft, draft-ietf-uta-
+              tls13-iot-profile-23, 21 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-uta-
+              tls13-iot-profile-23>.
 
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
@@ -2117,6 +2093,11 @@ Table of Contents
               Structure Extensions", RFC 8791, DOI 10.17487/RFC8791,
               June 2020, <https://www.rfc-editor.org/rfc/rfc8791>.
 
+   [RFC8994]  Eckert, T., Ed., Behringer, M., Ed., and S. Bjarnason, "An
+              Autonomic Control Plane (ACP)", RFC 8994,
+              DOI 10.17487/RFC8994, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc8994>.
+
    [RFC8995]  Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
               and K. Watsen, "Bootstrapping Remote Secure Key
               Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
@@ -2136,11 +2117,6 @@ Table of Contents
    [RFC9911]  Schönwälder, J., Ed., "Common YANG Data Types", RFC 9911,
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
-
-   [RFC9964]  Prorock, M. and O. Steele, "ML-DSA for JSON Object Signing
-              and Encryption (JOSE) and CBOR Object Signing and
-              Encryption (COSE)", RFC 9964, DOI 10.17487/RFC9964, May
-              2026, <https://www.rfc-editor.org/rfc/rfc9964>.
 
 14.2.  Informative References
 
@@ -2166,14 +2142,6 @@ Table of Contents
               <https://openconnectivity.org/developer/specifications/
               fairhair/>.
 
-   [I-D.ietf-jose-pq-composite-sigs]
-              Prabel, L., Shuzhou, S., Gray, J., and T. Reddy.K, "PQ/T
-              Hybrid Composite Signatures for JOSE and COSE", Work in
-              Progress, Internet-Draft, draft-ietf-jose-pq-composite-
-              sigs-03, 20 July 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-jose-pq-
-              composite-sigs-03>.
-
    [I-D.ietf-lake-authz]
               Selander, G., Mattsson, J. P., Vučinić, M., Fedrecheski,
               G., and M. Richardson, "Lightweight Authorization using
@@ -2182,23 +2150,13 @@ Table of Contents
               2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
               lake-authz-08>.
 
-   [I-D.ietf-lamps-cms-composite-sigs]
-              Ounsworth, M., Gray, J., Klaußner, J., and D. Van Geest,
-              "Composite Module-Lattice-Based Digital Signature
-              Algorithm (ML-DSA) for use in Cryptographic Message Syntax
-              (CMS)", Work in Progress, Internet-Draft, draft-ietf-
-              lamps-cms-composite-sigs-05, 22 May 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-lamps-
-              cms-composite-sigs-05>.
-
-   [I-D.ietf-lamps-pq-composite-sigs]
-              Ounsworth, M., Gray, J., Pala, M., Klaußner, J., and S.
-              Fluhrer, "Composite Module-Lattice-Based Digital Signature
-              Algorithm (ML-DSA) for use in X.509 Public Key
-              Infrastructure", Work in Progress, Internet-Draft, draft-
-              ietf-lamps-pq-composite-sigs-19, 21 April 2026,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-lamps-
-              pq-composite-sigs-19>.
+   [I-D.richardson-anima-quantum-safe-4ani]
+              Richardson, M., "Quantum Safe (PQ) Considerations for
+              Autonomic Network Infrastructure (ANI)", Work in Progress,
+              Internet-Draft, draft-richardson-anima-quantum-safe-4ani-
+              00, 12 August 2026,
+              <https://datatracker.ietf.org/doc/html/draft-richardson-
+              anima-quantum-safe-4ani-00>.
 
    [I-D.vangeest-lamps-cms-euf-cma-signeddata]
               Van Geest, D. and F. Strenzke, "Best Practices for CMS
@@ -2284,6 +2242,11 @@ Table of Contents
    [RFC9846]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 9846, DOI 10.17487/RFC9846, July 2026,
               <https://www.rfc-editor.org/rfc/rfc9846>.
+
+   [RFC9958]  Banerjee, A., Reddy.K, T., Schoinianakis, D., Hollebeek,
+              T., and M. Ounsworth, "Post-Quantum Cryptography for
+              Engineers", RFC 9958, DOI 10.17487/RFC9958, June 2026,
+              <https://www.rfc-editor.org/rfc/rfc9958>.
 
    [RFC9997]  Bormann, C., "YANG-CBOR: Allocating SID Ranges for Private
               Enterprise Number (PEN) Holders", RFC 9997,
