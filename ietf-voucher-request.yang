@@ -139,7 +139,7 @@ module ietf-voucher-request {
         voucher information for the
         purposes of policy decisions. The MASA SHOULD remove
         all prior-signed-voucher-request information when
-        signing a voucher for imprinting so as to minimize
+        signing a voucher for onboarding so as to minimize
         the final voucher size.";
     }
 
