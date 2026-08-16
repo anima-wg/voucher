@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 13 February 2027                              IoTconsultancy.nl
+Expires: 17 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                          12 August 2026
+                                                          16 August 2026
 
 
               A Voucher Artifact for Onboarding Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2027.
+   This Internet-Draft will expire on 17 February 2027.
 
 Copyright Notice
 
@@ -1616,7 +1616,7 @@ Table of Contents
             voucher information for the
             purposes of policy decisions. The MASA SHOULD remove
             all prior-signed-voucher-request information when
-            signing a voucher for imprinting so as to minimize
+            signing a voucher for onboarding so as to minimize
             the final voucher size.";
        }
        leaf proximity-registrar-cert {
