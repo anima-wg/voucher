@@ -894,11 +894,8 @@ That definition has been moved to this document, and translated from the "yang-d
 
 In the event that more than one of `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert` are present in a voucher request, then the Registrar and MASA SHALL consider them in the order presented here.
 
-<<<<<<< HEAD
-=======
 The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
 However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.
->>>>>>> e40163a (feat: provide instructions for situation where more than one pinned- or proximity- are present)
 
 ## Tree Diagram {#voucher-request-tree-diagram}
 
