@@ -854,11 +854,12 @@ The processes which were anticipated to be useful (the YANG "augment" mechanism)
 
 Instead, a process similar to what was done by {{?RFC8520}} has been adopted.
 In the Voucher Data, any extensions are listed in a list Attribute named '`extensions`'.
-In JSON serialization, these extensions each require a unique name, and therefore this name MUST be allocated by IANA.
+In JSON serialization, these extensions each require a unique name, and therefore an IANA registration for these names
+is provided and FQDN-based uniqueness is used in certain cases (see {{voucher-ext-reg}}).
 The name MUST be the same as the YANG extension module name.
 The '`extensions`' list Attribute allows for new standard extensions to be defined without changes to the '`ietf-voucher`' YANG module.
-Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs);
-both are always defined in the entries of the Voucher Extensions registry (see {{voucher-ext-reg}}).
+Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs).
+If the extension is registered with IANA, then both name and SID are always defined in the Voucher Extensions registry (see {{voucher-ext-reg}}).
 
 Extensions are full YANG modules, which are subject to the SID allocation process described in {{RFC9254}}.
 When an extension is serialized, the extension is placed in a sub-map in the value of a new key/value pair in the '`voucher`' container element.
@@ -1099,7 +1100,7 @@ IANA is requested to update this registration to point to THIS-DOCUMENT.
 ## The YANG Module Names Registry
 
 IANA is requested to update the `ietf-voucher` and `ietf-voucher-request` registrations
-in the "YANG  Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group to point to this document.
+in the "YANG Module Names" registry {{RFC6020}} {{RFC9890}} within the "YANG Parameters" registry group to point to this document.
 For the `ietf-voucher-request` entry, the prefix should be updated to "vcr".
 
 ## The Media Types Registry {#vcj}
@@ -1118,36 +1119,44 @@ IANA is asked to create a registry of Voucher extensions within the _Bootstrappi
 The name is: Voucher Extensions, and the Registration Policy is Expert Review.
 
 > {:compact}
->   Reference:
->   : an optional document
->
 >   Extension name:
->   : UTF-8-encoded string, not to exceed 40 characters.
+>   : UTF-8-encoded string, at most 40 characters.
 >
 >   Extension SID:
 >   : the YANG module SID value that defines the extension per {{voucher-ext}}.
+>
+>   Reference:
+>   : an optional document reference (URL, or other pointer)
 
-Note that the SID module value is allocated as part of a {{CORESID}} process.
+Note that the Extension SID value is allocated as part of a {{CORESID}} process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
-{{?RFC9997}} allows for PEN based allocations.
+{{?RFC9997}} allows for PEN-based allocations.
 IANA does not need to separately allocate a SID value for this column.
 
-Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.
+Extension name strings for documents in the IETF Document Stream and IRTF Document Stream are given by the YANG module name: they do not contain dots.
 
-For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
-This can be done by making the YANG module unique, basing it on a fully-qualified domain name (FQDN) {{?RFC3696}}, such as "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
+For vendor proprietary extensions (including Independent Submission Stream documents), the resulting string still needs to be unique.
+This can be done by making the YANG module name unique, basing it on a fully-qualified domain name (FQDN) {{?RFC9499}}.
+For example, using a string "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing" if the vendor owns the FQDN "fuubar.example.com".
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
 
-Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:
+Designated Experts should review the referenced document for clarity of purpose and to facilitate the checks below.
+For IETF/IRTF Document Stream registrations, an expert does not review or change the registered values themselves, as these are tied to IETF processes:
 
-* There are no choices in the extension names (for standards track extensions) which is always the YANG module name), or SID value (which is from another IANA process).
+* There are no choices in the Extension name: it is always the YANG module name.
 
-* For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
-The stability of the reference may be of concern.
+* There is no choice in the Extension SID value: it follows from another IANA process (as explained above).
 
-The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
-However, as registration is optional, the Designated Expert should not block any vendor registrations if no consolidated extension is possible.
+For documents outside the IETF/IRTF Document Streams, the Designated Expert should pay special attention to the stability
+of the reference, which may be a concern.
+For example, a URL pointing to the website of a standards development organization may change from time to time.
+Also, a Designated Expert could suggest a shorter FQDN in case the Extension name string exceeds the character limit.
+
+The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting to the registrant
+how the work could become part of an (IETF) standard.
+However, as extension registration is optional, the Designated Expert should not block any vendor registrations if no
+consolidated extension is pursued by the registrant.
 
 ## The IETF YANG-SID Ranges Registry
 
