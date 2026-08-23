@@ -1058,7 +1058,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 20 February 2027</td>
+<td class="center">Expires 24 February 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1077,12 +1077,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-19" class="published">19 August 2026</time>
+<time datetime="2026-08-23" class="published">23 August 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-20">20 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-02-24">24 February 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1157,7 +1157,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2325,9 +2325,9 @@ module ietf-voucher {
       }
       description
         "A list of extension names that are used in this Voucher
-         file.  Each name is registered with the IANA.  Standard
-         extensions are described in an RFC, while vendor proprietary
-         ones are not.";
+         file.  Typically, names are registered with the IANA.
+         Standard extensions are described in an RFC, while vendor
+         proprietary ones are not.";
     }
     leaf manufacturer-proprietary {
       type binary;
@@ -2641,11 +2641,12 @@ An extension might need to use "Private range" <span>[<a href="#CORESID" class="
 The processes which were anticipated to be useful (the YANG "augment" mechanism), turned out not to be, see <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-8.6-4" class="pilcrow">¶</a></p>
 <p id="section-8.6-5">Instead, a process similar to what was done by <span>[<a href="#RFC8520" class="cite xref">RFC8520</a>]</span> has been adopted.
 In the Voucher Data, any extensions are listed in a list Attribute named '<code>extensions</code>'.
-In JSON serialization, these extensions each require a unique name, and therefore this name <span class="bcp14">MUST</span> be allocated by IANA.
+In JSON serialization, these extensions each require a unique name, and therefore an IANA registration for these names
+is provided and FQDN-based uniqueness is used in certain cases (see <a href="#voucher-ext-reg" class="auto internal xref">Section 12.5</a>).
 The name <span class="bcp14">MUST</span> be the same as the YANG extension module name.
 The '<code>extensions</code>' list Attribute allows for new standard extensions to be defined without changes to the '<code>ietf-voucher</code>' YANG module.
-Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs);
-both are always defined in the entries of the Voucher Extensions registry (see <a href="#voucher-ext-reg" class="auto internal xref">Section 12.5</a>).<a href="#section-8.6-5" class="pilcrow">¶</a></p>
+Items within that list are either strings (in JSON serialization), or integers (in CBOR serialization using SIDs).
+If the extension is registered with IANA, then both name and SID are always defined in the Voucher Extensions registry (see <a href="#voucher-ext-reg" class="auto internal xref">Section 12.5</a>).<a href="#section-8.6-5" class="pilcrow">¶</a></p>
 <p id="section-8.6-6">Extensions are full YANG modules, which are subject to the SID allocation process described in <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>.
 When an extension is serialized, the extension is placed in a sub-map in the value of a new key/value pair in the '<code>voucher</code>' container element.
 In JSON serialization, the corresponding key is the name of the extension, prefixed by the string "extension:".
@@ -3233,7 +3234,7 @@ by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]
 <a href="#section-12.2" class="section-number selfRef">12.2. </a><a href="#name-the-yang-module-names-regis" class="section-name selfRef">The YANG Module Names Registry</a>
         </h3>
 <p id="section-12.2-1">IANA is requested to update the <code>ietf-voucher</code> and <code>ietf-voucher-request</code> registrations
-in the "YANG  Module Names" registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> <span>[<a href="#RFC9890" class="cite xref">RFC9890</a>]</span> within the "YANG Parameters" registry group to point to this document.
+in the "YANG Module Names" registry <span>[<a href="#RFC6020" class="cite xref">RFC6020</a>]</span> <span>[<a href="#RFC9890" class="cite xref">RFC9890</a>]</span> within the "YANG Parameters" registry group to point to this document.
 For the <code>ietf-voucher-request</code> entry, the prefix should be updated to "vcr".<a href="#section-12.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3264,44 +3265,51 @@ This registration should be updated to point to this document.<a href="#section-
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-12.5-3.1">
             <span class="break"></span><dl class="dlCompact dlParallel" id="section-12.5-3.1.1">
-              <dt id="section-12.5-3.1.1.1">Reference:</dt>
+              <dt id="section-12.5-3.1.1.1">Extension name:</dt>
               <dd style="margin-left: 1.5em" id="section-12.5-3.1.1.2">
-                <p id="section-12.5-3.1.1.2.1">an optional document<a href="#section-12.5-3.1.1.2.1" class="pilcrow">¶</a></p>
+                <p id="section-12.5-3.1.1.2.1">UTF-8-encoded string, at most 40 characters.<a href="#section-12.5-3.1.1.2.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-12.5-3.1.1.3">Extension name:</dt>
+<dt id="section-12.5-3.1.1.3">Extension SID:</dt>
               <dd style="margin-left: 1.5em" id="section-12.5-3.1.1.4">
-                <p id="section-12.5-3.1.1.4.1">UTF-8-encoded string, not to exceed 40 characters.<a href="#section-12.5-3.1.1.4.1" class="pilcrow">¶</a></p>
+                <p id="section-12.5-3.1.1.4.1">the YANG module SID value that defines the extension per <a href="#voucher-ext" class="auto internal xref">Section 8.6</a>.<a href="#section-12.5-3.1.1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
-<dt id="section-12.5-3.1.1.5">Extension SID:</dt>
+<dt id="section-12.5-3.1.1.5">Reference:</dt>
               <dd style="margin-left: 1.5em" id="section-12.5-3.1.1.6">
-                <p id="section-12.5-3.1.1.6.1">the YANG module SID value that defines the extension per <a href="#voucher-ext" class="auto internal xref">Section 8.6</a>.<a href="#section-12.5-3.1.1.6.1" class="pilcrow">¶</a></p>
+                <p id="section-12.5-3.1.1.6.1">an optional document reference (URL, or other pointer)<a href="#section-12.5-3.1.1.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
 </li>
         </ul>
-<p id="section-12.5-4">Note that the SID module value is allocated as part of a <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> process.
+<p id="section-12.5-4">Note that the Extension SID value is allocated as part of a <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> process.
 This may be from a SID range managed by IANA, or from any other MegaRange.
-<span>[<a href="#RFC9997" class="cite xref">RFC9997</a>]</span> allows for PEN based allocations.
+<span>[<a href="#RFC9997" class="cite xref">RFC9997</a>]</span> allows for PEN-based allocations.
 IANA does not need to separately allocate a SID value for this column.<a href="#section-12.5-4" class="pilcrow">¶</a></p>
-<p id="section-12.5-5">Extension name strings for IETF process (standards track, experimental, IRTF) documents are single words, given by the YANG Module Name: They do not contain dots.<a href="#section-12.5-5" class="pilcrow">¶</a></p>
-<p id="section-12.5-6">For vendor proprietary extensions, (including ISE submissions), the resulting string still needs to be unique.
-This can be done by making the YANG module unique, basing it on a fully-qualified domain name (FQDN) <span>[<a href="#RFC3696" class="cite xref">RFC3696</a>]</span>, such as "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"<a href="#section-12.5-6" class="pilcrow">¶</a></p>
+<p id="section-12.5-5">Extension name strings for documents in the IETF Document Stream and IRTF Document Stream are given by the YANG module name: they do not contain dots.<a href="#section-12.5-5" class="pilcrow">¶</a></p>
+<p id="section-12.5-6">For vendor proprietary extensions (including Independent Submission Stream documents), the resulting string still needs to be unique.
+This can be done by making the YANG module name unique, basing it on a fully-qualified domain name (FQDN) <span>[<a href="#RFC9499" class="cite xref">RFC9499</a>]</span>.
+For example, using a string "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing" if the vendor owns the FQDN "fuubar.example.com".<a href="#section-12.5-6" class="pilcrow">¶</a></p>
 <p id="section-12.5-7">Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.<a href="#section-12.5-7" class="pilcrow">¶</a></p>
-<p id="section-12.5-8">Designated Experts should review the documents for clarity, but the choices are tied to WG and IESG processes:<a href="#section-12.5-8" class="pilcrow">¶</a></p>
+<p id="section-12.5-8">Designated Experts should review the referenced document for clarity of purpose and to facilitate the checks below.
+For IETF/IRTF Document Stream registrations, an expert does not review or change the registered values themselves, as these are tied to IETF processes:<a href="#section-12.5-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-12.5-9.1">
-            <p id="section-12.5-9.1.1">There are no choices in the extension names (for standards track extensions) which is always the YANG module name), or SID value (which is from another IANA process).<a href="#section-12.5-9.1.1" class="pilcrow">¶</a></p>
+            <p id="section-12.5-9.1.1">There are no choices in the Extension name: it is always the YANG module name.<a href="#section-12.5-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-12.5-9.2">
-            <p id="section-12.5-9.2.1">For non-standards track extensions, the Designated Expert should review the provided document for clarity of purpose.
-The stability of the reference may be of concern.<a href="#section-12.5-9.2.1" class="pilcrow">¶</a></p>
+            <p id="section-12.5-9.2.1">There is no choice in the Extension SID value: it follows from another IANA process (as explained above).<a href="#section-12.5-9.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-12.5-10">The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting ways that the work could become part of a standard.
-However, as registration is optional, the Designated Expert should not block any vendor registrations if no consolidated extension is possible.<a href="#section-12.5-10" class="pilcrow">¶</a></p>
+<p id="section-12.5-10">For documents outside the IETF/IRTF Document Streams, the Designated Expert should pay special attention to the stability
+of the reference, which may be a concern.
+For example, a URL pointing to the website of a standards development organization may change from time to time.
+Also, a Designated Expert could suggest a shorter FQDN in case the Extension name string exceeds the character limit.<a href="#section-12.5-10" class="pilcrow">¶</a></p>
+<p id="section-12.5-11">The Designated Expert should determine if the work overlaps with an existing IETF WG effort, suggesting to the registrant
+how the work could become part of an (IETF) standard.
+However, as extension registration is optional, the Designated Expert should not block any vendor registrations if no
+consolidated extension is pursued by the registrant.<a href="#section-12.5-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="the-ietf-yang-sid-ranges-registry">
@@ -3561,10 +3569,6 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC3688">[RFC3688]</dt>
         <dd>
 <span class="refAuthor">Mealling, M.</span>, <span class="refTitle">"The IETF XML Registry"</span>, <span class="seriesInfo">BCP 81</span>, <span class="seriesInfo">RFC 3688</span>, <span class="seriesInfo">DOI 10.17487/RFC3688</span>, <time datetime="2004-01" class="refDate">January 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3688">https://www.rfc-editor.org/rfc/rfc3688</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC3696">[RFC3696]</dt>
-        <dd>
-<span class="refAuthor">Klensin, J.</span>, <span class="refTitle">"Application Techniques for Checking and Transformation of Names"</span>, <span class="seriesInfo">RFC 3696</span>, <span class="seriesInfo">DOI 10.17487/RFC3696</span>, <time datetime="2004-02" class="refDate">February 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3696">https://www.rfc-editor.org/rfc/rfc3696</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC4648">[RFC4648]</dt>
         <dd>

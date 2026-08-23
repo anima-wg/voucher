@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 20 February 2027                              IoTconsultancy.nl
+Expires: 24 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                          19 August 2026
+                                                          23 August 2026
 
 
               A Voucher Artifact for Onboarding Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 February 2027.
+   This Internet-Draft will expire on 24 February 2027.
 
 Copyright Notice
 
@@ -1056,9 +1056,9 @@ Table of Contents
          }
          description
            "A list of extension names that are used in this Voucher
-            file.  Each name is registered with the IANA.  Standard
-            extensions are described in an RFC, while vendor proprietary
-            ones are not.";
+            file.  Typically, names are registered with the IANA.
+            Standard extensions are described in an RFC, while vendor
+            proprietary ones are not.";
        }
        leaf manufacturer-proprietary {
          type binary;
@@ -1368,14 +1368,16 @@ Table of Contents
    Instead, a process similar to what was done by [RFC8520] has been
    adopted.  In the Voucher Data, any extensions are listed in a list
    Attribute named 'extensions'.  In JSON serialization, these
-   extensions each require a unique name, and therefore this name MUST
-   be allocated by IANA.  The name MUST be the same as the YANG
-   extension module name.  The 'extensions' list Attribute allows for
-   new standard extensions to be defined without changes to the 'ietf-
-   voucher' YANG module.  Items within that list are either strings (in
-   JSON serialization), or integers (in CBOR serialization using SIDs);
-   both are always defined in the entries of the Voucher Extensions
-   registry (see Section 12.5).
+   extensions each require a unique name, and therefore an IANA
+   registration for these names is provided and FQDN-based uniqueness is
+   used in certain cases (see Section 12.5).  The name MUST be the same
+   as the YANG extension module name.  The 'extensions' list Attribute
+   allows for new standard extensions to be defined without changes to
+   the 'ietf-voucher' YANG module.  Items within that list are either
+   strings (in JSON serialization), or integers (in CBOR serialization
+   using SIDs).  If the extension is registered with IANA, then both
+   name and SID are always defined in the Voucher Extensions registry
+   (see Section 12.5).
 
    Extensions are full YANG modules, which are subject to the SID
    allocation process described in [RFC9254].  When an extension is
@@ -1976,46 +1978,55 @@ Table of Contents
    The name is: Voucher Extensions, and the Registration Policy is
    Expert Review.
 
-      Reference:  an optional document
-      Extension name:  UTF-8-encoded string, not to exceed 40
-         characters.
+      Extension name:  UTF-8-encoded string, at most 40 characters.
       Extension SID:  the YANG module SID value that defines the
          extension per Section 8.6.
+      Reference:  an optional document reference (URL, or other pointer)
 
-   Note that the SID module value is allocated as part of a [CORESID]
+   Note that the Extension SID value is allocated as part of a [CORESID]
    process.  This may be from a SID range managed by IANA, or from any
-   other MegaRange.  [RFC9997] allows for PEN based allocations.  IANA
+   other MegaRange.  [RFC9997] allows for PEN-based allocations.  IANA
    does not need to separately allocate a SID value for this column.
 
-   Extension name strings for IETF process (standards track,
-   experimental, IRTF) documents are single words, given by the YANG
-   Module Name: They do not contain dots.
+   Extension name strings for documents in the IETF Document Stream and
+   IRTF Document Stream are given by the YANG module name: they do not
+   contain dots.
 
-   For vendor proprietary extensions, (including ISE submissions), the
-   resulting string still needs to be unique.  This can be done by
-   making the YANG module unique, basing it on a fully-qualified domain
-   name (FQDN) [RFC3696], such as "fuubar.example.com-mud-thing" rather
-   than "fuubar-mud-thing"
+   For vendor proprietary extensions (including Independent Submission
+   Stream documents), the resulting string still needs to be unique.
+   This can be done by making the YANG module name unique, basing it on
+   a fully-qualified domain name (FQDN) [RFC9499].  For example, using a
+   string "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
+   if the vendor owns the FQDN "fuubar.example.com".
 
    Vendor proprietary extensions do not need to be registered with IANA,
    but vendors are encouraged to do so.
 
-   Designated Experts should review the documents for clarity, but the
-   choices are tied to WG and IESG processes:
+   Designated Experts should review the referenced document for clarity
+   of purpose and to facilitate the checks below.  For IETF/IRTF
+   Document Stream registrations, an expert does not review or change
+   the registered values themselves, as these are tied to IETF
+   processes:
 
-   *  There are no choices in the extension names (for standards track
-      extensions) which is always the YANG module name), or SID value
-      (which is from another IANA process).
+   *  There are no choices in the Extension name: it is always the YANG
+      module name.
 
-   *  For non-standards track extensions, the Designated Expert should
-      review the provided document for clarity of purpose.  The
-      stability of the reference may be of concern.
+   *  There is no choice in the Extension SID value: it follows from
+      another IANA process (as explained above).
+
+   For documents outside the IETF/IRTF Document Streams, the Designated
+   Expert should pay special attention to the stability of the
+   reference, which may be a concern.  For example, a URL pointing to
+   the website of a standards development organization may change from
+   time to time.  Also, a Designated Expert could suggest a shorter FQDN
+   in case the Extension name string exceeds the character limit.
 
    The Designated Expert should determine if the work overlaps with an
-   existing IETF WG effort, suggesting ways that the work could become
-   part of a standard.  However, as registration is optional, the
-   Designated Expert should not block any vendor registrations if no
-   consolidated extension is possible.
+   existing IETF WG effort, suggesting to the registrant how the work
+   could become part of an (IETF) standard.  However, as extension
+   registration is optional, the Designated Expert should not block any
+   vendor registrations if no consolidated extension is pursued by the
+   registrant.
 
 12.6.  The IETF YANG-SID Ranges Registry
 
@@ -2277,10 +2288,6 @@ Table of Contents
    [RFC3688]  Mealling, M., "The IETF XML Registry", BCP 81, RFC 3688,
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
-
-   [RFC3696]  Klensin, J., "Application Techniques for Checking and
-              Transformation of Names", RFC 3696, DOI 10.17487/RFC3696,
-              February 2004, <https://www.rfc-editor.org/rfc/rfc3696>.
 
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
