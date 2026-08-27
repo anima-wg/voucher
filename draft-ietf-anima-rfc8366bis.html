@@ -1601,11 +1601,11 @@ the Join Registrar and to the Pledge:<a href="#section-4-2" class="pilcrow">¶</
         <dt id="section-4-3.1">Assertion Basis:</dt>
         <dd style="margin-left: 1.5em" id="section-4-3.2">
           <p id="section-4-3.2.1">Indicates the method that protects
-the Onboarding (this is distinct from the Voucher signature that
-protects the Voucher itself). Methods include
+the Onboarding. This is distinct from the Voucher signature that
+protects the Voucher itself. Methods include
 manufacturer-asserted ownership verification, assured
 logging operations, or reliance on Pledge behavior
-such as secure or measured boot.
+such as secure boot or measured boot (which is an attested boot process involving 'measurements' as defined by <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>.)
 The Join Registrar uses this information to make a determination as to whether to accept the Pledge into the network.
 Only some methods are normatively defined in this
 document. Other methods are left for future work.<a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
@@ -3623,6 +3623,10 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC9200">[RFC9200]</dt>
         <dd>
 <span class="refAuthor">Seitz, L.</span>, <span class="refAuthor">Selander, G.</span>, <span class="refAuthor">Wahlstroem, E.</span>, <span class="refAuthor">Erdtman, S.</span>, and <span class="refAuthor">H. Tschofenig</span>, <span class="refTitle">"Authentication and Authorization for Constrained Environments Using the OAuth 2.0 Framework (ACE-OAuth)"</span>, <span class="seriesInfo">RFC 9200</span>, <span class="seriesInfo">DOI 10.17487/RFC9200</span>, <time datetime="2022-08" class="refDate">August 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9200">https://www.rfc-editor.org/rfc/rfc9200</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9334">[RFC9334]</dt>
+        <dd>
+<span class="refAuthor">Birkholz, H.</span>, <span class="refAuthor">Thaler, D.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Smith, N.</span>, and <span class="refAuthor">W. Pan</span>, <span class="refTitle">"Remote ATtestation procedureS (RATS) Architecture"</span>, <span class="seriesInfo">RFC 9334</span>, <span class="seriesInfo">DOI 10.17487/RFC9334</span>, <time datetime="2023-01" class="refDate">January 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9334">https://www.rfc-editor.org/rfc/rfc9334</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9499">[RFC9499]</dt>
         <dd>

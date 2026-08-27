@@ -340,14 +340,16 @@ Table of Contents
    The Voucher can convey the following information to the Join
    Registrar and to the Pledge:
 
-   Assertion Basis:  Indicates the method that protects the Onboarding
-      (this is distinct from the Voucher signature that protects the
-      Voucher itself).  Methods include manufacturer-asserted ownership
+   Assertion Basis:  Indicates the method that protects the Onboarding.
+      This is distinct from the Voucher signature that protects the
+      Voucher itself.  Methods include manufacturer-asserted ownership
       verification, assured logging operations, or reliance on Pledge
-      behavior such as secure or measured boot.  The Join Registrar uses
-      this information to make a determination as to whether to accept
-      the Pledge into the network.  Only some methods are normatively
-      defined in this document.  Other methods are left for future work.
+      behavior such as secure boot or measured boot (which is an
+      attested boot process involving 'measurements' as defined by
+      [RFC9334].)  The Join Registrar uses this information to make a
+      determination as to whether to accept the Pledge into the network.
+      Only some methods are normatively defined in this document.  Other
+      methods are left for future work.
 
    Authentication of Join Registrar:  Indicates how the Pledge can
       authenticate the Join Registrar.  This document defines a
@@ -2357,6 +2359,11 @@ Table of Contents
               Constrained Environments Using the OAuth 2.0 Framework
               (ACE-OAuth)", RFC 9200, DOI 10.17487/RFC9200, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9200>.
+
+   [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
+              W. Pan, "Remote ATtestation procedureS (RATS)
+              Architecture", RFC 9334, DOI 10.17487/RFC9334, January
+              2023, <https://www.rfc-editor.org/rfc/rfc9334>.
 
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
