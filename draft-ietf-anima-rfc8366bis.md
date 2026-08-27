@@ -252,7 +252,13 @@ MASA (Manufacturer Authorized Signing Authority):
   active role in the Onboarding process.
 
 Malicious Registrar:
-: An on-path active attacker that presents itself as a legitimate Registrar.
+: An on-path active attacker that presents itself as a legitimate Registrar towards the Pledge.
+  This attacker's goal is to trick the Pledge to trust its malicious Domain and use this trust as
+  a first step to attempt further exploits towards the Pledge, to compromise its software. After the
+  software is compromised, the Pledge is then instructed by the attacker to onboard another time but
+  now with a real Registrar of the attacker's target Domain. This way, a compromised Pledge would become
+  trusted in the attacker's target Domain.
+  {{Section 11.4 of RFC8995}} describes more details of this attack and its mitigations.
 
 Onboarding:
 : Onboarding describes the process to provide necessary operational data to a Pledge
