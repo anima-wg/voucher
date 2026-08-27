@@ -1499,10 +1499,12 @@ active role in the Onboarding process.<a href="#section-2-2.12.1" class="pilcrow
 <dt id="section-2-2.13">Malicious Registrar:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.14">
           <p id="section-2-2.14.1">An on-path active attacker that presents itself as a legitimate Registrar towards the Pledge.
-This attacker's goal is to trick the Pledge to trust its malicious Domain and use this trust as
-a first step to attempt further exploits towards the Pledge, to compromise its software. After the
-software is compromised, the Pledge is then instructed by the attacker to onboard another time but
-now with a real Registrar of the attacker's target Domain. This way, a compromised Pledge would become
+This attacker's goal is to trick the Pledge to trust its malicious Domain and let it onboard into that Domain.
+The attacker then has control over the Pledge and may then perform various follow-up actions such as operating the
+device at another location in a network under the attacker's control, or attempting further device exploits to
+compromise its software.
+After the software is compromised, the Pledge could be instructed by the attacker to onboard another time but
+now with a real Registrar of a target Domain being attacked. This way, a compromised Pledge could become
 trusted in the attacker's target Domain.
 <span><a href="https://rfc-editor.org/rfc/rfc8995#section-11.4" class="relref">Section 11.4</a> of [<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> describes more details of this attack and its mitigations.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
 </dd>
