@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 24 February 2027                              IoTconsultancy.nl
+Expires: 28 February 2027                              IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                          23 August 2026
+                                                          27 August 2026
 
 
               A Voucher Artifact for Onboarding Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 February 2027.
+   This Internet-Draft will expire on 28 February 2027.
 
 Copyright Notice
 
@@ -267,7 +267,16 @@ Table of Contents
       active role in the Onboarding process.
 
    Malicious Registrar:  An on-path active attacker that presents itself
-      as a legitimate Registrar.
+      as a legitimate Registrar towards the Pledge.  This attacker's
+      goal is to trick the Pledge to trust its malicious Domain and use
+      this trust as a first step to attempt further exploits towards the
+      Pledge, to compromise its software.  After the software is
+      compromised, the Pledge is then instructed by the attacker to
+      onboard another time but now with a real Registrar of the
+      attacker's target Domain.  This way, a compromised Pledge would
+      become trusted in the attacker's target Domain.  Section 11.4 of
+      [RFC8995] describes more details of this attack and its
+      mitigations.
 
    Onboarding:  Onboarding describes the process to provide necessary
       operational data to a Pledge and to complete the process of
@@ -2114,9 +2123,9 @@ Table of Contents
               Tschofenig, H., Fossati, T., Richardson, M., and D.
               Migault, "TLS/DTLS 1.3 Profiles for the Internet of
               Things", Work in Progress, Internet-Draft, draft-ietf-uta-
-              tls13-iot-profile-23, 21 July 2026,
+              tls13-iot-profile-24, 24 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-uta-
-              tls13-iot-profile-23>.
+              tls13-iot-profile-24>.
 
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
