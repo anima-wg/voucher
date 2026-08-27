@@ -114,6 +114,7 @@ informative:
   RFC8366:
   SZTP: RFC8572
   RFC8792:
+  RFC9334:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
@@ -322,11 +323,11 @@ the Join Registrar and to the Pledge:
 
 Assertion Basis:
 : Indicates the method that protects
-  the Onboarding (this is distinct from the Voucher signature that
-  protects the Voucher itself). Methods include
+  the Onboarding. This is distinct from the Voucher signature that
+  protects the Voucher itself. Methods include
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge behavior
-  such as secure or measured boot.
+  such as secure boot or measured boot (which is an attested boot process involving 'measurements' as defined by {{RFC9334}}.)
   The Join Registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
