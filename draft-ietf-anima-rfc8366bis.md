@@ -254,10 +254,12 @@ MASA (Manufacturer Authorized Signing Authority):
 
 Malicious Registrar:
 : An on-path active attacker that presents itself as a legitimate Registrar towards the Pledge.
-  This attacker's goal is to trick the Pledge to trust its malicious Domain and use this trust as
-  a first step to attempt further exploits towards the Pledge, to compromise its software. After the
-  software is compromised, the Pledge is then instructed by the attacker to onboard another time but
-  now with a real Registrar of the attacker's target Domain. This way, a compromised Pledge would become
+  This attacker's goal is to trick the Pledge to trust its malicious Domain and let it onboard into that Domain.
+  The attacker then has control over the Pledge and may then perform various follow-up actions such as operating the
+  device at another location in a network under the attacker's control, or attempting further device exploits to
+  compromise its software.
+  After the software is compromised, the Pledge could be instructed by the attacker to onboard another time but
+  now with a real Registrar of a target Domain being attacked. This way, a compromised Pledge could become
   trusted in the attacker's target Domain.
   {{Section 11.4 of RFC8995}} describes more details of this attack and its mitigations.
 
