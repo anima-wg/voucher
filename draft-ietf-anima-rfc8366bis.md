@@ -62,7 +62,6 @@ venue:
   github: anima-wg/voucher
 
 normative:
-  RFC4086:
   RFC5280:
   RFC5652:
   RFC6020:
@@ -1234,12 +1233,15 @@ and also the following YANG module:
 * URI for the ".sid" file: a pointer to the file defined in {{voucher-request-sid-allocations}}
 * Number of SIDs: 24
 
+{:removeinrfc}
 # YANG references
 
-RFC-editor, please remove.
+RFC-editor, please remove this section.
 This section just lists references present in YANG modules which otherwise do not get included in the references, like {{!RFC7250}}.
 
 Also {{!RFC9911}}, Common YANG Data Types.
+
+Also {{!RFC4086}}, Randomness Requirements for Security. (Normative reference)
 
 --- back
 
