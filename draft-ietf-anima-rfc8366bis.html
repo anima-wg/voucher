@@ -2306,7 +2306,7 @@ module ietf-voucher {
        Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
        and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
     reference
-      "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+      "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
   }
   revision 2018-05-09 {
     description
@@ -2430,7 +2430,7 @@ module ietf-voucher {
 
          This certificate is used by a pledge to trust a Public Key
          Infrastructure in order to verify a domain certificate
-         supplied to the pledge separately by the bootstrapping
+         supplied to the pledge separately by the onboarding
          protocol.  The domain certificate MUST have this
          certificate somewhere in its chain of certificates.
          This certificate MAY be an end-entity certificate,
@@ -2497,7 +2497,7 @@ module ietf-voucher {
     }
     //choice nonceless {
     //  description "Either a nonce must be present,
-    //               or an expires-on header";
+    //               or an expires-on attribute";
     leaf expires-on {
       type yang:date-and-time;
       description
@@ -2517,17 +2517,20 @@ module ietf-voucher {
         length "8..32";
       }
       description
-        "A value that can be used by a pledge in some bootstrapping
+        "A value that can be used by a pledge in some onboarding
          protocols to enable anti-replay protection.  This node is
-         optional because it is not used by all bootstrapping
+         optional because it is not used by all onboarding
          protocols.
 
          When present, the pledge MUST compare the provided nonce
          value with another value that the pledge randomly
          generated and sent to a bootstrap server in an earlier
-         bootstrapping message.  If the value is present, but
+         onboarding message.  If the value is present, but
          the values do not match, then the pledge MUST NOT process
-         this voucher.";
+         this voucher.
+
+         A nonce value MUST be a cryptographically strong random
+         value as detailed in RFC 4086.";
     }
     // } choice nonceless
     leaf est-domain {
@@ -2764,7 +2767,7 @@ module ietf-voucher-request {
        connection to the Owner's network infrastructure";
     reference
       "RFC XXXX: A Voucher Artifact for
-       Bootstrapping Protocols";
+       Onboarding Protocols";
   }
 
   organization
@@ -2822,7 +2825,7 @@ module ietf-voucher-request {
        Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
        and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
     reference
-      "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+      "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
   }
   revision 2021-05-20 {
     description
@@ -3476,6 +3479,10 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC4086">[RFC4086]</dt>
+        <dd>
+<span class="refAuthor">Eastlake 3rd, D.</span>, <span class="refAuthor">Schiller, J.</span>, and <span class="refAuthor">S. Crocker</span>, <span class="refTitle">"Randomness Requirements for Security"</span>, <span class="seriesInfo">BCP 106</span>, <span class="seriesInfo">RFC 4086</span>, <span class="seriesInfo">DOI 10.17487/RFC4086</span>, <time datetime="2005-06" class="refDate">June 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4086">https://www.rfc-editor.org/rfc/rfc4086</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5280">[RFC5280]</dt>
         <dd>

@@ -1042,7 +1042,7 @@ Table of Contents
           Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
           and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
        reference
-         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
      }
      revision 2018-05-09 {
        description
@@ -1166,7 +1166,7 @@ Table of Contents
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
-            supplied to the pledge separately by the bootstrapping
+            supplied to the pledge separately by the onboarding
             protocol.  The domain certificate MUST have this
             certificate somewhere in its chain of certificates.
             This certificate MAY be an end-entity certificate,
@@ -1233,7 +1233,7 @@ Table of Contents
        }
        //choice nonceless {
        //  description "Either a nonce must be present,
-       //               or an expires-on header";
+       //               or an expires-on attribute";
        leaf expires-on {
          type yang:date-and-time;
          description
@@ -1253,17 +1253,20 @@ Table of Contents
            length "8..32";
          }
          description
-           "A value that can be used by a pledge in some bootstrapping
+           "A value that can be used by a pledge in some onboarding
             protocols to enable anti-replay protection.  This node is
-            optional because it is not used by all bootstrapping
+            optional because it is not used by all onboarding
             protocols.
 
             When present, the pledge MUST compare the provided nonce
             value with another value that the pledge randomly
             generated and sent to a bootstrap server in an earlier
-            bootstrapping message.  If the value is present, but
+            onboarding message.  If the value is present, but
             the values do not match, then the pledge MUST NOT process
-            this voucher.";
+            this voucher.
+
+            A nonce value MUST be a cryptographically strong random
+            value as detailed in RFC 4086.";
        }
        // } choice nonceless
        leaf est-domain {
@@ -1510,7 +1513,7 @@ Table of Contents
           connection to the Owner's network infrastructure";
        reference
          "RFC XXXX: A Voucher Artifact for
-          Bootstrapping Protocols";
+          Onboarding Protocols";
      }
 
      organization
@@ -1568,7 +1571,7 @@ Table of Contents
           Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
           and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
        reference
-         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
      }
      revision 2021-05-20 {
        description
@@ -2176,6 +2179,11 @@ Table of Contents
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4086]  Eastlake 3rd, D., Schiller, J., and S. Crocker,
+              "Randomness Requirements for Security", BCP 106, RFC 4086,
+              DOI 10.17487/RFC4086, June 2005,
+              <https://www.rfc-editor.org/rfc/rfc4086>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
