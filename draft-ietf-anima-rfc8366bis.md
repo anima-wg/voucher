@@ -912,7 +912,7 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 {{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
 
-In the event that more than one of the Attributes `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert`
+In the event that more than one of the Attributes `proximity-registrar-pubk-sha256`, `proximity-registrar-pubk` or `proximity-registrar-cert`
 are present in a Voucher Request, then the Registrar and MASA SHALL consider them in the order presented here.
 
 The presence of more than one of these Attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
