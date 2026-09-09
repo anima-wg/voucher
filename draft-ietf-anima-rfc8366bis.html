@@ -1300,7 +1300,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
                 <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-clock-sensitivity" class="internal xref">Clock Sensitivity</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-protect-masa-signing-key-in" class="internal xref">Protect MASA Signing Key in HSM</a></p>
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-protecting-the-masa-signing" class="internal xref">Protecting the MASA Signing Key and the MASA CA Key</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.3">
                 <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-test-domain-certificate-val" class="internal xref">Test Domain Certificate Validity When Signing</a></p>
@@ -2024,7 +2024,7 @@ known to the recipient.  The inclusion of the trust anchor is
 unusual in many applications, but third parties cannot accurately
 audit the transaction without it.<a href="#section-7.1-9" class="pilcrow">¶</a></p>
 <p id="section-7.1-10">The CMS structure <span class="bcp14">MAY</span> also contain revocation objects for any
-intermediate certificate authorities (CAs) between the
+intermediate Certification Authorities (CAs) between the
 Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
@@ -3163,20 +3163,22 @@ If it is not possible to ensure clock accuracy, then
 the expiration time values in Vouchers will have no meaning.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="protect-masa-signing-key-in-hsm">
+<div id="protecting-the-masa-signing-key-and-the-masa-ca-key">
 <section id="section-11.2">
-        <h3 id="name-protect-masa-signing-key-in">
-<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-protect-masa-signing-key-in" class="section-name selfRef">Protect MASA Signing Key in HSM</a>
+        <h3 id="name-protecting-the-masa-signing">
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-protecting-the-masa-signing" class="section-name selfRef">Protecting the MASA Signing Key and the MASA CA Key</a>
         </h3>
-<p id="section-11.2-1">As the MASA needs to be able to respond to voucher signing requests,
-it is <span class="bcp14">RECOMMENDED</span> that the MASA's private key used for signing Vouchers is protected by
-a hardware security module (HSM).<a href="#section-11.2-1" class="pilcrow">¶</a></p>
-<p id="section-11.2-2">There are many ways to organize the PKI that is used to sign vouchers.
+<p id="section-11.2-1">As the MASA needs to be able to respond to Voucher signing requests,
+its private key used for signing Vouchers is online.
+This key is associated to its End-Entity certificate, which is a short-lived certificate, re-generated frequently.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
+<p id="section-11.2-2">The private key <span class="bcp14">MUST</span> be stored such that it cannot be exported and
+each use of the key is subject to access control.
+A hardware security module (HSM) is one way to achieve this.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
+<p id="section-11.2-3">There are many ways to organize the PKI that is used to sign Vouchers.
 <span>[<a href="#I-D.ietf-anima-masa-considerations" class="cite xref">I-D.ietf-anima-masa-considerations</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-masa-considerations-03#section-2" class="relref">Section 2</a></span> describes a number of different scenarios.
-In some of them, there are long-term keys kept offline, implementing a certification authority.
-This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
-<p id="section-11.2-3">The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
-The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.2-3" class="pilcrow">¶</a></p>
+In some of them, there are long-term keys kept offline, implementing a Certification Authority (CA).
+This can be as advanced as an FIPS-certified resin-filled HSM, or as simple as a USB key stored in a locked cabinet.<a href="#section-11.2-3" class="pilcrow">¶</a></p>
+<p id="section-11.2-4">The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-con-domain">

@@ -119,7 +119,7 @@ Table of Contents
      10.2.  Voucher Per Pledge
    11. Security Considerations
      11.1.  Clock Sensitivity
-     11.2.  Protect MASA Signing Key in HSM
+     11.2.  Protecting the MASA Signing Key and the MASA CA Key
      11.3.  Test Domain Certificate Validity When Signing
      11.4.  YANG Module Security Considerations
    12. IANA Considerations
@@ -728,12 +728,12 @@ Table of Contents
    transaction without it.
 
    The CMS structure MAY also contain revocation objects for any
-   intermediate certificate authorities (CAs) between the Voucher issuer
-   and the trust anchor known to the recipient.  However, the use of
-   CRLs and other validity mechanisms is discouraged, as the Pledge is
-   unlikely to be able to perform online checks and is unlikely to have
-   a trusted clock source.  As described below, the use of short-lived
-   Vouchers and/or a Pledge-provided nonce provides a freshness
+   intermediate Certification Authorities (CAs) between the Voucher
+   issuer and the trust anchor known to the recipient.  However, the use
+   of CRLs and other validity mechanisms is discouraged, as the Pledge
+   is unlikely to be able to perform online checks and is unlikely to
+   have a trusted clock source.  As described below, the use of short-
+   lived Vouchers and/or a Pledge-provided nonce provides a freshness
    guarantee.
 
 8.  Voucher Artifact
@@ -1889,21 +1889,24 @@ Table of Contents
    accuracy, then the expiration time values in Vouchers will have no
    meaning.
 
-11.2.  Protect MASA Signing Key in HSM
+11.2.  Protecting the MASA Signing Key and the MASA CA Key
 
-   As the MASA needs to be able to respond to voucher signing requests,
-   it is RECOMMENDED that the MASA's private key used for signing
-   Vouchers is protected by a hardware security module (HSM).
+   As the MASA needs to be able to respond to Voucher signing requests,
+   its private key used for signing Vouchers is online.  This key is
+   associated to its End-Entity certificate, which is a short-lived
+   certificate, re-generated frequently.
+
+   The private key MUST be stored such that it cannot be exported and
+   each use of the key is subject to access control.  A hardware
+   security module (HSM) is one way to achieve this.
 
    There are many ways to organize the PKI that is used to sign
-   vouchers.  [I-D.ietf-anima-masa-considerations], Section 2 describes
+   Vouchers.  [I-D.ietf-anima-masa-considerations], Section 2 describes
    a number of different scenarios.  In some of them, there are long-
-   term keys kept offline, implementing a certification authority.  This
-   can be as complicated as an FIPS-certified resin filled HSM, or as
+   term keys kept offline, implementing a Certification Authority (CA).
+   This can be as advanced as an FIPS-certified resin-filled HSM, or as
    simple as a USB key stored in a locked cabinet.
 
-   The actual End-Entity certificate used to sign the Vouchers is
-   online, and is a short-lived certificate, re-generated frequently.
    The trust anchor configured into the Pledge is the long-term offline
    anchor.
 
