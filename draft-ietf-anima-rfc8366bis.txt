@@ -118,10 +118,11 @@ Table of Contents
      10.1.  Renewals Instead of Revocations
      10.2.  Voucher Per Pledge
    11. Security Considerations
-     11.1.  Clock Sensitivity
-     11.2.  Protecting the MASA Signing Key and the MASA CA Key
-     11.3.  Test Domain Certificate Validity When Signing
-     11.4.  YANG Module Security Considerations
+     11.1.  Clock Accuracy in a Pledge
+     11.2.  Nonceless Vouchers
+     11.3.  Protecting the MASA Signing Key and the MASA CA Key
+     11.4.  Test Domain Certificate Validity When Signing
+     11.5.  YANG Module Security Considerations
    12. IANA Considerations
      12.1.  The IETF XML Registry
      12.2.  The YANG Module Names Registry
@@ -1840,7 +1841,7 @@ Table of Contents
    still holds.  The MASA always verifies the RVR, to ensure that the
    requesting Registrar still has access to the Domain's private key; it
    checks the revocation status of the Domain identity certificate (see
-   Section 11.3); and it applies any policy that has changed since the
+   Section 11.4); and it applies any policy that has changed since the
    previous Voucher issuance, such as a Domain owner's request to block
    further renewals or the expiry of a support contract.  Renewal has
    therefore lower overhead than the initial issuance and can be fully
@@ -1880,29 +1881,56 @@ Table of Contents
 
 11.  Security Considerations
 
-11.1.  Clock Sensitivity
+11.1.  Clock Accuracy in a Pledge
 
-   An attacker could use an expired Voucher to gain control over a
-   device that has no understanding of time.  The device cannot trust
-   NTP as a time reference, as an attacker could control the NTP stream.
+   An attacker could use an expired nonceless Voucher to gain control
+   over a device (Pledge) that has no understanding of time.  The device
+   cannot trust Network Time Protocol (NTP) as a time reference, as an
+   attacker could control the NTP stream.
 
-   There are three things to defend against this: 1) devices are
-   required to verify that the 'expires-on' Attribute has not yet
-   passed, 2) devices without access to time can use nonces to get
-   ephemeral Vouchers, and 3) Vouchers without expiration times may be
-   used, which will appear in the audit log, informing the security
-   decision.
+   There are three things to defend against this: 1) a device is
+   required to verify that the 'expires-on' Attribute's time has not yet
+   passed, 2) a device without access to an internal clock uses a nonce
+   to get a fresh ephemeral Voucher, and 3) a device is required to
+   verify that the trust anchor indicated in the Voucher matches the
+   Registrar it is communicating with.
 
-   This document defines a Voucher format that contains time values for
-   expirations, which require an accurate clock in order to be processed
-   correctly.  Vendors planning on issuing Vouchers with expiration
-   values need to ensure that the devices targetted have an accurate
-   clock when shipped from manufacturing facilities and take steps to
-   prevent clock tampering.  If it is not possible to ensure clock
-   accuracy, then the expiration time values in Vouchers will have no
-   meaning.
+   The latter prevents onboarding into a Domain controlled by an
+   attacker which is different to the Domain indicated in the Voucher.
+   However, by itself it does not prevent a Domain owner trying to
+   onboard a Pledge while the expiration time in the Voucher has already
+   passed.
 
-11.2.  Protecting the MASA Signing Key and the MASA CA Key
+   This document defines a Voucher that optionally contains an
+   expiration time, which requires an accurate clock on the device in
+   order to be processed correctly.
+
+   Manufacturers issuing Vouchers with expiration time need to ensure
+   that the devices targeted have an accurate clock when shipped from
+   manufacturing facilities and need to take measures to prevent clock
+   tampering.  If it is not possible to ensure clock accuracy and
+   tamper-proofness, then the expiration time values in Vouchers will
+   provide little protection.
+
+11.2.  Nonceless Vouchers
+
+   A nonceless Voucher cannot be validated by a Pledge for freshness,
+   other than by inspecting the 'expires-on' attribute and comparing its
+   value against the Pledge's internal clock.  See the previous section
+   for considerations on the accuracy of this clock and the risks of
+   relying on NTP for acquiring the current time.
+
+   A nonceless Voucher can be reused by a Registrar to answer a Pledge's
+   PVR any number of times within its validity period.  This can be a
+   benefit for a Domain owner if repeated onboarding into a Domain is
+   required, but it equally allows an attacker that came into possession
+   of a nonceless Voucher to attempt a great number of onboarding
+   attempts with the indicated Pledge.  Still, such repeated attacks are
+   unlikely to succeed because the Voucher explicitly identifies only
+   one Domain where the Pledge can be onboarded into - which is not the
+   attacker's Domain in this scenario.
+
+11.3.  Protecting the MASA Signing Key and the MASA CA Key
 
    As the MASA needs to be able to respond to Voucher signing requests,
    its private key used for signing Vouchers is online.  This key is
@@ -1923,7 +1951,7 @@ Table of Contents
    The trust anchor configured into the Pledge is the long-term offline
    anchor.
 
-11.3.  Test Domain Certificate Validity When Signing
+11.4.  Test Domain Certificate Validity When Signing
 
    If a Domain certificate is compromised, then any outstanding Vouchers
    for that Domain could be used by the attacker.  In this case, the
@@ -1937,7 +1965,7 @@ Table of Contents
    RECOMMENDED to check for revocation of Domain identity certificates
    before the signing of Vouchers.
 
-11.4.  YANG Module Security Considerations
+11.5.  YANG Module Security Considerations
 
    The YANG modules specified in this document define the schema for
    data that is subsequently encapsulated by secure signed-data

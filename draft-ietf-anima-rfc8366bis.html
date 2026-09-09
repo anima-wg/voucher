@@ -1297,16 +1297,19 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="auto internal xref">11</a>. <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.1">
-                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-clock-sensitivity" class="internal xref">Clock Sensitivity</a></p>
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-11.1" class="auto internal xref">11.1</a>.  <a href="#name-clock-accuracy-in-a-pledge" class="internal xref">Clock Accuracy in a Pledge</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.2">
-                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-protecting-the-masa-signing" class="internal xref">Protecting the MASA Signing Key and the MASA CA Key</a></p>
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-11.2" class="auto internal xref">11.2</a>.  <a href="#name-nonceless-vouchers" class="internal xref">Nonceless Vouchers</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.3">
-                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-test-domain-certificate-val" class="internal xref">Test Domain Certificate Validity When Signing</a></p>
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-11.3" class="auto internal xref">11.3</a>.  <a href="#name-protecting-the-masa-signing" class="internal xref">Protecting the MASA Signing Key and the MASA CA Key</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.4">
-                <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-yang-module-security-consid" class="internal xref">YANG Module Security Considerations</a></p>
+                <p id="section-toc.1-1.11.2.4.1"><a href="#section-11.4" class="auto internal xref">11.4</a>.  <a href="#name-test-domain-certificate-val" class="internal xref">Test Domain Certificate Validity When Signing</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11.2.5">
+                <p id="section-toc.1-1.11.2.5.1"><a href="#section-11.5" class="auto internal xref">11.5</a>.  <a href="#name-yang-module-security-consid" class="internal xref">YANG Module Security Considerations</a></p>
 </li>
             </ul>
 </li>
@@ -3105,7 +3108,7 @@ established earlier still holds.
 The MASA always verifies the RVR, to ensure that the requesting
 Registrar still has access to the Domain's private key; it checks the
 revocation status of the Domain identity certificate (see
-<a href="#sec-con-domain" class="auto internal xref">Section 11.3</a>); and it applies any policy that has changed since the
+<a href="#sec-con-domain" class="auto internal xref">Section 11.4</a>); and it applies any policy that has changed since the
 previous Voucher issuance, such as a Domain owner's request to block further
 renewals or the expiry of a support contract.
 Renewal has therefore lower overhead than the initial issuance and can be
@@ -3149,96 +3152,114 @@ to be listed.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-11" class="section-number selfRef">11. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="clock-sensitivity">
+<div id="clock-accuracy-in-a-pledge">
 <section id="section-11.1">
-        <h3 id="name-clock-sensitivity">
-<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-clock-sensitivity" class="section-name selfRef">Clock Sensitivity</a>
+        <h3 id="name-clock-accuracy-in-a-pledge">
+<a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-clock-accuracy-in-a-pledge" class="section-name selfRef">Clock Accuracy in a Pledge</a>
         </h3>
-<p id="section-11.1-1">An attacker could use an expired Voucher to gain control over
-a device that has no understanding of time.  The device cannot
-trust NTP as a time reference, as an attacker could control
-the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
-<p id="section-11.1-2">There are three things to defend against this: 1) devices are
-required to verify that the '<code>expires-on</code>' Attribute has not yet passed,
-2) devices without access to time can use nonces to
-get ephemeral Vouchers, and 3) Vouchers without expiration times
-may be used, which will appear in the audit log, informing the
-security decision.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
-<p id="section-11.1-3">This document defines a Voucher format that contains time values
-for expirations, which require an accurate clock
-in order to be processed correctly.
-Vendors planning on
-issuing Vouchers with expiration values need to ensure that
-the devices targetted have an accurate clock when shipped from manufacturing
-facilities and take steps to prevent clock tampering.
-If it is not possible to ensure clock accuracy, then
-the expiration time values in Vouchers will have no meaning.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+<p id="section-11.1-1">An attacker could use an expired nonceless Voucher to gain control over
+a device (Pledge) that has no understanding of time.  The device cannot
+trust Network Time Protocol (NTP) as a time reference, as an attacker could
+control the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">There are three things to defend against this:
+1) a device is required to verify that the '<code>expires-on</code>' Attribute's time has not yet passed,
+2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
+3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
+   it is communicating with.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-11.1-3">The latter prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
+the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
+time in the Voucher has already passed.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+<p id="section-11.1-4">This document defines a Voucher that optionally contains an
+expiration time, which requires an accurate clock on the device
+in order to be processed correctly.<a href="#section-11.1-4" class="pilcrow">¶</a></p>
+<p id="section-11.1-5">Manufacturers issuing Vouchers with expiration time need to ensure that
+the devices targeted have an accurate clock when shipped from manufacturing
+facilities and need to take measures to prevent clock tampering.
+If it is not possible to ensure clock accuracy and tamper-proofness, then
+the expiration time values in Vouchers will provide little protection.<a href="#section-11.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="nonceless-vouchers">
+<section id="section-11.2">
+        <h3 id="name-nonceless-vouchers">
+<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-nonceless-vouchers" class="section-name selfRef">Nonceless Vouchers</a>
+        </h3>
+<p id="section-11.2-1">A nonceless Voucher cannot be validated by a Pledge for freshness, other than by inspecting the
+'<code>expires-on</code>' attribute and comparing its value against the Pledge's internal clock.
+See the previous section for considerations on the accuracy of this clock and the risks of relying on NTP for
+acquiring the current time.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
+<p id="section-11.2-2">A nonceless Voucher can be reused by a Registrar to answer a Pledge's PVR any number of times within its validity
+period. This can be a benefit for a Domain owner if repeated onboarding into a Domain is required, but it equally
+allows an attacker that came into possession of a nonceless Voucher to attempt a great number of onboarding attempts
+with the indicated Pledge.
+Still, such repeated attacks are unlikely to succeed because the Voucher explicitly identifies only one Domain
+where the Pledge can be onboarded into - which is not the attacker's Domain in this scenario.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="protecting-the-masa-signing-key-and-the-masa-ca-key">
-<section id="section-11.2">
+<section id="section-11.3">
         <h3 id="name-protecting-the-masa-signing">
-<a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-protecting-the-masa-signing" class="section-name selfRef">Protecting the MASA Signing Key and the MASA CA Key</a>
+<a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-protecting-the-masa-signing" class="section-name selfRef">Protecting the MASA Signing Key and the MASA CA Key</a>
         </h3>
-<p id="section-11.2-1">As the MASA needs to be able to respond to Voucher signing requests,
+<p id="section-11.3-1">As the MASA needs to be able to respond to Voucher signing requests,
 its private key used for signing Vouchers is online.
-This key is associated to its End-Entity certificate, which is a short-lived certificate, re-generated frequently.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
-<p id="section-11.2-2">The private key <span class="bcp14">MUST</span> be stored such that it cannot be exported and
+This key is associated to its End-Entity certificate, which is a short-lived certificate, re-generated frequently.<a href="#section-11.3-1" class="pilcrow">¶</a></p>
+<p id="section-11.3-2">The private key <span class="bcp14">MUST</span> be stored such that it cannot be exported and
 each use of the key is subject to access control.
-A hardware security module (HSM) is one way to achieve this.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
-<p id="section-11.2-3">There are many ways to organize the PKI that is used to sign Vouchers.
+A hardware security module (HSM) is one way to achieve this.<a href="#section-11.3-2" class="pilcrow">¶</a></p>
+<p id="section-11.3-3">There are many ways to organize the PKI that is used to sign Vouchers.
 <span>[<a href="#I-D.ietf-anima-masa-considerations" class="cite xref">I-D.ietf-anima-masa-considerations</a>], <a href="https://datatracker.ietf.org/doc/html/draft-ietf-anima-masa-considerations-03#section-2" class="relref">Section 2</a></span> describes a number of different scenarios.
 In some of them, there are long-term keys kept offline, implementing a Certification Authority (CA).
-This can be as advanced as an FIPS-certified resin-filled HSM, or as simple as a USB key stored in a locked cabinet.<a href="#section-11.2-3" class="pilcrow">¶</a></p>
-<p id="section-11.2-4">The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.2-4" class="pilcrow">¶</a></p>
+This can be as advanced as an FIPS-certified resin-filled HSM, or as simple as a USB key stored in a locked cabinet.<a href="#section-11.3-3" class="pilcrow">¶</a></p>
+<p id="section-11.3-4">The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-con-domain">
-<section id="section-11.3">
+<section id="section-11.4">
         <h3 id="name-test-domain-certificate-val">
-<a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-test-domain-certificate-val" class="section-name selfRef">Test Domain Certificate Validity When Signing</a>
+<a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-test-domain-certificate-val" class="section-name selfRef">Test Domain Certificate Validity When Signing</a>
         </h3>
-<p id="section-11.3-1">If a Domain certificate is compromised, then any outstanding
+<p id="section-11.4-1">If a Domain certificate is compromised, then any outstanding
 Vouchers for that Domain could be used by the attacker.  In this case, the Domain
 administrator is clearly expected to initiate revocation of any
-Domain identity certificates (as is normal in PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> solutions).<a href="#section-11.3-1" class="pilcrow">¶</a></p>
-<p id="section-11.3-2">Similarly, they are expected to contact the MASA to indicate that
+Domain identity certificates (as is normal in PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> solutions).<a href="#section-11.4-1" class="pilcrow">¶</a></p>
+<p id="section-11.4-2">Similarly, they are expected to contact the MASA to indicate that
 an outstanding (presumably short lifetime) Voucher should be blocked from
 automated renewal.
 Protocols for Voucher distribution are
 <span class="bcp14">RECOMMENDED</span> to check for revocation of Domain identity certificates
-before the signing of Vouchers.<a href="#section-11.3-2" class="pilcrow">¶</a></p>
+before the signing of Vouchers.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="yang-module-security-considerations">
-<section id="section-11.4">
+<section id="section-11.5">
         <h3 id="name-yang-module-security-consid">
-<a href="#section-11.4" class="section-number selfRef">11.4. </a><a href="#name-yang-module-security-consid" class="section-name selfRef">YANG Module Security Considerations</a>
+<a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-yang-module-security-consid" class="section-name selfRef">YANG Module Security Considerations</a>
         </h3>
-<p id="section-11.4-1">The YANG modules specified in this document define the schema
+<p id="section-11.5-1">The YANG modules specified in this document define the schema
 for data that is subsequently encapsulated by secure signed-data structures,
 such as the CMS signed-data described in <a href="#cms-voucher" class="auto internal xref">Section 7.1</a>.  As such,
-all of the YANG-modeled data is protected from modification.<a href="#section-11.4-1" class="pilcrow">¶</a></p>
-<p id="section-11.4-2">Implementations should be aware that the signed data is only
+all of the YANG-modeled data is protected from modification.<a href="#section-11.5-1" class="pilcrow">¶</a></p>
+<p id="section-11.5-2">Implementations should be aware that the signed data is only
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
-so much as privacy.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
-<p id="section-11.4-3">When used with <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, or <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> then voucher requests and vouchers are conveyed using TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, so there is no exposure.<a href="#section-11.4-3" class="pilcrow">¶</a></p>
-<p id="section-11.4-4">When used with <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, then the contents can be exposed in the last hop,
-where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.<a href="#section-11.4-4" class="pilcrow">¶</a></p>
-<p id="section-11.4-5">When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
+so much as privacy.<a href="#section-11.5-2" class="pilcrow">¶</a></p>
+<p id="section-11.5-3">When used with <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, or <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> then voucher requests and vouchers are conveyed using TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, so there is no exposure.<a href="#section-11.5-3" class="pilcrow">¶</a></p>
+<p id="section-11.5-4">When used with <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, then the contents can be exposed in the last hop,
+where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.<a href="#section-11.5-4" class="pilcrow">¶</a></p>
+<p id="section-11.5-5">When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.
-Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no CRLs to disclose.<a href="#section-11.4-5" class="pilcrow">¶</a></p>
-<p id="section-11.4-6"><span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
-To mitigate this, <span>[<a href="#SZTP" class="cite xref">SZTP</a>], <a href="https://rfc-editor.org/rfc/rfc8572#section-3.4" class="relref">Section 3.4</a></span> specifies a way to encrypt using CMS.<a href="#section-11.4-6" class="pilcrow">¶</a></p>
-<p id="section-11.4-7">The use of YANG to define data structures, via the "sx:structure"
+Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no CRLs to disclose.<a href="#section-11.5-5" class="pilcrow">¶</a></p>
+<p id="section-11.5-6"><span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span> uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
+To mitigate this, <span>[<a href="#SZTP" class="cite xref">SZTP</a>], <a href="https://rfc-editor.org/rfc/rfc8572#section-3.4" class="relref">Section 3.4</a></span> specifies a way to encrypt using CMS.<a href="#section-11.5-6" class="pilcrow">¶</a></p>
+<p id="section-11.5-7">The use of YANG to define data structures, via the "sx:structure"
 extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>, is relatively new and distinct from the conventional
 use of
 YANG to define an API accessed by network management protocols such as
 NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span> and RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>. For this reason, this
 security considerations section does not follow the template described
-by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.4-7" class="pilcrow">¶</a></p>
+by Section 3.7 of <span>[<a href="#YANG-GUIDE" class="cite xref">YANG-GUIDE</a>]</span>.<a href="#section-11.5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
