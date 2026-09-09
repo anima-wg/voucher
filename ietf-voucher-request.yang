@@ -97,14 +97,14 @@ module ietf-voucher-request {
     uses vch:voucher-artifact {
       refine "last-renewal-date" {
         description "A last-renewal-date field
-                     is not valid in a voucher request, and
-                     any occurrence MUST be ignored";
+                     MUST NOT be present in a voucher request,
+                     and any occurrence MUST be ignored";
       }
 
       refine "domain-cert-revocation-checks" {
         description "The domain-cert-revocation-checks field
-                     is not valid in a voucher request, and
-                     any occurrence MUST be ignored";
+                     MUST NOT be present in a voucher request,
+                     and any occurrence MUST be ignored";
       }
 
       refine "assertion" {
@@ -140,7 +140,8 @@ module ietf-voucher-request {
         purposes of policy decisions. The MASA SHOULD remove
         all prior-signed-voucher-request information when
         signing a voucher for onboarding so as to minimize
-        the final voucher size.";
+        the final voucher size and to ensure privacy/security
+        sensitive information does not leak into the voucher.";
     }
 
     leaf proximity-registrar-cert {

@@ -668,10 +668,10 @@ For Vouchers stored/transferred via methods like a USB storage device (USB key),
 
 The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
 
-Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting
-`pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256`.
+Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
+obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` attributes.
 
-In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize the `proximity` entry which it used in its voucher-request artifact, ignoring the others.
+In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its voucher-request artifact, ignoring the others.
 
 If the voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
 
@@ -892,7 +892,8 @@ While they can use the Voucher extensions mechanism defined in {{voucher-ext}}, 
 Note that {{RFC9254}} does not strictly require use of SIDs: instead of a SID value, the full string name can always
 be used. But this would significantly increase the size of the Voucher Data.
 
-Instead, a manufacturer MAY use the '`manufacturer-proprietary`' Attribute to put any content they wish.
+Instead, a manufacturer MAY use the '`manufacturer-proprietary`' Attribute to put any content they wish, as long as
+this content does not require confidentiality.
 In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
 {{RFC8949@CBOR, Section 3.1}} (Major type 2).
 In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.

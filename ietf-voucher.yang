@@ -115,7 +115,11 @@ module ietf-voucher {
           "In CBOR serialization, this is a CBOR bstr containing any
            valid CBOR that the manufacturer wishes to share with its
            pledge.  In JSON serializations, this contains additional
-           JSON instead, and it is base64URL encoded.";
+           JSON instead, and it is base64URL encoded.
+
+           Since a Voucher could be logged or stored by a Registrar
+           or another intermediate, this attribute MUST NOT contain
+           any data that requires confidentiality.";
       }
 
       leaf assertion {
@@ -328,7 +332,10 @@ module ietf-voucher {
            The contents of this URL are manufacturer specific.
            This is intended to do things like configure
            a VoIP phone to point to the correct hosted
-           PBX, for example.";
+           PBX, for example.
+
+           The URL MUST NOT contain any data (such as authen-
+           tication tokens) that requires confidentiality.";
       }
   }
 
