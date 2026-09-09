@@ -633,7 +633,7 @@ Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
 online checks and is unlikely to have a trusted clock source.
-As described below, the use of short-lived Vouchers and/or a
+As described in the next section, the use of short-lived Vouchers and/or a
 Pledge-provided nonce provides a freshness guarantee.
 
 # Voucher Artifact {#voucher}
@@ -675,27 +675,35 @@ In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-p
 
 If the voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
 
-## Algorithm Choices for Voucher Requests and Vouchers
+## Algorithm Choices for Voucher Artifacts
 
 When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
-Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.
-
-As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
-Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher), and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
-
-When designing Pledge devices, manufacturers therefor have to choose algorithms and signature formats
-to support, and whatever choices they make, they need to also support in their MASA.
-Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present in the recalled devices.
+As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer
+(in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher),
+and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
 {{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
-{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum safe (PQ) {{?RFC9958}} algorithms for ANI work.
+{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum-safe (PQ) {{?RFC9958}} algorithms for ANI work.
 
-{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specifies mandatory to implement algorithms for IoT use cases.
+{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specify mandatory to implement algorithms for IoT use cases
+involving constrained devices.
+A certain class of constrained devices defined in {{cBRSKI}} minimizes the code size of the code for ASN.1 processing,
+PKIX {{RFC5280}} processing and Voucher/PVR processing, which determines and constrains the algorithm and format choices.
+Another class of cBRSKI constrained devices minimizes just the sizes of Voucher and PVR, a benefit on constrained
+networks, and these devices have different constraints on the algorithm and format choices.
 
-A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX {{RFC5280}} processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.
+Should a manufacturer decide to stop supporting some algorithm that their manufactured Pledges rely on, they will need
+to execute a transition operation for any inventory (Pledges) that exists in warehouses or within the supply chain,
+to ensure that these devices can still be onboarded in the new situation.
+One transition strategy is to recall these Pledges, replace the firmware and update the IDevID certificates present
+in the recalled devices.
+This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
+physical recall is not required.
 
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys, noting that {{!RFC8032}} extends this to include an OID for EdDSA.
+The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys,
+noting that {{!RFC8032}} extends this to include an OID for EdDSA.
 The old (1024-bit) DSA algorithm is not supported.
 
 ## Tree Diagram {#voucher-tree-diagram}
