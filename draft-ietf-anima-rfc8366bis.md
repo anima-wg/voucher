@@ -191,7 +191,7 @@ The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
 When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
-How short the lifetimes can be depends upon the means of conveyance of the Voucher, so the exact times is specified in the onboarding protocol itself.
+How short the lifetimes can be depends upon the means of conveyance of the Voucher, so the exact times are specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
 this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
@@ -350,7 +350,7 @@ Anti-Replay Protections:
 A number of Onboarding scenarios can be met using differing
 combinations of this information. All scenarios address the primary
 threat of an on-path active attacker (or MiTM) impersonating the Registrar.
-If successful, this would gain control over the Pledge.
+If successful, the attacker would gain control over the Pledge.
 The following combinations are "types" of Vouchers:
 
 | Voucher Type        | Assertion |          | Registrar ID |                | Validity |       |
@@ -454,7 +454,7 @@ After significant discussion the decision was made to simply roll all of the nee
 
 {{cBRSKI}}, {{CLOUD}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher.
 New Attributes are required to carry the additional data and describe the extended semantics.
-The following Attributes are new and the document to which they support is noted:
+The following Attributes are new, and the document that they support is noted:
 
 To the Voucher Request:
 
@@ -518,7 +518,7 @@ A Registrar MUST apply the following rules for the value of the '`idevid-issuer`
 
 ## Clarifications on the use of `idevid-issuer`
 
-{{RFC8366}} and {{RFC8995}} define the '`idevid-issuer`' Attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they summarily explain when to use it, and why it is used.
+{{RFC8366}} and {{RFC8995}} define the '`idevid-issuer`' Attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they only summarily explain when to use it, and why it is used.
 
 The '`idevid-issuer`' Attribute is provided so that the serial number to which the issued Voucher pertains can be relative to the entity that issued the Pledge's IDevID.
 In most cases there is a one to one relationship between the trust anchor that signs Vouchers (and is trusted by the Pledge), and the Certification Authority that signs the IDevID.
@@ -1004,7 +1004,7 @@ it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
 not reachable.
 
-The exact details of how is "short-lived" is up to the different onboarding mechanisms.
+The exact definition of "short-lived" is up to the different onboarding mechanisms.
 
 So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
@@ -1282,7 +1282,7 @@ The MASA certificate that signs the Voucher:
 {::include-fold examples/masa-00-D0-E5-F2-00-02.crt}
 ~~~~
 
-The private key for MASA certificate signs the Voucher:
+The private key for the MASA certificate that signs the Voucher:
 
 ~~~~
 {::include-fold examples/masa-00-D0-E5-F2-00-02.pem}
