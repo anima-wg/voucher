@@ -19,7 +19,7 @@ module ietf-voucher-request {
         connection to the Owner's network infrastructure";
 
     reference "RFC XXXX: A Voucher Artifact for
-               Bootstrapping Protocols";
+               Onboarding Protocols";
   }
 
   organization
@@ -79,7 +79,7 @@ module ietf-voucher-request {
       Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
       and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
     reference
-     "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+     "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
   }
 
   revision 2021-05-20 {

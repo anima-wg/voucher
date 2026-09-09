@@ -74,7 +74,7 @@ module ietf-voucher {
       Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
       and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
     reference
-      "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+      "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
   }
 
   revision 2018-05-09 {
@@ -203,7 +203,7 @@ module ietf-voucher {
 
             This certificate is used by a pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
-            supplied to the pledge separately by the bootstrapping
+            supplied to the pledge separately by the onboarding
             protocol.  The domain certificate MUST have this
             certificate somewhere in its chain of certificates.
             This certificate MAY be an end-entity certificate,
@@ -272,7 +272,7 @@ module ietf-voucher {
       }
       //choice nonceless {
       //  description "Either a nonce must be present,
-      //               or an expires-on header";
+      //               or an expires-on attribute";
         leaf expires-on {
           type yang:date-and-time;
           description
@@ -292,15 +292,15 @@ module ietf-voucher {
             length "8..32";
           }
           description
-            "A value that can be used by a pledge in some bootstrapping
+            "A value that can be used by a pledge in some onboarding
              protocols to enable anti-replay protection.  This node is
-             optional because it is not used by all bootstrapping
+             optional because it is not used by all onboarding
              protocols.
 
              When present, the pledge MUST compare the provided nonce
              value with another value that the pledge randomly
              generated and sent to a bootstrap server in an earlier
-             bootstrapping message.  If the value is present, but
+             onboarding message.  If the value is present, but
              the values do not match, then the pledge MUST NOT process
              this voucher.";
         }
