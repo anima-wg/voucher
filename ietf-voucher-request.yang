@@ -154,7 +154,7 @@ module ietf-voucher-request {
 
         The first certificate in the Registrar TLS server
         certificate_list sequence  (the end-entity TLS
-        certificate, see [RFC8446]) presented by the Registrar
+        certificate, see RFC 9846) presented by the Registrar
         to the Pledge.
         This MUST be populated in a Pledge's Voucher Request
         when a proximity assertion is requested.";
@@ -215,7 +215,7 @@ module ietf-voucher-request {
         in [ITU-T.X690].
         The first certificate in the Registrar TLS server
         certificate_list sequence (the end-entity TLS
-        certificate; see RFC 8446) presented by the
+        certificate; see RFC 9846) presented by the
         Registrar to the Registrar-agent and provided to
         the Pledge.
         This MUST be populated in a Pledge's Voucher Request
@@ -228,7 +228,7 @@ module ietf-voucher-request {
          RFC 5280: Internet X.509 Public Key Infrastructure
          Certificate and Certificate Revocation List (CRL)
          Profile
-         RFC 8446: The Transport Layer Security (TLS)
+         RFC 9846: The Transport Layer Security (TLS)
          Protocol Version 1.3";
     }
 

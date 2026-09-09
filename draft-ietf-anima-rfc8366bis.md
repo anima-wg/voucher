@@ -182,7 +182,7 @@ The act of communicating this trust anchor is known as pinning the trust anchor.
 {{?RFC8994}} explains how this anchor is used to form an overlay management Autonomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
 IoT devices can now do mutually authenticated (D)TLS or EDHOC connections, although authorization is best left to mechanisms such as {{?RFC9200}}.
 The collection of all these devices, with the same trust anchor is collectively known as the Domain.
-(This is not related to the domain name system, but rather the term is of mathematical origin)
+(This is not related to the domain name system, but rather the term is of mathematical origin.)
 
 A Voucher may be useful in several contexts, but the driving motivation herein is to support secure Onboarding mechanisms.
 This is accomplished by assigning an Owner to the Pledge, enabling it to authenticate the network that it is connected to.
@@ -1001,7 +1001,7 @@ The Registrar signs the new request.
 With this approach, there is
 only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
-revocation status check because, for instance, the OCSP Responder ({{RFC5280}}) is
+revocation status check because, for instance, the OCSP Responder ({{RFC5280}} {{RFC6960}}) is
 not reachable.
 
 The exact definition of "short-lived" is up to the different onboarding mechanisms.
@@ -1041,7 +1041,7 @@ There are three things to defend against this:
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
    it is communicating with.
 
-The latter prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
+The third prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
 the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
 time in the Voucher has already passed.
 
