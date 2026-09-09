@@ -1424,7 +1424,7 @@ This is accomplished by assigning an Owner to the Pledge, enabling it to authent
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
 When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see <a href="#renewal-over-revocation" class="auto internal xref">Section 10.1</a>.
-How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1-7" class="pilcrow">¶</a></p>
+How short the lifetimes can be depends upon the means of conveyance of the Voucher, so the exact times is specified in the onboarding protocol itself.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">Some Onboarding protocols using the Voucher Artifact defined in
 this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-8" class="pilcrow">¶</a></p>
 <div id="extensions-needed">
@@ -1434,7 +1434,7 @@ this document include: <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>
         </h3>
 <p id="section-1.1-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.
 This document includes both Voucher and Voucher Request obsoleting <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and updating <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">A number of variations of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> have been developed since the publication of <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and these variations require new attributes be added to the Voucher and Voucher Requrest.
+<p id="section-1.1-2">A number of variations of <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> have been developed since the publication of <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>, and these variations require new Attributes be added to the Voucher and Voucher Requrest.
 At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <p id="section-1.1-3">However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
 The process is further explained in <a href="#extendfail" class="auto internal xref">Section 5.1</a>.<a href="#section-1.1-3" class="pilcrow">¶</a></p>
@@ -1816,8 +1816,8 @@ nor did it work better when the <span>[<a href="#RFC8040" class="cite xref">RFC8
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-detailed-changes-since-rfc8" class="section-name selfRef">Detailed changes since RFC8366</a>
         </h3>
 <p id="section-5.3-1"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>, <span>[<a href="#CLOUD" class="cite xref">CLOUD</a>]</span> and <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> require extensions to the Voucher Request and the resulting Voucher.
-New attributes are required to carry the additional data and describe the extended semantics.
-The following attributes are new and the document to which they support is noted:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+New Attributes are required to carry the additional data and describe the extended semantics.
+The following Attributes are new and the document to which they support is noted:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">To the Voucher Request:<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5.3-3">
           <dt id="section-5.3-3.1">assertion(agent-proximity):</dt>
@@ -1923,7 +1923,7 @@ This is defined as method 1 in <span><a href="https://rfc-editor.org/rfc/rfc5280
         <h3 id="name-clarifications-on-the-use-o">
 <a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-clarifications-on-the-use-o" class="section-name selfRef">Clarifications on the use of <code>idevid-issuer</code></a>
         </h3>
-<p id="section-6.2-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> and <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> define the '<code>idevid-issuer</code>' attribute for the '<code>voucher</code>' and '<code>voucher-request</code>' modules (respectively), but they summarily explain when to use it, and why it is used.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-1"><span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> and <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span> define the '<code>idevid-issuer</code>' Attribute for the '<code>voucher</code>' and '<code>voucher-request</code>' modules (respectively), but they summarily explain when to use it, and why it is used.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.2-2">The '<code>idevid-issuer</code>' Attribute is provided so that the serial number to which the issued Voucher pertains can be relative to the entity that issued the Pledge's IDevID.
 In most cases there is a one to one relationship between the trust anchor that signs Vouchers (and is trusted by the Pledge), and the Certification Authority that signs the IDevID.
 In that case, the '<code>serial-number</code>' in the Voucher Data must refer to the same device as the serial number that is in the IDevID certificate (in the '<code>serialNumber</code>' element of type '<code>X520SerialNumber</code>' per <span><a href="https://rfc-editor.org/rfc/rfc8995#section-2.3.1" class="relref">Section 2.3.1</a> of [<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>).<a href="#section-6.2-2" class="pilcrow">¶</a></p>
@@ -2064,11 +2064,12 @@ Other aspects of the Voucher, such as it being nonceless or which kind of pinned
 <p id="section-8-6">Only the format of Voucher that is expected is signaled in the form of a (MIME) media
 type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <p id="section-8-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-8-7" class="pilcrow">¶</a></p>
-<p id="section-8-8">The attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for a PVR) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.<a href="#section-8-8" class="pilcrow">¶</a></p>
+<p id="section-8-8">The Attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for a PVR) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.<a href="#section-8-8" class="pilcrow">¶</a></p>
 <p id="section-8-9">Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
-obsoleting the <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code> attributes.<a href="#section-8-9" class="pilcrow">¶</a></p>
-<p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the matching <code>proximity-*</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>
-<p id="section-8-11">If the voucher is nonceless, then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-11" class="pilcrow">¶</a></p>
+obsoleting the <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code> Attributes.<a href="#section-8-9" class="pilcrow">¶</a></p>
+<p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> Attributes
+are present in a Voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the matching <code>proximity-*</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>
+<p id="section-8-11">If the Voucher is nonceless, then the Pledge <span class="bcp14">SHALL</span> consider the first of the above Attributes that it understands, in the order given above.<a href="#section-8-11" class="pilcrow">¶</a></p>
 <div id="algorithm-choices-for-voucher-artifacts">
 <section id="section-8.1">
         <h3 id="name-algorithm-choices-for-vouch">
@@ -2281,9 +2282,9 @@ module ietf-voucher {
                &lt;mailto:esko.dijk@iotconsultancy.nl&gt;";
   description
     "This module defines the format for a Voucher, which is
-     produced by a pledge's manufacturer or delegate (MASA)
-     to securely assign a pledge to an 'owner', so that the
-     pledge may establish a secure connection to the owner's
+     produced by a Pledge's manufacturer or delegate (MASA)
+     to securely assign a Pledge to an 'owner', so that the
+     Pledge may establish a secure connection to the owner's
      network infrastructure.
 
      Copyright (c) 2023-2026 IETF Trust and the persons identified as
@@ -2334,7 +2335,7 @@ module ietf-voucher {
     leaf created-on {
       type yang:date-and-time;
       description
-        "A value indicating the date this voucher was created.
+        "A value indicating the date this Voucher was created.
          This node is primarily for human consumption and auditing.
          Future work MAY create verification requirements based on
          this node.";
@@ -2355,11 +2356,11 @@ module ietf-voucher {
       description
         "In CBOR serialization, this is a CBOR bstr containing any
          valid CBOR that the manufacturer wishes to share with its
-         pledge.  In JSON serializations, this contains additional
+         Pledge.  In JSON serializations, this contains additional
          JSON instead, and it is base64URL encoded.
 
          Since a Voucher could be logged or stored by a Registrar
-         or another intermediate, this attribute MUST NOT contain
+         or another intermediate, this Attribute MUST NOT contain
          any data that requires confidentiality.";
     }
     leaf assertion {
@@ -2374,12 +2375,12 @@ module ietf-voucher {
         enum logged {
           value 1;
           description
-            "Indicates that the voucher has been issued after
+            "Indicates that the Voucher has been issued after
              minimal verification of ownership or control.  The
              issuance has been logged for detection of
              potential security issues (e.g., recipients of
-             vouchers might verify for themselves that unexpected
-             vouchers are not in the log).  This is similar to
+             Vouchers might verify for themselves that unexpected
+             Vouchers are not in the log).  This is similar to
              unsecured trust-on-first-use principles but with the
              logging providing a basis for detecting unexpected
              events.";
@@ -2387,7 +2388,7 @@ module ietf-voucher {
         enum proximity {
           value 2;
           description
-            "Indicates that the voucher has been issued after
+            "Indicates that the Voucher has been issued after
              the MASA verified a proximity proof provided by the
              device and target domain.  The issuance has been
              logged for detection of potential security issues.";
@@ -2396,48 +2397,48 @@ module ietf-voucher {
           value 3;
           description
             "Mostly identical to proximity, but
-             indicates that the voucher has been issued
+             indicates that the Voucher has been issued
              after the MASA has verified a statement that
-             a registrar agent has made contact with the device.";
+             a Registrar agent has made contact with the device.";
         }
       }
       description
         "The assertion is a statement from the MASA regarding how
-         the owner was verified.  This statement enables pledges
+         the owner was verified.  This statement enables Pledges
          to support more detailed policy checks.  Pledges MUST
          ensure that the assertion provided is acceptable, per
-         local policy, before processing the voucher.";
+         local policy, before processing the Voucher.";
     }
     leaf serial-number {
       type string;
       mandatory true;
       description
         "The serial-number of the hardware.  When processing a
-         voucher, a pledge MUST ensure that its serial-number
+         Voucher, a Pledge MUST ensure that its serial-number
          matches this value.  If no match occurs, then the
-         pledge MUST NOT process this voucher.";
+         Pledge MUST NOT process this Voucher.";
     }
     leaf idevid-issuer {
       type binary;
       description
         "The Authority Key Identifier OCTET STRING (as defined in
-         Section 4.2.1.1 of RFC 5280) from the pledge's IDevID
-         certificate.  In the voucher, it is optional
+         Section 4.2.1.1 of RFC 5280) from the Pledge's IDevID
+         certificate.  In the Voucher, it is optional
          as some manufacturers know that all serial-numbers
-         are unique within the scope of a MASA.
-         In the voucher request, whether it is mandatory or optional depends
-         upon which protocol is used, such as RFC8995 and variations.
-         When processing a voucher, a pledge MUST ensure that its
-         IDevID Authority Key Identifier matches this value.  If no
-         match occurs, then the pledge MUST NOT process this
-         voucher.
-         When issuing a voucher, the MASA MUST ensure that this
+         are unique within the scope of a MASA. In the Voucher
+         Request, whether it is mandatory or optional depends on
+         which protocol is used, such as RFC8995 and variations.
+         When processing a Voucher, a Pledge MUST ensure that its
+         IDevID Authority Key Identifier matches this value. If no
+         match occurs, then the Pledge MUST NOT process this
+         Voucher.
+         When issuing a Voucher, the MASA MUST ensure that this
          field is populated for serial-numbers that are not
          otherwise unique within the scope of the MASA.";
     }
     // choice pinning {
-    //  description "One of these attributes is used by the
-    //               MASA to pin the registrar identity";
+    //  description "One of these Attributes is used by the
+    //               MASA to pin the Registrar identity";
     leaf pinned-domain-cert {
       type binary;
       description
@@ -2445,9 +2446,9 @@ module ietf-voucher {
          RFC 5280, using Distinguished Encoding Rules (DER)
          encoding, as defined in [ITU-T.X690].
 
-         This certificate is used by a pledge to trust a Public Key
+         This certificate is used by a Pledge to trust a Public Key
          Infrastructure in order to verify a domain certificate
-         supplied to the pledge separately by the onboarding
+         supplied to the Pledge separately by the onboarding
          protocol.  The domain certificate MUST have this
          certificate somewhere in its chain of certificates.
          This certificate MAY be an end-entity certificate,
@@ -2467,8 +2468,8 @@ module ietf-voucher {
       description
         "The pinned-domain-pubk may replace the
          pinned-domain-cert in constrained uses of
-         the voucher. The pinned-domain-pubk
-         is the Raw Public Key of the registrar.
+         the Voucher. The pinned-domain-pubk
+         is the Raw Public Key of the Registrar.
          This field is encoded as a Subject Public Key Info block
          as specified in RFC7250, in section 3.";
     }
@@ -2492,7 +2493,7 @@ module ietf-voucher {
     leaf domain-cert-revocation-checks {
       type boolean;
       description
-        "A processing instruction to the pledge that it MUST (true)
+        "A processing instruction to the Pledge that it MUST (true)
          or MUST NOT (false) verify the revocation status for the
          pinned domain certificate.  If this field is not set, then
          normal PKIX behavior applies to validation of the domain
@@ -2503,27 +2504,27 @@ module ietf-voucher {
       must '../expires-on';
       description
         "The date that the MASA projects to be the last date
-         it will renew a voucher on. This field is merely
-         informative; it is not processed by pledges.
+         it will renew a Voucher on. This field is merely
+         informative; it is not processed by Pledges.
 
-         Circumstances may occur after a voucher is generated that
-         may alter a voucher's validity period.  For instance,
+         Circumstances may occur after a Voucher is generated that
+         may alter a Voucher's validity period.  For instance,
          a vendor may associate validity periods with support
          contracts, which may be terminated or extended
          over time.";
     }
     //choice nonceless {
     //  description "Either a nonce must be present,
-    //               or an expires-on attribute";
+    //               or an expires-on Attribute";
     leaf expires-on {
       type yang:date-and-time;
       description
-        "A value indicating when this voucher expires.  The node is
-         optional as not all pledges support expirations, such as
-         pledges lacking a reliable clock.
+        "A value indicating when this Voucher expires.  The node is
+         optional as not all Pledges support expirations, such as
+         Pledges lacking a reliable clock.
 
-         If this field exists, then the pledges MUST ensure that
-         the expires-on time has not yet passed. A pledge without
+         If this field exists, then the Pledges MUST ensure that
+         the expires-on time has not yet passed. A Pledge without
          an accurate clock cannot meet this requirement.
 
          The expires-on value MUST NOT exceed the expiration date
@@ -2534,17 +2535,17 @@ module ietf-voucher {
         length "8..32";
       }
       description
-        "A value that can be used by a pledge in some onboarding
+        "A value that can be used by a Pledge in some onboarding
          protocols to enable anti-replay protection.  This node is
          optional because it is not used by all onboarding
          protocols.
 
-         When present, the pledge MUST compare the provided nonce
-         value with another value that the pledge randomly
+         When present, the Pledge MUST compare the provided nonce
+         value with another value that the Pledge randomly
          generated and sent to a bootstrap server in an earlier
          onboarding message.  If the value is present, but
-         the values do not match, then the pledge MUST NOT process
-         this voucher.
+         the values do not match, then the Pledge MUST NOT process
+         this Voucher.
 
          A nonce value MUST be a cryptographically strong random
          value as detailed in RFC 4086.";
@@ -2553,9 +2554,9 @@ module ietf-voucher {
     leaf est-domain {
       type ietf:uri;
       description
-        "The est-domain is a URL from which the pledge should
+        "The est-domain is a URL from which the Pledge should
          continue doing enrollment rather than with the
-         cloud registrar.
+         cloud Registrar.
          The pinned-domain-cert contains a trust-anchor
          which is to be used to authenticate the server
          found at this URI.";
@@ -2563,8 +2564,8 @@ module ietf-voucher {
     leaf additional-configuration-url {
       type ietf:uri;
       description
-        "The additional-configuration attribute contains a
-         URL to which the pledge can retrieve additional
+        "The additional-configuration Attribute contains a
+         URL to which the Pledge can retrieve additional
          configuration information.
          The contents of this URL are manufacturer specific.
          This is intended to do things like configure
@@ -2716,8 +2717,9 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
       </h2>
 <p id="section-9-1"><span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-3" class="relref">Section 3</a></span> defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span>.
 That definition has been moved to this document, and translated from the "yang-data" extension <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> to the "sx:structure" extension <span>[<a href="#RFC8791" class="cite xref">RFC8791</a>]</span>.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">In the event that more than one of <code>proximity-domain-pubk-sha256</code>, <code>proximity-domain-pubk</code> or <code>proximity-domain-cert</code> are present in a voucher request, then the Registrar and MASA <span class="bcp14">SHALL</span> consider them in the order presented here.<a href="#section-9-2" class="pilcrow">¶</a></p>
-<p id="section-9-3">The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
+<p id="section-9-2">In the event that more than one of the Attributes <code>proximity-domain-pubk-sha256</code>, <code>proximity-domain-pubk</code> or <code>proximity-domain-cert</code>
+are present in a Voucher Request, then the Registrar and MASA <span class="bcp14">SHALL</span> consider them in the order presented here.<a href="#section-9-2" class="pilcrow">¶</a></p>
+<p id="section-9-3">The presence of more than one of these Attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
 However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.<a href="#section-9-3" class="pilcrow">¶</a></p>
 <div id="voucher-request-tree-diagram">
 <section id="section-9.1">
@@ -2810,7 +2812,7 @@ module ietf-voucher-request {
     "This module defines the format for a Voucher Request.
      It is a superset of the Voucher itself.
      It provides content to the MASA for consideration
-     during a voucher request procedure and subsequent
+     during a Voucher request procedure and subsequent
      Voucher creation.
 
      Copyright (c) 2023-2026 IETF Trust and the persons identified as
@@ -2863,19 +2865,19 @@ module ietf-voucher-request {
       refine "last-renewal-date" {
         description
           "A last-renewal-date field
-           MUST NOT be present in a voucher request,
+           MUST NOT be present in a Voucher Request,
            and any occurrence MUST be ignored";
       }
       refine "domain-cert-revocation-checks" {
         description
           "The domain-cert-revocation-checks field
-           MUST NOT be present in a voucher request,
+           MUST NOT be present in a Voucher Request,
            and any occurrence MUST be ignored";
       }
       refine "assertion" {
         description
-          "Any assertion included in registrar voucher
-           requests SHOULD be ignored by the MASA.";
+          "Any assertion included in Registrar Voucher
+           Requests SHOULD be ignored by the MASA.";
       }
       refine "idevid-issuer" {
         description
@@ -2888,25 +2890,25 @@ module ietf-voucher-request {
     leaf prior-signed-voucher-request {
       type binary;
       description
-        "If it is necessary to change a voucher, or re-sign and
-         forward a voucher request that was previously provided
+        "If it is necessary to change a Voucher, or re-sign and
+         forward a Voucher Request that was previously provided
          along a protocol path, then the previously signed
-         voucher SHOULD be included in this field.
+         Voucher SHOULD be included in this field.
 
-         For example, a pledge might sign a voucher request
-         with a proximity-registrar-cert, and the registrar
+         For example, a Pledge might sign a Voucher Request
+         with a proximity-registrar-cert, and the Registrar
          then includes it as the prior-signed-voucher-request
          field.  This is a simple mechanism for a chain of
-         trusted parties to change a voucher request, while
+         trusted parties to change a Voucher Request, while
          maintaining the prior signature information.
 
          The Registrar and MASA MAY examine the prior signed
-         voucher information for the
+         Voucher Request information for the
          purposes of policy decisions. The MASA SHOULD remove
          all prior-signed-voucher-request information when
-         signing a voucher for onboarding so as to minimize
-         the final voucher size and to ensure privacy/security
-         sensitive information does not leak into the voucher.";
+         signing a Voucher for onboarding so as to minimize
+         the final Voucher size and to ensure privacy/security
+         sensitive information does not leak into the Voucher.";
     }
     leaf proximity-registrar-cert {
       type binary;
@@ -2920,7 +2922,7 @@ module ietf-voucher-request {
          certificate_list sequence  (the end-entity TLS
          certificate, see [RFC8446]) presented by the Registrar
          to the Pledge.
-         This MUST be populated in a Pledge's voucher request
+         This MUST be populated in a Pledge's Voucher Request
          when a proximity assertion is requested.";
     }
     leaf proximity-registrar-pubk {
@@ -2928,7 +2930,7 @@ module ietf-voucher-request {
       description
         "The proximity-registrar-pubk replaces
          the proximity-registrar-cert in constrained uses of
-         the voucher-request.
+         the Voucher Request.
          The proximity-registrar-pubk is the
          Raw Public Key of the Registrar. This field is encoded
          as specified in RFC7250, section 3.";
@@ -2956,11 +2958,11 @@ module ietf-voucher-request {
       description
         "The agent-signed-data field contains a data artifact
          provided by the Registrar-Agent to the Pledge for
-         inclusion into the voucher request.
+         inclusion into the Voucher Request.
 
          This artifact is signed by the Registrar-Agent and contains
-         data, which can be verified by the pledge and the registrar.
-         This data contains the pledge's serial-number and a
+         data, which can be verified by the Pledge and the Registrar.
+         This data contains the Pledge's serial-number and a
          created-on information of the agent-signed-data.
 
          The format is intentionally defined as binary to allow
@@ -2973,12 +2975,12 @@ module ietf-voucher-request {
          RFC 5280, Section 4, encoded using the ASN.1
          distinguished encoding rules (DER), as specified
          in [ITU-T.X690].
-         The first certificate in the registrar TLS server
+         The first certificate in the Registrar TLS server
          certificate_list sequence (the end-entity TLS
          certificate; see RFC 8446) presented by the
-         registrar to the registrar-agent and provided to
-         the pledge.
-         This MUST be populated in a pledge's voucher-request
+         Registrar to the Registrar-agent and provided to
+         the Pledge.
+         This MUST be populated in a Pledge's Voucher Request
          when an agent-proximity assertion is requested.";
       reference
         "ITU-T.X690: Information Technology - ASN.1 encoding
@@ -2998,12 +3000,12 @@ module ietf-voucher-request {
          RFC 5280, Section 4, encoded using the ASN.1
          distinguished encoding rules (DER), as specified
          in [ITU-T.X690].
-         This certificate can be used by the pledge,
-         the registrar, and the MASA to verify the signature
+         This certificate can be used by the Pledge,
+         the Registrar, and the MASA to verify the signature
          of agent-signed-data. It is an optional component
-         for the pledge-voucher request.
-         This MUST be populated in a registrar's
-         voucher-request when an agent-proximity assertion
+         for the Pledge's Voucher Request.
+         This MUST be populated in a Registrar's
+         Voucher Request when an agent-proximity assertion
          is requested.";
       reference
         "ITU-T.X690: Information Technology - ASN.1 encoding
@@ -3123,8 +3125,8 @@ previous Voucher issuance, such as a Domain owner's request to block further
 renewals or the expiry of a support contract.
 Renewal has therefore lower overhead than the initial issuance and can be
 fully automated in most cases.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
-<p id="section-10.1-4">The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the <code>prior-signed-voucher-request</code>
-attribute.
+<p id="section-10.1-4">The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR),
+including the old Voucher in the <code>prior-signed-voucher-request</code> Attribute.
 The Registrar signs the new request.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
 <p id="section-10.1-5">With this approach, there is
 only the one Artifact, and only one code path is needed to process
@@ -3195,7 +3197,7 @@ the expiration time values in Vouchers will provide little protection.<a href="#
 <a href="#section-11.2" class="section-number selfRef">11.2. </a><a href="#name-nonceless-vouchers" class="section-name selfRef">Nonceless Vouchers</a>
         </h3>
 <p id="section-11.2-1">A nonceless Voucher cannot be validated by a Pledge for freshness, other than by inspecting the
-'<code>expires-on</code>' attribute and comparing its value against the Pledge's internal clock.
+'<code>expires-on</code>' Attribute and comparing its value against the Pledge's internal clock.
 See the previous section for considerations on the accuracy of this clock and the risks of relying on NTP for
 acquiring the current time.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
 <p id="section-11.2-2">A nonceless Voucher can be reused by a Registrar to answer a Pledge's PVR any number of times within its validity
@@ -3254,10 +3256,10 @@ all of the YANG-modeled data is protected from modification.<a href="#section-11
 protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
 so much as privacy.<a href="#section-11.5-2" class="pilcrow">¶</a></p>
-<p id="section-11.5-3">When used with <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, or <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> then voucher requests and vouchers are conveyed using TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, so there is no exposure.<a href="#section-11.5-3" class="pilcrow">¶</a></p>
+<p id="section-11.5-3">When used with <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>]</span>, or <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> then Voucher Requests and Vouchers are conveyed using TLS <span>[<a href="#RFC9846" class="cite xref">RFC9846</a>]</span>, so there is no exposure.<a href="#section-11.5-3" class="pilcrow">¶</a></p>
 <p id="section-11.5-4">When used with <span>[<a href="#PRM" class="cite xref">PRM</a>]</span>, then the contents can be exposed in the last hop,
 where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.<a href="#section-11.5-4" class="pilcrow">¶</a></p>
-<p id="section-11.5-5">When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
+<p id="section-11.5-5">When the Voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.
 Note that <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> specifies use of <span>[<a href="#JWS" class="cite xref">JWS</a>]</span> format artifacts rather than CMS, so there are no CRLs to disclose.<a href="#section-11.5-5" class="pilcrow">¶</a></p>
