@@ -2065,7 +2065,7 @@ type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC
 <p id="section-8-9">Should SHA256 need to be replaced, then a new YANG module will be published with a new leaf, obsoleting
 <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code>.<a href="#section-8-9" class="pilcrow">¶</a></p>
 <p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the <code>proximity</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>
-<p id="section-8-11">If the voucher is nonce-less, then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-11" class="pilcrow">¶</a></p>
+<p id="section-8-11">If the voucher is nonceless, then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-11" class="pilcrow">¶</a></p>
 <div id="algorithm-choices-for-voucher-requests-and-vouchers">
 <section id="section-8.1">
         <h3 id="name-algorithm-choices-for-vouch">

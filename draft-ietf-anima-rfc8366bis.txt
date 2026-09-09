@@ -785,8 +785,8 @@ Table of Contents
    Pledge SHALL prioritize the proximity entry which it used in its
    voucher-request artifact, ignoring the others.
 
-   If the voucher is nonce-less, then the Pledge SHALL consider the
-   first of the above attributes that it understands, in the order given
+   If the voucher is nonceless, then the Pledge SHALL consider the first
+   of the above attributes that it understands, in the order given
    above.
 
 8.1.  Algorithm Choices for Voucher Requests and Vouchers
