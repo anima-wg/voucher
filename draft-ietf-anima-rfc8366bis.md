@@ -179,7 +179,7 @@ The trust anchor may be in the form of a certificate (the '`pinned-domain-cert`'
 This trust anchor represents the authority of the Owner of a network.
 Communicating this trust anchor securely to the Pledge is the job of the Voucher Artifact.
 The act of communicating this trust anchor is known as pinning the trust anchor.
-{{?RFC8994}} explains how this anchor is used to form an overlay management Autononomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
+{{?RFC8994}} explains how this anchor is used to form an overlay management Autonomic Control Plane (ACP) network, using authenticated IPsec (or other) tunnels.
 IoT devices can now do mutually authenticated (D)TLS or EDHOC connections, although authorization is best left to mechanisms such as {{?RFC9200}}.
 The collection of all these devices, with the same trust anchor is collectively known as the Domain.
 (This is not related to the domain name system, but rather the term is of mathematical origin)
@@ -203,7 +203,7 @@ this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
 {{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
 This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
 
-A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new Attributes be added to the Voucher and Voucher Requrest.
+A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new Attributes be added to the Voucher and Voucher Request.
 At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
 
 However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
@@ -386,7 +386,7 @@ Nonceless Audit Voucher:
   it is the same as an audit Voucher except that it can be issued in
   advance to support network partitions or to provide a permanent
   Voucher for remote deployments.
-  Being issued in advance of the Pledge being online, the Pledge can not rely on a nonce to be included for freshness.
+  Being issued in advance of the Pledge being online, the Pledge cannot rely on a nonce to be included for freshness.
   This compromise in reducing the freshness allows for the resulting Voucher to be carried across air-gapped infrastructure.
   In addition, if the validity period has been set sufficiently long, the Voucher can be used after the manufacturer (and its delegates) has gone out of business.
 
@@ -440,7 +440,7 @@ This mechanism uses a mobile Registrar agent that works to collect and transfer 
 ## Challenges with revisions to YANG
 
 When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{RFC8995}} and Voucher {{RFC8366}} artifacts.
-However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ can not do this, so that was initially the impetus for this document.
+However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ cannot do this, so that was initially the impetus for this document.
 
 An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} Voucher Artifact.
 The result was invalid YANG, with multiple definitions of the core Attributes from the {{RFC8366}} Voucher Artifact.
@@ -470,7 +470,7 @@ agent-sign-cert:
 assertion(agent-proximity):
 : {{PRM}}
 
-proximity-registrary-pubk:
+proximity-registrar-pubk:
 : {{cBRSKI}}
 
 proximity-registrar-pubk-sha256:
@@ -679,7 +679,7 @@ If the Voucher is nonceless, then the Pledge SHALL consider the first of the abo
 When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
 As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer
 (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
-Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher),
+Specifically, the manufacturer knows what signature algorithm the Pledge is going to use (to sign a PVR or to validate a Voucher),
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
@@ -1115,7 +1115,7 @@ so much as privacy.
 When used with {{RFC8995}}, or {{cBRSKI}} then Voucher Requests and Vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
 
 When used with {{PRM}}, then the contents can be exposed in the last hop,
-where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.
+where HTTP is used, due to the lack of any way to validate the certificate needed to enable HTTPS.
 
 When the Voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
@@ -1373,7 +1373,7 @@ by last name):
 {{{Sheng Jiang}}},
 {{{Thomas Werner}}}.
 
-This document received directorate reviews from {{{Tim Wicinkski}}},
+This document received directorate reviews from {{{Tim Wicinski}}},
 {{{Thomas Fossati}}}, and {{{Michal Vaško}}}.
 It was shepherded by {{{Sheng Jiang}}}.
 
