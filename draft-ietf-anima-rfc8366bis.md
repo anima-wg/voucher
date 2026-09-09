@@ -627,7 +627,7 @@ unusual in many applications, but third parties cannot accurately
 audit the transaction without it.
 
 The CMS structure MAY also contain revocation objects for any
-intermediate certificate authorities (CAs) between the
+intermediate Certification Authorities (CAs) between the
 Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
@@ -1043,18 +1043,21 @@ If it is not possible to ensure clock accuracy, then
 the expiration time values in Vouchers will have no meaning.
 
 
-## Protect MASA Signing Key in HSM
+## Protecting the MASA Signing Key and the MASA CA Key
 
-As the MASA needs to be able to respond to voucher signing requests,
-it is RECOMMENDED that the MASA's private key used for signing Vouchers is protected by
-a hardware security module (HSM).
+As the MASA needs to be able to respond to Voucher signing requests,
+its private key used for signing Vouchers is online.
+This key is associated to its End-Entity certificate, which is a short-lived certificate, re-generated frequently.
 
-There are many ways to organize the PKI that is used to sign vouchers.
+The private key MUST be stored such that it cannot be exported and
+each use of the key is subject to access control.
+A hardware security module (HSM) is one way to achieve this.
+
+There are many ways to organize the PKI that is used to sign Vouchers.
 {{?I-D.ietf-anima-masa-considerations, Section 2}} describes a number of different scenarios.
-In some of them, there are long-term keys kept offline, implementing a certification authority.
-This can be as complicated as an FIPS-certified resin filled HSM, or as simple as a USB key stored in a locked cabinet.
+In some of them, there are long-term keys kept offline, implementing a Certification Authority (CA).
+This can be as advanced as an FIPS-certified resin-filled HSM, or as simple as a USB key stored in a locked cabinet.
 
-The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
 The trust anchor configured into the Pledge is the long-term offline anchor.
 
 ## Test Domain Certificate Validity When Signing {#sec-con-domain}
