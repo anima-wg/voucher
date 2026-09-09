@@ -672,7 +672,7 @@ Should SHA256 need to be replaced, then a new YANG module will be published with
 
 In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize the `proximity` entry which it used in its voucher-request artifact, ignoring the others.
 
-If the voucher is nonce-less, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
+If the voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
 
 ## Algorithm Choices for Voucher Requests and Vouchers
 
