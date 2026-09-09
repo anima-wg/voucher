@@ -972,9 +972,17 @@ is for the MASA to instead issue a short-lived Voucher, where the
 when needed.
 Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
-Pledge actually belong to you?"), reissuing the Voucher should be a
-lightweight process, as it ostensibly only updates the Voucher's
-validity period.
+Pledge actually belong to you?"), renewal does not repeat all those
+checks: rather, the checks upon renewal are to confirm that the relationship
+established earlier still holds.
+The MASA always verifies the RVR, to ensure that the requesting
+Registrar still has access to the Domain's private key; it checks the
+revocation status of the Domain identity certificate (see
+{{sec-con-domain}}); and it applies any policy that has changed since the
+previous Voucher issuance, such as a Domain owner's request to block further
+renewals or the expiry of a support contract.
+Renewal has therefore lower overhead than the initial issuance and can be
+fully automated in most cases.
 
 The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the `prior-signed-voucher-request`
 attribute.
@@ -1049,7 +1057,7 @@ This can be as complicated as an FIPS-certified resin filled HSM, or as simple a
 The actual End-Entity certificate used to sign the Vouchers is online, and is a short-lived certificate, re-generated frequently.
 The trust anchor configured into the Pledge is the long-term offline anchor.
 
-## Test Domain Certificate Validity When Signing
+## Test Domain Certificate Validity When Signing {#sec-con-domain}
 
 If a Domain certificate is compromised, then any outstanding
 Vouchers for that Domain could be used by the attacker.  In this case, the Domain
