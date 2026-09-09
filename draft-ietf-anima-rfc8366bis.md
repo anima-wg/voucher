@@ -459,14 +459,17 @@ The following Attributes are new and the document to which they support is noted
 
 To the Voucher Request:
 
-assertion(agent-proximity):
+agent-signed-data:
 : {{PRM}}
 
-pinned-domain-pubk:
-: {{cBRSKI}}
+agent-provided-proximity-registrar-cert:
+: {{PRM}}
 
-pinned-domain-pubk-sha256:
-: {{cBRSKI}}
+agent-sign-cert:
+: {{PRM}}
+
+assertion(agent-proximity):
+: {{PRM}}
 
 proximity-registrary-pubk:
 : {{cBRSKI}}
@@ -479,15 +482,6 @@ To the Voucher:
 additional-configuration-url:
 : {{CLOUD}}
 
-agent-signed-data:
-: {{PRM}}
-
-agent-provided-proximity-registrar-cert:
-: {{PRM}}
-
-agent-sign-cert:
-: {{PRM}}
-
 est-domain:
 : {{CLOUD}}
 
@@ -497,6 +491,11 @@ extensions:
 manufacturer-proprietary:
 : Added to allow for controlled experiments and custom extensions
 
+pinned-domain-pubk:
+: {{cBRSKI}}
+
+pinned-domain-pubk-sha256:
+: {{cBRSKI}}
 
 # Updates to RFC8995
 
