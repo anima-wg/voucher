@@ -1246,7 +1246,7 @@ The Voucher Request YANG module defined in RFC8995 is also updated and now inclu
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-voucher-artifact" class="internal xref">Voucher Artifact</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-algorithm-choices-for-vouch" class="internal xref">Algorithm Choices for Voucher Requests and Vouchers</a></p>
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-algorithm-choices-for-vouch" class="internal xref">Algorithm Choices for Voucher Artifacts</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-tree-diagram" class="internal xref">Tree Diagram</a></p>
@@ -2032,7 +2032,7 @@ Voucher issuer and the trust anchor known to the recipient.
 However, the use of CRLs and other validity mechanisms is
 discouraged, as the Pledge is unlikely to be able to perform
 online checks and is unlikely to have a trusted clock source.
-As described below, the use of short-lived Vouchers and/or a
+As described in the next section, the use of short-lived Vouchers and/or a
 Pledge-provided nonce provides a freshness guarantee.<a href="#section-7.1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2069,25 +2069,35 @@ type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC
 obsoleting the <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code> attributes.<a href="#section-8-9" class="pilcrow">¶</a></p>
 <p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> are present in a voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the matching <code>proximity-*</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>
 <p id="section-8-11">If the voucher is nonceless, then the Pledge <span class="bcp14">SHALL</span> consider the first of the above attributes that it understands, in the order given above.<a href="#section-8-11" class="pilcrow">¶</a></p>
-<div id="algorithm-choices-for-voucher-requests-and-vouchers">
+<div id="algorithm-choices-for-voucher-artifacts">
 <section id="section-8.1">
         <h3 id="name-algorithm-choices-for-vouch">
-<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-algorithm-choices-for-vouch" class="section-name selfRef">Algorithm Choices for Voucher Requests and Vouchers</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-algorithm-choices-for-vouch" class="section-name selfRef">Algorithm Choices for Voucher Artifacts</a>
         </h3>
 <p id="section-8.1-1">When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
-Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
-<p id="section-8.1-2">As explained in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-2.5" class="relref">Section 2.5</a></span>, the Pledge is a creation of the manufacturer, and thus the manufacturer (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
-Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher), and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
-<p id="section-8.1-3">When designing Pledge devices, manufacturers therefor have to choose algorithms and signature formats
-to support, and whatever choices they make, they need to also support in their MASA.
-Should a manufacturer decide to stop supporting some algorithm, they will likely need to recall any inventory that exists in warehouses or within the supply chain in order to replace the firmware and update the IDevID certificates present in the recalled devices.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
-<p id="section-8.1-4">The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
+As explained in <span>[<a href="#RFC8995" class="cite xref">RFC8995</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-2.5" class="relref">Section 2.5</a></span>, the Pledge is a creation of the manufacturer, and thus the manufacturer
+(in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+Specifically, the manufacturer knows what signature algoritm the Pledge is going to use (to sign a PVR or to validate a Voucher),
+and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+<p id="section-8.1-2">The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
 <span>[<a href="#RFC8994" class="cite xref">RFC8994</a>], <a href="https://rfc-editor.org/rfc/rfc8994#section-6.2" class="relref">Section 6.2</a></span> specifies mandatory to implement algorithms for current ANI uses.
-<span>[<a href="#I-D.richardson-anima-quantum-safe-4ani" class="cite xref">I-D.richardson-anima-quantum-safe-4ani</a>]</span> is future work for quantum safe (PQ) <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> algorithms for ANI work.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
-<p id="section-8.1-5"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="cite xref">I-D.ietf-uta-tls13-iot-profile</a>]</span> specifies mandatory to implement algorithms for IoT use cases.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
-<p id="section-8.1-6">A certain class of constrained devices minimizes the code size of the code for ASN.1 processing, PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> processing and Voucher/PVR processing, while another class of constrained devices can minimize just the sizes of Voucher and PVR.<a href="#section-8.1-6" class="pilcrow">¶</a></p>
-<p id="section-8.1-7">The public keys are to be encoded according to <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span> for RSA and ECDSA keys, noting that <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> extends this to include an OID for EdDSA.
-The old (1024-bit) DSA algorithm is not supported.<a href="#section-8.1-7" class="pilcrow">¶</a></p>
+<span>[<a href="#I-D.richardson-anima-quantum-safe-4ani" class="cite xref">I-D.richardson-anima-quantum-safe-4ani</a>]</span> is future work for quantum-safe (PQ) <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> algorithms for ANI work.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+<p id="section-8.1-3"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="cite xref">I-D.ietf-uta-tls13-iot-profile</a>]</span> specify mandatory to implement algorithms for IoT use cases
+involving constrained devices.
+A certain class of constrained devices defined in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> minimizes the code size of the code for ASN.1 processing,
+PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> processing and Voucher/PVR processing, which determines and constrains the algorithm and format choices.
+Another class of cBRSKI constrained devices minimizes just the sizes of Voucher and PVR, a benefit on constrained
+networks, and these devices have different constraints on the algorithm and format choices.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
+<p id="section-8.1-4">Should a manufacturer decide to stop supporting some algorithm that their manufactured Pledges rely on, they will need
+to execute a transition operation for any inventory (Pledges) that exists in warehouses or within the supply chain,
+to ensure that these devices can still be onboarded in the new situation.
+One transition strategy is to recall these Pledges, replace the firmware and update the IDevID certificates present
+in the recalled devices.
+This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
+physical recall is not required.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+<p id="section-8.1-5">The public keys are to be encoded according to <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span> for RSA and ECDSA keys,
+noting that <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> extends this to include an OID for EdDSA.
+The old (1024-bit) DSA algorithm is not supported.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-tree-diagram">
