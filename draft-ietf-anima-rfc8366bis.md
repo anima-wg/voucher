@@ -192,7 +192,7 @@ The lifetimes of Vouchers may vary.
 In some Onboarding protocols, the Vouchers may include a nonce restricting them to a single use,  whereas the Vouchers in other Onboarding protocols may have an
 indicated lifetime.
 When longer validity periods are important, this document recommends using short lifetimes with programmatic renewal, see {{renewal-over-revocation}}.
-How short the lifetimes can be depends upon the means of conveyance of the voucher, so the exact times is specified in the onboarding protocol itself.
+How short the lifetimes can be depends upon the means of conveyance of the Voucher, so the exact times is specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
 this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
@@ -671,9 +671,10 @@ The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `
 Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` attributes.
 
-In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` are present in a voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its voucher-request artifact, ignoring the others.
+In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` attributes
+are present in a Voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its voucher-request artifact, ignoring the others.
 
-If the voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
+If the Voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
 
 ## Algorithm Choices for Voucher Artifacts
 
@@ -912,7 +913,8 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 {{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
 
-In the event that more than one of `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert` are present in a voucher request, then the Registrar and MASA SHALL consider them in the order presented here.
+In the event that more than one of the attributes `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert`
+are present in a Voucher Request, then the Registrar and MASA SHALL consider them in the order presented here.
 
 The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
 However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.
@@ -994,8 +996,8 @@ renewals or the expiry of a support contract.
 Renewal has therefore lower overhead than the initial issuance and can be
 fully automated in most cases.
 
-The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the `prior-signed-voucher-request`
-attribute.
+The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR),
+including the old Voucher in the `prior-signed-voucher-request` attribute.
 The Registrar signs the new request.
 
 With this approach, there is
@@ -1112,12 +1114,12 @@ protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
 so much as privacy.
 
-When used with {{RFC8995}}, or {{cBRSKI}} then voucher requests and vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
+When used with {{RFC8995}}, or {{cBRSKI}} then Voucher Requests and Vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
 
 When used with {{PRM}}, then the contents can be exposed in the last hop,
 where HTTP is used, due the lack of any way to validate the certificate needed to enable HTTPS.
 
-When the voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
+When the Voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
 and which CRL Distribution Point and/or OCSP Responder URLs are
 accessed to validate the Vouchers.
 Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no CRLs to disclose.
