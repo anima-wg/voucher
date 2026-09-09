@@ -176,14 +176,14 @@ Table of Contents
    Communicating this trust anchor securely to the Pledge is the job of
    the Voucher Artifact.  The act of communicating this trust anchor is
    known as pinning the trust anchor.  [RFC8994] explains how this
-   anchor is used to form an overlay management Autononomic Control
-   Plane (ACP) network, using authenticated IPsec (or other) tunnels.
-   IoT devices can now do mutually authenticated (D)TLS or EDHOC
+   anchor is used to form an overlay management Autonomic Control Plane
+   (ACP) network, using authenticated IPsec (or other) tunnels.  IoT
+   devices can now do mutually authenticated (D)TLS or EDHOC
    connections, although authorization is best left to mechanisms such
    as [RFC9200].  The collection of all these devices, with the same
    trust anchor is collectively known as the Domain.  (This is not
    related to the domain name system, but rather the term is of
-   mathematical origin)
+   mathematical origin.)
 
    A Voucher may be useful in several contexts, but the driving
    motivation herein is to support secure Onboarding mechanisms.  This
@@ -196,7 +196,7 @@ Table of Contents
    indicated lifetime.  When longer validity periods are important, this
    document recommends using short lifetimes with programmatic renewal,
    see Section 10.1.  How short the lifetimes can be depends upon the
-   means of conveyance of the Voucher, so the exact times is specified
+   means of conveyance of the Voucher, so the exact times are specified
    in the onboarding protocol itself.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
@@ -211,7 +211,7 @@ Table of Contents
 
    A number of variations of [RFC8995] have been developed since the
    publication of [RFC8366], and these variations require new Attributes
-   be added to the Voucher and Voucher Requrest.  At the low-level, JSON
+   be added to the Voucher and Voucher Request.  At the low-level, JSON
    (or CBOR) mechanical level, this was thought to be trivial as the
    artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
 
@@ -367,8 +367,8 @@ Table of Contents
    A number of Onboarding scenarios can be met using differing
    combinations of this information.  All scenarios address the primary
    threat of an on-path active attacker (or MiTM) impersonating the
-   Registrar.  If successful, this would gain control over the Pledge.
-   The following combinations are "types" of Vouchers:
+   Registrar.  If successful, the attacker would gain control over the
+   Pledge.  The following combinations are "types" of Vouchers:
 
    +=========+===========+========+===========+========+========+=====+
    |Voucher  | Assertion |        | Registrar |        |Validity|     |
@@ -417,7 +417,7 @@ Table of Contents
       the same as an audit Voucher except that it can be issued in
       advance to support network partitions or to provide a permanent
       Voucher for remote deployments.  Being issued in advance of the
-      Pledge being online, the Pledge can not rely on a nonce to be
+      Pledge being online, the Pledge cannot rely on a nonce to be
       included for freshness.  This compromise in reducing the freshness
       allows for the resulting Voucher to be carried across air-gapped
       infrastructure.  In addition, if the validity period has been set
@@ -490,8 +490,8 @@ Table of Contents
    a belief that the appropriate process was to use the [RFC7950]
    _augment_ mechanism to further extend both the Voucher Request
    [RFC8995] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
-   extend an enumerated type with additional values and _augment_ can
-   not do this, so that was initially the impetus for this document.
+   extend an enumerated type with additional values and _augment_ cannot
+   do this, so that was initially the impetus for this document.
 
    An attempt was then made to determine what would happen if one wanted
    to have a constrained version of the [PRM] Voucher Artifact.  The
@@ -510,23 +510,9 @@ Table of Contents
    [cBRSKI], [CLOUD] and [PRM] require extensions to the Voucher Request
    and the resulting Voucher.  New Attributes are required to carry the
    additional data and describe the extended semantics.  The following
-   Attributes are new and the document to which they support is noted:
+   Attributes are new, and the document that they support is noted:
 
    To the Voucher Request:
-
-   assertion(agent-proximity):  [PRM]
-
-   pinned-domain-pubk:  [cBRSKI]
-
-   pinned-domain-pubk-sha256:  [cBRSKI]
-
-   proximity-registrary-pubk:  [cBRSKI]
-
-   proximity-registrar-pubk-sha256:  [cBRSKI]
-
-   To the Voucher:
-
-   additional-configuration-url:  [CLOUD]
 
    agent-signed-data:  [PRM]
 
@@ -534,12 +520,26 @@ Table of Contents
 
    agent-sign-cert:  [PRM]
 
+   assertion(agent-proximity):  [PRM]
+
+   proximity-registrar-pubk:  [cBRSKI]
+
+   proximity-registrar-pubk-sha256:  [cBRSKI]
+
+   To the Voucher:
+
+   additional-configuration-url:  [CLOUD]
+
    est-domain:  [CLOUD]
 
    extensions:  Added to aid in future extensions
 
    manufacturer-proprietary:  Added to allow for controlled experiments
       and custom extensions
+
+   pinned-domain-pubk:  [cBRSKI]
+
+   pinned-domain-pubk-sha256:  [cBRSKI]
 
 6.  Updates to RFC8995
 
@@ -579,7 +579,7 @@ Table of Contents
 6.2.  Clarifications on the use of idevid-issuer
 
    [RFC8366] and [RFC8995] define the 'idevid-issuer' Attribute for the
-   'voucher' and 'voucher-request' modules (respectively), but they
+   'voucher' and 'voucher-request' modules (respectively), but they only
    summarily explain when to use it, and why it is used.
 
    The 'idevid-issuer' Attribute is provided so that the serial number
@@ -800,7 +800,7 @@ Table of Contents
    the manufacturer, and thus the manufacturer (in the form of the
    Manufacturer Authorized Signing Authority (MASA)) has knowledge of
    the capabilities of the Pledge.  Specifically, the manufacturer knows
-   what signature algoritm the Pledge is going to use (to sign a PVR or
+   what signature algorithm the Pledge is going to use (to sign a PVR or
    to validate a Voucher), and can verify this, thus there is no need
    (or opportunity) to negotiate the algorithm or signature (CMS, JWS,
    COSE) scheme.
@@ -1454,10 +1454,10 @@ Table of Contents
    translated from the "yang-data" extension [RFC8040] to the
    "sx:structure" extension [RFC8791].
 
-   In the event that more than one of the Attributes proximity-domain-
-   pubk-sha256, proximity-domain-pubk or proximity-domain-cert are
-   present in a Voucher Request, then the Registrar and MASA SHALL
-   consider them in the order presented here.
+   In the event that more than one of the Attributes proximity-
+   registrar-pubk-sha256, proximity-registrar-pubk or proximity-
+   registrar-cert are present in a Voucher Request, then the Registrar
+   and MASA SHALL consider them in the order presented here.
 
    The presence of more than one of these Attributes is legal as it may
    allow a Pledge to operate in both constrained and non-constrained
@@ -1653,7 +1653,7 @@ Table of Contents
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
-            certificate, see [RFC8446]) presented by the Registrar
+            certificate, see RFC 9846) presented by the Registrar
             to the Pledge.
             This MUST be populated in a Pledge's Voucher Request
             when a proximity assertion is requested.";
@@ -1710,7 +1710,7 @@ Table of Contents
             in [ITU-T.X690].
             The first certificate in the Registrar TLS server
             certificate_list sequence (the end-entity TLS
-            certificate; see RFC 8446) presented by the
+            certificate; see RFC 9846) presented by the
             Registrar to the Registrar-agent and provided to
             the Pledge.
             This MUST be populated in a Pledge's Voucher Request
@@ -1723,7 +1723,7 @@ Table of Contents
             RFC 5280: Internet X.509 Public Key Infrastructure
             Certificate and Certificate Revocation List (CRL)
             Profile
-            RFC 8446: The Transport Layer Security (TLS)
+            RFC 9846: The Transport Layer Security (TLS)
             Protocol Version 1.3";
        }
        leaf agent-sign-cert {
@@ -1855,9 +1855,9 @@ Table of Contents
    With this approach, there is only the one Artifact, and only one code
    path is needed to process it; there is no possibility of a Pledge
    choosing to skip the revocation status check because, for instance,
-   the OCSP Responder ([RFC5280]) is not reachable.
+   the OCSP Responder ([RFC5280] [RFC6960]) is not reachable.
 
-   The exact details of how is "short-lived" is up to the different
+   The exact definition of "short-lived" is up to the different
    onboarding mechanisms.
 
    So, while this document recommends issuing short-lived Vouchers, the
@@ -1895,11 +1895,10 @@ Table of Contents
    verify that the trust anchor indicated in the Voucher matches the
    Registrar it is communicating with.
 
-   The latter prevents onboarding into a Domain controlled by an
-   attacker which is different to the Domain indicated in the Voucher.
-   However, by itself it does not prevent a Domain owner trying to
-   onboard a Pledge while the expiration time in the Voucher has already
-   passed.
+   The third prevents onboarding into a Domain controlled by an attacker
+   which is different to the Domain indicated in the Voucher.  However,
+   by itself it does not prevent a Domain owner trying to onboard a
+   Pledge while the expiration time in the Voucher has already passed.
 
    This document defines a Voucher that optionally contains an
    expiration time, which requires an accurate clock on the device in
@@ -1981,7 +1980,7 @@ Table of Contents
    Vouchers are conveyed using TLS [RFC9846], so there is no exposure.
 
    When used with [PRM], then the contents can be exposed in the last
-   hop, where HTTP is used, due the lack of any way to validate the
+   hop, where HTTP is used, due to the lack of any way to validate the
    certificate needed to enable HTTPS.
 
    When the Voucher is in CMS format, it can contain certificate chains
@@ -2137,11 +2136,16 @@ Table of Contents
 
 13.  YANG references
 
-   RFC-editor, please remove.  This section just lists references
-   present in YANG modules which otherwise do not get included in the
-   references, like [RFC7250].
+   This section is to be removed before publishing as an RFC.
+
+   RFC-editor, please remove this section.  This section just lists
+   references present in YANG modules which otherwise do not get
+   included in the references, like [RFC7250].
 
    Also [RFC9911], Common YANG Data Types.
+
+   Also [RFC4086], Randomness Requirements for Security.  (Normative
+   reference)
 
 14.  References
 
@@ -2661,7 +2665,7 @@ A.1.  Key pairs associated with examples
    nME0Mnj1z+rVRwOfAL/QWctRwpgEgSSKURNQsXWyL52otPS5
    -----END CERTIFICATE-----
 
-   The private key for MASA certificate signs the Voucher:
+   The private key for the MASA certificate that signs the Voucher:
 
    -----BEGIN EC PRIVATE KEY-----
    MHcCAQEEIFhdd0eDdzip67kXx72K+KHGJQYJHNy8pkiLJ6CcvxMGoAoGCCqGSM49
@@ -3126,7 +3130,7 @@ Acknowledgements
    Atwood, Michael H. Behringer, Steffen Fries, Sheng Jiang, Thomas
    Werner.
 
-   This document received directorate reviews from Tim Wicinkski, Thomas
+   This document received directorate reviews from Tim Wicinski, Thomas
    Fossati, and Michal Vaško.  It was shepherded by Sheng Jiang.
 
    Max Pritikin and Kent Watsen were instrumental in creating the
