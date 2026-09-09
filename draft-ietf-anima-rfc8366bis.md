@@ -204,7 +204,7 @@ this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
 {{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
 This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
 
-A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new attributes be added to the Voucher and Voucher Requrest.
+A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new Attributes be added to the Voucher and Voucher Requrest.
 At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
 
 However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
@@ -454,8 +454,8 @@ After significant discussion the decision was made to simply roll all of the nee
 ## Detailed changes since RFC8366
 
 {{cBRSKI}}, {{CLOUD}} and {{PRM}} require extensions to the Voucher Request and the resulting Voucher.
-New attributes are required to carry the additional data and describe the extended semantics.
-The following attributes are new and the document to which they support is noted:
+New Attributes are required to carry the additional data and describe the extended semantics.
+The following Attributes are new and the document to which they support is noted:
 
 To the Voucher Request:
 
@@ -520,7 +520,7 @@ A Registrar MUST apply the following rules for the value of the '`idevid-issuer`
 
 ## Clarifications on the use of `idevid-issuer`
 
-{{RFC8366}} and {{RFC8995}} define the '`idevid-issuer`' attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they summarily explain when to use it, and why it is used.
+{{RFC8366}} and {{RFC8995}} define the '`idevid-issuer`' Attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they summarily explain when to use it, and why it is used.
 
 The '`idevid-issuer`' Attribute is provided so that the serial number to which the issued Voucher pertains can be relative to the entity that issued the Pledge's IDevID.
 In most cases there is a one to one relationship between the trust anchor that signs Vouchers (and is trusted by the Pledge), and the Certification Authority that signs the IDevID.
@@ -666,15 +666,15 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-The attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
+The Attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
 
 Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
-obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` attributes.
+obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` Attributes.
 
-In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` attributes
+In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` Attributes
 are present in a Voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its voucher-request artifact, ignoring the others.
 
-If the Voucher is nonceless, then the Pledge SHALL consider the first of the above attributes that it understands, in the order given above.
+If the Voucher is nonceless, then the Pledge SHALL consider the first of the above Attributes that it understands, in the order given above.
 
 ## Algorithm Choices for Voucher Artifacts
 
@@ -913,10 +913,10 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 {{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
 
-In the event that more than one of the attributes `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert`
+In the event that more than one of the Attributes `proximity-domain-pubk-sha256`, `proximity-domain-pubk` or `proximity-domain-cert`
 are present in a Voucher Request, then the Registrar and MASA SHALL consider them in the order presented here.
 
-The presence of more than one of these attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
+The presence of more than one of these Attributes is legal as it may allow a Pledge to operate in both constrained and non-constrained networks.
 However, on constrained networks it wastes significant amounts of space, and it is discouraged in those environments.
 
 ## Tree Diagram {#voucher-request-tree-diagram}
@@ -997,7 +997,7 @@ Renewal has therefore lower overhead than the initial issuance and can be
 fully automated in most cases.
 
 The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR),
-including the old Voucher in the `prior-signed-voucher-request` attribute.
+including the old Voucher in the `prior-signed-voucher-request` Attribute.
 The Registrar signs the new request.
 
 With this approach, there is
@@ -1060,7 +1060,7 @@ the expiration time values in Vouchers will provide little protection.
 ## Nonceless Vouchers
 
 A nonceless Voucher cannot be validated by a Pledge for freshness, other than by inspecting the
-'`expires-on`' attribute and comparing its value against the Pledge's internal clock.
+'`expires-on`' Attribute and comparing its value against the Pledge's internal clock.
 See the previous section for considerations on the accuracy of this clock and the risks of relying on NTP for
 acquiring the current time.
 

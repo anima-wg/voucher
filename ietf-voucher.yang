@@ -118,7 +118,7 @@ module ietf-voucher {
            JSON instead, and it is base64URL encoded.
 
            Since a Voucher could be logged or stored by a Registrar
-           or another intermediate, this attribute MUST NOT contain
+           or another intermediate, this Attribute MUST NOT contain
            any data that requires confidentiality.";
       }
 
@@ -196,7 +196,7 @@ module ietf-voucher {
            otherwise unique within the scope of the MASA.";
       }
       // choice pinning {
-      //  description "One of these attributes is used by the
+      //  description "One of these Attributes is used by the
       //               MASA to pin the Registrar identity";
         leaf pinned-domain-cert {
           type binary;
@@ -276,7 +276,7 @@ module ietf-voucher {
       }
       //choice nonceless {
       //  description "Either a nonce must be present,
-      //               or an expires-on attribute";
+      //               or an expires-on Attribute";
         leaf expires-on {
           type yang:date-and-time;
           description
@@ -326,7 +326,7 @@ module ietf-voucher {
       leaf additional-configuration-url {
         type ietf:uri;
         description
-          "The additional-configuration attribute contains a
+          "The additional-configuration Attribute contains a
            URL to which the Pledge can retrieve additional
            configuration information.
            The contents of this URL are manufacturer specific.
