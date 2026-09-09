@@ -302,7 +302,10 @@ module ietf-voucher {
              generated and sent to a bootstrap server in an earlier
              onboarding message.  If the value is present, but
              the values do not match, then the pledge MUST NOT process
-             this voucher.";
+             this voucher.
+
+             A nonce value MUST be a cryptographically strong random
+             value as detailed in RFC 4086.";
         }
       // } choice nonceless
 

@@ -62,6 +62,7 @@ venue:
   github: anima-wg/voucher
 
 normative:
+  RFC4086:
   RFC5280:
   RFC5652:
   RFC6020:
