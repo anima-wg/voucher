@@ -3087,9 +3087,17 @@ is for the MASA to instead issue a short-lived Voucher, where the
 when needed.
 Importantly, while issuing the initial Voucher may incur
 heavyweight verification checks ("Are you who you say you are?" "Does the
-Pledge actually belong to you?"), reissuing the Voucher should be a
-lightweight process, as it ostensibly only updates the Voucher's
-validity period.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
+Pledge actually belong to you?"), renewal does not repeat all those
+checks: rather, the checks upon renewal are to confirm that the relationship
+established earlier still holds.
+The MASA always verifies the RVR, to ensure that the requesting
+Registrar still has access to the Domain's private key; it checks the
+revocation status of the Domain identity certificate (see
+<a href="#sec-con-domain" class="auto internal xref">Section 11.3</a>); and it applies any policy that has changed since the
+previous Voucher issuance, such as a Domain owner's request to block further
+renewals or the expiry of a support contract.
+Renewal has therefore lower overhead than the initial issuance and can be
+fully automated in most cases.<a href="#section-10.1-3" class="pilcrow">¶</a></p>
 <p id="section-10.1-4">The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR), including the old voucher in the <code>prior-signed-voucher-request</code>
 attribute.
 The Registrar signs the new request.<a href="#section-10.1-4" class="pilcrow">¶</a></p>
@@ -3171,7 +3179,7 @@ This can be as complicated as an FIPS-certified resin filled HSM, or as simple a
 The trust anchor configured into the Pledge is the long-term offline anchor.<a href="#section-11.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="test-domain-certificate-validity-when-signing">
+<div id="sec-con-domain">
 <section id="section-11.3">
         <h3 id="name-test-domain-certificate-val">
 <a href="#section-11.3" class="section-number selfRef">11.3. </a><a href="#name-test-domain-certificate-val" class="section-name selfRef">Test Domain Certificate Validity When Signing</a>

@@ -1822,8 +1822,16 @@ Table of Contents
    the Voucher again when needed.  Importantly, while issuing the
    initial Voucher may incur heavyweight verification checks ("Are you
    who you say you are?"  "Does the Pledge actually belong to you?"),
-   reissuing the Voucher should be a lightweight process, as it
-   ostensibly only updates the Voucher's validity period.
+   renewal does not repeat all those checks: rather, the checks upon
+   renewal are to confirm that the relationship established earlier
+   still holds.  The MASA always verifies the RVR, to ensure that the
+   requesting Registrar still has access to the Domain's private key; it
+   checks the revocation status of the Domain identity certificate (see
+   Section 11.3); and it applies any policy that has changed since the
+   previous Voucher issuance, such as a Domain owner's request to block
+   further renewals or the expiry of a support contract.  Renewal has
+   therefore lower overhead than the initial issuance and can be fully
+   automated in most cases.
 
    The renewal request is created by the Registrar, using a freshly
    signed Registrar Voucher Request (RVR), including the old voucher in
