@@ -1020,30 +1020,46 @@ to be listed.
 
 # Security Considerations {#sec-con}
 
-## Clock Sensitivity
+## Clock Accuracy in a Pledge
 
-An attacker could use an expired Voucher to gain control over
-a device that has no understanding of time.  The device cannot
-trust NTP as a time reference, as an attacker could control
-the NTP stream.
+An attacker could use an expired nonceless Voucher to gain control over
+a device (Pledge) that has no understanding of time.  The device cannot
+trust Network Time Protocol (NTP) as a time reference, as an attacker could
+control the NTP stream.
 
-There are three things to defend against this: 1) devices are
-required to verify that the '`expires-on`' Attribute has not yet passed,
-2) devices without access to time can use nonces to
-get ephemeral Vouchers, and 3) Vouchers without expiration times
-may be used, which will appear in the audit log, informing the
-security decision.
+There are three things to defend against this:
+1) a device is required to verify that the '`expires-on`' Attribute's time has not yet passed,
+2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
+3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
+   it is communicating with.
 
-This document defines a Voucher format that contains time values
-for expirations, which require an accurate clock
+The latter prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
+the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
+time in the Voucher has already passed.
+
+This document defines a Voucher that optionally contains an
+expiration time, which requires an accurate clock on the device
 in order to be processed correctly.
-Vendors planning on
-issuing Vouchers with expiration values need to ensure that
-the devices targetted have an accurate clock when shipped from manufacturing
-facilities and take steps to prevent clock tampering.
-If it is not possible to ensure clock accuracy, then
-the expiration time values in Vouchers will have no meaning.
 
+Manufacturers issuing Vouchers with expiration time need to ensure that
+the devices targeted have an accurate clock when shipped from manufacturing
+facilities and need to take measures to prevent clock tampering.
+If it is not possible to ensure clock accuracy and tamper-proofness, then
+the expiration time values in Vouchers will provide little protection.
+
+## Nonceless Vouchers
+
+A nonceless Voucher cannot be validated by a Pledge for freshness, other than by inspecting the
+'`expires-on`' attribute and comparing its value against the Pledge's internal clock.
+See the previous section for considerations on the accuracy of this clock and the risks of relying on NTP for
+acquiring the current time.
+
+A nonceless Voucher can be reused by a Registrar to answer a Pledge's PVR any number of times within its validity
+period. This can be a benefit for a Domain owner if repeated onboarding into a Domain is required, but it equally
+allows an attacker that came into possession of a nonceless Voucher to attempt a great number of onboarding attempts
+with the indicated Pledge.
+Still, such repeated attacks are unlikely to succeed because the Voucher explicitly identifies only one Domain
+where the Pledge can be onboarded into - which is not the attacker's Domain in this scenario.
 
 ## Protecting the MASA Signing Key and the MASA CA Key
 
