@@ -7,12 +7,12 @@ Internet-Draft                                           Watsen Networks
 Obsoletes: 8366 (if approved)                         M. Richardson, Ed.
 Updates: 8995 (if approved)                           Sandelman Software
 Intended status: Standards Track                                 E. Dijk
-Expires: 13 February 2027                              IoTconsultancy.nl
+Expires: 24 March 2027                                 IoTconsultancy.nl
                                                                T. Eckert
                                              Futurewei Technologies Inc.
                                                                    Q. Ma
                                                                   Huawei
-                                                          12 August 2026
+                                                       20 September 2026
 
 
               A Voucher Artifact for Onboarding Protocols
@@ -68,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 February 2027.
+   This Internet-Draft will expire on 24 March 2027.
 
 Copyright Notice
 
@@ -87,7 +87,12 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
-     1.1.  Extensions Needed
+     1.1.  Use case background
+       1.1.1.  Without voucher
+       1.1.2.  Staging to the rescue
+       1.1.3.  With voucher
+       1.1.4.  Use case summary
+     1.2.  Extensions Needed
    2.  Terminology
    3.  Requirements Language
    4.  Survey of Voucher Types
@@ -103,7 +108,7 @@ Table of Contents
    7.  Signature mechanisms
      7.1.  CMS Format Voucher Artifact
    8.  Voucher Artifact
-     8.1.  Algorithm Choices for Voucher Requests and Vouchers
+     8.1.  Algorithm Choices for Voucher Artifacts
      8.2.  Tree Diagram
      8.3.  Examples
      8.4.  YANG Module
@@ -111,30 +116,30 @@ Table of Contents
      8.6.  Voucher Extensions
      8.7.  Manufacturer Proprietary Extensions
    9.  Voucher Request Artifact
-   10. <<<<<<< HEAD
-     10.1.  Tree Diagram
-     10.2.  "ietf-voucher-request" Module
-     10.3.  ietf-voucher-request SID values
-   11. Design Considerations
-     11.1.  Renewals Instead of Revocations
-     11.2.  Voucher Per Pledge
-   12. Security Considerations
-     12.1.  Clock Sensitivity
-     12.2.  Protect MASA Signing Key in HSM
-     12.3.  Test Domain Certificate Validity When Signing
-     12.4.  YANG Module Security Considerations
-   13. IANA Considerations
-     13.1.  The IETF XML Registry
-     13.2.  The YANG Module Names Registry
-     13.3.  The Media Types Registry
-     13.4.  The SMI Security for S/MIME CMS Content Type Registry
-     13.5.  The Voucher Extensions Registry
-     13.6.  The IETF YANG-SID Ranges Registry
-     13.7.  The IETF YANG-SID Modules Registry
-   14. YANG references
-   15. References
-     15.1.  Normative References
-     15.2.  Informative References
+     9.1.  Tree Diagram
+     9.2.  "ietf-voucher-request" Module
+     9.3.  ietf-voucher-request SID values
+   10. Design Considerations
+     10.1.  Renewals Instead of Revocations
+     10.2.  Voucher Per Pledge
+   11. Security Considerations
+     11.1.  Clock Accuracy in a Pledge
+     11.2.  Nonceless Vouchers
+     11.3.  Protecting the MASA Signing Key and the MASA CA Key
+     11.4.  Test Domain Certificate Validity When Signing
+     11.5.  YANG Module Security Considerations
+   12. IANA Considerations
+     12.1.  The IETF XML Registry
+     12.2.  The YANG Module Names Registry
+     12.3.  The Media Types Registry
+     12.4.  The SMI Security for S/MIME CMS Content Type Registry
+     12.5.  The Voucher Extensions Registry
+     12.6.  The IETF YANG-SID Ranges Registry
+     12.7.  The IETF YANG-SID Modules Registry
+   13. YANG references
+   14. References
+     14.1.  Normative References
+     14.2.  Informative References
    Appendix A.  Examples
      A.1.  Key pairs associated with examples
      A.2.  Example CMS-signed Voucher Request
@@ -176,14 +181,14 @@ Table of Contents
    Communicating this trust anchor securely to the Pledge is the job of
    the Voucher Artifact.  The act of communicating this trust anchor is
    known as pinning the trust anchor.  [RFC8994] explains how this
-   anchor is used to form an overlay management Autononomic Control
-   Plane (ACP) network, using authenticated IPsec (or other) tunnels.
-   IoT devices can now do mutually authenticated (D)TLS or EDHOC
+   anchor is used to form an overlay management Autonomic Control Plane
+   (ACP) network, using authenticated IPsec (or other) tunnels.  IoT
+   devices can now do mutually authenticated (D)TLS or EDHOC
    connections, although authorization is best left to mechanisms such
    as [RFC9200].  The collection of all these devices, with the same
    trust anchor is collectively known as the Domain.  (This is not
    related to the domain name system, but rather the term is of
-   mathematical origin)
+   mathematical origin.)
 
    A Voucher may be useful in several contexts, but the driving
    motivation herein is to support secure Onboarding mechanisms.  This
@@ -195,23 +200,167 @@ Table of Contents
    whereas the Vouchers in other Onboarding protocols may have an
    indicated lifetime.  When longer validity periods are important, this
    document recommends using short lifetimes with programmatic renewal,
-   see Section 11.1.  How short the lifetimes can be depends upon the
-   means of conveyance of the voucher, so the exact times is specified
+   see Section 10.1.  How short the lifetimes can be depends upon the
+   means of conveyance of the Voucher, so the exact times are specified
    in the onboarding protocol itself.
 
    Some Onboarding protocols using the Voucher Artifact defined in this
-   document include: [SZTP], [RFC8995] and [cBRSKI].
+   document include: [SZTP], [BRSKI] and [cBRSKI].
 
-1.1.  Extensions Needed
+1.1.  Use case background
+
+1.1.1.  Without voucher
+
+   When a device is sold to a new owner, it can normally not assert the
+   identity of that new owner, nor limit its own configurability to that
+   new owner.  Instead, such devices (Pledges) employ one or more of the
+   following problematic mechanisms:
+
+   1.  They permit configuration without any security or password, or
+       they require a well-known "default" password.
+
+   2.  They limit configuration to mechanisms that require some degree
+       of physical control over the device, such as permitting
+       configuration only across a serial "console" port, or requiring
+       pairing via Bluetooth.
+
+   3.  They are delivered with some form of "bearer token", such as a
+       unique QR or similar code that is delivered together with the
+       device and that has to be scanned to authenticate against the
+       device.
+
+   All these mechanisms expose various security or operational problems,
+   making them insufficient for the typical professional deployment of
+   equipment such as is required in industrial, enterprise, defense and
+   other markets for networking or other IoT equipment.
+
+   In these deployment scenarios, physical installation has to be
+   performed by non-experts.  This limits installation to physical
+   wiring (power and possibly networking), without any knowledge of
+   network configuration or digital security.  Such installers should
+   not be required to handle Bluetooth pairing, which is often
+   physically difficult or impossible once the device is in its target
+   location, nor should the pairing device be expected to have the
+   network connectivity that pairing may require.  They should not need
+   to locate, understand and safely retain bearer tokens, which are
+   placed at arbitrary positions in packaging that has most likely
+   already been discarded.  They should not need to determine whether a
+   network connection is free of attacking or spying software that
+   discovers and invades unconfigured devices via their default
+   passwords, and so on.
+
+   In one evaluation, professional video surveillance cameras deployed
+   at scale cost $500 on average, but required installation by
+   networking/security experts costing more than $1000 on average.
+   Simple, non-expert physical installation into a building network that
+   was potentially infested with attack software cost less than $500.
+
+1.1.2.  Staging to the rescue
+
+   To overcome the provisioning limitations of pre-voucher protocol
+   solutions, a common approach in the industry is so-called "staging".
+   Instead of being shipped directly from the manufacturer or seller to
+   the ultimate deployment location, Pledges are shipped to a so-called
+   "staging" location, where they are provisioned by networking/security
+   experts.  There, the Pledge is connected only to a staging network
+   that is known to be free of attackers, and is provisioned with the
+   configuration necessary to operate at the target deployment location
+   -- at least to the extent that subsequent attacks or unintentional
+   misconfiguration by a non-owner are no longer possible.
+
+   Staging is expensive and slow.  It is also considered impractical in
+   many market segments, not only because of the number of low-cost
+   Pledges and the high ratio of installation cost to Pledge cost (as in
+   the surveillance camera example above), but also because of
+   international shipping, certification and import/export issues for
+   hardware.  For example, specialized equipment for networking,
+   security and other business purposes is often not shipped
+   internationally at all.  Instead, it is composed of locally sourced
+   standard hardware components, such as "x86" hardware with well-
+   defined secure hardware such as a TPM and IDevID, and this generic
+   hardware is then "personalized" to become the specialized device
+   through automated, online download of the complete product software
+   suite over international network connections.  This leaves only the
+   problem of initial, mutually trusted connectivity between such a
+   Pledge and the remote provisioning system to be solved -- which is
+   exactly what protocols using vouchers aim to achieve.
+
+1.1.3.  With voucher
+
+   The voucher is a digital artifact (a digital data structure) that is
+   created and cryptographically signed by an agent of the Pledge's
+   manufacturer, called the Manufacturer Authorized Signing Authority
+   (MASA).
+
+   The voucher's most important element is a trust anchor (typically a
+   certificate) identifying the intended owner of the Pledge.  The
+   rationale for this approach is that the only trust anchors an
+   unconfigured Pledge can be expected to carry in its software are
+   those of the manufacturer, or of third-party entities designated by
+   the manufacturer to support the voucher process.  Consequently, a
+   voucher identifying the owner has to be signed by such a MASA.  How
+   the MASA determines who the owner of a Pledge is, is left to the
+   protocol mechanisms using the voucher.
+
+   Once the Pledge has received such a voucher via some protocol
+   utilizing a voucher, the Pledge can permit configuration only by
+   entities that can cryptographically authenticate themselves as
+   belonging to the owner, for example by proving ownership of the trust
+   anchor, or of a certificate signed by the trust anchor either
+   directly or via an intermediate CA.
+
+   The voucher itself does not specify the procedures by which it is
+   communicated.  That is the responsibility of the protocols using
+   voucher artifacts.
+
+   In "Secure Zero Touch Provisioning" [SZTP], protocol mechanisms are
+   defined through which a Pledge can automatically discover an SZTP
+   server and "register" with it.  The Pledge accepts configuration from
+   that SZTP server only after the server has presented a voucher
+   identifying the Pledge's owner.
+
+   In "Bootstrapping Remote Secure Key Infrastructure" [BRSKI] and its
+   derivative protocols, the Pledge discovers and connects to a BRSKI
+   "Registrar" belonging to the owner and requests a voucher using a
+   variant of the voucher called a "voucher request" artifact, which is
+   also defined in this document.  Having received a voucher in return,
+   the Pledge can authenticate the Registrar as its owner.  The Pledge
+   then expects to be "enrolled" with keying material: it receives the
+   trust anchors of the owner's PKI domain, as well as a so-called
+   LDevID certificate from that domain.
+
+   SZTP and BRSKI are only two examples of existing protocol families
+   that use vouchers.  They follow different design philosophies and
+   thereby illustrate why the voucher is not tied to, and not specified
+   solely within, a single protocol family.
+
+1.1.4.  Use case summary
+
+   Use of the voucher as specified in this document does not guarantee
+   interoperability between an arbitrary Pledge and an arbitrary
+   configuration/provisioning/enrollment server; that is instead the
+   responsibility of the protocols using vouchers.
+
+   What the use of a voucher-bearing protocol does enable is the ability
+   to enroll and provision Pledges without the operational and security
+   challenges of pre-voucher mechanisms.  Pledges supporting voucher
+   protocols can be physcially installed by personnel who are neither
+   security nor networking experts and who only need to know how to wire
+   up the Pledge.  Network (non-phyisi`cal) based attacks that rely on
+   taking control of an unconfigured Pledge are eliminated, as is the
+   non-malicious enrollment of a Pledge into a non-owner network, which
+   is a common problem in multi-tenant and multi-dwelling environments.
+
+1.2.  Extensions Needed
 
    [RFC8366] originally defined the Voucher as the only Voucher
    Artifact, leaving the Voucher Request that is used in BRSKI to be
-   defined in [RFC8995].  This document includes both Voucher and
-   Voucher Request obsoleting [RFC8366], and updating [RFC8995].
+   defined in [BRSKI].  This document includes both Voucher and Voucher
+   Request obsoleting [RFC8366], and updating [BRSKI].
 
-   A number of variations of [RFC8995] have been developed since the
-   publication of [RFC8366], and these variations require new attributes
-   be added to the Voucher and Voucher Requrest.  At the low-level, JSON
+   A number of variations of [BRSKI] have been developed since the
+   publication of [RFC8366], and these variations require new Attributes
+   be added to the Voucher and Voucher Request.  At the low-level, JSON
    (or CBOR) mechanical level, this was thought to be trivial as the
    artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
 
@@ -268,7 +417,18 @@ Table of Contents
       active role in the Onboarding process.
 
    Malicious Registrar:  An on-path active attacker that presents itself
-      as a legitimate Registrar.
+      as a legitimate Registrar towards the Pledge.  This attacker's
+      goal is to trick the Pledge to trust its malicious Domain and let
+      it onboard into that Domain.  The attacker then has control over
+      the Pledge and may then perform various follow-up actions such as
+      operating the device at another location in a network under the
+      attacker's control, or attempting further device exploits to
+      compromise its software.  After the software is compromised, the
+      Pledge could be instructed by the attacker to onboard another time
+      but now with a real Registrar of a target Domain being attacked.
+      This way, a compromised Pledge could become trusted in the
+      attacker's target Domain.  Section 11.4 of [BRSKI] describes more
+      details of this attack and its mitigations.
 
    Onboarding:  Onboarding describes the process to provide necessary
       operational data to a Pledge and to complete the process of
@@ -332,14 +492,16 @@ Table of Contents
    The Voucher can convey the following information to the Join
    Registrar and to the Pledge:
 
-   Assertion Basis:  Indicates the method that protects the Onboarding
-      (this is distinct from the Voucher signature that protects the
-      Voucher itself).  Methods include manufacturer-asserted ownership
+   Assertion Basis:  Indicates the method that protects the Onboarding.
+      This is distinct from the Voucher signature that protects the
+      Voucher itself.  Methods include manufacturer-asserted ownership
       verification, assured logging operations, or reliance on Pledge
-      behavior such as secure or measured boot.  The Join Registrar uses
-      this information to make a determination as to whether to accept
-      the Pledge into the network.  Only some methods are normatively
-      defined in this document.  Other methods are left for future work.
+      behavior such as secure boot or measured boot (which is an
+      attested boot process involving 'measurements' as defined by
+      [RFC9334].)  The Join Registrar uses this information to make a
+      determination as to whether to accept the Pledge into the network.
+      Only some methods are normatively defined in this document.  Other
+      methods are left for future work.
 
    Authentication of Join Registrar:  Indicates how the Pledge can
       authenticate the Join Registrar.  This document defines a
@@ -354,8 +516,8 @@ Table of Contents
    A number of Onboarding scenarios can be met using differing
    combinations of this information.  All scenarios address the primary
    threat of an on-path active attacker (or MiTM) impersonating the
-   Registrar.  If successful, this would gain control over the Pledge.
-   The following combinations are "types" of Vouchers:
+   Registrar.  If successful, the attacker would gain control over the
+   Pledge.  The following combinations are "types" of Vouchers:
 
    +=========+===========+========+===========+========+========+=====+
    |Voucher  | Assertion |        | Registrar |        |Validity|     |
@@ -404,7 +566,7 @@ Table of Contents
       the same as an audit Voucher except that it can be issued in
       advance to support network partitions or to provide a permanent
       Voucher for remote deployments.  Being issued in advance of the
-      Pledge being online, the Pledge can not rely on a nonce to be
+      Pledge being online, the Pledge cannot rely on a nonce to be
       included for freshness.  This compromise in reducing the freshness
       allows for the resulting Voucher to be carried across air-gapped
       infrastructure.  In addition, if the validity period has been set
@@ -442,22 +604,22 @@ Table of Contents
 
 5.1.  Attempts and motivation to extend RFC8366
 
-   [RFC8366] was published in 2018 during the development of [RFC8995],
+   [RFC8366] was published in 2018 during the development of [BRSKI],
    [SZTP] and other work-in-progress efforts.  Since then the industry
    has matured significantly, and the in-the-field activity which this
    document supports has become known as _Onboarding_ rather than
    _Bootstrapping_.
 
-   The focus of [RFC8995] was Onboarding of ISP and Enterprise owned
-   wired routing and switching equipment, with IoT devices being a less
+   The focus of [BRSKI] was Onboarding of ISP and Enterprise owned wired
+   routing and switching equipment, with IoT devices being a less
    important aspect.  [SZTP] has focused upon Onboarding of CPE
    equipment like cable modems and other larger IoT devices, again with
    smaller IoT devices being of lesser importance.
 
-   Since [RFC8995] was published there is now a mature effort to do
+   Since [BRSKI] was published there is now a mature effort to do
    application-level Onboarding of constrained IoT devices defined by
    the Thread Group and the Fairhair Alliance (now OCF) [fairhair].  The
-   [cBRSKI] document has defined a version of [RFC8995] that is usable
+   [cBRSKI] document has defined a version of [BRSKI] that is usable
    over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS,
    while [I-D.ietf-lake-authz] provides for using CoAP and EDHOC on even
    more constrained devices with very constrained networks.
@@ -476,9 +638,9 @@ Table of Contents
    When the process to define [cBRSKI] and [PRM] was started, there was
    a belief that the appropriate process was to use the [RFC7950]
    _augment_ mechanism to further extend both the Voucher Request
-   [RFC8995] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
-   extend an enumerated type with additional values and _augment_ can
-   not do this, so that was initially the impetus for this document.
+   [BRSKI] and Voucher [RFC8366] artifacts.  However, [PRM] needs to
+   extend an enumerated type with additional values and _augment_ cannot
+   do this, so that was initially the impetus for this document.
 
    An attempt was then made to determine what would happen if one wanted
    to have a constrained version of the [PRM] Voucher Artifact.  The
@@ -495,31 +657,27 @@ Table of Contents
 5.3.  Detailed changes since RFC8366
 
    [cBRSKI], [CLOUD] and [PRM] require extensions to the Voucher Request
-   and the resulting Voucher.  New attributes are required to carry the
+   and the resulting Voucher.  New Attributes are required to carry the
    additional data and describe the extended semantics.  The following
-   attributes are new and the document to which they support is noted:
+   Attributes are new, and the document that they support is noted:
 
    To the Voucher Request:
-
-   assertion(agent-proximity):  [PRM]
-
-   pinned-domain-pubk:  [cBRSKI]
-
-   pinned-domain-pubk-sha256:  [cBRSKI]
-
-   proximity-registrary-pubk:  [cBRSKI]
-
-   proximity-registrar-pubk-sha256:  [cBRSKI]
-
-   To the Voucher:
-
-   additional-configuration-url:  [CLOUD]
 
    agent-signed-data:  [PRM]
 
    agent-provided-proximity-registrar-cert:  [PRM]
 
    agent-sign-cert:  [PRM]
+
+   assertion(agent-proximity):  [PRM]
+
+   proximity-registrar-pubk:  [cBRSKI]
+
+   proximity-registrar-pubk-sha256:  [cBRSKI]
+
+   To the Voucher:
+
+   additional-configuration-url:  [CLOUD]
 
    est-domain:  [CLOUD]
 
@@ -528,10 +686,14 @@ Table of Contents
    manufacturer-proprietary:  Added to allow for controlled experiments
       and custom extensions
 
+   pinned-domain-pubk:  [cBRSKI]
+
+   pinned-domain-pubk-sha256:  [cBRSKI]
+
 6.  Updates to RFC8995
 
    This document represents a merge of YANG definitions of the Voucher
-   from [RFC8366], the Voucher Request from [RFC8995], and extensions to
+   from [RFC8366], the Voucher Request from [BRSKI], and extensions to
    each of these from [cBRSKI], [CLOUD] and [PRM].  The difficulty with
    this approach is that the semantics of the definitions needed for the
    other documents are not included in this document, but rather in the
@@ -539,7 +701,7 @@ Table of Contents
 
 6.1.  Updates to the use of idevid-issuer
 
-   The voucher-request module definition that was in [RFC8995] Sections
+   The voucher-request module definition that was in [BRSKI] Sections
    3.2 (tree diagram) and 3.4 (YANG module) is now included in this
    document.  There is a change to it: the 'idevid-issuer' Attribute
    MUST be included in a Registrar Voucher Request (RVR).  Like the
@@ -565,8 +727,8 @@ Table of Contents
 
 6.2.  Clarifications on the use of idevid-issuer
 
-   [RFC8366] and [RFC8995] define the 'idevid-issuer' attribute for the
-   'voucher' and 'voucher-request' modules (respectively), but they
+   [RFC8366] and [BRSKI] define the 'idevid-issuer' Attribute for the
+   'voucher' and 'voucher-request' modules (respectively), but they only
    summarily explain when to use it, and why it is used.
 
    The 'idevid-issuer' Attribute is provided so that the serial number
@@ -577,7 +739,7 @@ Table of Contents
    the IDevID.  In that case, the 'serial-number' in the Voucher Data
    must refer to the same device as the serial number that is in the
    IDevID certificate (in the 'serialNumber' element of type
-   'X520SerialNumber' per Section 2.3.1 of [RFC8995]).
+   'X520SerialNumber' per Section 2.3.1 of [BRSKI]).
 
    However, there are situations where the one to one relationship may
    be broken.  This occurs whenever a manufacturer has a common MASA,
@@ -618,7 +780,7 @@ Table of Contents
 
 6.3.  Clarifications on the format of idevid-issuer
 
-   [RFC8366] and [RFC8995] were not fully clear on the required binary
+   [RFC8366] and [BRSKI] were not fully clear on the required binary
    format of the 'idevid-issuer' Attribute.  This gave rise to
    incompatible implementations.
 
@@ -642,7 +804,7 @@ Table of Contents
 
 6.4.  Errata closed
 
-   The above updates to [RFC8995] addresses errata [eid7263].
+   The above updates to [BRSKI] addresses errata [eid7263].
 
 7.  Signature mechanisms
 
@@ -669,7 +831,7 @@ Table of Contents
    The SignedData structure contains a single EncapsulatedContentInfo
    structure, defined in Section 5.2 of [RFC5652].  An object identifier
    (OID) [ITU-T.X680] for JSON-encoded Voucher Data is allocated in
-   Section 13.4.  This OID is placed in the 'eContentType' field in the
+   Section 12.4.  This OID is placed in the 'eContentType' field in the
    EncapsulatedContentInfo, with the OID defined as follows:
 
    id-smime OBJECT IDENTIFIER ::= { iso(1) member-body(2)
@@ -688,7 +850,7 @@ Table of Contents
    [I-D.vangeest-lamps-cms-euf-cma-signeddata].  Decoders MUST verify
    that SignedAttributes is present.
 
-   To facilitate interoperability, per Section 13.3 the media type
+   To facilitate interoperability, per Section 12.3 the media type
    "application/voucher-cms+json" and the filename extension ".vcj" were
    registered by [RFC8366].
 
@@ -702,7 +864,7 @@ Table of Contents
    Note that Section 5.1 of [RFC5652] includes a discussion about how to
    validate a CMS object.  This object may have a particular CMSVersion
    (see Section 10.2.5 of [RFC5652]).  Intermediate systems (such as the
-   Bootstrapping Remote Secure Key Infrastructures [RFC8995] Registrar)
+   Bootstrapping Remote Secure Key Infrastructures [BRSKI] Registrar)
    that might need to evaluate the object in flight MUST be prepared for
    any version of this format.  No signaling of the format version
    (CMSVersion) is necessary, as the manufacturer knows the capabilities
@@ -716,13 +878,13 @@ Table of Contents
    transaction without it.
 
    The CMS structure MAY also contain revocation objects for any
-   intermediate certificate authorities (CAs) between the Voucher issuer
-   and the trust anchor known to the recipient.  However, the use of
-   CRLs and other validity mechanisms is discouraged, as the Pledge is
-   unlikely to be able to perform online checks and is unlikely to have
-   a trusted clock source.  As described below, the use of short-lived
-   Vouchers and/or a Pledge-provided nonce provides a freshness
-   guarantee.
+   intermediate Certification Authorities (CAs) between the Voucher
+   issuer and the trust anchor known to the recipient.  However, the use
+   of CRLs and other validity mechanisms is discouraged, as the Pledge
+   is unlikely to be able to perform online checks and is unlikely to
+   have a trusted clock source.  As described in the next section, the
+   use of short-lived Vouchers and/or a Pledge-provided nonce provides a
+   freshness guarantee.
 
 8.  Voucher Artifact
 
@@ -759,63 +921,64 @@ Table of Contents
    (USB key), the Voucher format is usually signaled by a filename
    extension.
 
-   The attributes pinned-domain-pubk (proximity-registrar-pubk for a
+   The Attributes pinned-domain-pubk (proximity-registrar-pubk for a
    PVR) and pinned-domain-pubk-sha256 (proximity-registrar-pubk-sha256
    for a PVR) are involved in the process of pinning/identifying a raw
    public key, instead of a certificate, for such devices.
 
-   Should SHA256 need to be replaced, then a new YANG module will be
-   published with a new leaf, obsoleting pinned-domain-pubk-sha256 and
-   proximity-registrar-pubk-sha256.
+   Should the SHA256 algorithm need to be replaced in the future, then a
+   new YANG module will be published with new leafs, obsoleting the
+   pinned-domain-pubk-sha256 and proximity-registrar-pubk-sha256
+   Attributes.
 
    In the event that more than one of pinned-domain-pubk-sha256, pinned-
-   domain-pubk or pinned-domain-cert are present in a voucher, then the
-   Pledge SHALL prioritize the proximity entry which it used in its
-   voucher-request artifact, ignoring the others.
+   domain-pubk or pinned-domain-cert Attributes are present in a
+   Voucher, then the Pledge SHALL prioritize the matching proximity-*
+   entry which it used in its voucher-request artifact, ignoring the
+   others.
 
-   If the voucher is nonce-less (and thus not the result of a voucher-
-   request), then the Pledge SHALL consider the first of the above
-   attributes that it understands, in the order given above.
+   If the Voucher is nonceless, then the Pledge SHALL consider the first
+   of the above Attributes that it understands, in the order given
+   above.
 
-8.1.  Algorithm Choices for Voucher Requests and Vouchers
+8.1.  Algorithm Choices for Voucher Artifacts
 
    When designing Pledge devices, manufacturers choose algorithms and
    signature formats - which they also need to support in their MASA.
-   Should a manufacturer decide to stop supporting some algorithm, they
-   will likely need to recall any inventory that exists in warehouses or
-   within the supply chain in order to replace the firmware and update
-   the IDevID certificates present.
-
-   As explained in [RFC8995], Section 2.5, the Pledge is a creation of
-   the manufacturer, and thus the manufacturer (in the form of the
+   As explained in [BRSKI], Section 2.5, the Pledge is a creation of the
+   manufacturer, and thus the manufacturer (in the form of the
    Manufacturer Authorized Signing Authority (MASA)) has knowledge of
    the capabilities of the Pledge.  Specifically, the manufacturer knows
-   what signature algoritm the Pledge is going to use (to sign a PVR or
+   what signature algorithm the Pledge is going to use (to sign a PVR or
    to validate a Voucher), and can verify this, thus there is no need
    (or opportunity) to negotiate the algorithm or signature (CMS, JWS,
    COSE) scheme.
-
-   When designing Pledge devices, manufacturers therefor have to choose
-   algorithms and signature formats to support, and whatever choices
-   they make, they need to also support in their MASA.  Should a
-   manufacturer decide to stop supporting some algorithm, they will
-   likely need to recall any inventory that exists in warehouses or
-   within the supply chain in order to replace the firmware and update
-   the IDevID certificates present in the recalled devices.
 
    The exact choice of format (CMS, JWS or CBOR) and algorithm depends
    upon the target operational community for the Voucher.  [RFC8994],
    Section 6.2 specifies mandatory to implement algorithms for current
    ANI uses.  [I-D.richardson-anima-quantum-safe-4ani] is future work
-   for quantum safe (PQ) [RFC9958] algorithms for ANI work.
+   for quantum-safe (PQ) [RFC9958] algorithms for ANI work.
 
-   [cBRSKI] and [I-D.ietf-uta-tls13-iot-profile] specifies mandatory to
-   implement algorithms for IoT use cases.
+   [cBRSKI] and [I-D.ietf-uta-tls13-iot-profile] specify mandatory to
+   implement algorithms for IoT use cases involving constrained devices.
+   A certain class of constrained devices defined in [cBRSKI] minimizes
+   the code size of the code for ASN.1 processing, PKIX [RFC5280]
+   processing and Voucher/PVR processing, which determines and
+   constrains the algorithm and format choices.  Another class of cBRSKI
+   constrained devices minimizes just the sizes of Voucher and PVR, a
+   benefit on constrained networks, and these devices have different
+   constraints on the algorithm and format choices.
 
-   A certain class of constrained devices minimizes the code size of the
-   code for ASN.1 processing, PKIX [RFC5280] processing and Voucher/PVR
-   processing, while another class of constrained devices can minimize
-   just the sizes of Voucher and PVR.
+   Should a manufacturer decide to stop supporting some algorithm that
+   their manufactured Pledges rely on, they will need to execute a
+   transition operation for any inventory (Pledges) that exists in
+   warehouses or within the supply chain, to ensure that these devices
+   can still be onboarded in the new situation.  One transition strategy
+   is to recall these Pledges, replace the firmware and update the
+   IDevID certificates present in the recalled devices.  This is not
+   ideal; a better transition strategy could be defined as part of an
+   onboarding protocol such that a physical recall is not required.
 
    The public keys are to be encoded according to [RFC7250], Section 3
    for RSA and ECDSA keys, noting that [RFC8032] extends this to include
@@ -945,7 +1108,7 @@ Table of Contents
    notions as to how this should work.  As the simplest way forward, the
    choice mechanisms that were introduced have been commented out in the
    YANG, allowing the SID values to be generated correctly.  As a
-   result, the SID values presented in Section 8.5 and Section 10.3 are
+   result, the SID values presented in Section 8.5 and Section 9.3 are
    to be considered normative, rather than relying exclusively on the
    ".sid" file [CORESID] generated from the YANG modules.  The presented
    SID values are believed to be correct, but future reprocessing of the
@@ -992,9 +1155,9 @@ Table of Contents
                   <mailto:esko.dijk@iotconsultancy.nl>";
      description
        "This module defines the format for a Voucher, which is
-        produced by a pledge's manufacturer or delegate (MASA)
-        to securely assign a pledge to an 'owner', so that the
-        pledge may establish a secure connection to the owner's
+        produced by a Pledge's manufacturer or delegate (MASA)
+        to securely assign a Pledge to an 'owner', so that the
+        Pledge may establish a secure connection to the owner's
         network infrastructure.
 
         Copyright (c) 2023-2026 IETF Trust and the persons identified as
@@ -1030,7 +1193,7 @@ Table of Contents
           Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
           and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
        reference
-         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
      }
      revision 2018-05-09 {
        description
@@ -1045,7 +1208,7 @@ Table of Contents
        leaf created-on {
          type yang:date-and-time;
          description
-           "A value indicating the date this voucher was created.
+           "A value indicating the date this Voucher was created.
             This node is primarily for human consumption and auditing.
             Future work MAY create verification requirements based on
             this node.";
@@ -1057,17 +1220,21 @@ Table of Contents
          }
          description
            "A list of extension names that are used in this Voucher
-            file.  Each name is registered with the IANA.  Standard
-            extensions are described in an RFC, while vendor proprietary
-            ones are not.";
+            file.  Typically, names are registered with the IANA.
+            Standard extensions are described in an RFC, while vendor
+            proprietary ones are not.";
        }
        leaf manufacturer-proprietary {
          type binary;
          description
            "In CBOR serialization, this is a CBOR bstr containing any
             valid CBOR that the manufacturer wishes to share with its
-            pledge.  In JSON serializations, this contains additional
-            JSON instead, and it is base64URL encoded.";
+            Pledge.  In JSON serializations, this contains additional
+            JSON instead, and it is base64URL encoded.
+
+            Since a Voucher could be logged or stored by a Registrar
+            or another intermediate, this Attribute MUST NOT contain
+            any data that requires confidentiality.";
        }
        leaf assertion {
          type enumeration {
@@ -1081,12 +1248,12 @@ Table of Contents
            enum logged {
              value 1;
              description
-               "Indicates that the voucher has been issued after
+               "Indicates that the Voucher has been issued after
                 minimal verification of ownership or control.  The
                 issuance has been logged for detection of
                 potential security issues (e.g., recipients of
-                vouchers might verify for themselves that unexpected
-                vouchers are not in the log).  This is similar to
+                Vouchers might verify for themselves that unexpected
+                Vouchers are not in the log).  This is similar to
                 unsecured trust-on-first-use principles but with the
                 logging providing a basis for detecting unexpected
                 events.";
@@ -1094,7 +1261,7 @@ Table of Contents
            enum proximity {
              value 2;
              description
-               "Indicates that the voucher has been issued after
+               "Indicates that the Voucher has been issued after
                 the MASA verified a proximity proof provided by the
                 device and target domain.  The issuance has been
                 logged for detection of potential security issues.";
@@ -1103,48 +1270,48 @@ Table of Contents
              value 3;
              description
                "Mostly identical to proximity, but
-                indicates that the voucher has been issued
+                indicates that the Voucher has been issued
                 after the MASA has verified a statement that
-                a registrar agent has made contact with the device.";
+                a Registrar agent has made contact with the device.";
            }
          }
          description
            "The assertion is a statement from the MASA regarding how
-            the owner was verified.  This statement enables pledges
+            the owner was verified.  This statement enables Pledges
             to support more detailed policy checks.  Pledges MUST
             ensure that the assertion provided is acceptable, per
-            local policy, before processing the voucher.";
+            local policy, before processing the Voucher.";
        }
        leaf serial-number {
          type string;
          mandatory true;
          description
            "The serial-number of the hardware.  When processing a
-            voucher, a pledge MUST ensure that its serial-number
+            Voucher, a Pledge MUST ensure that its serial-number
             matches this value.  If no match occurs, then the
-            pledge MUST NOT process this voucher.";
+            Pledge MUST NOT process this Voucher.";
        }
        leaf idevid-issuer {
          type binary;
          description
            "The Authority Key Identifier OCTET STRING (as defined in
-            Section 4.2.1.1 of RFC 5280) from the pledge's IDevID
-            certificate.  In the voucher, it is optional
+            Section 4.2.1.1 of RFC 5280) from the Pledge's IDevID
+            certificate.  In the Voucher, it is optional
             as some manufacturers know that all serial-numbers
-            are unique within the scope of a MASA.
-            In the voucher request, whether it is mandatory or optional depends
-            upon which protocol is used, such as RFC8995 and variations.
-            When processing a voucher, a pledge MUST ensure that its
-            IDevID Authority Key Identifier matches this value.  If no
-            match occurs, then the pledge MUST NOT process this
-            voucher.
-            When issuing a voucher, the MASA MUST ensure that this
+            are unique within the scope of a MASA. In the Voucher
+            Request, whether it is mandatory or optional depends on
+            which protocol is used, such as RFC8995 and variations.
+            When processing a Voucher, a Pledge MUST ensure that its
+            IDevID Authority Key Identifier matches this value. If no
+            match occurs, then the Pledge MUST NOT process this
+            Voucher.
+            When issuing a Voucher, the MASA MUST ensure that this
             field is populated for serial-numbers that are not
             otherwise unique within the scope of the MASA.";
        }
        // choice pinning {
-       //  description "One of these attributes is used by the
-       //               MASA to pin the registrar identity";
+       //  description "One of these Attributes is used by the
+       //               MASA to pin the Registrar identity";
        leaf pinned-domain-cert {
          type binary;
          description
@@ -1152,9 +1319,9 @@ Table of Contents
             RFC 5280, using Distinguished Encoding Rules (DER)
             encoding, as defined in [ITU-T.X690].
 
-            This certificate is used by a pledge to trust a Public Key
+            This certificate is used by a Pledge to trust a Public Key
             Infrastructure in order to verify a domain certificate
-            supplied to the pledge separately by the bootstrapping
+            supplied to the Pledge separately by the onboarding
             protocol.  The domain certificate MUST have this
             certificate somewhere in its chain of certificates.
             This certificate MAY be an end-entity certificate,
@@ -1174,8 +1341,8 @@ Table of Contents
          description
            "The pinned-domain-pubk may replace the
             pinned-domain-cert in constrained uses of
-            the voucher. The pinned-domain-pubk
-            is the Raw Public Key of the registrar.
+            the Voucher. The pinned-domain-pubk
+            is the Raw Public Key of the Registrar.
             This field is encoded as a Subject Public Key Info block
             as specified in RFC7250, in section 3.";
        }
@@ -1199,7 +1366,7 @@ Table of Contents
        leaf domain-cert-revocation-checks {
          type boolean;
          description
-           "A processing instruction to the pledge that it MUST (true)
+           "A processing instruction to the Pledge that it MUST (true)
             or MUST NOT (false) verify the revocation status for the
             pinned domain certificate.  If this field is not set, then
             normal PKIX behavior applies to validation of the domain
@@ -1210,27 +1377,27 @@ Table of Contents
          must '../expires-on';
          description
            "The date that the MASA projects to be the last date
-            it will renew a voucher on. This field is merely
-            informative; it is not processed by pledges.
+            it will renew a Voucher on. This field is merely
+            informative; it is not processed by Pledges.
 
-            Circumstances may occur after a voucher is generated that
-            may alter a voucher's validity period.  For instance,
+            Circumstances may occur after a Voucher is generated that
+            may alter a Voucher's validity period.  For instance,
             a vendor may associate validity periods with support
             contracts, which may be terminated or extended
             over time.";
        }
        //choice nonceless {
        //  description "Either a nonce must be present,
-       //               or an expires-on header";
+       //               or an expires-on Attribute";
        leaf expires-on {
          type yang:date-and-time;
          description
-           "A value indicating when this voucher expires.  The node is
-            optional as not all pledges support expirations, such as
-            pledges lacking a reliable clock.
+           "A value indicating when this Voucher expires.  The node is
+            optional as not all Pledges support expirations, such as
+            Pledges lacking a reliable clock.
 
-            If this field exists, then the pledges MUST ensure that
-            the expires-on time has not yet passed. A pledge without
+            If this field exists, then the Pledges MUST ensure that
+            the expires-on time has not yet passed. A Pledge without
             an accurate clock cannot meet this requirement.
 
             The expires-on value MUST NOT exceed the expiration date
@@ -1241,25 +1408,28 @@ Table of Contents
            length "8..32";
          }
          description
-           "A value that can be used by a pledge in some bootstrapping
+           "A value that can be used by a Pledge in some onboarding
             protocols to enable anti-replay protection.  This node is
-            optional because it is not used by all bootstrapping
+            optional because it is not used by all onboarding
             protocols.
 
-            When present, the pledge MUST compare the provided nonce
-            value with another value that the pledge randomly
+            When present, the Pledge MUST compare the provided nonce
+            value with another value that the Pledge randomly
             generated and sent to a bootstrap server in an earlier
-            bootstrapping message.  If the value is present, but
-            the values do not match, then the pledge MUST NOT process
-            this voucher.";
+            onboarding message.  If the value is present, but
+            the values do not match, then the Pledge MUST NOT process
+            this Voucher.
+
+            A nonce value MUST be a cryptographically strong random
+            value as detailed in RFC 4086.";
        }
        // } choice nonceless
        leaf est-domain {
          type ietf:uri;
          description
-           "The est-domain is a URL from which the pledge should
+           "The est-domain is a URL from which the Pledge should
             continue doing enrollment rather than with the
-            cloud registrar.
+            cloud Registrar.
             The pinned-domain-cert contains a trust-anchor
             which is to be used to authenticate the server
             found at this URI.";
@@ -1267,13 +1437,16 @@ Table of Contents
        leaf additional-configuration-url {
          type ietf:uri;
          description
-           "The additional-configuration attribute contains a
-            URL to which the pledge can retrieve additional
+           "The additional-configuration Attribute contains a
+            URL to which the Pledge can retrieve additional
             configuration information.
             The contents of this URL are manufacturer specific.
             This is intended to do things like configure
             a VoIP phone to point to the correct hosted
-            PBX, for example.";
+            PBX, for example.
+
+            The URL MUST NOT contain any data (such as authen-
+            tication tokens) that requires confidentiality.";
        }
      }
 
@@ -1369,14 +1542,16 @@ Table of Contents
    Instead, a process similar to what was done by [RFC8520] has been
    adopted.  In the Voucher Data, any extensions are listed in a list
    Attribute named 'extensions'.  In JSON serialization, these
-   extensions each require a unique name, and therefore this name MUST
-   be allocated by IANA.  The name MUST be the same as the YANG
-   extension module name.  The 'extensions' list Attribute allows for
-   new standard extensions to be defined without changes to the 'ietf-
-   voucher' YANG module.  Items within that list are either strings (in
-   JSON serialization), or integers (in CBOR serialization using SIDs);
-   both are always defined in the entries of the Voucher Extensions
-   registry (see Section 13.5).
+   extensions each require a unique name, and therefore an IANA
+   registration for these names is provided and FQDN-based uniqueness is
+   used in certain cases (see Section 12.5).  The name MUST be the same
+   as the YANG extension module name.  The 'extensions' list Attribute
+   allows for new standard extensions to be defined without changes to
+   the 'ietf-voucher' YANG module.  Items within that list are either
+   strings (in JSON serialization), or integers (in CBOR serialization
+   using SIDs).  If the extension is registered with IANA, then both
+   name and SID are always defined in the Voucher Extensions registry
+   (see Section 12.5).
 
    Extensions are full YANG modules, which are subject to the SID
    allocation process described in [RFC9254].  When an extension is
@@ -1410,8 +1585,9 @@ Table of Contents
    value, the full string name can always be used.  But this would
    significantly increase the size of the Voucher Data.
 
-   Instead, a manufacturer MAY use the 'manufacturer-private' Attribute
-   to put any content they wish.  In CBOR serialization, if a plain CBOR
+   Instead, a manufacturer MAY use the 'manufacturer-proprietary'
+   Attribute to put any content they wish, as long as this content does
+   not require confidentiality.  In CBOR serialization, if a plain CBOR
    map would be used, it would be subject to delta encoding: so use of
    this Attribute requires that the contents are bstr-encoded
    Section 3.1 of RFC 8949 [CBOR] (Major type 2).  In JSON
@@ -1421,32 +1597,28 @@ Table of Contents
 
 9.  Voucher Request Artifact
 
-   [RFC8995], Section 3 defined a "voucher-request" Artifact as an
+   [BRSKI], Section 3 defined a "voucher-request" Artifact as an
    augmented Artifact from the "voucher" Artifact originally defined in
    [RFC8366].  That definition has been moved to this document, and
    translated from the "yang-data" extension [RFC8040] to the
    "sx:structure" extension [RFC8791].
 
-   In the event that more than one of proximity-domain-pubk-sha256,
-   proximity-domain-pubk or proximity-domain-cert are present in a
-   voucher request, then the Registrar and MASA SHALL consider them in
-   the order presented here.
+   In the event that more than one of the Attributes proximity-
+   registrar-pubk-sha256, proximity-registrar-pubk or proximity-
+   registrar-cert are present in a Voucher Request, then the Registrar
+   and MASA SHALL consider them in the order presented here.
 
-10.  <<<<<<< HEAD
-
-   The presence of more than one of these attributes is legal as it may
+   The presence of more than one of these Attributes is legal as it may
    allow a Pledge to operate in both constrained and non-constrained
    networks.  However, on constrained networks it wastes significant
    amounts of space, and it is discouraged in those environments.
-   >>>>>>> e40163a (feat: provide instructions for situation where more
-   than one pinned- or proximity- are present)
 
-10.1.  Tree Diagram
+9.1.  Tree Diagram
 
    The following tree diagram illustrates a high-level view of a Voucher
    Request document.  The notation used in this diagram is described in
    [RFC8340].  Each node in the diagram is fully described by the YANG
-   module in Section 10.2.
+   module in Section 9.2.
 
    module: ietf-voucher-request
 
@@ -1474,7 +1646,7 @@ Table of Contents
        +-- agent-provided-proximity-registrar-cert?   binary
        +-- agent-sign-cert?                           binary
 
-10.2.  "ietf-voucher-request" Module
+9.2.  "ietf-voucher-request" Module
 
    The 'ietf-voucher-request' YANG module is derived from the 'ietf-
    voucher' module.
@@ -1500,7 +1672,7 @@ Table of Contents
           connection to the Owner's network infrastructure";
        reference
          "RFC XXXX: A Voucher Artifact for
-          Bootstrapping Protocols";
+          Onboarding Protocols";
      }
 
      organization
@@ -1522,7 +1694,7 @@ Table of Contents
        "This module defines the format for a Voucher Request.
         It is a superset of the Voucher itself.
         It provides content to the MASA for consideration
-        during a voucher request procedure and subsequent
+        during a Voucher request procedure and subsequent
         Voucher creation.
 
         Copyright (c) 2023-2026 IETF Trust and the persons identified as
@@ -1558,7 +1730,7 @@ Table of Contents
           Pledge in Responder Mode {{I-D.ietf-anima-brski-prm}},
           and BRSKI-CLOUD {{I-D.ietf-anima-brski-cloud}}";
        reference
-         "RFC XXXX: A Voucher Artifact for Bootstrapping Protocols";
+         "RFC XXXX: A Voucher Artifact for Onboarding Protocols";
      }
      revision 2021-05-20 {
        description
@@ -1575,19 +1747,19 @@ Table of Contents
          refine "last-renewal-date" {
            description
              "A last-renewal-date field
-              is not valid in a voucher request, and
-              any occurrence MUST be ignored";
+              MUST NOT be present in a Voucher Request,
+              and any occurrence MUST be ignored";
          }
          refine "domain-cert-revocation-checks" {
            description
              "The domain-cert-revocation-checks field
-              is not valid in a voucher request, and
-              any occurrence MUST be ignored";
+              MUST NOT be present in a Voucher Request,
+              and any occurrence MUST be ignored";
          }
          refine "assertion" {
            description
-             "Any assertion included in registrar voucher
-              requests SHOULD be ignored by the MASA.";
+             "Any assertion included in Registrar Voucher
+              Requests SHOULD be ignored by the MASA.";
          }
          refine "idevid-issuer" {
            description
@@ -1600,24 +1772,25 @@ Table of Contents
        leaf prior-signed-voucher-request {
          type binary;
          description
-           "If it is necessary to change a voucher, or re-sign and
-            forward a voucher request that was previously provided
+           "If it is necessary to change a Voucher, or re-sign and
+            forward a Voucher Request that was previously provided
             along a protocol path, then the previously signed
-            voucher SHOULD be included in this field.
+            Voucher SHOULD be included in this field.
 
-            For example, a pledge might sign a voucher request
-            with a proximity-registrar-cert, and the registrar
+            For example, a Pledge might sign a Voucher Request
+            with a proximity-registrar-cert, and the Registrar
             then includes it as the prior-signed-voucher-request
             field.  This is a simple mechanism for a chain of
-            trusted parties to change a voucher request, while
+            trusted parties to change a Voucher Request, while
             maintaining the prior signature information.
 
             The Registrar and MASA MAY examine the prior signed
-            voucher information for the
+            Voucher Request information for the
             purposes of policy decisions. The MASA SHOULD remove
             all prior-signed-voucher-request information when
-            signing a voucher for imprinting so as to minimize
-            the final voucher size.";
+            signing a Voucher for onboarding so as to minimize
+            the final Voucher size and to ensure privacy/security
+            sensitive information does not leak into the Voucher.";
        }
        leaf proximity-registrar-cert {
          type binary;
@@ -1629,9 +1802,9 @@ Table of Contents
 
             The first certificate in the Registrar TLS server
             certificate_list sequence  (the end-entity TLS
-            certificate, see [RFC8446]) presented by the Registrar
+            certificate, see RFC 9846) presented by the Registrar
             to the Pledge.
-            This MUST be populated in a Pledge's voucher request
+            This MUST be populated in a Pledge's Voucher Request
             when a proximity assertion is requested.";
        }
        leaf proximity-registrar-pubk {
@@ -1639,7 +1812,7 @@ Table of Contents
          description
            "The proximity-registrar-pubk replaces
             the proximity-registrar-cert in constrained uses of
-            the voucher-request.
+            the Voucher Request.
             The proximity-registrar-pubk is the
             Raw Public Key of the Registrar. This field is encoded
             as specified in RFC7250, section 3.";
@@ -1667,11 +1840,11 @@ Table of Contents
          description
            "The agent-signed-data field contains a data artifact
             provided by the Registrar-Agent to the Pledge for
-            inclusion into the voucher request.
+            inclusion into the Voucher Request.
 
             This artifact is signed by the Registrar-Agent and contains
-            data, which can be verified by the pledge and the registrar.
-            This data contains the pledge's serial-number and a
+            data, which can be verified by the Pledge and the Registrar.
+            This data contains the Pledge's serial-number and a
             created-on information of the agent-signed-data.
 
             The format is intentionally defined as binary to allow
@@ -1684,12 +1857,12 @@ Table of Contents
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
             in [ITU-T.X690].
-            The first certificate in the registrar TLS server
+            The first certificate in the Registrar TLS server
             certificate_list sequence (the end-entity TLS
-            certificate; see RFC 8446) presented by the
-            registrar to the registrar-agent and provided to
-            the pledge.
-            This MUST be populated in a pledge's voucher-request
+            certificate; see RFC 9846) presented by the
+            Registrar to the Registrar-agent and provided to
+            the Pledge.
+            This MUST be populated in a Pledge's Voucher Request
             when an agent-proximity assertion is requested.";
          reference
            "ITU-T.X690: Information Technology - ASN.1 encoding
@@ -1699,7 +1872,7 @@ Table of Contents
             RFC 5280: Internet X.509 Public Key Infrastructure
             Certificate and Certificate Revocation List (CRL)
             Profile
-            RFC 8446: The Transport Layer Security (TLS)
+            RFC 9846: The Transport Layer Security (TLS)
             Protocol Version 1.3";
        }
        leaf agent-sign-cert {
@@ -1709,12 +1882,12 @@ Table of Contents
             RFC 5280, Section 4, encoded using the ASN.1
             distinguished encoding rules (DER), as specified
             in [ITU-T.X690].
-            This certificate can be used by the pledge,
-            the registrar, and the MASA to verify the signature
+            This certificate can be used by the Pledge,
+            the Registrar, and the MASA to verify the signature
             of agent-signed-data. It is an optional component
-            for the pledge-voucher request.
-            This MUST be populated in a registrar's
-            voucher-request when an agent-proximity assertion
+            for the Pledge's Voucher Request.
+            This MUST be populated in a Registrar's
+            Voucher Request when an agent-proximity assertion
             is requested.";
          reference
            "ITU-T.X690: Information Technology - ASN.1 encoding
@@ -1734,7 +1907,7 @@ Table of Contents
    }
    <CODE ENDS>
 
-10.3.  ietf-voucher-request SID values
+9.3.  ietf-voucher-request SID values
 
    [RFC9254] explains how to serialize YANG into CBOR, and for this a
    series of SID values are required.  The below SID values are assigned
@@ -1781,9 +1954,9 @@ Table of Contents
    The 'assertion' Attribute is an enumerated type, and has values as
    defined in Table 2.
 
-11.  Design Considerations
+10.  Design Considerations
 
-11.1.  Renewals Instead of Revocations
+10.1.  Renewals Instead of Revocations
 
    The lifetimes of Vouchers may vary.  In some Onboarding protocols,
    the Vouchers may be created and consumed immediately, whereas in
@@ -1812,20 +1985,28 @@ Table of Contents
    the Voucher again when needed.  Importantly, while issuing the
    initial Voucher may incur heavyweight verification checks ("Are you
    who you say you are?"  "Does the Pledge actually belong to you?"),
-   reissuing the Voucher should be a lightweight process, as it
-   ostensibly only updates the Voucher's validity period.
+   renewal does not repeat all those checks: rather, the checks upon
+   renewal are to confirm that the relationship established earlier
+   still holds.  The MASA always verifies the RVR, to ensure that the
+   requesting Registrar still has access to the Domain's private key; it
+   checks the revocation status of the Domain identity certificate (see
+   Section 11.4); and it applies any policy that has changed since the
+   previous Voucher issuance, such as a Domain owner's request to block
+   further renewals or the expiry of a support contract.  Renewal has
+   therefore lower overhead than the initial issuance and can be fully
+   automated in most cases.
 
    The renewal request is created by the Registrar, using a freshly
-   signed Registrar Voucher Request (RVR), including the old voucher in
-   the prior-signed-voucher-request attribute.  The Registrar signs the
+   signed Registrar Voucher Request (RVR), including the old Voucher in
+   the prior-signed-voucher-request Attribute.  The Registrar signs the
    new request.
 
    With this approach, there is only the one Artifact, and only one code
    path is needed to process it; there is no possibility of a Pledge
    choosing to skip the revocation status check because, for instance,
-   the OCSP Responder ([RFC5280]) is not reachable.
+   the OCSP Responder ([RFC5280] [RFC6960]) is not reachable.
 
-   The exact details of how is "short-lived" is up to the different
+   The exact definition of "short-lived" is up to the different
    onboarding mechanisms.
 
    So, while this document recommends issuing short-lived Vouchers, the
@@ -1837,7 +2018,7 @@ Table of Contents
    the Voucher itself is not revocable, it is still revoked, per se, if
    one of the intermediate CA certificates is revoked.
 
-11.2.  Voucher Per Pledge
+10.2.  Voucher Per Pledge
 
    The solution described herein originally enabled a single Voucher to
    apply to many Pledges, using lists of regular expressions to
@@ -1847,49 +2028,78 @@ Table of Contents
    blocked.  Thus, the Voucher format now only supports a single serial
    number to be listed.
 
-12.  Security Considerations
+11.  Security Considerations
 
-12.1.  Clock Sensitivity
+11.1.  Clock Accuracy in a Pledge
 
-   An attacker could use an expired Voucher to gain control over a
-   device that has no understanding of time.  The device cannot trust
-   NTP as a time reference, as an attacker could control the NTP stream.
+   An attacker could use an expired nonceless Voucher to gain control
+   over a device (Pledge) that has no understanding of time.  The device
+   cannot trust Network Time Protocol (NTP) as a time reference, as an
+   attacker could control the NTP stream.
 
-   There are three things to defend against this: 1) devices are
-   required to verify that the 'expires-on' Attribute has not yet
-   passed, 2) devices without access to time can use nonces to get
-   ephemeral Vouchers, and 3) Vouchers without expiration times may be
-   used, which will appear in the audit log, informing the security
-   decision.
+   There are three things to defend against this: 1) a device is
+   required to verify that the 'expires-on' Attribute's time has not yet
+   passed, 2) a device without access to an internal clock uses a nonce
+   to get a fresh ephemeral Voucher, and 3) a device is required to
+   verify that the trust anchor indicated in the Voucher matches the
+   Registrar it is communicating with.
 
-   This document defines a Voucher format that contains time values for
-   expirations, which require an accurate clock in order to be processed
-   correctly.  Vendors planning on issuing Vouchers with expiration
-   values need to ensure that the devices targetted have an accurate
-   clock when shipped from manufacturing facilities and take steps to
-   prevent clock tampering.  If it is not possible to ensure clock
-   accuracy, then the expiration time values in Vouchers will have no
-   meaning.
+   The third prevents onboarding into a Domain controlled by an attacker
+   which is different to the Domain indicated in the Voucher.  However,
+   by itself it does not prevent a Domain owner trying to onboard a
+   Pledge while the expiration time in the Voucher has already passed.
 
-12.2.  Protect MASA Signing Key in HSM
+   This document defines a Voucher that optionally contains an
+   expiration time, which requires an accurate clock on the device in
+   order to be processed correctly.
 
-   As the MASA needs to be able to respond to voucher signing requests,
-   it is RECOMMENDED that the MASA's private key used for signing
-   Vouchers is protected by a hardware security module (HSM).
+   Manufacturers issuing Vouchers with expiration time need to ensure
+   that the devices targeted have an accurate clock when shipped from
+   manufacturing facilities and need to take measures to prevent clock
+   tampering.  If it is not possible to ensure clock accuracy and
+   tamper-proofness, then the expiration time values in Vouchers will
+   provide little protection.
+
+11.2.  Nonceless Vouchers
+
+   A nonceless Voucher cannot be validated by a Pledge for freshness,
+   other than by inspecting the 'expires-on' Attribute and comparing its
+   value against the Pledge's internal clock.  See the previous section
+   for considerations on the accuracy of this clock and the risks of
+   relying on NTP for acquiring the current time.
+
+   A nonceless Voucher can be reused by a Registrar to answer a Pledge's
+   PVR any number of times within its validity period.  This can be a
+   benefit for a Domain owner if repeated onboarding into a Domain is
+   required, but it equally allows an attacker that came into possession
+   of a nonceless Voucher to attempt a great number of onboarding
+   attempts with the indicated Pledge.  Still, such repeated attacks are
+   unlikely to succeed because the Voucher explicitly identifies only
+   one Domain where the Pledge can be onboarded into - which is not the
+   attacker's Domain in this scenario.
+
+11.3.  Protecting the MASA Signing Key and the MASA CA Key
+
+   As the MASA needs to be able to respond to Voucher signing requests,
+   its private key used for signing Vouchers is online.  This key is
+   associated to its End-Entity certificate, which is a short-lived
+   certificate, re-generated frequently.
+
+   The private key MUST be stored such that it cannot be exported and
+   each use of the key is subject to access control.  A hardware
+   security module (HSM) is one way to achieve this.
 
    There are many ways to organize the PKI that is used to sign
-   vouchers.  [I-D.ietf-anima-masa-considerations], Section 2 describes
+   Vouchers.  [I-D.ietf-anima-masa-considerations], Section 2 describes
    a number of different scenarios.  In some of them, there are long-
-   term keys kept offline, implementing a certification authority.  This
-   can be as complicated as an FIPS-certified resin filled HSM, or as
+   term keys kept offline, implementing a Certification Authority (CA).
+   This can be as advanced as an FIPS-certified resin-filled HSM, or as
    simple as a USB key stored in a locked cabinet.
 
-   The actual End-Entity certificate used to sign the Vouchers is
-   online, and is a short-lived certificate, re-generated frequently.
    The trust anchor configured into the Pledge is the long-term offline
    anchor.
 
-12.3.  Test Domain Certificate Validity When Signing
+11.4.  Test Domain Certificate Validity When Signing
 
    If a Domain certificate is compromised, then any outstanding Vouchers
    for that Domain could be used by the attacker.  In this case, the
@@ -1903,7 +2113,7 @@ Table of Contents
    RECOMMENDED to check for revocation of Domain identity certificates
    before the signing of Vouchers.
 
-12.4.  YANG Module Security Considerations
+11.5.  YANG Module Security Considerations
 
    The YANG modules specified in this document define the schema for
    data that is subsequently encapsulated by secure signed-data
@@ -1915,14 +2125,14 @@ Table of Contents
    This potential disclosure of information doesn't affect security so
    much as privacy.
 
-   When used with [RFC8995], or [cBRSKI] then voucher requests and
-   vouchers are conveyed using TLS [RFC9846], so there is no exposure.
+   When used with [BRSKI], or [cBRSKI] then Voucher Requests and
+   Vouchers are conveyed using TLS [RFC9846], so there is no exposure.
 
    When used with [PRM], then the contents can be exposed in the last
-   hop, where HTTP is used, due the lack of any way to validate the
+   hop, where HTTP is used, due to the lack of any way to validate the
    certificate needed to enable HTTPS.
 
-   When the voucher is in CMS format, it can contain certificate chains
+   When the Voucher is in CMS format, it can contain certificate chains
    that can disclose information such as which devices belong to which
    organizations and which CRL Distribution Point and/or OCSP Responder
    URLs are accessed to validate the Vouchers.  Note that [PRM]
@@ -1941,9 +2151,9 @@ Table of Contents
    does not follow the template described by Section 3.7 of
    [YANG-GUIDE].
 
-13.  IANA Considerations
+12.  IANA Considerations
 
-13.1.  The IETF XML Registry
+12.1.  The IETF XML Registry
 
    This document updates two URIs in the "IETF XML Registry" [RFC3688]:
    urn:ietf:params:xml:ns:yang:ietf-voucher and
@@ -1952,7 +2162,7 @@ Table of Contents
    IANA is requested to update this registration to point to THIS-
    DOCUMENT.
 
-13.2.  The YANG Module Names Registry
+12.2.  The YANG Module Names Registry
 
    IANA is requested to update the ietf-voucher and ietf-voucher-request
    registrations in the "YANG Module Names" registry [RFC6020] [RFC9890]
@@ -1960,19 +2170,19 @@ Table of Contents
    document.  For the ietf-voucher-request entry, the prefix should be
    updated to "vcr".
 
-13.3.  The Media Types Registry
+12.3.  The Media Types Registry
 
    IANA is requested to update the registration of media type:
    application/voucher-cms+json to change the Published Specification to
    THIS-DOCUMENT.
 
-13.4.  The SMI Security for S/MIME CMS Content Type Registry
+12.4.  The SMI Security for S/MIME CMS Content Type Registry
 
    IANA is requested to update the registration for the OID
    1.2.840.113549.1.9.16.1.40, 'id-ct-animaJSONVoucher'.  This
    registration should be updated to point to this document.
 
-13.5.  The Voucher Extensions Registry
+12.5.  The Voucher Extensions Registry
 
    IANA is asked to create a registry of Voucher extensions within the
    _Bootstrapping Remote Secure Key Infrastructures (BRSKI) Parameters_
@@ -1981,48 +2191,57 @@ Table of Contents
    The name is: Voucher Extensions, and the Registration Policy is
    Expert Review.
 
-      Reference:  an optional document
-      Extension name:  UTF-8-encoded string, not to exceed 40
-         characters.
+      Extension name:  UTF-8-encoded string, at most 40 characters.
       Extension SID:  the YANG module SID value that defines the
          extension per Section 8.6.
+      Reference:  an optional document reference (URL, or other pointer)
 
-   Note that the SID module value is allocated as part of a [CORESID]
+   Note that the Extension SID value is allocated as part of a [CORESID]
    process.  This may be from a SID range managed by IANA, or from any
-   other MegaRange.  [RFC9997] allows for PEN based allocations.  IANA
+   other MegaRange.  [RFC9997] allows for PEN-based allocations.  IANA
    does not need to separately allocate a SID value for this column.
 
-   Extension name strings for IETF process (standards track,
-   experimental, IRTF) documents are single words, given by the YANG
-   Module Name: They do not contain dots.
+   Extension name strings for documents in the IETF Document Stream and
+   IRTF Document Stream are given by the YANG module name: they do not
+   contain dots.
 
-   For vendor proprietary extensions, (including ISE submissions), the
-   resulting string still needs to be unique.  This can be done by
-   making the YANG module unique, basing it on a fully-qualified domain
-   name (FQDN) [RFC3696], such as "fuubar.example.com-mud-thing" rather
-   than "fuubar-mud-thing"
+   For vendor proprietary extensions (including Independent Submission
+   Stream documents), the resulting string still needs to be unique.
+   This can be done by making the YANG module name unique, basing it on
+   a fully-qualified domain name (FQDN) [RFC9499].  For example, using a
+   string "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing"
+   if the vendor owns the FQDN "fuubar.example.com".
 
    Vendor proprietary extensions do not need to be registered with IANA,
    but vendors are encouraged to do so.
 
-   Designated Experts should review the documents for clarity, but the
-   choices are tied to WG and IESG processes:
+   Designated Experts should review the referenced document for clarity
+   of purpose and to facilitate the checks below.  For IETF/IRTF
+   Document Stream registrations, an expert does not review or change
+   the registered values themselves, as these are tied to IETF
+   processes:
 
-   *  There are no choices in the extension names (for standards track
-      extensions) which is always the YANG module name), or SID value
-      (which is from another IANA process).
+   *  There are no choices in the Extension name: it is always the YANG
+      module name.
 
-   *  For non-standards track extensions, the Designated Expert should
-      review the provided document for clarity of purpose.  The
-      stability of the reference may be of concern.
+   *  There is no choice in the Extension SID value: it follows from
+      another IANA process (as explained above).
+
+   For documents outside the IETF/IRTF Document Streams, the Designated
+   Expert should pay special attention to the stability of the
+   reference, which may be a concern.  For example, a URL pointing to
+   the website of a standards development organization may change from
+   time to time.  Also, a Designated Expert could suggest a shorter FQDN
+   in case the Extension name string exceeds the character limit.
 
    The Designated Expert should determine if the work overlaps with an
-   existing IETF WG effort, suggesting ways that the work could become
-   part of a standard.  However, as registration is optional, the
-   Designated Expert should not block any vendor registrations if no
-   consolidated extension is possible.
+   existing IETF WG effort, suggesting to the registrant how the work
+   could become part of an (IETF) standard.  However, as extension
+   registration is optional, the Designated Expert should not block any
+   vendor registrations if no consolidated extension is pursued by the
+   registrant.
 
-13.6.  The IETF YANG-SID Ranges Registry
+12.6.  The IETF YANG-SID Ranges Registry
 
    IANA is requested to register the following entries in the IETF YANG-
    SID Ranges registry:
@@ -2037,7 +2256,7 @@ Table of Contents
 
                        Table 3: Registered SID ranges
 
-13.7.  The IETF YANG-SID Modules Registry
+12.7.  The IETF YANG-SID Modules Registry
 
    IANA is requested to register the following YANG module in the IETF
    YANG-SID Modules registry, per Section 6.5.1 of [CORESID]:
@@ -2057,24 +2276,34 @@ Table of Contents
    *  YANG module name: ietf-voucher-request
 
    *  URI for the ".yang" file: a pointer to the file defined in
-      Section 10.2
+      Section 9.2
 
    *  URI for the ".sid" file: a pointer to the file defined in
       Appendix B.2
 
    *  Number of SIDs: 24
 
-14.  YANG references
+13.  YANG references
 
-   RFC-editor, please remove.  This section just lists references
-   present in YANG modules which otherwise do not get included in the
-   references, like [RFC7250].
+   This section is to be removed before publishing as an RFC.
+
+   RFC-editor, please remove this section.  This section just lists
+   references present in YANG modules which otherwise do not get
+   included in the references, like [RFC7250].
 
    Also [RFC9911], Common YANG Data Types.
 
-15.  References
+   Also [RFC4086], Randomness Requirements for Security.  (Normative
+   reference)
 
-15.1.  Normative References
+14.  References
+
+14.1.  Normative References
+
+   [BRSKI]    Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
+              and K. Watsen, "Bootstrapping Remote Secure Key
+              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
+              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
 
    [CBOR]     Internet Standard 94,
               <https://www.rfc-editor.org/info/std94>.
@@ -2108,9 +2337,9 @@ Table of Contents
               Tschofenig, H., Fossati, T., Richardson, M., and D.
               Migault, "TLS/DTLS 1.3 Profiles for the Internet of
               Things", Work in Progress, Internet-Draft, draft-ietf-uta-
-              tls13-iot-profile-23, 21 July 2026,
+              tls13-iot-profile-25, 3 September 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-uta-
-              tls13-iot-profile-23>.
+              tls13-iot-profile-25>.
 
    [IDEVID]   IEEE Standard, "IEEE 802.1AR Secure Device Identifier",
               2018, <https://1.ieee802.org/security/802-1ar/>.
@@ -2146,6 +2375,11 @@ Table of Contents
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4086]  Eastlake 3rd, D., Schiller, J., and S. Crocker,
+              "Randomness Requirements for Security", BCP 106, RFC 4086,
+              DOI 10.17487/RFC4086, June 2005,
+              <https://www.rfc-editor.org/rfc/rfc4086>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
@@ -2199,11 +2433,6 @@ Table of Contents
               DOI 10.17487/RFC8994, May 2021,
               <https://www.rfc-editor.org/rfc/rfc8994>.
 
-   [RFC8995]  Pritikin, M., Richardson, M., Eckert, T., Behringer, M.,
-              and K. Watsen, "Bootstrapping Remote Secure Key
-              Infrastructure (BRSKI)", RFC 8995, DOI 10.17487/RFC8995,
-              May 2021, <https://www.rfc-editor.org/rfc/rfc8995>.
-
    [RFC9254]  Veillette, M., Ed., Petrov, I., Ed., Pelov, A., Bormann,
               C., and M. Richardson, "Encoding of Data Modeled with YANG
               in the Concise Binary Object Representation (CBOR)",
@@ -2219,7 +2448,7 @@ Table of Contents
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
 
-15.2.  Informative References
+14.2.  Informative References
 
    [COSE]     Internet Standard 96,
               <https://www.rfc-editor.org/info/std96>.
@@ -2283,10 +2512,6 @@ Table of Contents
               DOI 10.17487/RFC3688, January 2004,
               <https://www.rfc-editor.org/rfc/rfc3688>.
 
-   [RFC3696]  Klensin, J., "Application Techniques for Checking and
-              Transformation of Names", RFC 3696, DOI 10.17487/RFC3696,
-              February 2004, <https://www.rfc-editor.org/rfc/rfc3696>.
-
    [RFC4648]  Josefsson, S., "The Base16, Base32, and Base64 Data
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/rfc/rfc4648>.
@@ -2346,6 +2571,11 @@ Table of Contents
               Constrained Environments Using the OAuth 2.0 Framework
               (ACE-OAuth)", RFC 9200, DOI 10.17487/RFC9200, August 2022,
               <https://www.rfc-editor.org/rfc/rfc9200>.
+
+   [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
+              W. Pan, "Remote ATtestation procedureS (RATS)
+              Architecture", RFC 9334, DOI 10.17487/RFC9334, January
+              2023, <https://www.rfc-editor.org/rfc/rfc9334>.
 
    [RFC9499]  Hoffman, P. and K. Fujiwara, "DNS Terminology", BCP 219,
               RFC 9499, DOI 10.17487/RFC9499, March 2024,
@@ -2584,7 +2814,7 @@ A.1.  Key pairs associated with examples
    nME0Mnj1z+rVRwOfAL/QWctRwpgEgSSKURNQsXWyL52otPS5
    -----END CERTIFICATE-----
 
-   The private key for MASA certificate signs the Voucher:
+   The private key for the MASA certificate that signs the Voucher:
 
    -----BEGIN EC PRIVATE KEY-----
    MHcCAQEEIFhdd0eDdzip67kXx72K+KHGJQYJHNy8pkiLJ6CcvxMGoAoGCCqGSM49
@@ -3049,7 +3279,7 @@ Acknowledgements
    Atwood, Michael H. Behringer, Steffen Fries, Sheng Jiang, Thomas
    Werner.
 
-   This document received directorate reviews from Tim Wicinkski, Thomas
+   This document received directorate reviews from Tim Wicinski, Thomas
    Fossati, and Michal Vaško.  It was shepherded by Sheng Jiang.
 
    Max Pritikin and Kent Watsen were instrumental in creating the
