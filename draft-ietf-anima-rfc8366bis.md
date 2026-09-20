@@ -200,9 +200,8 @@ this document include: {{SZTP}}, {{BRSKI}} and {{cBRSKI}}.
 
 ### Without voucher
 
-When a device is sold to a new owner, it can normally not assert the
-identity of that new owner, nor limit its own configurability to that new
-owner. Instead, such devices (Pledges) employ one or more of the following
+When a device is sold to a new owner, it can normally not assert the identity of that new owner, nor limit its own configurability to that new owner.
+Instead, such devices (Pledges) employ one or more of the following
 problematic mechanisms:
 
 1. They permit configuration without any security or password, or they
@@ -216,55 +215,40 @@ problematic mechanisms:
    QR or similar code that is delivered together with the device and that
    has to be scanned to authenticate against the device.
 
-All these mechanisms expose various security or operational problems, making
-them insufficient for the typical professional deployment of equipment such
-as is required in industrial, enterprise, defense and other markets for
-networking or other IoT equipment.
+All these mechanisms expose various security or operational problems, making them insufficient for the typical professional deployment of equipment such as is required in industrial, enterprise, defense and other markets for networking or other IoT equipment.
 
-In these deployment scenarios, physical installation has to be performed by
-non-experts. This limits installation to physical wiring (power and possibly
-networking), without any knowledge of network configuration or digital
-security. Such installers should not be required to handle Bluetooth pairing,
+In these deployment scenarios, physical installation has to be performed by non-experts.
+This limits installation to physical wiring (power and possibly networking), without any knowledge of network configuration or digital security.
+Such installers should not be required to handle Bluetooth pairing,
 which is often physically difficult or impossible once the device is in its
 target location, nor should the pairing device be expected to have the network
-connectivity that pairing may require. They should not need to locate,
+connectivity that pairing may require.
+They should not need to locate,
 understand and safely retain bearer tokens, which are placed at arbitrary
-positions in packaging that has most likely already been discarded. They
-should not need to determine whether a network connection is free of
+positions in packaging that has most likely already been discarded.
+They should not need to determine whether a network connection is free of
 attacking or spying software that discovers and invades unconfigured devices
 via their default passwords, and so on.
 
 In one evaluation, professional video surveillance cameras deployed at scale
 cost $500 on average, but required installation by networking/security experts
-costing more than $1000 on average. Simple, non-expert physical installation
-into a building network that was potentially infested with attack software
-cost less than $500.
+costing more than $1000 on average.
+Simple, non-expert physical installation into a building network that was potentially  infested with attack software cost less than $500.
 
 ### Staging to the rescue
 
-To overcome the provisioning limitations of pre-voucher protocol solutions, a
-common approach in the industry is so-called "staging". Instead of being
-shipped directly from the manufacturer or seller to the ultimate deployment
-location, Pledges are shipped to a so-called "staging" location, where they
-are provisioned by networking/security experts. There, the Pledge is connected
-only to a staging network that is known to be free of attackers, and is
-provisioned with the configuration necessary to operate at the target
+To overcome the provisioning limitations of pre-voucher protocol solutions, a common approach in the industry is so-called "staging".
+Instead of being shipped directly from the manufacturer or seller to the ultimate deployment location, Pledges are shipped to a so-called "staging" location, where they
+are provisioned by networking/security experts.
+There, the Pledge is connected only to a staging network that is known to be free of attackers, and is provisioned with the configuration necessary to operate at the target
 deployment location -- at least to the extent that subsequent attacks or
 unintentional misconfiguration by a non-owner are no longer possible.
 
-Staging is expensive and slow. It is also considered impractical in many
-market segments, not only because of the number of low-cost Pledges and the
-high ratio of installation cost to Pledge cost (as in the surveillance camera
-example above), but also because of international shipping, certification and
-import/export issues for hardware. For example, specialized equipment for
-networking, security and other business purposes is often not shipped
-internationally at all. Instead, it is composed of locally sourced standard
-hardware components, such as "x86" hardware with well-defined secure hardware
-such as a TPM and IDevID, and this generic hardware is then "personalized" to become the
-specialized device through automated, online download of the complete product
-software suite over international network connections. This leaves only the
-problem of initial, mutually trusted connectivity between such a Pledge and
-the remote provisioning system to be solved -- which is exactly what protocols
+Staging is expensive and slow.
+It is also considered impractical in many market segments, not only because of the number of low-cost Pledges and the high ratio of installation cost to Pledge cost (as in the surveillance camera example above), but also because of international shipping, certification and import/export issues for hardware.
+For example, specialized equipment for networking, security and other business purposes is often not shipped internationally at all.
+Instead, it is composed of locally sourced standard hardware components, such as "x86" hardware with well-defined secure hardware such as a TPM and IDevID, and this generic hardware is then "personalized" to become the specialized device through automated, online download of the complete product software suite over international network connections.
+This leaves only the problem of initial, mutually trusted connectivity between such a Pledge and the remote provisioning system to be solved -- which is exactly what protocols
 using vouchers aim to achieve.
 
 ### With voucher
@@ -273,41 +257,38 @@ The voucher is a digital artifact (a digital data structure) that is created
 and cryptographically signed by an agent of the Pledge's manufacturer, called
 the Manufacturer Authorized Signing Authority (MASA).
 
-The voucher's most important element is a trust anchor (typically a
-certificate) identifying the intended owner of the Pledge. The rationale for
-this approach is that the only trust anchors an unconfigured Pledge can be
-expected to carry in its software are those of the manufacturer, or of
+The voucher's most important element is a trust anchor (typically a certificate) identifying the intended owner of the Pledge.
+The rationale for this approach is that the only trust anchors an unconfigured Pledge can be expected to carry in its software are those of the manufacturer, or of
 third-party entities designated by the manufacturer to support the voucher
-process. Consequently, a voucher identifying the owner has to be signed by
-such a MASA. How the MASA determines who the owner of a Pledge is, is left to
-the protocol mechanisms using the voucher.
+process.
+Consequently, a voucher identifying the owner has to be signed by
+such a MASA.
+How the MASA determines who the owner of a Pledge is, is left to the protocol mechanisms using the voucher.
 
-Once the Pledge has received such a voucher via some protocol utilizing a
-voucher, the Pledge can permit configuration only by entities that can
-cryptographically authenticate themselves as belonging to the owner, for
-example by proving ownership of the trust anchor, or of a certificate signed
-by the trust anchor either directly or via an intermediate CA.
+Once the Pledge has received such a voucher via some protocol utilizing a voucher, the Pledge can permit configuration only by entities that can cryptographically authenticate themselves as belonging to the owner, for example by proving ownership of the trust anchor, or of a certificate signed by the trust anchor either directly or via an intermediate CA.
 
-The voucher itself does not specify the procedures by which it is
-communicated. That is the responsibility of the protocols using voucher
-artifacts.
+The voucher itself does not specify the procedures by which it is communicated.
+That is the responsibility of the protocols using voucher artifacts.
 
 In "Secure Zero Touch Provisioning" {{SZTP}}, protocol mechanisms
 are defined through which a Pledge can automatically discover an SZTP server
-and "register" with it. The Pledge accepts configuration from that SZTP server
-only after the server has presented a voucher identifying the Pledge's owner.
+and "register" with it.
+The Pledge accepts configuration from that SZTP server only after the server has presented a voucher identifying the Pledge's owner.
 
-In "Bootstrapping Remote Secure Key Infrastructure" (BRSKI, {{RFC8995}}) and
+In "Bootstrapping Remote Secure Key Infrastructure" {{BRSKI}} and
 its derivative protocols, the Pledge discovers and connects to a BRSKI
 "Registrar" belonging to the owner and requests a voucher using a variant of
 the voucher called a "voucher request" artifact, which is also defined in this
-document. Having received a voucher in return, the Pledge can authenticate the
-Registrar as its owner. The Pledge then expects to be "enrolled" with keying
+document.
+Having received a voucher in return, the Pledge can authenticate the
+Registrar as its owner.
+The Pledge then expects to be "enrolled" with keying
 material: it receives the trust anchors of the owner's PKI domain, as well as
 a so-called LDevID certificate from that domain.
 
 SZTP and BRSKI are only two examples of existing protocol families that use
-vouchers. They follow different design philosophies and thereby illustrate why
+vouchers.
+They follow different design philosophies and thereby illustrate why
 the voucher is not tied to, and not specified solely within, a single protocol
 family.
 
@@ -320,9 +301,11 @@ responsibility of the protocols using vouchers.
 
 What the use of a voucher-bearing protocol does enable is the ability to
 enroll and provision Pledges without the operational and security challenges
-of pre-voucher mechanisms. Pledges supporting voucher protocols can be
+of pre-voucher mechanisms.
+Pledges supporting voucher protocols can be
 physcially installed by personnel who are neither security nor networking experts and who
-only need to know how to wire up the Pledge. Network (non-phyisi`cal) based attacks that rely on taking
+only need to know how to wire up the Pledge.
+Network (non-phyisi`cal) based attacks that rely on taking
 control of an unconfigured Pledge are eliminated, as is the non-malicious
 enrollment of a Pledge into a non-owner network, which is a common problem in
 multi-tenant and multi-dwelling environments.
@@ -330,10 +313,10 @@ multi-tenant and multi-dwelling environments.
 
 ## Extensions Needed
 
-{{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{RFC8995}}.
-This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{RFC8995}}.
+{{RFC8366}} originally defined the Voucher as the only Voucher Artifact, leaving the Voucher Request that is used in BRSKI to be defined in {{BRSKI}}.
+This document includes both Voucher and Voucher Request obsoleting {{RFC8366}}, and updating {{BRSKI}}.
 
-A number of variations of {{RFC8995}} have been developed since the publication of {{RFC8366}}, and these variations require new Attributes be added to the Voucher and Voucher Request.
+A number of variations of {{BRSKI}} have been developed since the publication of {{RFC8366}}, and these variations require new Attributes be added to the Voucher and Voucher Request.
 At the low-level, JSON (or CBOR) mechanical level, this was thought to be trivial as the artifacts are JSON (or CBOR) maps, and adding new keys seemed easy.
 
 However, the use of YANG for the information model does not make it as trivial as was thought.   In the end, YANG is not easily extended except by updating the YANG module definition, and that is the major reason for the publication of this document.
