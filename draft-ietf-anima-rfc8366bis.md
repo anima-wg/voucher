@@ -92,7 +92,7 @@ normative:
     date: 2021-02
     seriesinfo:
       ITU-T Recommendation X.690,: ISO/IEC 8825-1
-  RFC8995:
+  BRSKI: RFC8995
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
   IDEVID:
@@ -194,7 +194,7 @@ When longer validity periods are important, this document recommends using short
 How short the lifetimes can be depends upon the means of conveyance of the Voucher, so the exact times are specified in the onboarding protocol itself.
 
 Some Onboarding protocols using the Voucher Artifact defined in
-this document include: {{SZTP}}, {{RFC8995}} and {{cBRSKI}}.
+this document include: {{SZTP}}, {{BRSKI}} and {{cBRSKI}}.
 
 ## Use case background
 
@@ -391,7 +391,7 @@ Malicious Registrar:
   After the software is compromised, the Pledge could be instructed by the attacker to onboard another time but
   now with a real Registrar of a target Domain being attacked. This way, a compromised Pledge could become
   trusted in the attacker's target Domain.
-  {{Section 11.4 of RFC8995}} describes more details of this attack and its mitigations.
+  {{Section 11.4 of BRSKI}} describes more details of this attack and its mitigations.
 
 Onboarding:
 : Onboarding describes the process to provide necessary operational data to a Pledge
@@ -552,15 +552,15 @@ This document obsoletes {{RFC8366}}.
 
 ## Attempts and motivation to extend RFC8366 {#extendfail}
 
-{{RFC8366}} was published in 2018 during the development of {{RFC8995}},
+{{RFC8366}} was published in 2018 during the development of {{BRSKI}},
 {{SZTP}} and other work-in-progress efforts.
 Since then the industry has matured significantly, and the in-the-field activity which this document supports has become known as _Onboarding_ rather than _Bootstrapping_.
 
-The focus of {{RFC8995}} was Onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
+The focus of {{BRSKI}} was Onboarding of ISP and Enterprise owned wired routing and switching equipment, with IoT devices being a less important aspect.
 {{SZTP}} has focused upon Onboarding of CPE equipment like cable modems and other larger IoT devices, again with smaller IoT devices being of lesser importance.
 
-Since {{RFC8995}} was published there is now a mature effort to do application-level Onboarding of constrained IoT devices defined by the Thread Group and the Fairhair Alliance (now OCF) {{fairhair}}.
-The {{cBRSKI}} document has defined a version of {{RFC8995}} that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while {{?I-D.ietf-lake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
+Since {{BRSKI}} was published there is now a mature effort to do application-level Onboarding of constrained IoT devices defined by the Thread Group and the Fairhair Alliance (now OCF) {{fairhair}}.
+The {{cBRSKI}} document has defined a version of {{BRSKI}} that is usable over constrained IEEE 802.15.4 6LoWPAN networks using CoAP and DTLS, while {{?I-D.ietf-lake-authz}} provides for using CoAP and EDHOC on even more constrained devices with very constrained networks.
 
 {{PRM}} has created a new methodology for Onboarding that does not depend upon a synchronous connection between the Pledge and the Registrar.
 This mechanism uses a mobile Registrar agent that works to collect and transfer signed artifacts via physical travel from one network to another.
@@ -569,7 +569,7 @@ This mechanism uses a mobile Registrar agent that works to collect and transfer 
 
 ## Challenges with revisions to YANG
 
-When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{RFC8995}} and Voucher {{RFC8366}} artifacts.
+When the process to define {{cBRSKI}} and {{PRM}} was started, there was a belief that the appropriate process was to use the {{RFC7950}} _augment_ mechanism to further extend both the Voucher Request {{BRSKI}} and Voucher {{RFC8366}} artifacts.
 However, {{PRM}} needs to extend an enumerated type with additional values and _augment_ cannot do this, so that was initially the impetus for this document.
 
 An attempt was then made to determine what would happen if one wanted to have a constrained version of the {{PRM}} Voucher Artifact.
@@ -628,12 +628,12 @@ pinned-domain-pubk-sha256:
 
 # Updates to RFC8995
 
-This document represents a merge of YANG definitions of the Voucher from {{RFC8366}}, the Voucher Request from {{RFC8995}}, and extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
+This document represents a merge of YANG definitions of the Voucher from {{RFC8366}}, the Voucher Request from {{BRSKI}}, and extensions to each of these from {{cBRSKI}}, {{CLOUD}} and {{PRM}}.
 The difficulty with this approach is that the semantics of the definitions needed for the other documents are not included in this document, but rather in the respective other documents.
 
 ## Updates to the use of `idevid-issuer` {#updates-idevid-issuer}
 
-The `voucher-request` module definition that was in {{RFC8995}} Sections 3.2 (tree diagram) and 3.4 (YANG module) is now included in this document.
+The `voucher-request` module definition that was in {{BRSKI}} Sections 3.2 (tree diagram) and 3.4 (YANG module) is now included in this document.
 There is a change to it: the '`idevid-issuer`' Attribute MUST be included in a Registrar Voucher Request (RVR).
 Like the '`serial-number`' value in the RVR, the '`idevid-issuer`' value in the RVR is to be taken from the Pledge's (IDevID) client certificate.
 In some variations of BRSKI, such as {{PRM}}, there is no direct TLS connection between Pledge and Registrar.  Therefore, the Pledge's IDevID certificate cannot be extracted from the TLS connection, so those variations define a different channel binding process and may deviate from the above requirement.
@@ -648,11 +648,11 @@ A Registrar MUST apply the following rules for the value of the '`idevid-issuer`
 
 ## Clarifications on the use of `idevid-issuer`
 
-{{RFC8366}} and {{RFC8995}} define the '`idevid-issuer`' Attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they only summarily explain when to use it, and why it is used.
+{{RFC8366}} and {{BRSKI}} define the '`idevid-issuer`' Attribute for the '`voucher`' and '`voucher-request`' modules (respectively), but they only summarily explain when to use it, and why it is used.
 
 The '`idevid-issuer`' Attribute is provided so that the serial number to which the issued Voucher pertains can be relative to the entity that issued the Pledge's IDevID.
 In most cases there is a one to one relationship between the trust anchor that signs Vouchers (and is trusted by the Pledge), and the Certification Authority that signs the IDevID.
-In that case, the '`serial-number`' in the Voucher Data must refer to the same device as the serial number that is in the IDevID certificate (in the '`serialNumber`' element of type '`X520SerialNumber`' per {{Section 2.3.1 of RFC8995}}).
+In that case, the '`serial-number`' in the Voucher Data must refer to the same device as the serial number that is in the IDevID certificate (in the '`serialNumber`' element of type '`X520SerialNumber`' per {{Section 2.3.1 of BRSKI}}).
 
 However, there are situations where the one to one relationship may be broken.
 This occurs whenever a manufacturer has a common MASA, but different products (on different assembly lines) are produced with identical serial numbers.
@@ -678,7 +678,7 @@ If this rule does not apply, the MASA SHOULD NOT include the '`idevid-issuer`' A
 
 ## Clarifications on the format of `idevid-issuer` {#idevid-issuer-format}
 
-{{RFC8366}} and {{RFC8995}} were not fully clear on the required binary format of the '`idevid-issuer`' Attribute.
+{{RFC8366}} and {{BRSKI}} were not fully clear on the required binary format of the '`idevid-issuer`' Attribute.
 This gave rise to incompatible implementations.
 
 This section clarifies the format of the '`idevid-issuer`' Attribute, which contains the full Authority Key Identifier from an IDevID certificate.
@@ -690,7 +690,7 @@ However, because of the above requirement to include the full '`extnValue`' OCTE
 
 ## Errata closed
 
-The above updates to {{RFC8995}} addresses errata {{eid7263}}.
+The above updates to {{BRSKI}} addresses errata {{eid7263}}.
 
 # Signature mechanisms
 
@@ -743,7 +743,7 @@ In the Voucher Request, the signer is the Pledge (in the PVR), or the Registrar 
 Note that {{Section 5.1 of RFC5652}} includes a discussion about how to validate a CMS object.
 This object may have a particular CMSVersion (see {{Section 10.2.5 of RFC5652}}).
 Intermediate systems (such as the
-Bootstrapping Remote Secure Key Infrastructures {{RFC8995}} Registrar)
+Bootstrapping Remote Secure Key Infrastructures {{BRSKI}} Registrar)
 that might need to evaluate the object in flight MUST be prepared for
 any version of this format.
 No signaling of the format version (CMSVersion) is necessary, as the manufacturer knows the capabilities of the Pledge
@@ -807,7 +807,7 @@ If the Voucher is nonceless, then the Pledge SHALL consider the first of the abo
 ## Algorithm Choices for Voucher Artifacts
 
 When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
-As explained in {{RFC8995, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer
+As explained in {{BRSKI, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer
 (in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
 Specifically, the manufacturer knows what signature algorithm the Pledge is going to use (to sign a PVR or to validate a Voucher),
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
@@ -1038,7 +1038,7 @@ In JSON serialization, delta encoding does not get in the way, and the manufactu
 
 # Voucher Request Artifact {#voucher-request}
 
-{{RFC8995, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
+{{BRSKI, Section 3}} defined a "voucher-request" Artifact as an augmented Artifact from the "voucher" Artifact originally defined in {{RFC8366}}.
 That definition has been moved to this document, and translated from the "yang-data" extension {{RFC8040}} to the "sx:structure" extension {{RFC8791}}.
 
 In the event that more than one of the Attributes `proximity-registrar-pubk-sha256`, `proximity-registrar-pubk` or `proximity-registrar-cert`
@@ -1242,7 +1242,7 @@ protected from external modification; the data is still visible.
 This potential disclosure of information doesn't affect security
 so much as privacy.
 
-When used with {{RFC8995}}, or {{cBRSKI}} then Voucher Requests and Vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
+When used with {{BRSKI}}, or {{cBRSKI}} then Voucher Requests and Vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
 
 When used with {{PRM}}, then the contents can be exposed in the last hop,
 where HTTP is used, due to the lack of any way to validate the certificate needed to enable HTTPS.
