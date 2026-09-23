@@ -389,11 +389,11 @@ Table of Contents
       although a Domain might be associated to a specific DNS domain.
 
    IDevID (Initial Device Identifier):  A device identity credential,
-      defined by [DEVID], that is installed in the Pledge by its
-      manufacturer during production and that the Pledge uses to
-      identify itself to a Domain that it attempts to join.  It consists
-      of an X.509 certificate [RFC5280] that contains the Pledge's
-      serial number, together with the associated private key.
+      defined by [DEVID], that is installed (i.e. imprinted) in the
+      Pledge by its manufacturer during production and that the Pledge
+      uses to identify itself to a Domain that it attempts to join.  It
+      consists of an X.509 certificate [RFC5280] that contains the
+      Pledge's serial number, together with the associated private key.
 
    Join Registrar (and Coordinator):  A representative of the Domain
       that is configured to decide whether a new device is allowed to
