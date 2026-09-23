@@ -345,7 +345,7 @@ Domain:
   This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
 
 IDevID (Initial Device Identifier):
-: A device identity credential, defined by {{DEVID}}, that is installed in the Pledge by its manufacturer
+: A device identity credential, defined by {{DEVID}}, that is installed (i.e. imprinted) in the Pledge by its manufacturer
   during production and that the Pledge uses to identify itself to a Domain that it attempts to join.
   It consists of an X.509 certificate {{RFC5280}} that contains the Pledge's serial number,
   together with the associated private key.
