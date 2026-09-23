@@ -1641,7 +1641,7 @@ this document often refers to this as just "Registrar".<a href="#section-3-3.12.
         <dd class="break"></dd>
 <dt id="section-3-3.13">LDevID (Locally Significant Device Identifier):</dt>
         <dd style="margin-left: 1.5em" id="section-3-3.14">
-          <p id="section-3-3.14.1">A device identity credential, defined by <span>[<a href="#DEVID" class="cite xref">DEVID</a>]</span>, that is issued to the Pledge by the Domain that it has joined
+          <p id="section-3-3.14.1">A secure device identity credential, defined by <span>[<a href="#DEVID" class="cite xref">DEVID</a>]</span>, that is issued to the Pledge by the Domain that it has joined
 and that the Pledge uses to identify itself within that Domain.
 It is also called an operational certificate.<a href="#section-3-3.14.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1674,9 +1674,10 @@ trusted in the attacker's target Domain.
           <p id="section-3-3.20.1">Onboarding describes the process to provide necessary operational data to a Pledge
 and to complete the process of bringing the Pledge into an operational state.
 This data may include configuration data, but the specific focus of this document is
-providing Domain-specific secure identity data: the LDevID, also called operational certificate.
-Furthermore, application-specific security credentials or network access credentials may
-also be provided during onboarding.
+providing data that identifies a Domain-specific trust anchor that the Pledge can trust
+for it to carry out the remainder of the onboarding process (see also: Pinning).
+Application-specific security credentials or network access credentials may
+also be provided during the onboarding process.
 When <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> was first published, the industry had not yet concluded on a term to describe this process and
 a number of terms were used, among which the term "bootstrapping" that <span>[<a href="#RFC8366" class="cite xref">RFC8366</a>]</span> used.
 The industry has since preferred the term "onboarding", and this document uses that term.<a href="#section-3-3.20.1" class="pilcrow">¶</a></p>
