@@ -385,8 +385,10 @@ Malicious Registrar:
 Onboarding:
 : Onboarding describes the process to provide necessary operational data to a Pledge
   and to complete the process of bringing the Pledge into an operational state.
-  This data may include configuration data, but specifically deals with application-specific cryptographic
-  key material (application-specific security credentials).
+  This data may include configuration data, but the specific focus of this document is
+  providing Domain-specific secure identity data: the LDevID, also called operational certificate.
+  Furthermore, application-specific security credentials or network access credentials may
+  also be provided during onboarding.
   When {{RFC8366}} was first published, the industry had not yet concluded on a term to describe this process and
   a number of terms were used, among which the term "bootstrapping" that {{RFC8366}} used.
   The industry has since preferred the term "onboarding", and this document uses that term.
