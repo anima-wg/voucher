@@ -359,7 +359,7 @@ Join Registrar (and Coordinator):
   this document often refers to this as just "Registrar".
 
 LDevID (Locally Significant Device Identifier):
-: A device identity credential, defined by {{DEVID}}, that is issued to the Pledge by the Domain that it has joined
+: A secure device identity credential, defined by {{DEVID}}, that is issued to the Pledge by the Domain that it has joined
   and that the Pledge uses to identify itself within that Domain.
   It is also called an operational certificate.
 
@@ -386,9 +386,10 @@ Onboarding:
 : Onboarding describes the process to provide necessary operational data to a Pledge
   and to complete the process of bringing the Pledge into an operational state.
   This data may include configuration data, but the specific focus of this document is
-  providing Domain-specific secure identity data: the LDevID, also called operational certificate.
-  Furthermore, application-specific security credentials or network access credentials may
-  also be provided during onboarding.
+  providing data that identifies a Domain-specific trust anchor that the Pledge can trust
+  for it to carry out the remainder of the onboarding process (see also: Pinning).
+  Application-specific security credentials or network access credentials may
+  also be provided during the onboarding process.
   When {{RFC8366}} was first published, the industry had not yet concluded on a term to describe this process and
   a number of terms were used, among which the term "bootstrapping" that {{RFC8366}} used.
   The industry has since preferred the term "onboarding", and this document uses that term.
