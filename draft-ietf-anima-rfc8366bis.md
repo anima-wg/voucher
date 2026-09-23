@@ -95,11 +95,11 @@ normative:
   BRSKI: RFC8995
   PRM: I-D.ietf-anima-brski-prm
   CLOUD: I-D.ietf-anima-brski-cloud
-  IDEVID:
+  DEVID:
     target: https://1.ieee802.org/security/802-1ar/
-    title: IEEE 802.1AR Secure Device Identifier
+    title: IEEE 802.1AR Secure Device Identity
     author:
-    - org: IEEE Standard
+    - org: IEEE
     date: 2018
   RFC8791:
 
@@ -345,7 +345,7 @@ Domain:
   This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
 
 IDevID (Initial Device Identifier):
-: A device identity credential, defined by {{IDEVID}}, that is installed in the Pledge by its manufacturer
+: A device identity credential, defined by {{DEVID}}, that is installed in the Pledge by its manufacturer
   during production and that the Pledge uses to identify itself to a Domain that it attempts to join.
   It consists of an X.509 certificate {{RFC5280}} that contains the Pledge's serial number,
   together with the associated private key.
@@ -359,7 +359,7 @@ Join Registrar (and Coordinator):
   this document often refers to this as just "Registrar".
 
 LDevID (Locally Significant Device Identifier):
-: A device identity credential, defined by {{IDEVID}}, that is issued to the Pledge by the Domain that it has joined
+: A device identity credential, defined by {{DEVID}}, that is issued to the Pledge by the Domain that it has joined
   and that the Pledge uses to identify itself within that Domain.
   It is also called an operational certificate.
 
@@ -719,7 +719,7 @@ This section clarifies the format of the '`idevid-issuer`' Attribute, which cont
 The entire Authority Key Identifier object from the certificate i.e. the '`extnValue`' OCTET STRING is to be included, comprising the ASN.1 DER encoding of the '`AuthorityKeyIdentifier`' structure as defined in {{Section 4.2.1.1 of RFC5280}}.
 This includes the ASN.1 DER encoding of the SEQUENCE as well as the OCTET STRING element (tagged 0) that is named '`keyIdentifier`' with type '`KeyIdentifier`'.
 
-Note that per {{IDEVID}}, only the first optional element named '`keyIdentifier`' is expected to be found in an IDevID certificate, not the '`authorityCertIssuer`' or the '`authorityCertSerialNumber`'.
+Note that per {{DEVID}}, only the first optional element named '`keyIdentifier`' is expected to be found in an IDevID certificate, not the '`authorityCertIssuer`' or the '`authorityCertSerialNumber`'.
 However, because of the above requirement to include the full '`extnValue`' OCTET STRING, even if the non-expected elements would be present, they would be included in the '`idevid-issuer`' value in a Voucher Request or Voucher.
 
 ## Errata closed
@@ -1419,7 +1419,7 @@ Also {{!RFC4086}}, Randomness Requirements for Security. (Normative reference)
 
 ## Key pairs associated with examples
 
-The following Voucher Request has been produced using the IDevID {{IDEVID}} public (certificate) and private key.
+The following Voucher Request has been produced using the IDevID {{DEVID}} public (certificate) and private key.
 They are included so that other developers can match the same output.
 
 The private RSA key:
