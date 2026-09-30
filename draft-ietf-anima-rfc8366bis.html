@@ -2271,7 +2271,7 @@ Other aspects of the Voucher, such as it being nonceless or which kind of pinned
 type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <p id="section-8-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-8-7" class="pilcrow">¶</a></p>
 <p id="section-8-8">The Attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for a PVR) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.<a href="#section-8-8" class="pilcrow">¶</a></p>
-<p id="section-8-9">Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
+<p id="section-8-9">Should the SHA-256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code> Attributes.<a href="#section-8-9" class="pilcrow">¶</a></p>
 <p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> Attributes
 are present in a Voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the matching <code>proximity-*</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>

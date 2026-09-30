@@ -986,8 +986,8 @@ Table of Contents
    for a PVR) are involved in the process of pinning/identifying a raw
    public key, instead of a certificate, for such devices.
 
-   Should the SHA256 algorithm need to be replaced in the future, then a
-   new YANG module will be published with new leafs, obsoleting the
+   Should the SHA-256 algorithm need to be replaced in the future, then
+   a new YANG module will be published with new leafs, obsoleting the
    pinned-domain-pubk-sha256 and proximity-registrar-pubk-sha256
    Attributes.
 
