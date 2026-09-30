@@ -851,7 +851,7 @@ and can verify this, thus there is no need (or opportunity) to negotiate the alg
 
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
 For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
-the onboarding protocols that make use of Voucher Artifacts.
+the Onboarding protocols that make use of Voucher Artifacts.
 {{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
 {{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum-safe (PQ) {{?RFC9958}} algorithms for ANIs.
 
@@ -873,7 +873,7 @@ to execute a transition operation for any inventory (Pledges) that exists in war
 to ensure that these devices can still be onboarded in the new situation.
 One transition strategy is to recall these Pledges, replace the firmware and update the IDevID certificates present
 in the recalled devices.
-This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
+This is not ideal; a better transition strategy could be defined as part of an Onboarding protocol such that a
 physical recall is not required.
 
 ## Tree Diagram {#voucher-tree-diagram}
@@ -1181,7 +1181,7 @@ it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder ({{RFC5280}} {{RFC6960}}) is
 not reachable.
 
-The exact definition of "short-lived" is up to the different onboarding mechanisms.
+The exact definition of "short-lived" is up to the different Onboarding mechanisms.
 
 So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
@@ -1202,6 +1202,21 @@ when only the ownership for a single Pledge needed to be blocked.
 Thus, the Voucher format now only supports a single serial number
 to be listed.
 
+## Signed, Not Encrypted
+
+Voucher Artifacts are, by design, signed but not encrypted.
+The security of a Voucher Artifact is based on its authenticity and integrity, not on
+the secrecy of its contents. The Voucher Data Attributes are all designed so that they
+could be exposed in public while not compromising the security of the Onboarding process.
+
+Leaving a Voucher Artifact unencrypted also allows parties other than the Pledge or MASA
+to inspect it. For example, a Registrar can verify and log a Voucher before
+forwarding it to the Pledge, and the network owner can audit what information is being
+exchanged between Pledge and manufacturer.
+
+Confidentiality of Voucher Artifacts in transit, where needed, is the responsibility of the Onboarding protocol.
+See {{yang-sec-cons}} for more detailed information on the transport security used by the different
+Onboarding protocols and related privacy considerations for exposed Voucher Artifacts.
 
 # Security Considerations {#sec-con}
 
@@ -1218,7 +1233,7 @@ There are three things to defend against this:
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
    it is communicating with.
 
-The third prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
+The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
 the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
 time in the Voucher has already passed.
 
@@ -1240,8 +1255,8 @@ See the previous section for considerations on the accuracy of this clock and th
 acquiring the current time.
 
 A nonceless Voucher can be reused by a Registrar to answer a Pledge's PVR any number of times within its validity
-period. This can be a benefit for a Domain owner if repeated onboarding into a Domain is required, but it equally
-allows an attacker that came into possession of a nonceless Voucher to attempt a great number of onboarding attempts
+period. This can be a benefit for a Domain owner if repeated Onboarding into a Domain is required, but it equally
+allows an attacker that came into possession of a nonceless Voucher to attempt a great number of Onboarding attempts
 with the indicated Pledge.
 Still, such repeated attacks are unlikely to succeed because the Voucher explicitly identifies only one Domain
 where the Pledge can be onboarded into - which is not the attacker's Domain in this scenario.
@@ -1277,7 +1292,7 @@ Protocols for Voucher distribution are
 RECOMMENDED to check for revocation of Domain identity certificates
 before the signing of Vouchers.
 
-## YANG Module Security Considerations
+## YANG Module Security Considerations {#yang-sec-cons}
 
 The YANG modules in this document define only groupings and abstract data
 structures using the "sx:structure" extension {{RFC8791}}. These are not
