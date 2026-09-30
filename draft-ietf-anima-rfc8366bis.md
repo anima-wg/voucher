@@ -1382,6 +1382,7 @@ This can be done by making the YANG module name unique, basing it on a fully-qua
 For example, using a string "fuubar.example.com-mud-thing" rather than "fuubar-mud-thing" if the vendor owns the FQDN "fuubar.example.com".
 
 Vendor proprietary extensions do not need to be registered with IANA, but vendors are encouraged to do so.
+Note that a 'vendor' may also be a standards development organization that develops extensions.
 
 Designated Experts should review the referenced document for clarity of purpose and to facilitate the checks below.
 For IETF/IRTF Document Stream registrations, an expert does not review or change the registered values themselves, as these are tied to IETF processes:
