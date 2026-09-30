@@ -171,7 +171,7 @@ Capitalized terms such as Pledge, Owner, Domain, Onboarding and MASA are defined
 This document defines the Voucher Artifact and the Voucher Request Artifact only.
 How these artifacts are conveyed and details of their security parameters are not defined here,
 but rather in the Onboarding protocols that use them.
-Such protocols include {{SZTP}}, {{BRSKI}} and {{cBRSKI}}.
+Such protocols include {{SZTP}}, {{BRSKI}}, {{PRM}} and {{cBRSKI}}.
 
 The Voucher Artifact is a JSON {{RFC8259}} or CBOR {{CBOR}} document that conforms with a data model
 described by YANG {{RFC7950}}.
@@ -833,7 +833,7 @@ For Vouchers stored/transferred via methods like a USB storage device (USB key),
 
 The Attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
 
-Should the SHA-256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
+Should the SHA-256 hash algorithm ever need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` Attributes.
 
 In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` Attributes
@@ -845,13 +845,15 @@ If the Voucher is nonceless, then the Pledge SHALL consider the first of the abo
 
 When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
 As explained in {{BRSKI, Section 2.5}}, the Pledge is a creation of the manufacturer, and thus the manufacturer
-(in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+(represented by the MASA) has knowledge of the capabilities of the Pledge.
 Specifically, the manufacturer knows what signature algorithm the Pledge is going to use (to sign a PVR or to validate a Voucher),
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
-{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current ANI uses.
-{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum-safe (PQ) {{?RFC9958}} algorithms for ANI work.
+For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
+the onboarding protocols that make use of Voucher Artifacts.
+{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
+{{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum-safe (PQ) {{?RFC9958}} algorithms for ANIs.
 
 {{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specify mandatory to implement algorithms for IoT use cases
 involving constrained devices.
@@ -860,6 +862,12 @@ PKIX {{RFC5280}} processing and Voucher/PVR processing, which determines and con
 Another class of cBRSKI constrained devices minimizes just the sizes of Voucher and PVR, a benefit on constrained
 networks, and these devices have different constraints on the algorithm and format choices.
 
+Public keys in the `pinned-domain-pubk` or `proximity-registrar-pubk` Attributes are encoded as a
+DER-encoded SubjectPublicKeyInfo structure, as specified in {{!RFC7250, Section 3}}.
+This structure identifies the key's algorithm by an OID, so it can carry any public key type for which
+a SubjectPublicKeyInfo encoding is defined.
+Examples are RSA and ECDSA as listed in {{RFC7250}}, EdDSA {{?RFC8032}} {{?RFC8410}} and ML-DSA {{?RFC9881}}.
+
 Should a manufacturer decide to stop supporting some algorithm that their manufactured Pledges rely on, they will need
 to execute a transition operation for any inventory (Pledges) that exists in warehouses or within the supply chain,
 to ensure that these devices can still be onboarded in the new situation.
@@ -867,10 +875,6 @@ One transition strategy is to recall these Pledges, replace the firmware and upd
 in the recalled devices.
 This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
 physical recall is not required.
-
-The public keys are to be encoded according to {{!RFC7250, Section 3}} for RSA and ECDSA keys,
-noting that {{!RFC8032}} extends this to include an OID for EdDSA.
-The old (1024-bit) DSA algorithm is not supported.
 
 ## Tree Diagram {#voucher-tree-diagram}
 
