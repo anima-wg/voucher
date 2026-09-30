@@ -118,7 +118,7 @@ informative:
   RFC9525:
   COSE: STD96
   JWS: RFC7515
-  YANG-GUIDE: RFC8407
+  YANG-GUIDE: RFC9907
   Stajano99theresurrecting:
     target: https://www.cl.cam.ac.uk/research/dtg/www/files/publications/public/files/tr.1999.2.pdf
     title: 'The Resurrecting Duckling: Security Issues for Ad-Hoc Wireless Networks'
@@ -1275,36 +1275,40 @@ before the signing of Vouchers.
 
 ## YANG Module Security Considerations
 
+The YANG modules in this document define only groupings and abstract data
+structures using the "sx:structure" extension {{RFC8791}}. These are not
+intended to be accessed via YANG-based management protocols such as NETCONF {{RFC6241}}
+or RESTCONF {{RFC8040}}. Therefore, per Section 3.7 of {{YANG-GUIDE}}, the
+YANG security considerations template does not apply.
+
+Modules that reuse the groupings defined in this document outside of a
+signed Voucher or Voucher Request artifact, need to identify the
+corresponding security implications.
+
 The YANG modules specified in this document define the schema
 for data that is subsequently encapsulated by secure signed-data structures,
 such as the CMS signed-data described in {{cms-voucher}}.  As such,
 all of the YANG-modeled data is protected from modification.
 
-Implementations should be aware that the signed data is only
+Implementers should be aware that the signed data is only
 protected from external modification; the data is still visible.
-This potential disclosure of information doesn't affect security
+This potential disclosure of this information doesn't affect security
 so much as privacy.
 
-When used with {{BRSKI}}, or {{cBRSKI}} then Voucher Requests and Vouchers are conveyed using TLS {{RFC9846}}, so there is no exposure.
+When used with {{BRSKI}} or {{cBRSKI}}, all Voucher Artifacts are conveyed using TLS {{RFC9846}}, so there is no
+exposure of information apart from the endpoints of the TLS sessions.
 
-When used with {{PRM}}, then the contents can be exposed in the last hop,
-where HTTP is used, due to the lack of any way to validate the certificate needed to enable HTTPS.
+When used with {{PRM}}, information can be exposed in the last hop between Registrar-Agent and Pledge,
+where unsecured HTTP can be used.
 
-When the Voucher is in CMS format, it can contain certificate chains that can disclose information such as which devices belong to which organizations
-and which CRL Distribution Point and/or OCSP Responder URLs are
-accessed to validate the Vouchers.
-Note that {{PRM}} specifies use of {{JWS}} format artifacts rather than CMS, so there are no CRLs to disclose.
+When a Voucher is in CMS format, it can disclose information via the signer's certificate chain about which organization
+a device belongs to and which CRL Distribution Point and/or OCSP Responder URLs {{RFC6960}} are
+accessed to check the revocation status of certificates.
+Note that {{PRM}} specifies the use of {{JWS}} format artifacts rather than CMS, so there are no CRLs to disclose in
+that case.
 
 {{SZTP}} uses a wide variety of transports, some of which offer physical privacy for data, and others which do not.
 To mitigate this, {{SZTP, Section 3.4}} specifies a way to encrypt using CMS.
-
-The use of YANG to define data structures, via the "sx:structure"
-extension {{RFC8791}}, is relatively new and distinct from the conventional
-use of
-YANG to define an API accessed by network management protocols such as
-NETCONF {{RFC6241}} and RESTCONF {{RFC8040}}. For this reason, this
-security considerations section does not follow the template described
-by Section 3.7 of {{YANG-GUIDE}}.
 
 
 # IANA Considerations {#iana-considerations}
