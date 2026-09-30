@@ -122,6 +122,7 @@ Table of Contents
    10. Design Considerations
      10.1.  Renewals Instead of Revocations
      10.2.  Voucher Per Pledge
+     10.3.  Signed, Not Encrypted
    11. Security Considerations
      11.1.  Clock Accuracy in a Pledge
      11.2.  Nonceless Vouchers
@@ -1016,7 +1017,7 @@ Table of Contents
    The exact choice of format (CMS, JWS or CBOR) and algorithm depends
    upon the target operational community for the Voucher.  For that
    reason, this document does not specify any mandatory to implement
-   algorithms but leaves that specification to the onboarding protocols
+   algorithms but leaves that specification to the Onboarding protocols
    that make use of Voucher Artifacts.  [RFC8994], Section 6.2 specifies
    mandatory to implement algorithms for current Autonomic Network
    Infrastructure (ANI) uses.  [I-D.richardson-anima-quantum-safe-4ani]
@@ -1048,7 +1049,7 @@ Table of Contents
    is to recall these Pledges, replace the firmware and update the
    IDevID certificates present in the recalled devices.  This is not
    ideal; a better transition strategy could be defined as part of an
-   onboarding protocol such that a physical recall is not required.
+   Onboarding protocol such that a physical recall is not required.
 
 8.2.  Tree Diagram
 
@@ -2079,7 +2080,7 @@ Table of Contents
    the OCSP Responder ([RFC5280] [RFC6960]) is not reachable.
 
    The exact definition of "short-lived" is up to the different
-   onboarding mechanisms.
+   Onboarding mechanisms.
 
    So, while this document recommends issuing short-lived Vouchers, the
    Voucher Artifact does not restrict the ability to create long-lived
@@ -2100,6 +2101,26 @@ Table of Contents
    blocked.  Thus, the Voucher format now only supports a single serial
    number to be listed.
 
+10.3.  Signed, Not Encrypted
+
+   Voucher Artifacts are, by design, signed but not encrypted.  The
+   security of a Voucher Artifact is based on its authenticity and
+   integrity, not on the secrecy of its contents.  The Voucher Data
+   Attributes are all designed so that they could be exposed in public
+   while not compromising the security of the Onboarding process.
+
+   Leaving a Voucher Artifact unencrypted also allows parties other than
+   the Pledge or MASA to inspect it.  For example, a Registrar can
+   verify and log a Voucher before forwarding it to the Pledge, and the
+   network owner can audit what information is being exchanged between
+   Pledge and manufacturer.
+
+   Confidentiality of Voucher Artifacts in transit, where needed, is the
+   responsibility of the Onboarding protocol.  See Section 11.5 for more
+   detailed information on the transport security used by the different
+   Onboarding protocols and related privacy considerations for exposed
+   Voucher Artifacts.
+
 11.  Security Considerations
 
 11.1.  Clock Accuracy in a Pledge
@@ -2116,7 +2137,7 @@ Table of Contents
    verify that the trust anchor indicated in the Voucher matches the
    Registrar it is communicating with.
 
-   The third prevents onboarding into a Domain controlled by an attacker
+   The third prevents Onboarding into a Domain controlled by an attacker
    which is different to the Domain indicated in the Voucher.  However,
    by itself it does not prevent a Domain owner trying to onboard a
    Pledge while the expiration time in the Voucher has already passed.
@@ -2142,9 +2163,9 @@ Table of Contents
 
    A nonceless Voucher can be reused by a Registrar to answer a Pledge's
    PVR any number of times within its validity period.  This can be a
-   benefit for a Domain owner if repeated onboarding into a Domain is
+   benefit for a Domain owner if repeated Onboarding into a Domain is
    required, but it equally allows an attacker that came into possession
-   of a nonceless Voucher to attempt a great number of onboarding
+   of a nonceless Voucher to attempt a great number of Onboarding
    attempts with the indicated Pledge.  Still, such repeated attacks are
    unlikely to succeed because the Voucher explicitly identifies only
    one Domain where the Pledge can be onboarded into - which is not the

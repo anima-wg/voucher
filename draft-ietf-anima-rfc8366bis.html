@@ -1308,6 +1308,9 @@ as well as other YANG extensions needed for variants of RFC8995.<a href="#sectio
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
                 <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-voucher-per-pledge" class="internal xref">Voucher Per Pledge</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.3">
+                <p id="section-toc.1-1.10.2.3.1"><a href="#section-10.3" class="auto internal xref">10.3</a>.  <a href="#name-signed-not-encrypted" class="internal xref">Signed, Not Encrypted</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
@@ -2288,7 +2291,7 @@ Specifically, the manufacturer knows what signature algorithm the Pledge is goin
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 <p id="section-8.1-2">The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
 For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
-the onboarding protocols that make use of Voucher Artifacts.
+the Onboarding protocols that make use of Voucher Artifacts.
 <span>[<a href="#RFC8994" class="cite xref">RFC8994</a>], <a href="https://rfc-editor.org/rfc/rfc8994#section-6.2" class="relref">Section 6.2</a></span> specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
 <span>[<a href="#I-D.richardson-anima-quantum-safe-4ani" class="cite xref">I-D.richardson-anima-quantum-safe-4ani</a>]</span> is future work for quantum-safe (PQ) <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> algorithms for ANIs.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
 <p id="section-8.1-3"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="cite xref">I-D.ietf-uta-tls13-iot-profile</a>]</span> specify mandatory to implement algorithms for IoT use cases
@@ -2307,7 +2310,7 @@ to execute a transition operation for any inventory (Pledges) that exists in war
 to ensure that these devices can still be onboarded in the new situation.
 One transition strategy is to recall these Pledges, replace the firmware and update the IDevID certificates present
 in the recalled devices.
-This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
+This is not ideal; a better transition strategy could be defined as part of an Onboarding protocol such that a
 physical recall is not required.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3352,7 +3355,7 @@ only the one Artifact, and only one code path is needed to process
 it; there is no possibility of a Pledge choosing to skip the
 revocation status check because, for instance, the OCSP Responder (<span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> <span>[<a href="#RFC6960" class="cite xref">RFC6960</a>]</span>) is
 not reachable.<a href="#section-10.1-5" class="pilcrow">¶</a></p>
-<p id="section-10.1-6">The exact definition of "short-lived" is up to the different onboarding mechanisms.<a href="#section-10.1-6" class="pilcrow">¶</a></p>
+<p id="section-10.1-6">The exact definition of "short-lived" is up to the different Onboarding mechanisms.<a href="#section-10.1-6" class="pilcrow">¶</a></p>
 <p id="section-10.1-7">So, while this document recommends issuing short-lived Vouchers, the
 Voucher Artifact does not restrict the ability to create long-lived
 Vouchers, if required; however, no revocation method is described.<a href="#section-10.1-7" class="pilcrow">¶</a></p>
@@ -3376,6 +3379,24 @@ Thus, the Voucher format now only supports a single serial number
 to be listed.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="signed-not-encrypted">
+<section id="section-10.3">
+        <h3 id="name-signed-not-encrypted">
+<a href="#section-10.3" class="section-number selfRef">10.3. </a><a href="#name-signed-not-encrypted" class="section-name selfRef">Signed, Not Encrypted</a>
+        </h3>
+<p id="section-10.3-1">Voucher Artifacts are, by design, signed but not encrypted.
+The security of a Voucher Artifact is based on its authenticity and integrity, not on
+the secrecy of its contents. The Voucher Data Attributes are all designed so that they
+could be exposed in public while not compromising the security of the Onboarding process.<a href="#section-10.3-1" class="pilcrow">¶</a></p>
+<p id="section-10.3-2">Leaving a Voucher Artifact unencrypted also allows parties other than the Pledge or MASA
+to inspect it. For example, a Registrar can verify and log a Voucher before
+forwarding it to the Pledge, and the network owner can audit what information is being
+exchanged between Pledge and manufacturer.<a href="#section-10.3-2" class="pilcrow">¶</a></p>
+<p id="section-10.3-3">Confidentiality of Voucher Artifacts in transit, where needed, is the responsibility of the Onboarding protocol.
+See <a href="#yang-sec-cons" class="auto internal xref">Section 11.5</a> for more detailed information on the transport security used by the different
+Onboarding protocols and related privacy considerations for exposed Voucher Artifacts.<a href="#section-10.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="sec-con">
@@ -3397,7 +3418,7 @@ control the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
 2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
    it is communicating with.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
-<p id="section-11.1-3">The third prevents onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
+<p id="section-11.1-3">The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
 the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
 time in the Voucher has already passed.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
 <p id="section-11.1-4">This document defines a Voucher that optionally contains an
@@ -3420,8 +3441,8 @@ the expiration time values in Vouchers will provide little protection.<a href="#
 See the previous section for considerations on the accuracy of this clock and the risks of relying on NTP for
 acquiring the current time.<a href="#section-11.2-1" class="pilcrow">¶</a></p>
 <p id="section-11.2-2">A nonceless Voucher can be reused by a Registrar to answer a Pledge's PVR any number of times within its validity
-period. This can be a benefit for a Domain owner if repeated onboarding into a Domain is required, but it equally
-allows an attacker that came into possession of a nonceless Voucher to attempt a great number of onboarding attempts
+period. This can be a benefit for a Domain owner if repeated Onboarding into a Domain is required, but it equally
+allows an attacker that came into possession of a nonceless Voucher to attempt a great number of Onboarding attempts
 with the indicated Pledge.
 Still, such repeated attacks are unlikely to succeed because the Voucher explicitly identifies only one Domain
 where the Pledge can be onboarded into - which is not the attacker's Domain in this scenario.<a href="#section-11.2-2" class="pilcrow">¶</a></p>
@@ -3462,7 +3483,7 @@ Protocols for Voucher distribution are
 before the signing of Vouchers.<a href="#section-11.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="yang-module-security-considerations">
+<div id="yang-sec-cons">
 <section id="section-11.5">
         <h3 id="name-yang-module-security-consid">
 <a href="#section-11.5" class="section-number selfRef">11.5. </a><a href="#name-yang-module-security-consid" class="section-name selfRef">YANG Module Security Considerations</a>
