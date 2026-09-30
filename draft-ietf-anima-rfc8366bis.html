@@ -1424,7 +1424,7 @@ Capitalized terms such as Pledge, Owner, Domain, Onboarding and MASA are defined
 <p id="section-1-3">This document defines the Voucher Artifact and the Voucher Request Artifact only.
 How these artifacts are conveyed and details of their security parameters are not defined here,
 but rather in the Onboarding protocols that use them.
-Such protocols include <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
+Such protocols include <span>[<a href="#SZTP" class="cite xref">SZTP</a>]</span>, <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>]</span>, <span>[<a href="#PRM" class="cite xref">PRM</a>]</span> and <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The Voucher Artifact is a JSON <span>[<a href="#RFC8259" class="cite xref">RFC8259</a>]</span> or CBOR <span>[<a href="#CBOR" class="cite xref">CBOR</a>]</span> document that conforms with a data model
 described by YANG <span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>.
 It is encoded using the rules defined in <span>[<a href="#RFC7951" class="cite xref">RFC7951</a>]</span> or <span>[<a href="#RFC9254" class="cite xref">RFC9254</a>]</span>, and is signed using (by default)
@@ -2271,7 +2271,7 @@ Other aspects of the Voucher, such as it being nonceless or which kind of pinned
 type in the HTTP "Accept" header <span>[<a href="#RFC9110" class="cite xref">RFC9110</a>]</span>.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <p id="section-8-7">For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.<a href="#section-8-7" class="pilcrow">¶</a></p>
 <p id="section-8-8">The Attributes <code>pinned-domain-pubk</code> (<code>proximity-registrar-pubk</code> for a PVR) and <code>pinned-domain-pubk-sha256</code> (<code>proximity-registrar-pubk-sha256</code> for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.<a href="#section-8-8" class="pilcrow">¶</a></p>
-<p id="section-8-9">Should the SHA-256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
+<p id="section-8-9">Should the SHA-256 hash algorithm ever need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the <code>pinned-domain-pubk-sha256</code> and <code>proximity-registrar-pubk-sha256</code> Attributes.<a href="#section-8-9" class="pilcrow">¶</a></p>
 <p id="section-8-10">In the event that more than one of <code>pinned-domain-pubk-sha256</code>, <code>pinned-domain-pubk</code> or <code>pinned-domain-cert</code> Attributes
 are present in a Voucher, then the Pledge <span class="bcp14">SHALL</span> prioritize the matching <code>proximity-*</code> entry which it used in its voucher-request artifact, ignoring the others.<a href="#section-8-10" class="pilcrow">¶</a></p>
@@ -2283,28 +2283,32 @@ are present in a Voucher, then the Pledge <span class="bcp14">SHALL</span> prior
         </h3>
 <p id="section-8.1-1">When designing Pledge devices, manufacturers choose algorithms and signature formats - which they also need to support in their MASA.
 As explained in <span>[<a href="#BRSKI" class="cite xref">BRSKI</a>], <a href="https://rfc-editor.org/rfc/rfc8995#section-2.5" class="relref">Section 2.5</a></span>, the Pledge is a creation of the manufacturer, and thus the manufacturer
-(in the form of the Manufacturer Authorized Signing Authority (MASA)) has knowledge of the capabilities of the Pledge.
+(represented by the MASA) has knowledge of the capabilities of the Pledge.
 Specifically, the manufacturer knows what signature algorithm the Pledge is going to use (to sign a PVR or to validate a Voucher),
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 <p id="section-8.1-2">The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
-<span>[<a href="#RFC8994" class="cite xref">RFC8994</a>], <a href="https://rfc-editor.org/rfc/rfc8994#section-6.2" class="relref">Section 6.2</a></span> specifies mandatory to implement algorithms for current ANI uses.
-<span>[<a href="#I-D.richardson-anima-quantum-safe-4ani" class="cite xref">I-D.richardson-anima-quantum-safe-4ani</a>]</span> is future work for quantum-safe (PQ) <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> algorithms for ANI work.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
+For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
+the onboarding protocols that make use of Voucher Artifacts.
+<span>[<a href="#RFC8994" class="cite xref">RFC8994</a>], <a href="https://rfc-editor.org/rfc/rfc8994#section-6.2" class="relref">Section 6.2</a></span> specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
+<span>[<a href="#I-D.richardson-anima-quantum-safe-4ani" class="cite xref">I-D.richardson-anima-quantum-safe-4ani</a>]</span> is future work for quantum-safe (PQ) <span>[<a href="#RFC9958" class="cite xref">RFC9958</a>]</span> algorithms for ANIs.<a href="#section-8.1-2" class="pilcrow">¶</a></p>
 <p id="section-8.1-3"><span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> and <span>[<a href="#I-D.ietf-uta-tls13-iot-profile" class="cite xref">I-D.ietf-uta-tls13-iot-profile</a>]</span> specify mandatory to implement algorithms for IoT use cases
 involving constrained devices.
 A certain class of constrained devices defined in <span>[<a href="#cBRSKI" class="cite xref">cBRSKI</a>]</span> minimizes the code size of the code for ASN.1 processing,
 PKIX <span>[<a href="#RFC5280" class="cite xref">RFC5280</a>]</span> processing and Voucher/PVR processing, which determines and constrains the algorithm and format choices.
 Another class of cBRSKI constrained devices minimizes just the sizes of Voucher and PVR, a benefit on constrained
 networks, and these devices have different constraints on the algorithm and format choices.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
-<p id="section-8.1-4">Should a manufacturer decide to stop supporting some algorithm that their manufactured Pledges rely on, they will need
+<p id="section-8.1-4">Public keys in the <code>pinned-domain-pubk</code> or <code>proximity-registrar-pubk</code> Attributes are encoded as a
+DER-encoded SubjectPublicKeyInfo structure, as specified in <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span>.
+This structure identifies the key's algorithm by an OID, so it can carry any public key type for which
+a SubjectPublicKeyInfo encoding is defined.
+Examples are RSA and ECDSA as listed in <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>]</span>, EdDSA <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> <span>[<a href="#RFC8410" class="cite xref">RFC8410</a>]</span> and ML-DSA <span>[<a href="#RFC9881" class="cite xref">RFC9881</a>]</span>.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
+<p id="section-8.1-5">Should a manufacturer decide to stop supporting some algorithm that their manufactured Pledges rely on, they will need
 to execute a transition operation for any inventory (Pledges) that exists in warehouses or within the supply chain,
 to ensure that these devices can still be onboarded in the new situation.
 One transition strategy is to recall these Pledges, replace the firmware and update the IDevID certificates present
 in the recalled devices.
 This is not ideal; a better transition strategy could be defined as part of an onboarding protocol such that a
-physical recall is not required.<a href="#section-8.1-4" class="pilcrow">¶</a></p>
-<p id="section-8.1-5">The public keys are to be encoded according to <span>[<a href="#RFC7250" class="cite xref">RFC7250</a>], <a href="https://rfc-editor.org/rfc/rfc7250#section-3" class="relref">Section 3</a></span> for RSA and ECDSA keys,
-noting that <span>[<a href="#RFC8032" class="cite xref">RFC8032</a>]</span> extends this to include an OID for EdDSA.
-The old (1024-bit) DSA algorithm is not supported.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
+physical recall is not required.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="voucher-tree-diagram">
@@ -3774,10 +3778,6 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Lhotka, L.</span>, <span class="refTitle">"JSON Encoding of Data Modeled with YANG"</span>, <span class="seriesInfo">RFC 7951</span>, <span class="seriesInfo">DOI 10.17487/RFC7951</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7951">https://www.rfc-editor.org/rfc/rfc7951</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8032">[RFC8032]</dt>
-        <dd>
-<span class="refAuthor">Josefsson, S.</span> and <span class="refAuthor">I. Liusvaara</span>, <span class="refTitle">"Edwards-Curve Digital Signature Algorithm (EdDSA)"</span>, <span class="seriesInfo">RFC 8032</span>, <span class="seriesInfo">DOI 10.17487/RFC8032</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8032">https://www.rfc-editor.org/rfc/rfc8032</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
@@ -3881,6 +3881,10 @@ This section just lists references present in YANG modules which otherwise do no
         <dd>
 <span class="refAuthor">Dukhovni, V.</span>, <span class="refTitle">"Opportunistic Security: Some Protection Most of the Time"</span>, <span class="seriesInfo">RFC 7435</span>, <span class="seriesInfo">DOI 10.17487/RFC7435</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7435">https://www.rfc-editor.org/rfc/rfc7435</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8032">[RFC8032]</dt>
+        <dd>
+<span class="refAuthor">Josefsson, S.</span> and <span class="refAuthor">I. Liusvaara</span>, <span class="refTitle">"Edwards-Curve Digital Signature Algorithm (EdDSA)"</span>, <span class="seriesInfo">RFC 8032</span>, <span class="seriesInfo">DOI 10.17487/RFC8032</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8032">https://www.rfc-editor.org/rfc/rfc8032</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8040">[RFC8040]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, and <span class="refAuthor">K. Watsen</span>, <span class="refTitle">"RESTCONF Protocol"</span>, <span class="seriesInfo">RFC 8040</span>, <span class="seriesInfo">DOI 10.17487/RFC8040</span>, <time datetime="2017-01" class="refDate">January 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8040">https://www.rfc-editor.org/rfc/rfc8040</a>&gt;</span>. </dd>
@@ -3892,6 +3896,10 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC8366">[RFC8366]</dt>
         <dd>
 <span class="refAuthor">Watsen, K.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Pritikin, M.</span>, and <span class="refAuthor">T. Eckert</span>, <span class="refTitle">"A Voucher Artifact for Bootstrapping Protocols"</span>, <span class="seriesInfo">RFC 8366</span>, <span class="seriesInfo">DOI 10.17487/RFC8366</span>, <time datetime="2018-05" class="refDate">May 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8366">https://www.rfc-editor.org/rfc/rfc8366</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8410">[RFC8410]</dt>
+        <dd>
+<span class="refAuthor">Josefsson, S.</span> and <span class="refAuthor">J. Schaad</span>, <span class="refTitle">"Algorithm Identifiers for Ed25519, Ed448, X25519, and X448 for Use in the Internet X.509 Public Key Infrastructure"</span>, <span class="seriesInfo">RFC 8410</span>, <span class="seriesInfo">DOI 10.17487/RFC8410</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8410">https://www.rfc-editor.org/rfc/rfc8410</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8520">[RFC8520]</dt>
         <dd>
@@ -3924,6 +3932,10 @@ This section just lists references present in YANG modules which otherwise do no
 <dt id="RFC9846">[RFC9846]</dt>
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 9846</span>, <span class="seriesInfo">DOI 10.17487/RFC9846</span>, <time datetime="2026-07" class="refDate">July 2026</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9846">https://www.rfc-editor.org/rfc/rfc9846</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9881">[RFC9881]</dt>
+        <dd>
+<span class="refAuthor">Massimo, J.</span>, <span class="refAuthor">Kampanakis, P.</span>, <span class="refAuthor">Turner, S.</span>, and <span class="refAuthor">B. E. Westerbaan</span>, <span class="refTitle">"Internet X.509 Public Key Infrastructure -- Algorithm Identifiers for the Module-Lattice-Based Digital Signature Algorithm (ML-DSA)"</span>, <span class="seriesInfo">RFC 9881</span>, <span class="seriesInfo">DOI 10.17487/RFC9881</span>, <time datetime="2025-10" class="refDate">October 2025</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9881">https://www.rfc-editor.org/rfc/rfc9881</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9910">[RFC9910]</dt>
         <dd>
