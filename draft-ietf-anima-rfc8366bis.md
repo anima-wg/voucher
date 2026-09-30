@@ -833,7 +833,7 @@ For Vouchers stored/transferred via methods like a USB storage device (USB key),
 
 The Attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
 
-Should the SHA256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
+Should the SHA-256 algorithm need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` Attributes.
 
 In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` Attributes
