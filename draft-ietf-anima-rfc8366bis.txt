@@ -2310,7 +2310,8 @@ Table of Contents
    if the vendor owns the FQDN "fuubar.example.com".
 
    Vendor proprietary extensions do not need to be registered with IANA,
-   but vendors are encouraged to do so.
+   but vendors are encouraged to do so.  Note that a 'vendor' may also
+   be a standards development organization that develops extensions.
 
    Designated Experts should review the referenced document for clarity
    of purpose and to facilitate the checks below.  For IETF/IRTF
