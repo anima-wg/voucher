@@ -700,7 +700,7 @@ Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.
 
 It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '`idevid-issuer`' Attribute.
 
 It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR, in the RVR and in the Voucher.
