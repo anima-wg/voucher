@@ -28,18 +28,18 @@ as well as other YANG extensions needed for variants of RFC8995.
 <meta content="draft-ietf-anima-rfc8366bis-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.34.1
-    Python 3.14.7
-    ConfigArgParse 1.7.7
+    Python 3.14.8
+    ConfigArgParse 1.8.0
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.10
+    platformdirs 4.12.2
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.4
+    wcwidth 0.9.1
 -->
 <link href="draft-ietf-anima-rfc8366bis.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1055,11 +1055,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">Voucher Artifact</td>
-<td class="right">September 2026</td>
+<td class="right">October 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Watsen, et al.</td>
-<td class="center">Expires 3 April 2027</td>
+<td class="center">Expires 8 April 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1078,12 +1078,12 @@ svg {
 <a href="https://www.rfc-editor.org/rfc/rfc8995" class="eref">8995</a> (if approved)</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-30" class="published">30 September 2026</time>
+<time datetime="2026-10-05" class="published">5 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-03">3 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-04-08">8 April 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1159,7 +1159,7 @@ as well as other YANG extensions needed for variants of RFC8995.<a href="#sectio
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 3 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2146,7 +2146,7 @@ A system of serial numbers where there is some prefix relating the product type 
 <p id="section-6.2-4">Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '<code>idevid-issuer</code>' Attribute.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <p id="section-6.2-6">It is clarified next, whether or not to include the '<code>idevid-issuer</code>' in the PVR, in the RVR and in the Voucher.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">Analysis of the situation shows that the Pledge never needs to include '<code>idevid-issuer</code>' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
@@ -2453,7 +2453,8 @@ Note that for this example, long binary strings are abbreviated using the ellips
 <p id="section-8.4-1">During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '<code>pinned-domain-cert</code>' vs '<code>pinned-domain-pubk</code>', or '<code>expires-on</code>' vs '<code>nonce</code>'.
 Unfortunately, <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
-As the simplest way forward, the choice mechanisms that were introduced have been commented out in the YANG, allowing the SID values to be generated correctly.
+As the simplest way forward, the no choice statements are used, allowing the SID values to be generated correctly.
+Normative requirements are instead included in the description of the Attributes in the YANG files.
 As a result, the SID values presented in <a href="#voucher-sid-values" class="auto internal xref">Section 8.5</a> and <a href="#voucher-request-sid-values" class="auto internal xref">Section 9.4</a> are to be considered normative, rather than relying exclusively on the
 ".sid" file <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> generated from the YANG modules.
 The presented SID values are believed to be correct, but future reprocessing of the YANG module to a ".sid" file could result in changes as the tooling is fixed.
@@ -2653,9 +2654,8 @@ module ietf-voucher {
          field is populated for serial-numbers that are not
          otherwise unique within the scope of the MASA.";
     }
-    // choice pinning {
-    //  description "One of these Attributes is used by the
-    //               MASA to pin the Registrar identity";
+    // The MASA typically includes only one of the below
+    // pinned-domain-* Attributes in a Voucher.
     leaf pinned-domain-cert {
       type binary;
       description
@@ -2706,7 +2706,7 @@ module ietf-voucher {
          specification which can define a new leaf for another
          hash type.";
     }
-    // }  choice pinning removed
+    // End of pinned-domain-* Attributes block
     leaf domain-cert-revocation-checks {
       type boolean;
       description
@@ -2730,9 +2730,8 @@ module ietf-voucher {
          contracts, which may be terminated or extended
          over time.";
     }
-    //choice nonceless {
-    //  description "Either a nonce must be present,
-    //               or an expires-on Attribute";
+    // The MASA MUST NOT include both of the below
+    // Attributes expires-on and nonce in a Voucher.
     leaf expires-on {
       type yang:date-and-time;
       description
@@ -2745,7 +2744,10 @@ module ietf-voucher {
          an accurate clock cannot meet this requirement.
 
          The expires-on value MUST NOT exceed the expiration date
-         of any of the listed 'pinned-domain-cert' certificates.";
+         of any of the listed 'pinned-domain-cert' certificates.
+
+         A MASA that includes this Attribute MUST NOT include the
+         'nonce' Attribute.";
     }
     leaf nonce {
       type binary {
@@ -2765,9 +2767,12 @@ module ietf-voucher {
          this Voucher.
 
          A nonce value MUST be a cryptographically strong random
-         value as detailed in RFC 4086.";
+         value as detailed in RFC 4086.
+
+         A MASA that includes this Attribute MUST NOT include the
+         'expires-on' Attribute.";
     }
-    // } choice nonceless
+    // End of expires-on / nonce Attributes block
     leaf est-domain {
       type ietf:uri;
       description
@@ -3437,21 +3442,22 @@ Onboarding protocols and related privacy considerations for exposed Voucher Arti
 <a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-clock-accuracy-in-a-pledge" class="section-name selfRef">Clock Accuracy in a Pledge</a>
         </h3>
 <p id="section-11.1-1">An attacker could use an expired nonceless Voucher to gain control over
-a device (Pledge) that has no understanding of time.  The device cannot
-trust Network Time Protocol (NTP) as a time reference, as an attacker could
-control the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
-<p id="section-11.1-2">There are three things to defend against this:
-1) a device is required to verify that the '<code>expires-on</code>' Attribute's time has not yet passed,
-2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
-3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
-   it is communicating with.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
-<p id="section-11.1-3">The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
-the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
-time in the Voucher has already passed.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+a device (Pledge) that has no understanding of the current time.
+While there are ways to secure Network Time Protocol (NTP), they are not as yet common, and like unsecured NTP they rely on the device having access to a network.
+As the purpose of the Voucher is usually to onboard the device onto a network,
+the device cannot make use of NTP as a time reference until it is onboarded.
+Even after Onboarding, the device still cannot rely on unauthenticated NTP, as the attacker could control the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">There are three defenses against this attack:
+1) a device with an accurate clock is required to verify that the '<code>expires-on</code>' Attribute's time has not yet passed,
+2) a device without an accurate clock uses a nonce to get a fresh ephemeral Voucher, and
+3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
+<p id="section-11.1-3">The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
+This limits attacks to Owners who had valid Vouchers in the past.
+If a device can be convinced that it is living in some past, then a former Owner could "repossess" the device using an expired Voucher.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
 <p id="section-11.1-4">This document defines a Voucher that optionally contains an
 expiration time, which requires an accurate clock on the device
 in order to be processed correctly.<a href="#section-11.1-4" class="pilcrow">¶</a></p>
-<p id="section-11.1-5">Manufacturers issuing Vouchers with expiration time need to ensure that
+<p id="section-11.1-5">Manufacturers issuing Vouchers with an expiration time need to ensure that
 the devices targeted have an accurate clock when shipped from manufacturing
 facilities and need to take measures to prevent clock tampering.
 If it is not possible to ensure clock accuracy and tamper-proofness, then
