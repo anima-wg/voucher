@@ -2453,7 +2453,8 @@ Note that for this example, long binary strings are abbreviated using the ellips
 <p id="section-8.4-1">During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '<code>pinned-domain-cert</code>' vs '<code>pinned-domain-pubk</code>', or '<code>expires-on</code>' vs '<code>nonce</code>'.
 Unfortunately, <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
-As the simplest way forward, the choice mechanisms that were introduced have been commented out in the YANG, allowing the SID values to be generated correctly.
+As the simplest way forward, the no choice statements are used, allowing the SID values to be generated correctly.
+Normative requirements are instead included in the description of the Attributes in the YANG files.
 As a result, the SID values presented in <a href="#voucher-sid-values" class="auto internal xref">Section 8.5</a> and <a href="#voucher-request-sid-values" class="auto internal xref">Section 9.4</a> are to be considered normative, rather than relying exclusively on the
 ".sid" file <span>[<a href="#CORESID" class="cite xref">CORESID</a>]</span> generated from the YANG modules.
 The presented SID values are believed to be correct, but future reprocessing of the YANG module to a ".sid" file could result in changes as the tooling is fixed.
@@ -2653,11 +2654,8 @@ module ietf-voucher {
          field is populated for serial-numbers that are not
          otherwise unique within the scope of the MASA.";
     }
-    // choice pinning {
-    //  description "One of these Attributes is used by the
-    //               MASA to pin the Registrar identity";
-    // This change turned out to be a breaking change.
-    // The intent is that only one is picked.
+    // The MASA typically includes only one of the below
+    // pinned-domain-* Attributes in a Voucher.
     leaf pinned-domain-cert {
       type binary;
       description
@@ -2708,7 +2706,7 @@ module ietf-voucher {
          specification which can define a new leaf for another
          hash type.";
     }
-    // }  choice pinning removed
+    // End of pinned-domain-* Attributes block
     leaf domain-cert-revocation-checks {
       type boolean;
       description
@@ -2732,11 +2730,8 @@ module ietf-voucher {
          contracts, which may be terminated or extended
          over time.";
     }
-    //choice nonceless {
-    //  description "Either a nonce must be present,
-    //               or an expires-on Attribute";
-    // This turned out to be a breaking change.
-    // expires-on and nonce are mutually exclusive.
+    // The MASA MUST NOT include both of the below
+    // Attributes expires-on and nonce in a Voucher.
     leaf expires-on {
       type yang:date-and-time;
       description
@@ -2749,7 +2744,10 @@ module ietf-voucher {
          an accurate clock cannot meet this requirement.
 
          The expires-on value MUST NOT exceed the expiration date
-         of any of the listed 'pinned-domain-cert' certificates.";
+         of any of the listed 'pinned-domain-cert' certificates.
+
+         A MASA that includes this Attribute MUST NOT include the
+         'nonce' Attribute.";
     }
     leaf nonce {
       type binary {
@@ -2769,9 +2767,12 @@ module ietf-voucher {
          this Voucher.
 
          A nonce value MUST be a cryptographically strong random
-         value as detailed in RFC 4086.";
+         value as detailed in RFC 4086.
+
+         A MASA that includes this Attribute MUST NOT include the
+         'expires-on' Attribute.";
     }
-    // } choice nonceless
+    // End of expires-on / nonce Attributes block
     leaf est-domain {
       type ietf:uri;
       description
@@ -3441,17 +3442,18 @@ Onboarding protocols and related privacy considerations for exposed Voucher Arti
 <a href="#section-11.1" class="section-number selfRef">11.1. </a><a href="#name-clock-accuracy-in-a-pledge" class="section-name selfRef">Clock Accuracy in a Pledge</a>
         </h3>
 <p id="section-11.1-1">An attacker could use an expired nonceless Voucher to gain control over
-a device (Pledge) that has no understanding of time.
-While there are ways to secure NTP, they are not as yet common, and they rely on the device having access to a newtork.
-As the point of the voucher is usually to connect the device to a network,
-the device can not make use of Network Time Protocol (NTP) as a time reference until it is connected.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
-<p id="section-11.1-2">There are three things to defend against this:
-1) a device is required to verify that the '<code>expires-on</code>' Attribute's time has not yet passed,
-2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
+a device (Pledge) that has no understanding of the current time.
+While there are ways to secure Network Time Protocol (NTP), they are not as yet common, and like unsecured NTP they rely on the device having access to a network.
+As the purpose of the Voucher is usually to onboard the device onto a network,
+the device cannot make use of NTP as a time reference until it is onboarded.
+Even after Onboarding, the device still cannot rely on unauthenticated NTP, as the attacker could control the NTP stream.<a href="#section-11.1-1" class="pilcrow">¶</a></p>
+<p id="section-11.1-2">There are three defenses against this attack:
+1) a device with an accurate clock is required to verify that the '<code>expires-on</code>' Attribute's time has not yet passed,
+2) a device without an accurate clock uses a nonce to get a fresh ephemeral Voucher, and
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.<a href="#section-11.1-2" class="pilcrow">¶</a></p>
 <p id="section-11.1-3">The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
-This limits attacks to owners who had valid vouchers in the past.
-If a device can be convinced that it is living in some past, then a former owner could "repossess" the device using an expired voucher.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
+This limits attacks to Owners who had valid Vouchers in the past.
+If a device can be convinced that it is living in some past, then a former Owner could "repossess" the device using an expired Voucher.<a href="#section-11.1-3" class="pilcrow">¶</a></p>
 <p id="section-11.1-4">This document defines a Voucher that optionally contains an
 expiration time, which requires an accurate clock on the device
 in order to be processed correctly.<a href="#section-11.1-4" class="pilcrow">¶</a></p>
