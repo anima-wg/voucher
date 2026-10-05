@@ -42,14 +42,14 @@ yang/ietf-voucher-latest.yang yang/ietf-voucher@${YANGDATE}.yang: ietf-voucher.y
 	${PYANG} --help | grep sid-finalize
 	which ${PYANG}
 	mkdir -p yang
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher.yang | (cd yang && tee ietf-voucher-sed.yang | ${PYANG} ${PYANGPATH} --keep-comments --max-line-length 69 -E LONG_LINE --yang-line-length 69 -f yang >ietf-voucher@${YANGDATE}.yang )
 	(cd yang && ln -s -f ietf-voucher@${YANGDATE}.yang ietf-voucher-latest.yang )
 	ln -s -f ietf-voucher@${YANGDATE}.yang yang/ietf-voucher-latest.yang
 
 yang/ietf-voucher-request-latest.yang yang/ietf-voucher-request@${YANGDATE}.yang: ietf-voucher-request.yang ietf-voucher.yang yang/ietf-voucher-latest.yang
 	mkdir -p yang
 	echo	pyangpath: ${PYANGPATH}
-	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments -f yang >ietf-voucher-request@${YANGDATE}.yang )
+	sed -e 's/YYYY-MM-DD/'${YANGDATE}'/g' ietf-voucher-request.yang | (cd yang && ${PYANG} ${PYANGPATH} --keep-comments --max-line-length 69 -E LONG_LINE --yang-line-length 69 -f yang >ietf-voucher-request@${YANGDATE}.yang )
 	ln -s -f ietf-voucher-request@${YANGDATE}.yang yang/ietf-voucher-request-latest.yang
 
 yang/ietf-voucher-tree-latest.txt: yang/ietf-voucher@${YANGDATE}.yang

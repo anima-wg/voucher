@@ -700,7 +700,7 @@ Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.
 
 It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '`idevid-issuer`' Attribute.
 
 It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR, in the RVR and in the Voucher.
@@ -988,7 +988,8 @@ Further examples of CMS-signed Vouchers are given in {{examples}}.
 During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '`pinned-domain-cert`' vs '`pinned-domain-pubk`', or '`expires-on`' vs '`nonce`'.
 Unfortunately, {{CORESID}} does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
-As the simplest way forward, the choice mechanisms that were introduced have been commented out in the YANG, allowing the SID values to be generated correctly.
+As the simplest way forward, the no choice statements are used, allowing the SID values to be generated correctly.
+Normative requirements are instead included in the description of the Attributes in the YANG files.
 As a result, the SID values presented in {{voucher-sid-values}} and {{voucher-request-sid-values}} are to be considered normative, rather than relying exclusively on the
 ".sid" file {{CORESID}} generated from the YANG modules.
 The presented SID values are believed to be correct, but future reprocessing of the YANG module to a ".sid" file could result in changes as the tooling is fixed.
@@ -1246,25 +1247,26 @@ Onboarding protocols and related privacy considerations for exposed Voucher Arti
 ## Clock Accuracy in a Pledge
 
 An attacker could use an expired nonceless Voucher to gain control over
-a device (Pledge) that has no understanding of time.  The device cannot
-trust Network Time Protocol (NTP) as a time reference, as an attacker could
-control the NTP stream.
+a device (Pledge) that has no understanding of the current time.
+While there are ways to secure Network Time Protocol (NTP), they are not as yet common, and like unsecured NTP they rely on the device having access to a network.
+As the purpose of the Voucher is usually to onboard the device onto a network,
+the device cannot make use of NTP as a time reference until it is onboarded.
+Even after Onboarding, the device still cannot rely on unauthenticated NTP, as the attacker could control the NTP stream.
 
-There are three things to defend against this:
-1) a device is required to verify that the '`expires-on`' Attribute's time has not yet passed,
-2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
-3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
-   it is communicating with.
+There are three defenses against this attack:
+1) a device with an accurate clock is required to verify that the '`expires-on`' Attribute's time has not yet passed,
+2) a device without an accurate clock uses a nonce to get a fresh ephemeral Voucher, and
+3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.
 
-The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
-the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
-time in the Voucher has already passed.
+The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
+This limits attacks to Owners who had valid Vouchers in the past.
+If a device can be convinced that it is living in some past, then a former Owner could "repossess" the device using an expired Voucher.
 
 This document defines a Voucher that optionally contains an
 expiration time, which requires an accurate clock on the device
 in order to be processed correctly.
 
-Manufacturers issuing Vouchers with expiration time need to ensure that
+Manufacturers issuing Vouchers with an expiration time need to ensure that
 the devices targeted have an accurate clock when shipped from manufacturing
 facilities and need to take measures to prevent clock tampering.
 If it is not possible to ensure clock accuracy and tamper-proofness, then
