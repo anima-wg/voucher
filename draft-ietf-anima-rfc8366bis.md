@@ -1246,25 +1246,25 @@ Onboarding protocols and related privacy considerations for exposed Voucher Arti
 ## Clock Accuracy in a Pledge
 
 An attacker could use an expired nonceless Voucher to gain control over
-a device (Pledge) that has no understanding of time.  The device cannot
-trust Network Time Protocol (NTP) as a time reference, as an attacker could
-control the NTP stream.
+a device (Pledge) that has no understanding of time.
+While there are ways to secure NTP, they are not as yet common, and they rely on the device having access to a newtork.
+As the point of the voucher is usually to connect the device to a network,
+the device can not make use of Network Time Protocol (NTP) as a time reference until it is connected.
 
 There are three things to defend against this:
 1) a device is required to verify that the '`expires-on`' Attribute's time has not yet passed,
 2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
-3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar
-   it is communicating with.
+3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.
 
-The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in
-the Voucher. However, by itself it does not prevent a Domain owner trying to onboard a Pledge while the expiration
-time in the Voucher has already passed.
+The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
+This limits attacks to owners who had valid vouchers in the past.
+If a device can be convinced that it is living in some past, then a former owner could "repossess" the device using an expired voucher.
 
 This document defines a Voucher that optionally contains an
 expiration time, which requires an accurate clock on the device
 in order to be processed correctly.
 
-Manufacturers issuing Vouchers with expiration time need to ensure that
+Manufacturers issuing Vouchers with an expiration time need to ensure that
 the devices targeted have an accurate clock when shipped from manufacturing
 facilities and need to take measures to prevent clock tampering.
 If it is not possible to ensure clock accuracy and tamper-proofness, then
