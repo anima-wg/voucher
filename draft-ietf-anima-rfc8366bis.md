@@ -988,7 +988,8 @@ Further examples of CMS-signed Vouchers are given in {{examples}}.
 During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '`pinned-domain-cert`' vs '`pinned-domain-pubk`', or '`expires-on`' vs '`nonce`'.
 Unfortunately, {{CORESID}} does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
-As the simplest way forward, the choice mechanisms that were introduced have been commented out in the YANG, allowing the SID values to be generated correctly.
+As the simplest way forward, the no choice statements are used, allowing the SID values to be generated correctly.
+Normative requirements are instead included in the description of the Attributes in the YANG files.
 As a result, the SID values presented in {{voucher-sid-values}} and {{voucher-request-sid-values}} are to be considered normative, rather than relying exclusively on the
 ".sid" file {{CORESID}} generated from the YANG modules.
 The presented SID values are believed to be correct, but future reprocessing of the YANG module to a ".sid" file could result in changes as the tooling is fixed.

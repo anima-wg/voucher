@@ -195,63 +195,60 @@ module ietf-voucher {
            field is populated for serial-numbers that are not
            otherwise unique within the scope of the MASA.";
       }
-      // choice pinning {
-      //  description "One of these Attributes is used by the
-      //               MASA to pin the Registrar identity";
-      // This change turned out to be a breaking change.
-      // The intent is that only one is picked.
-        leaf pinned-domain-cert {
-          type binary;
-          description
-           "An X.509 v3 certificate structure, as specified by
-            RFC 5280, using Distinguished Encoding Rules (DER)
-            encoding, as defined in [ITU-T.X690].
 
-            This certificate is used by a Pledge to trust a Public Key
-            Infrastructure in order to verify a domain certificate
-            supplied to the Pledge separately by the onboarding
-            protocol.  The domain certificate MUST have this
-            certificate somewhere in its chain of certificates.
-            This certificate MAY be an end-entity certificate,
-            including a self-signed entity.";
-          reference
-            "RFC 5280:
-             Internet X.509 Public Key Infrastructure Certificate
-             and Certificate Revocation List (CRL) Profile.
-             ITU-T.X690:
-             Information technology - ASN.1 encoding rules:
-             Specification of Basic Encoding Rules (BER),
-             Canonical Encoding Rules (CER) and Distinguished
-             Encoding Rules (DER).";
-        }
-        leaf pinned-domain-pubk {
-          type binary;
-          description
-            "The pinned-domain-pubk may replace the
-             pinned-domain-cert in constrained uses of
-             the Voucher. The pinned-domain-pubk
-             is the Raw Public Key of the Registrar.
-             This field is encoded as a Subject Public Key Info block
-             as specified in RFC7250, in section 3.";
-        }
+      // The MASA typically includes only one of the below
+      // pinned-domain-* Attributes in a Voucher.
+      leaf pinned-domain-cert {
+        type binary;
+        description
+         "An X.509 v3 certificate structure, as specified by
+          RFC 5280, using Distinguished Encoding Rules (DER)
+          encoding, as defined in [ITU-T.X690].
 
-        leaf pinned-domain-pubk-sha256 {
-          type binary;
-          description
-            "The pinned-domain-pubk-sha256 is a second
-             alternative to pinned-domain-cert.  In many cases the
-             public key of the domain has already been transmitted
-             during the key agreement process, and it is wasteful
-             to transmit the public key another two times.
-             The use of a hash of public key info, at 32-bytes for
-             sha256 is a significant savings compared to an RSA
-             public key, but is only a minor savings compared to
-             a 256-bit ECDSA public-key.
-             Algorithm agility is provided by extensions to this
-             specification which can define a new leaf for another
-             hash type.";
-        }
-      // }  choice pinning removed
+          This certificate is used by a Pledge to trust a Public Key
+          Infrastructure in order to verify a domain certificate
+          supplied to the Pledge separately by the onboarding
+          protocol.  The domain certificate MUST have this
+          certificate somewhere in its chain of certificates.
+          This certificate MAY be an end-entity certificate,
+          including a self-signed entity.";
+        reference
+          "RFC 5280:
+           Internet X.509 Public Key Infrastructure Certificate
+           and Certificate Revocation List (CRL) Profile.
+           ITU-T.X690:
+           Information technology - ASN.1 encoding rules:
+           Specification of Basic Encoding Rules (BER),
+           Canonical Encoding Rules (CER) and Distinguished
+           Encoding Rules (DER).";
+      }
+      leaf pinned-domain-pubk {
+        type binary;
+        description
+          "The pinned-domain-pubk may replace the
+           pinned-domain-cert in constrained uses of
+           the Voucher. The pinned-domain-pubk
+           is the Raw Public Key of the Registrar.
+           This field is encoded as a Subject Public Key Info block
+           as specified in RFC7250, in section 3.";
+      }
+      leaf pinned-domain-pubk-sha256 {
+        type binary;
+        description
+          "The pinned-domain-pubk-sha256 is a second
+           alternative to pinned-domain-cert.  In many cases the
+           public key of the domain has already been transmitted
+           during the key agreement process, and it is wasteful
+           to transmit the public key another two times.
+           The use of a hash of public key info, at 32-bytes for
+           sha256 is a significant savings compared to an RSA
+           public key, but is only a minor savings compared to
+           a 256-bit ECDSA public-key.
+           Algorithm agility is provided by extensions to this
+           specification which can define a new leaf for another
+           hash type.";
+      }
+      // End of pinned-domain-* Attributes block
 
       leaf domain-cert-revocation-checks {
         type boolean;
@@ -276,46 +273,50 @@ module ietf-voucher {
            contracts, which may be terminated or extended
            over time.";
       }
-      //choice nonceless {
-      //  description "Either a nonce must be present,
-      //               or an expires-on Attribute";
-      // This turned out to be a breaking change.
-      // expires-on and nonce are mutually exclusive.
-        leaf expires-on {
-          type yang:date-and-time;
-          description
-            "A value indicating when this Voucher expires.  The node is
-             optional as not all Pledges support expirations, such as
-             Pledges lacking a reliable clock.
 
-             If this field exists, then the Pledges MUST ensure that
-             the expires-on time has not yet passed. A Pledge without
-             an accurate clock cannot meet this requirement.
+      // The MASA MUST NOT include both of the below
+      // Attributes expires-on and nonce in a Voucher.
+      leaf expires-on {
+        type yang:date-and-time;
+        description
+          "A value indicating when this Voucher expires.  The node is
+           optional as not all Pledges support expirations, such as
+           Pledges lacking a reliable clock.
 
-             The expires-on value MUST NOT exceed the expiration date
-             of any of the listed 'pinned-domain-cert' certificates.";
+           If this field exists, then the Pledges MUST ensure that
+           the expires-on time has not yet passed. A Pledge without
+           an accurate clock cannot meet this requirement.
+
+           The expires-on value MUST NOT exceed the expiration date
+           of any of the listed 'pinned-domain-cert' certificates.
+
+           A MASA that includes this Attribute MUST NOT include the
+           'nonce' Attribute.";
+      }
+      leaf nonce {
+        type binary {
+          length "8..32";
         }
-        leaf nonce {
-          type binary {
-            length "8..32";
-          }
-          description
-            "A value that can be used by a Pledge in some onboarding
-             protocols to enable anti-replay protection.  This node is
-             optional because it is not used by all onboarding
-             protocols.
+        description
+          "A value that can be used by a Pledge in some onboarding
+           protocols to enable anti-replay protection.  This node is
+           optional because it is not used by all onboarding
+           protocols.
 
-             When present, the Pledge MUST compare the provided nonce
-             value with another value that the Pledge randomly
-             generated and sent to a bootstrap server in an earlier
-             onboarding message.  If the value is present, but
-             the values do not match, then the Pledge MUST NOT process
-             this Voucher.
+           When present, the Pledge MUST compare the provided nonce
+           value with another value that the Pledge randomly
+           generated and sent to a bootstrap server in an earlier
+           onboarding message.  If the value is present, but
+           the values do not match, then the Pledge MUST NOT process
+           this Voucher.
 
-             A nonce value MUST be a cryptographically strong random
-             value as detailed in RFC 4086.";
-        }
-      // } choice nonceless
+           A nonce value MUST be a cryptographically strong random
+           value as detailed in RFC 4086.
+
+           A MASA that includes this Attribute MUST NOT include the
+           'expires-on' Attribute.";
+      }
+      // End of expires-on / nonce Attributes block
 
       leaf est-domain {
         type ietf:uri;
