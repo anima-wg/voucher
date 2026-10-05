@@ -1246,19 +1246,20 @@ Onboarding protocols and related privacy considerations for exposed Voucher Arti
 ## Clock Accuracy in a Pledge
 
 An attacker could use an expired nonceless Voucher to gain control over
-a device (Pledge) that has no understanding of time.
-While there are ways to secure NTP, they are not as yet common, and they rely on the device having access to a newtork.
-As the point of the voucher is usually to connect the device to a network,
-the device can not make use of Network Time Protocol (NTP) as a time reference until it is connected.
+a device (Pledge) that has no understanding of the current time.
+While there are ways to secure Network Time Protocol (NTP), they are not as yet common, and like unsecured NTP they rely on the device having access to a network.
+As the purpose of the Voucher is usually to onboard the device onto a network,
+the device cannot make use of NTP as a time reference until it is onboarded.
+Even after Onboarding, the device still cannot rely on unauthenticated NTP, as the attacker could control the NTP stream.
 
-There are three things to defend against this:
-1) a device is required to verify that the '`expires-on`' Attribute's time has not yet passed,
-2) a device without access to an internal clock uses a nonce to get a fresh ephemeral Voucher, and
+There are three defenses against this attack:
+1) a device with an accurate clock is required to verify that the '`expires-on`' Attribute's time has not yet passed,
+2) a device without an accurate clock uses a nonce to get a fresh ephemeral Voucher, and
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.
 
 The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
-This limits attacks to owners who had valid vouchers in the past.
-If a device can be convinced that it is living in some past, then a former owner could "repossess" the device using an expired voucher.
+This limits attacks to Owners who had valid Vouchers in the past.
+If a device can be convinced that it is living in some past, then a former Owner could "repossess" the device using an expired Voucher.
 
 This document defines a Voucher that optionally contains an
 expiration time, which requires an accurate clock on the device
