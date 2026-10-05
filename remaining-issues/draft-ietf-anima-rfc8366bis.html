@@ -2146,7 +2146,7 @@ A system of serial numbers where there is some prefix relating the product type 
 <p id="section-6.2-4">Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
 <p id="section-6.2-5">It is not possible for the Pledge or the Registrar to know which situation applies.
-And because one of the above situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
+And because one of the situations may apply, or may occur in the future, there needs to be a contingency to allow uniquely identifying a Pledge regardless of the current or future situation.
 This is realized by the '<code>idevid-issuer</code>' Attribute.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
 <p id="section-6.2-6">It is clarified next, whether or not to include the '<code>idevid-issuer</code>' in the PVR, in the RVR and in the Voucher.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
 <p id="section-6.2-7">Analysis of the situation shows that the Pledge never needs to include '<code>idevid-issuer</code>' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
@@ -2656,6 +2656,8 @@ module ietf-voucher {
     // choice pinning {
     //  description "One of these Attributes is used by the
     //               MASA to pin the Registrar identity";
+    // This change turned out to be a breaking change.
+    // The intent is that only one is picked.
     leaf pinned-domain-cert {
       type binary;
       description
@@ -2733,6 +2735,8 @@ module ietf-voucher {
     //choice nonceless {
     //  description "Either a nonce must be present,
     //               or an expires-on Attribute";
+    // This turned out to be a breaking change.
+    // expires-on and nonce are mutually exclusive.
     leaf expires-on {
       type yang:date-and-time;
       description

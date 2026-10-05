@@ -816,10 +816,10 @@ Table of Contents
    certificate may not be unique across all manufacturers.
 
    It is not possible for the Pledge or the Registrar to know which
-   situation applies.  And because one of the above situations may
-   apply, or may occur in the future, there needs to be a contingency to
-   allow uniquely identifying a Pledge regardless of the current or
-   future situation.  This is realized by the 'idevid-issuer' Attribute.
+   situation applies.  And because one of the situations may apply, or
+   may occur in the future, there needs to be a contingency to allow
+   uniquely identifying a Pledge regardless of the current or future
+   situation.  This is realized by the 'idevid-issuer' Attribute.
 
    It is clarified next, whether or not to include the 'idevid-issuer'
    in the PVR, in the RVR and in the Voucher.
@@ -1382,6 +1382,8 @@ Table of Contents
        // choice pinning {
        //  description "One of these Attributes is used by the
        //               MASA to pin the Registrar identity";
+       // This change turned out to be a breaking change.
+       // The intent is that only one is picked.
        leaf pinned-domain-cert {
          type binary;
          description
@@ -1459,6 +1461,8 @@ Table of Contents
        //choice nonceless {
        //  description "Either a nonce must be present,
        //               or an expires-on Attribute";
+       // This turned out to be a breaking change.
+       // expires-on and nonce are mutually exclusive.
        leaf expires-on {
          type yang:date-and-time;
          description
