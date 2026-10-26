@@ -2596,8 +2596,8 @@ Table of Contents
    [eid7263]  "Errata 7263, RFC8995", n.d.,
               <https://www.rfc-editor.org/errata/eid7263>.
 
-   [fairhair] Open Connectivity Foundation, "Fairhair Specification", 1
-              November 2019,
+   [fairhair] Open Connectivity Foundation, "Fairhair Specification",
+              April 2019,
               <https://openconnectivity.org/developer/specifications/
               fairhair/>.
 
