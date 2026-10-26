@@ -960,7 +960,7 @@ First, a JSON serialization is shown.
 ~~~~
 
 Next, a CBOR serialization is shown in CBOR diagnostic notation.
-This uses again the extension module '`example-my-extension`' and refers to it using its SID value 305823299950.
+This again uses the extension module '`example-my-extension`' and refers to it using its SID value 305823299950.
 Note that for this example, long binary strings are abbreviated using the ellipsis (`...`) notation.
 
 ~~~~
@@ -1171,7 +1171,7 @@ revocation status of the Domain identity certificate (see
 {{sec-con-domain}}); and it applies any policy that has changed since the
 previous Voucher issuance, such as a Domain owner's request to block further
 renewals or the expiry of a support contract.
-Renewal has therefore lower overhead than the initial issuance and can be
+Renewal therefore has lower overhead than the initial issuance and can be
 fully automated in most cases.
 
 The renewal request is created by the Registrar, using a freshly signed Registrar Voucher Request (RVR),
