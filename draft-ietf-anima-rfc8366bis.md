@@ -62,6 +62,7 @@ venue:
   github: anima-wg/voucher
 
 normative:
+  RFC4648:
   RFC5280:
   RFC5652:
   RFC6020:
@@ -112,6 +113,7 @@ informative:
   RFC8040:
   RFC8340:
   RFC8366:
+  RFC8994:
   SZTP: RFC8572
   RFC8792:
   RFC9334:
@@ -281,7 +283,7 @@ the Pledge can permit configuration only by entities that can cryptographically 
 the Owner, for example by proving ownership of the pinned trust anchor,
 or of a certificate signed by the trust anchor either directly or via an intermediate CA.
 The collection of all devices that share the same Owner's trust anchor is known as the Domain.
-{{?RFC8994}} explains how the pinned trust anchor is used to form an overlay management Autonomic Control Plane (ACP)
+{{RFC8994}} explains how the pinned trust anchor is used to form an overlay management Autonomic Control Plane (ACP)
 network, using authenticated IPsec (or other) tunnels.
 IoT devices can use it for mutually authenticated (D)TLS or EDHOC connections,
 although authorization is best left to mechanisms such as {{?RFC9200}}.
@@ -852,10 +854,10 @@ and can verify this, thus there is no need (or opportunity) to negotiate the alg
 The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
 For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
 the Onboarding protocols that make use of Voucher Artifacts.
-{{!RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
+{{RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
 {{?I-D.richardson-anima-quantum-safe-4ani}} is future work for quantum-safe (PQ) {{?RFC9958}} algorithms for ANIs.
 
-{{cBRSKI}} and {{!I-D.ietf-uta-tls13-iot-profile}} specify mandatory to implement algorithms for IoT use cases
+{{cBRSKI}} and {{?I-D.ietf-uta-tls13-iot-profile}} specify mandatory to implement algorithms for IoT use cases
 involving constrained devices.
 A certain class of constrained devices defined in {{cBRSKI}} minimizes the code size of the code for ASN.1 processing,
 PKIX {{RFC5280}} processing and Voucher/PVR processing, which determines and constrains the algorithm and format choices.
@@ -1077,7 +1079,7 @@ Instead, a manufacturer MAY use the '`manufacturer-proprietary`' Attribute to pu
 this content does not require confidentiality.
 In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
 {{RFC8949@CBOR, Section 3.1}} (Major type 2).
-In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{?RFC4648, Section 5}} is RECOMMENDED.
+In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{RFC4648, Section 5}} is RECOMMENDED.
 
 
 # Voucher Request Artifact {#voucher-request}
