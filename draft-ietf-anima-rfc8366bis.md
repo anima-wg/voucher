@@ -133,7 +133,7 @@ informative:
     title: 'Fairhair Specification'
     author:
     - org: Open Connectivity Foundation
-    date: 2019-11-01
+    date: 2019-04
   eid7263:
     target: "https://www.rfc-editor.org/errata/eid7263"
     title: "Errata 7263, RFC8995"
