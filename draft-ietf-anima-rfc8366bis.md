@@ -767,7 +767,7 @@ id-ct-animaJSONVoucher OBJECT IDENTIFIER ::= { id-ct 40 }
 The use of PKCS#7 (`CMSVersion`=1) in the `SignedData` structure is deprecated by this document.
 
 {{Section 9.1 of RFC5652}} mandates that `SignedAttributes` MUST be present when the content type is not '`id-data`'.
-This mitigates attacks on CMS as described in {{?I-D.vangeest-lamps-cms-euf-cma-signeddata}}.
+This mitigates attacks on CMS as described in {{?I-D.ietf-lamps-cms-euf-cma-signeddata}}.
 Decoders MUST verify that `SignedAttributes` is present.
 
 To facilitate interoperability, per {{vcj}} the media type "application/voucher-cms+json" and the filename extension ".vcj" were registered by {{RFC8366}}.
