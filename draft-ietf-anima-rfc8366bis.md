@@ -234,7 +234,7 @@ They should not need to determine whether a network connection is free of harmfu
 that discovers and invades unconfigured devices via their default passwords, and so on.
 
 In one evaluation, professional video surveillance cameras deployed at scale cost $500 on average,
-but required installation by networking/security experts cost more than $1000 on average.
+but their required installation by networking/security experts cost more than $1000 on average.
 By comparison, simple physical installation by non-experts into a building network that was potentially infested with
 harmful software cost less than $500.
 
@@ -344,7 +344,7 @@ Domain:
   control, sharing the trust anchor that is conveyed by the Voucher.
   The goal of the Onboarding protocol is to enable a Pledge to
   join a Domain and obtain domain-specific security credentials.
-  This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated to a specific DNS domain.
+  This term is not related to "DNS domain" {{?RFC9499}} although a Domain might be associated with a specific DNS domain.
 
 IDevID (Initial Device Identifier):
 : A device identity credential, defined by {{DEVID}}, that is installed (i.e. imprinted) in the Pledge by its manufacturer
@@ -437,7 +437,7 @@ Voucher:
 
 Voucher Artifact:
 : Used throughout this document to represent a Voucher or Voucher Request as instantiated in the form
-  of a signed datastructure. The payload of the signed datastructure is called the Voucher Data.
+  of a signed data structure. The payload of the signed data structure is called the Voucher Data.
 
 Voucher Data:
 : The raw (serialized) representation of the YANG data elements of a Voucher (Request) without any enclosing signature.
@@ -474,7 +474,7 @@ Assertion Basis:
   protects the Voucher itself. Methods include
   manufacturer-asserted ownership verification, assured
   logging operations, or reliance on Pledge behavior
-  such as secure boot or measured boot (which is an attested boot process involving 'measurements' as defined by {{RFC9334}}.)
+  such as secure boot or measured boot (which is an attested boot process involving 'measurements' as defined by {{RFC9334}}).
   The Join Registrar uses this information to make a determination as to whether to accept the Pledge into the network.
   Only some methods are normatively defined in this
   document. Other methods are left for future work.
@@ -509,9 +509,9 @@ The following combinations are "types" of Vouchers:
 |--
 | Nonceless Audit     | X         |          | X            |                | X        |       |
 |--
-| Owner Audit         | X         | X        | X            |                | X        | X     |
+| Ownership Audit     | X         | X        | X            |                | X        | X     |
 |--
-| Owner ID Voucher    |           | X        | X            | X              | X        |       |
+| Ownership ID        |           | X        | X            | X              | X        |       |
 |--
 | Bearer Voucher      | X         |          | wildcard     | wildcard       | optional | opt   |
 |==
@@ -696,7 +696,7 @@ In that case, the '`serial-number`' in the Voucher Data must refer to the same d
 However, there are situations where the one to one relationship may be broken.
 This occurs whenever a manufacturer has a common MASA, but different products (on different assembly lines) are produced with identical serial numbers.
 A system of serial numbers which is just a simple counter is a good example of this.
-A system of serial numbers where there is some prefix relating the product type does not fit into this, even if the lower digits are a counter.
+A system of serial numbers where there is some prefix relating to the product type does not fit into this, even if the lower digits are a counter.
 
 Another situation occurs when multiple manufacturers share a common MASA.
 In this case, any given serial number in the IDevID certificate may not be unique across all manufacturers.
@@ -707,7 +707,7 @@ This is realized by the '`idevid-issuer`' Attribute.
 
 It is clarified next, whether or not to include the '`idevid-issuer`' in the PVR, in the RVR and in the Voucher.
 
-Analysis of the situation shows that the Pledge never needs to include '`idevid-issuer`' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
+Analysis of the situation shows that the Pledge never needs to include the '`idevid-issuer`' Attribute in its PVR, because the Pledge's IDevID certificate is available to the Registrar, and the Authority Key Identifier needed to fill this Attribute is contained within that IDevID certificate.
 The Pledge therefore has no need to repeat this.
 
 For the RVR, {{updates-idevid-issuer}} now normatively requires that the '`idevid-issuer`' Attribute be included.
@@ -725,11 +725,11 @@ The entire Authority Key Identifier object from the certificate i.e. the '`extnV
 This includes the ASN.1 DER encoding of the SEQUENCE as well as the OCTET STRING element (tagged 0) that is named '`keyIdentifier`' with type '`KeyIdentifier`'.
 
 Note that per {{DEVID}}, only the first optional element named '`keyIdentifier`' is expected to be found in an IDevID certificate, not the '`authorityCertIssuer`' or the '`authorityCertSerialNumber`'.
-However, because of the above requirement to include the full '`extnValue`' OCTET STRING, even if the non-expected elements would be present, they would be included in the '`idevid-issuer`' value in a Voucher Request or Voucher.
+However, because of the above requirement to include the full '`extnValue`' OCTET STRING, even if the non-expected elements were present, they would be included in the '`idevid-issuer`' value in a Voucher Request or Voucher.
 
 ## Errata closed
 
-The above updates to {{BRSKI}} addresses errata {{eid7263}}.
+The above updates to {{BRSKI}} address errata {{eid7263}}.
 
 # Signature mechanisms {#signature-mechanisms}
 
@@ -813,7 +813,7 @@ its Owner.
 This document defines a Voucher Artifact that is a CMS-signed encoding of the
 JSON-encoded Voucher Data as defined by the YANG module {{voucher-yang-module}}.
 Also, this document defines Voucher Data that is CBOR-encoded based on the same YANG model.
-The CBOR-encoded (signed) Voucher based on this CBOR Voucher Data is defined in {{cBRSKI}}.
+The CBOR-encoded (COSE-signed) Voucher based on this CBOR Voucher Data is defined in {{cBRSKI}}.
 
 The Voucher Data format is described here as a practical basis for some uses (such
 as in NETCONF), but more to clearly indicate what Vouchers look like
@@ -833,13 +833,13 @@ type in the HTTP "Accept" header {{?RFC9110}}.
 
 For Vouchers stored/transferred via methods like a USB storage device (USB key), the Voucher format is usually signaled by a filename extension.
 
-The Attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for such devices.
+The Attributes `pinned-domain-pubk` (`proximity-registrar-pubk` for a PVR) and `pinned-domain-pubk-sha256` (`proximity-registrar-pubk-sha256` for a PVR) are involved in the process of pinning/identifying a raw public key, instead of a certificate, for the most constrained use cases.
 
 Should the SHA-256 hash algorithm ever need to be replaced in the future, then a new YANG module will be published with new leafs,
 obsoleting the `pinned-domain-pubk-sha256` and `proximity-registrar-pubk-sha256` Attributes.
 
 In the event that more than one of `pinned-domain-pubk-sha256`, `pinned-domain-pubk` or `pinned-domain-cert` Attributes
-are present in a Voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its voucher-request artifact, ignoring the others.
+are present in a Voucher, then the Pledge SHALL prioritize the matching `proximity-*` entry which it used in its PVR, ignoring the others.
 
 If the Voucher is nonceless, then the Pledge SHALL consider the first of the above Attributes that it understands, in the order given above.
 
@@ -851,7 +851,7 @@ As explained in {{BRSKI, Section 2.5}}, the Pledge is a creation of the manufact
 Specifically, the manufacturer knows what signature algorithm the Pledge is going to use (to sign a PVR or to validate a Voucher),
 and can verify this, thus there is no need (or opportunity) to negotiate the algorithm or signature (CMS, JWS, COSE) scheme.
 
-The exact choice of format (CMS, JWS or CBOR) and algorithm depends upon the target operational community for the Voucher.
+The exact choice of format (CMS, JWS or COSE) and algorithm depends upon the target operational community for the Voucher.
 For that reason, this document does not specify any mandatory to implement algorithms but leaves that specification to
 the Onboarding protocols that make use of Voucher Artifacts.
 {{RFC8994, Section 6.2}} specifies mandatory to implement algorithms for current Autonomic Network Infrastructure (ANI) uses.
@@ -990,7 +990,7 @@ Further examples of CMS-signed Vouchers are given in {{examples}}.
 During development of this merged YANG module, advice was given to better organize mutually exclusive Attributes such as '`pinned-domain-cert`' vs '`pinned-domain-pubk`', or '`expires-on`' vs '`nonce`'.
 Unfortunately, {{CORESID}} does not explain how and why choice statements are assigned SID values,
 and the tooling as of the end of 2025 is inconsistent with both the document, and the intuitive notions as to how this should work.
-As the simplest way forward, the no choice statements are used, allowing the SID values to be generated correctly.
+As the simplest way forward, no choice statements are used, allowing the SID values to be generated correctly.
 Normative requirements are instead included in the description of the Attributes in the YANG files.
 As a result, the SID values presented in {{voucher-sid-values}} and {{voucher-request-sid-values}} are to be considered normative, rather than relying exclusively on the
 ".sid" file {{CORESID}} generated from the YANG modules.
@@ -1070,14 +1070,14 @@ As the Voucher Request YANG module is created by YANG augment of the Voucher YAN
 
 ## Manufacturer Proprietary Extensions
 
-A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which are never subject to standardization.
+A manufacturer might need to communicate content in the Voucher (or in the Voucher Request), which is never subject to standardization.
 While they can use the Voucher extensions mechanism defined in {{voucher-ext}}, it does require allocation of a SID value in order to do minimal-sized encoding in case of CBOR Voucher Data.
 Note that {{RFC9254}} does not strictly require use of SIDs: instead of a SID value, the full string name can always
 be used. But this would significantly increase the size of the Voucher Data.
 
 Instead, a manufacturer MAY use the '`manufacturer-proprietary`' Attribute to put any content they wish, as long as
 this content does not require confidentiality.
-In CBOR serialization, if a plain CBOR map would be used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
+In CBOR serialization, if a plain CBOR map were used, it would be subject to delta encoding: so use of this Attribute requires that the contents are bstr-encoded
 {{RFC8949@CBOR, Section 3.1}} (Major type 2).
 In JSON serialization, delta encoding does not get in the way, and the manufacturer MAY use any encoding that is convenient for them, but base64URL encoding {{RFC4648, Section 5}} is RECOMMENDED.
 
@@ -1210,8 +1210,8 @@ later, causing a fresh Voucher to be generated by the MASA pinning the new Domai
 With long-lived Vouchers, the Domain owner needs to track which outstanding Vouchers pin
 the old trust anchor and needs to request the manufacturer/MASA to have these Vouchers re-issued.
 
-Change of the pinned trust anchor in a long-lived Voucher is an exceptional case: normally, a long-lived Voucher pins
-always a stable identity in the domain such as a Domain CA, which is not expected to change during the Voucher's
+Change of the pinned trust anchor in a long-lived Voucher is an exceptional case: normally, a long-lived Voucher always
+pins a stable identity in the Domain such as a Domain CA, which is not expected to change during the Voucher's
 validity period.
 However, security-related concerns may sometimes require the rekeying of a Domain CA earlier than expected.
 See {{sec-con-domain}} for considerations related to such cases.
@@ -1260,7 +1260,7 @@ There are three defenses against this attack:
 2) a device without an accurate clock uses a nonce to get a fresh ephemeral Voucher, and
 3) a device is required to verify that the trust anchor indicated in the Voucher matches the Registrar it is communicating with.
 
-The third prevents Onboarding into a Domain controlled by an attacker which is different to the Domain indicated in the Voucher.
+The third prevents Onboarding into a Domain controlled by an attacker which is different from the Domain indicated in the Voucher.
 This limits attacks to Owners who had valid Vouchers in the past.
 If a device can be convinced that it is living in some past, then a former Owner could "repossess" the device using an expired Voucher.
 
@@ -1292,7 +1292,7 @@ where the Pledge can be onboarded into - which is not the attacker's Domain in t
 
 As the MASA needs to be able to respond to Voucher signing requests,
 its private key used for signing Vouchers is online.
-This key is associated to its End-Entity certificate, which is a short-lived certificate, re-generated frequently.
+This key is associated with its End-Entity certificate, which is a short-lived certificate, re-generated frequently.
 
 The private key MUST be stored such that it cannot be exported and
 each use of the key is subject to access control.
@@ -1313,7 +1313,7 @@ administrator is clearly expected to initiate revocation of any
 Domain identity certificates (as is normal in PKIX {{RFC5280}} solutions).
 
 Similarly, they are expected to contact the manufacturer to indicate that
-ayn outstanding (presumably short lifetime) Vouchers should be blocked from
+any outstanding (presumably short lifetime) Vouchers should be blocked from
 automated renewal by the MASA.
 Protocols doing Voucher distribution are
 RECOMMENDED to check for revocation of Domain identity certificates
@@ -1341,7 +1341,7 @@ all of the YANG-modeled data is protected from modification.
 
 Implementers should be aware that the signed data is only
 protected from external modification; the data is still visible.
-This potential disclosure of this information doesn't affect security
+The potential disclosure of this information doesn't affect security
 so much as privacy.
 
 When used with {{BRSKI}} or {{cBRSKI}}, all Voucher Artifacts are conveyed using TLS {{RFC9846}}, so there is no
@@ -1367,7 +1367,7 @@ To mitigate this, {{SZTP, Section 3.4}} specifies a way to encrypt using CMS.
 This document updates two URIs in the "IETF XML Registry" {{RFC3688}}: `urn:ietf:params:xml:ns:yang:ietf-voucher` and
 `urn:ietf:params:xml:ns:yang:ietf-voucher-request`:
 
-IANA is requested to update this registration to point to THIS-DOCUMENT.
+IANA is requested to update these registrations to point to THIS-DOCUMENT.
 
 ## The YANG Module Names Registry
 
@@ -1435,11 +1435,11 @@ consolidated extension is pursued by the registrant.
 
 IANA is requested to register the following entries in the IETF YANG-SID Ranges registry:
 
-| Entry Point | Size  | Module Name          | Reference    |
-|:-----------:|:-----:|:---------------------|:-------------|
-| 2450        |  50   | ietf-voucher         | \[This-Document\] |
+| Entry Point | Size  | Module Name          | Reference         |
+|:-----------:|:-----:|:---------------------|:------------------|
+| 2450        |  50   | ietf-voucher         | \[THIS-DOCUMENT\] |
 |--
-| 2500        |  50   | ietf-voucher-request | \[This-Document\] |
+| 2500        |  50   | ietf-voucher-request | \[THIS-DOCUMENT\] |
 |--
 {: #ietf-yang-sid-ranges-table title='Registered SID ranges'}
 
