@@ -107,7 +107,6 @@ normative:
 informative:
   RFC3688:
   RFC9846:
-  RFC6125:
   RFC6241:
   RFC7435:
   RFC8040:
@@ -483,8 +482,8 @@ Authentication of Join Registrar:
 : Indicates how the Pledge
   can authenticate the Join Registrar.  This document defines
   a mechanism to pin the Domain certificate, or a raw public key.
-  Pinning a symmetric key, or CN-ID ({{RFC6125}}) or DNS-ID
-  information (as defined in {{RFC9525}}) is left for future work.
+  Pinning a symmetric key, or DNS-ID
+  information {{RFC9525}} is left for future work.
 
 Anti-Replay Protections:
 : Time- or nonce-based
@@ -503,7 +502,7 @@ If successful, the attacker would gain control over the Pledge.
 The following combinations are "types" of Vouchers:
 
 | Voucher Type        | Assertion |          | Registrar ID |                | Validity |       |
-|                     | Logged    | Verified | Trust Anchor | CN-ID or DNS-ID| RTC      | Nonce |
+|                     | Logged    | Verified | Trust Anchor | DNS-ID         | RTC      | Nonce |
 |:--------------------|----------:|---------:|-------------:|---------------:|---------:|------:|
 | Audit Voucher       | X         |          | X            |                |          | X     |
 |--
@@ -548,7 +547,7 @@ Ownership Audit Voucher:
   policy decisions and enforcement between the vendor and the Owner.
 
 Ownership ID Voucher:
-: Named after inclusion of the Pledge's CN-ID or DNS-ID within the
+: Named after inclusion of the Registrar's DNS-ID within the
   Voucher. The MASA service mitigates a MiTM Registrar by identifying
   the specific Registrar (via PKIX {{RFC5280}}) authorized to own the Pledge.
 
@@ -679,7 +678,7 @@ In some variations of BRSKI, such as {{PRM}}, there is no direct TLS connection 
 
 A Registrar MUST apply the following rules for the value of the '`idevid-issuer`' Attribute in the given order:
 
-1. If the Authority Key Identifier (AKI) field is present in the Pledge's (IDevID) client certificate, the Registrar
+1. If the Authority Key Identifier (AKI) field is present in the Pledge's IDevID client certificate, the Registrar
    copies the full data element as specified in {{idevid-issuer-format}}.
 2. Otherwise, the Registrar generates the full data element in the format specified in {{idevid-issuer-format}}, using the
    SHA-1 hash of the public key of the Pledge's IDevID client certificate.
