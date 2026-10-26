@@ -533,8 +533,8 @@ Table of Contents
    Authentication of Join Registrar:  Indicates how the Pledge can
       authenticate the Join Registrar.  This document defines a
       mechanism to pin the Domain certificate, or a raw public key.
-      Pinning a symmetric key, or CN-ID ([RFC6125]) or DNS-ID
-      information (as defined in [RFC9525]) is left for future work.
+      Pinning a symmetric key, or DNS-ID information [RFC9525] is left
+      for future work.
 
    Anti-Replay Protections:  Time- or nonce-based information to
       constrain the Voucher to specific time periods or Onboarding
@@ -559,8 +559,8 @@ Table of Contents
    |Voucher  | Assertion |        | Registrar |        |Validity|     |
    |Type     |           |        |        ID |        |        |     |
    +=========+===========+========+===========+========+========+=====+
-   |         |    Logged |Verified|     Trust |CN-ID or|     RTC|Nonce|
-   |         |           |        |    Anchor |  DNS-ID|        |     |
+   |         |    Logged |Verified|     Trust |  DNS-ID|     RTC|Nonce|
+   |         |           |        |    Anchor |        |        |     |
    +---------+-----------+--------+-----------+--------+--------+-----+
    |Audit    |         X |        |         X |        |        |    X|
    |Voucher  |           |        |           |        |        |     |
@@ -616,8 +616,8 @@ Table of Contents
       to supplement the MASA.  This provides an ideal sharing of policy
       decisions and enforcement between the vendor and the Owner.
 
-   Ownership ID Voucher:  Named after inclusion of the Pledge's CN-ID or
-      DNS-ID within the Voucher.  The MASA service mitigates a MiTM
+   Ownership ID Voucher:  Named after inclusion of the Registrar's DNS-
+      ID within the Voucher.  The MASA service mitigates a MiTM
       Registrar by identifying the specific Registrar (via PKIX
       [RFC5280]) authorized to own the Pledge.
 
@@ -779,8 +779,8 @@ Table of Contents
    'idevid-issuer' Attribute in the given order:
 
    1.  If the Authority Key Identifier (AKI) field is present in the
-       Pledge's (IDevID) client certificate, the Registrar copies the
-       full data element as specified in Section 6.3.
+       Pledge's IDevID client certificate, the Registrar copies the full
+       data element as specified in Section 6.3.
 
    2.  Otherwise, the Registrar generates the full data element in the
        format specified in Section 6.3, using the SHA-1 hash of the
@@ -2653,13 +2653,6 @@ Table of Contents
    [RFC6024]  Reddy, R. and C. Wallace, "Trust Anchor Management
               Requirements", RFC 6024, DOI 10.17487/RFC6024, October
               2010, <https://www.rfc-editor.org/rfc/rfc6024>.
-
-   [RFC6125]  Saint-Andre, P. and J. Hodges, "Representation and
-              Verification of Domain-Based Application Service Identity
-              within Internet Public Key Infrastructure Using X.509
-              (PKIX) Certificates in the Context of Transport Layer
-              Security (TLS)", RFC 6125, DOI 10.17487/RFC6125, March
-              2011, <https://www.rfc-editor.org/rfc/rfc6125>.
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
