@@ -6,6 +6,7 @@ cat: std
 updates: 8995
 obsoletes: 8366
 consensus: 'yes'
+submissiontype: IETF
 pi:
   toc: 'yes'
   symrefs: 'yes'
